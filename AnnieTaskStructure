@@ -1,0 +1,12 @@
+Wait for fixation
+Allow fixation to stabilize: 0.05s
+Hold fixation: Minimum 0.5s + draw from exponential with mean 0.3s (max 1.6s tot)
+RDM: Minimum 0.35s + draw from exponential with mean 0.2s (max 1s total)
+Wait: 0.33s
+Decision: 2s max
+Allow saccade to stabilize: 0.05s
+Hold at target: 0.2s
+Reward solenoid open time: 0.1s + (steps of 0.04s for consecutive corrects - max 0.3s)
+
+Timeout for wrong choice: 4s
+Intertrial interval: 2s
