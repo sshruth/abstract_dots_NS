@@ -1,0 +1,40 @@
+
+A while back I posted some Hershey utilities to edit files of
+vector data and to create from them various sorts of fonts.
+However, the vector data is in an idiosyncratic format -- .chr
+files.  Now here are routines to create such files from the
+Hershey data in the form in which it was posted in volume 4
+of mod.sources.  Rather than use the .hmp format for specifying
+a mapping from Hershey character number to ascii, I decided
+to use the .spec format of William LeFebvre's hfont package
+(in volume 5 of comp.sources.unix), since it is more complete.
+But means for creating .spec files from the data in the .hmp
+files that come with the Hershey data are here included.
+
+If these files are placed in the same directory as the Hershey
+data, one can proceed as follows:
+	(1) make
+	    (constructs programs cnv and h2s)
+	(2) make occidental
+	    (occidental is hersh.oc? concatenated)
+	(3) make <name>.chr
+	    OR make <name>.spec THEN make <name>.chr
+	    (where <name>.hmp is one of the Hershey map files)
+
+For oriental fonts, create (somehow) a .spec file with a
+first line "repertory oriental", make oriental, then
+	cnv <name.spec >name.chr
+
+Here are also 3 patch files, dif-*, which ought to be applied
+to the source files I distributed previously, to make the utilities
+eplot and hplot more compatible with the .chr files generated
+through the above procedure.
+
+The code in cnv.c was adapted from hershey.c by James Hurt (translated
+by Pete Holzmann) and from hfont.c by William LeFebvre.
+
+Greg Lee, 10/12/87
+U.S.mail: 562 Moore Hall, Dept. of Linguistics, Univ. of Hawaii, HONO, HI 96822
+INTERNET: lee@uhccux.uhcc.hawaii.edu
+UUCP:     {ihnp4,dcdwest,ucbvax}!sdcsvax!nosc!uhccux!lee
+BITNET:   lee%uhccux.uhcc.hawaii.edu@rutgers.edu

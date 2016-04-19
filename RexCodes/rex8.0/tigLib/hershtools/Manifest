@@ -1,0 +1,10 @@
+   File Name		Archive #	Description
+-----------------------------------------------------------
+ Makefile                  1	
+ Manifest                  1	this file
+ README2                   1	
+ cnv.c                     1	cnv <specfile >chrfile
+ dif-eplot.c               1	patch eplot.c dif-eplot.c
+ dif-hplot.c               1	patch hplot.c dif-hplot.c
+ dif-vfont.c               1	patch vfont.c dif-vfont.c
+ h2s.l                     1	h2s <hmpfile >specfile

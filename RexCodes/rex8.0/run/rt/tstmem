@@ -1,0 +1,961 @@
+~
+~Menu:
+control_param.tstmem
+ad_overall_gain		1
+ad_max_rate		2000
+pre_time_msec		-
+post_time_msec		-
+unit_wind_ctl		-
+state_proc_rate		1
+debug_state		0
+doutput_inmem		0
+doutput_rotate		1
+doutput_tofile		0
+mexwex_units		2
+~
+~Menu:
+signals.tstmem 0
+sig_enable		1
+ad_chan			0
+ad_mem_variable		eyeh
+ad_acquire_rate		2000
+ad_calib		1
+ad_delay_100_us		23
+memory_source		-
+signal_store_rate	1000
+signal_title		horiz_eye
+~
+~Menu:
+signals.tstmem 1
+sig_enable		1
+ad_chan			1
+ad_mem_variable		eyev
+ad_acquire_rate		2000
+ad_calib		1
+ad_delay_100_us		23
+memory_source		-
+signal_store_rate	1000
+signal_title		vert_eye
+~
+~Menu:
+signals.tstmem 2
+sig_enable		1
+ad_chan			2
+ad_mem_variable		oeyeh
+ad_acquire_rate		2000
+ad_calib		1
+ad_delay_100_us		23
+memory_source		-
+signal_store_rate	1000
+signal_title		other_eyeh
+~
+~Menu:
+signals.tstmem 3
+sig_enable		1
+ad_chan			3
+ad_mem_variable		oeyev
+ad_acquire_rate		2000
+ad_calib		1
+ad_delay_100_us		23
+memory_source		-
+signal_store_rate	1000
+signal_title		other_eyev
+~
+~Menu:
+signals.tstmem 4
+sig_enable		1
+ad_chan			4
+ad_mem_variable		addh
+ad_acquire_rate		2000
+ad_calib		1
+ad_delay_100_us		23
+memory_source		-
+signal_store_rate	1000
+signal_title		add_h
+~
+~Menu:
+signals.tstmem 5
+sig_enable		1
+ad_chan			5
+ad_mem_variable		addv
+ad_acquire_rate		2000
+ad_calib		1
+ad_delay_100_us		23
+memory_source		-
+signal_store_rate	1000
+signal_title		add_v
+~
+~Menu:
+signals.tstmem 6
+sig_enable		1
+ad_chan			6
+ad_mem_variable		joyh
+ad_acquire_rate		2000
+ad_calib		1
+ad_delay_100_us		23
+memory_source		-
+signal_store_rate	250
+signal_title		horiz_joy
+~
+~Menu:
+signals.tstmem 7
+sig_enable		1
+ad_chan			7
+ad_mem_variable		joyv
+ad_acquire_rate		2000
+ad_calib		1
+ad_delay_100_us		23
+memory_source		-
+signal_store_rate	250
+signal_title		vert_joy
+~
+~Menu:
+signals.tstmem 8
+sig_enable		2
+ad_chan			-
+ad_mem_variable		-
+ad_acquire_rate		-
+ad_calib		-
+ad_delay_100_us		-
+memory_source		da_0
+signal_store_rate	500
+signal_title		horiz_mirror
+~
+~Menu:
+signals.tstmem 9
+sig_enable		2
+ad_chan			-
+ad_mem_variable		-
+ad_acquire_rate		-
+ad_calib		-
+ad_delay_100_us		-
+memory_source		da_1
+signal_store_rate	500
+signal_title		vert_mirror
+~
+~Menu:
+signals.tstmem 10
+sig_enable		0
+ad_chan			-
+ad_mem_variable		-
+ad_acquire_rate		-
+ad_calib		-
+ad_delay_100_us		-
+memory_source		-
+signal_store_rate	-
+signal_title		-
+~
+~Menu:
+signals.tstmem 11
+sig_enable		0
+ad_chan			-
+ad_mem_variable		-
+ad_acquire_rate		-
+ad_calib		-
+ad_delay_100_us		-
+memory_source		-
+signal_store_rate	-
+signal_title		-
+~
+~Menu:
+signals.tstmem 12
+sig_enable		0
+ad_chan			-
+ad_mem_variable		-
+ad_acquire_rate		-
+ad_calib		-
+ad_delay_100_us		-
+memory_source		-
+signal_store_rate	-
+signal_title		-
+~
+~Menu:
+signals.tstmem 13
+sig_enable		0
+ad_chan			-
+ad_mem_variable		-
+ad_acquire_rate		-
+ad_calib		-
+ad_delay_100_us		-
+memory_source		-
+signal_store_rate	-
+signal_title		-
+~
+~Menu:
+signals.tstmem 14
+sig_enable		0
+ad_chan			-
+ad_mem_variable		-
+ad_acquire_rate		-
+ad_calib		-
+ad_delay_100_us		-
+memory_source		-
+signal_store_rate	-
+signal_title		-
+~
+~Menu:
+signals.tstmem 15
+sig_enable		0
+ad_chan			-
+ad_mem_variable		-
+ad_acquire_rate		-
+ad_calib		-
+ad_delay_100_us		-
+memory_source		-
+signal_store_rate	-
+signal_title		-
+~
+~Menu:
+da_conv.tstmem 0
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv.tstmem 1
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv.tstmem 2
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv.tstmem 3
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv.tstmem 4
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv.tstmem 5
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv.tstmem 6
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv.tstmem 7
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv.tstmem 8
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv.tstmem 9
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv.tstmem 10
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv.tstmem 11
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv.tstmem 12
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv.tstmem 13
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv.tstmem 14
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv.tstmem 15
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+mem_array.tstmem 0
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array.tstmem 1
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array.tstmem 2
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array.tstmem 3
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array.tstmem 4
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array.tstmem 5
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array.tstmem 6
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array.tstmem 7
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array.tstmem 8
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array.tstmem 9
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array.tstmem 10
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array.tstmem 11
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array.tstmem 12
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array.tstmem 13
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array.tstmem 14
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array.tstmem 15
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+offsets_eye.tstmem
+off_menu_enab		0
+eyeh_off_10s		-
+eyev_off_10s		-
+oeyeh_off_10s		-
+oeyev_off_10s		-
+~
+~Menu:
+rgen(ramps).tstmem 0
+menu_enab		0
+type_flag		-
+length_10s		-
+angle_deg		-
+velocity_deg/sec	-
+xoffset_10s		-
+yoffset_10s		-
+ramp_ecode		-
+phidevice		0
+phiontime		1
+phiofftime		99
+~
+~Menu:
+rgen(ramps).tstmem 1
+menu_enab		0
+type_flag		-
+length_10s		-
+angle_deg		-
+velocity_deg/sec	-
+xoffset_10s		-
+yoffset_10s		-
+ramp_ecode		-
+phidevice		0
+phiontime		1
+phiofftime		99
+~
+~Menu:
+rgen(ramps).tstmem 2
+menu_enab		0
+type_flag		-
+length_10s		-
+angle_deg		-
+velocity_deg/sec	-
+xoffset_10s		-
+yoffset_10s		-
+ramp_ecode		-
+phidevice		0
+phiontime		1
+phiofftime		99
+~
+~Menu:
+rgen(ramps).tstmem 3
+menu_enab		0
+type_flag		-
+length_10s		-
+angle_deg		-
+velocity_deg/sec	-
+xoffset_10s		-
+yoffset_10s		-
+ramp_ecode		-
+phidevice		0
+phiontime		1
+phiofftime		99
+~
+~Menu:
+rgen(ramps).tstmem 4
+menu_enab		0
+type_flag		-
+length_10s		-
+angle_deg		-
+velocity_deg/sec	-
+xoffset_10s		-
+yoffset_10s		-
+ramp_ecode		-
+phidevice		0
+phiontime		1
+phiofftime		99
+~
+~Menu:
+rgen(ramps).tstmem 5
+menu_enab		0
+type_flag		-
+length_10s		-
+angle_deg		-
+velocity_deg/sec	-
+xoffset_10s		-
+yoffset_10s		-
+ramp_ecode		-
+phidevice		0
+phiontime		1
+phiofftime		99
+~
+~Menu:
+rgen(ramps).tstmem 6
+menu_enab		0
+type_flag		-
+length_10s		-
+angle_deg		-
+velocity_deg/sec	-
+xoffset_10s		-
+yoffset_10s		-
+ramp_ecode		-
+phidevice		0
+phiontime		1
+phiofftime		99
+~
+~Menu:
+rgen(ramps).tstmem 7
+menu_enab		0
+type_flag		-
+length_10s		-
+angle_deg		-
+velocity_deg/sec	-
+xoffset_10s		-
+yoffset_10s		-
+ramp_ecode		-
+phidevice		0
+phiontime		1
+phiofftime		99
+~
+~Menu:
+rgen(ramps).tstmem 8
+menu_enab		0
+type_flag		-
+length_10s		-
+angle_deg		-
+velocity_deg/sec	-
+xoffset_10s		-
+yoffset_10s		-
+ramp_ecode		-
+phidevice		0
+phiontime		1
+phiofftime		99
+~
+~Menu:
+rgen(ramps).tstmem 9
+menu_enab		0
+type_flag		-
+length_10s		-
+angle_deg		-
+velocity_deg/sec	-
+xoffset_10s		-
+yoffset_10s		-
+ramp_ecode		-
+phidevice		0
+phiontime		1
+phiofftime		99
+~
+~Menu:
+run_line_chan.tstmem 0
+signal_num		0
+~
+~Menu:
+run_line_chan.tstmem 1
+signal_num		1
+~
+~Menu:
+run_line_chan.tstmem 2
+signal_num		2
+~
+~Menu:
+run_line_chan.tstmem 3
+signal_num		3
+~
+~Menu:
+run_line_chan.tstmem 4
+signal_num		8
+~
+~Menu:
+run_line_chan.tstmem 5
+signal_num		9
+~
+~Menu:
+run_line_chan.tstmem 6
+signal_num		-1
+~
+~Menu:
+run_line_chan.tstmem 7
+signal_num		-1
+~
+~Menu:
+win_disp_chan.tstmem 0
+channel_num		0
+~
+~Menu:
+win_disp_chan.tstmem 1
+channel_num		1
+~
+~Menu:
+win_disp_chan.tstmem 2
+channel_num		2
+~
+~Menu:
+win_disp_chan.tstmem 3
+channel_num		6
+~
+~Menu:
+win_disp_chan.tstmem 4
+channel_num		7
+~
+~Menu:
+win_disp_chan.tstmem 5
+channel_num		16
+~
+~Menu:
+win_disp_chan.tstmem 6
+channel_num		16
+~
+~Menu:
+win_disp_chan.tstmem 7
+channel_num		16
+~
+~Menu:
+saccade_det.tstmem
+sd_control		-
+h_range			15
+v_range			15
+peak_vel		0
+start_vel		6
+end_vel			2
+max_vel			30000
+min_vel			15
+max_dur			100
+min_dur			10
+delay_time		40
+~
+~Menu:
+bit.tstmem
+default_bit_device	0x7
+~
+~Menu:
+trials.tstmem
+correct			12
+wrong			0
+~
+~Menu:
+windows.tstmem 0
+menu_enab		0
+window_control		-
+x_position_source	-
+x_position_src_num	-
+y_position_source	-
+y_position_src_num	-
+x_check_source		-
+x_check_src_num		-
+y_check_source		-
+y_check_src_num		-
+x_dir_pos_10s		-
+y_dir_pos_10s		-
+xsiz_10s		-
+ysiz_10s		-
+~
+~Menu:
+windows.tstmem 1
+menu_enab		0
+window_control		-
+x_position_source	-
+x_position_src_num	-
+y_position_source	-
+y_position_src_num	-
+x_check_source		-
+x_check_src_num		-
+y_check_source		-
+y_check_src_num		-
+x_dir_pos_10s		-
+y_dir_pos_10s		-
+xsiz_10s		-
+ysiz_10s		-
+~
+~Menu:
+windows.tstmem 2
+menu_enab		0
+window_control		-
+x_position_source	-
+x_position_src_num	-
+y_position_source	-
+y_position_src_num	-
+x_check_source		-
+x_check_src_num		-
+y_check_source		-
+y_check_src_num		-
+x_dir_pos_10s		-
+y_dir_pos_10s		-
+xsiz_10s		-
+ysiz_10s		-
+~
+~Menu:
+windows.tstmem 3
+menu_enab		0
+window_control		-
+x_position_source	-
+x_position_src_num	-
+y_position_source	-
+y_position_src_num	-
+x_check_source		-
+x_check_src_num		-
+y_check_source		-
+y_check_src_num		-
+x_dir_pos_10s		-
+y_dir_pos_10s		-
+xsiz_10s		-
+ysiz_10s		-
+~
+~Menu:
+windows.tstmem 4
+menu_enab		0
+window_control		-
+x_position_source	-
+x_position_src_num	-
+y_position_source	-
+y_position_src_num	-
+x_check_source		-
+x_check_src_num		-
+y_check_source		-
+y_check_src_num		-
+x_dir_pos_10s		-
+y_dir_pos_10s		-
+xsiz_10s		-
+ysiz_10s		-
+~
+~Menu:
+windows.tstmem 5
+menu_enab		0
+window_control		-
+x_position_source	-
+x_position_src_num	-
+y_position_source	-
+y_position_src_num	-
+x_check_source		-
+x_check_src_num		-
+y_check_source		-
+y_check_src_num		-
+x_dir_pos_10s		-
+y_dir_pos_10s		-
+xsiz_10s		-
+ysiz_10s		-
+~
+~Menu:
+windows.tstmem 6
+menu_enab		0
+window_control		-
+x_position_source	-
+x_position_src_num	-
+y_position_source	-
+y_position_src_num	-
+x_check_source		-
+x_check_src_num		-
+y_check_source		-
+y_check_src_num		-
+x_dir_pos_10s		-
+y_dir_pos_10s		-
+xsiz_10s		-
+ysiz_10s		-
+~
+~Menu:
+windows.tstmem 7
+menu_enab		0
+window_control		-
+x_position_source	-
+x_position_src_num	-
+y_position_source	-
+y_position_src_num	-
+x_check_source		-
+x_check_src_num		-
+y_check_source		-
+y_check_src_num		-
+x_dir_pos_10s		-
+y_dir_pos_10s		-
+xsiz_10s		-
+ysiz_10s		-
+~
+~Menu:
+state_vars.tstmem
+clear_all_da		0
+phase			90
+scale0			800
+scale1			800
+rate0			5
+rate1			5
+repeat0			1
+repeat1			1
+fix_xwind		100
+fix_ywind		100
+~
+~State set variables:
+set statelist
+first
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+disable
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+go
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+selmem
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+stmem
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+openw
+preset 1000  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+fpon
+preset 250  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x7060040  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+eyeon
+preset 250  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+stimon
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x7050001  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+fpoff
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x7060040  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+stoff
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x7050001  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+closew
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x1  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+rewon
+preset 35  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x7040040  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+rewoff
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x7040040  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+stopmem
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+correct
+preset 500  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x1  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+error
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x2  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+reset
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0xffffffff  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+wrong
+preset 500  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+~

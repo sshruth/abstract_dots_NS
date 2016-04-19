@@ -1,0 +1,3 @@
+#!/bin/csh
+
+gawk -f awkswap $1 > $1.mod

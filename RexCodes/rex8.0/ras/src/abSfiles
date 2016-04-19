@@ -1,0 +1,1 @@
+ABSRC = ../abmain.c ../fileTools.c ../inRex.c ../initArgs.c ../initRasterDemo.c ../lsrTig.c ../manageWin.c ../tigControls.c ../toolGraph.c ../toolPage.c ../toolPlot.c ../toolSelect.c 

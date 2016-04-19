@@ -1,0 +1,2 @@
+/opt/sbin/sendmail -v monkeyAlert < /usr/local/bin/monkeyAlert.txt > /root/alertLog
+

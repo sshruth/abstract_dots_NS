@@ -1,0 +1,10 @@
+rm -f *.d.c
+rm -f *.d.o
+make sf=StstFix
+make sf=StstLoadRamp
+make sf=StstVexRamp
+make sf=StstFlow
+make sf=memSac
+make sf=memSac2
+make sf=tstramp
+make sf=tstmem

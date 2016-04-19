@@ -1,0 +1,3 @@
+# ABLIB = -l Ap -l ph -l phrender -l m
+ABLIB = -lAp -lph -lphrender -lm
+

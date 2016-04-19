@@ -1,0 +1,26 @@
+PhAB114
+PtWindow
+1
+stateDebugWindow
+1005
+dim
+300,250
+2002
+crgb
+0xc0c0c0
+2006
+crgb
+0x606060
+18015
+string
+State Debug Window
+1008
+flag
+9437184,66060288
+18013
+flag
+12976,14256
+1004
+data
+0
+0

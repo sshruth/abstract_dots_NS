@@ -1,0 +1,34 @@
+	/* Tig configuration functions */
+void newfont(int);
+void newsize(int);
+void newskew(char, char);
+void newangle(double, double, double);
+void set_idtrans(struct TIGxform *);
+void newplane(struct TIGvec *, struct TIGvec *);
+void neworigin(int, int);
+void rmove2pt(int, int, int);
+void rmove(int, int, int);
+void move2pt(int, int, int);
+void move(int, int, int);
+void newpatrn(char, char, double);
+void fill(short int, short int, short int);
+void rfill(short int, short int, short int);
+void shade(short int, short int, short int);
+void rectangle(short int, short int, short int, short int, short int);
+void newshade(int, short int *);
+void rgbcolor(int, int, int, int);
+void buffer(void);
+void nobufr(void);
+void penup(void);
+void pendown(void);
+void newcolor(short int, short int);
+void newform(void);
+void newbgnd(short int, short int);
+void newkearn(int);
+void newline(short int, short int, short int);
+void fit(struct darray *, double);
+void setcoef(struct darray *, double);
+void _pltstr(char *);
+void putsymb(int);
+void axis(char *, char *, int, int, struct spaxis *, struct TIGdvec *, double, int);
+

@@ -1,0 +1,424 @@
+
+Eplot, Hplot -- (c) Greg Lee, October 1984 (revised July 1987)
+
+
+Eplot is an interactive screen editor for modifying files of plotting
+points, as a preliminary to using such files with Hplot to create
+character fonts. It will also create PostScript fonts, and .pl files
+for use with the TeX utility 'pltotf' to make .tfm files.
+
+
+e	Edit		Enters edit mode. See below for subcommands.
+
+c	Create		Make a new character ready to have plotting
+			points added in edit mode.
+
+r	Read		Read plotting points from .chr file.
+
+z	Zap		Get rid of all plotting info.
+
+p	Plot		Plot a character.
+
+v	Display		Display the currently plotted character.
+
+b	Base		Set y-coordinate of base line (default 9).
+
+h	Height		Set height of character above the base line (def. 22).
+
+d	Depth		Set depth below base line (def. 7).
+
+f	Factors		The stretch/shrink factors X1/X2 and Y1/Y2
+			modify the plotting points as they are read
+			in from the .chr file, as well as affecting
+			the editing display.
+
+^I	Italic		Points are sloped by I1/I2 as a .chr file is read.
+
+t	Tall		Alter display mode for tall characters.
+
+^L	set Line style
+
+		The values of X Heavy, X Light, and Y Heavy, Y Light modify
+		the action of the line drawing algorithm. This is not
+		very useful.
+
+
+^S	set serif level
+
+		This has an effect only when a file of plotting points
+		is read in, and then only if the plotting points responsible
+		for drawing serifs have been identified with a prefix 'S'
+		or 's'. When the serif level is 0, points 'S(x,y)' and
+		's(x,y)' are ignored. When the level is 1, only points
+		'S(x,y)' are ignored.  For higher levels, all points are
+		used.
+
+n	Name file	Change name of file (.chr, .ps, or .pl) to save in
+
+s	Save .chr	Save edited plotting points in .chr file.
+
+a	Save .a		Save edited plotting points in .a assembler src file.
+
+^P	save .ps file	Save edited plotting points as a PostScript font.
+
+^T	save .pl file	Create .pl file with char dimensions (to make .tfm file)
+
+?	info		(same as HPLOT command)
+
+\\	debug		(same as HPLOT command)
+
+x	eXit
+
+q	same as x
+
+
+Edit mode commands:
+
+
+Cursor movement
+
+	^S	cursor left
+	^D	cursor right
+	^E	cursor up
+	^X	cursor down
+	^R	cursor up 8
+	^C	cursor down 8
+	^A	cursor left 8
+	^F	cursor right 8
+	^W	scroll up
+	^Z	scroll down
+	^Q	center scroll
+
+Control
+
+	CR	end edit
+	^L	plot Letter
+	^N	New plot
+
+Pen movement
+
+   any non-control character (other than Space)
+		pen to beginning of line named by character
+
+	^B	pen Back to previous point
+	Space	pen forward to next point
+	^U	pen Up
+
+
+Plotting point modification
+
+	^P	change Point
+	^I	Insert point
+	^G	delete point
+	^Y	delete line
+	^T	pull points toward cursor, when followed by:
+			u	pulls points above (Up)
+			d	pulls points below (Down)
+			r	pulls at right
+			l	pulls at left
+	   or	push points away from cursor, when followed by:
+			U	pushes above
+			D	pushes below
+			R	pushes at right
+			L	pushes at left
+	^H	change next line to hairline
+
+
+
+HPLOT -- Greg Lee, October, 1984
+
+
+
+Hplot creates fonts from lists of plotting points for each character.
+Source plotting points are in an editable text file. Text files of
+plotting points can be extracted from the Hershey data base with the
+utility program HTRANS (see below). The raster fonts created are in
+unix vfont format.
+
+In outline, the procedure for creating a font is:
+	A. read one or more files of plotting points (with the 'r' command)
+	B. set various parameters determining size and style
+	C. plot characters (with the 'p' or 'V' commands)
+	D. assign a name to the font (with the 'n' command)
+	E. generate and save the font (with the 'g' command)
+	F. exit (with the 'x' command)
+
+Here is a list of commands available:
+
+r	Read in a file of plotting points
+
+		A plotting point is specified in the form '(x,y)',
+		where x and y are the x-coordinate and the
+		y-coordinate. The lowest y values correspond to
+		the top of the character (strangely enough). The
+		lists of points for each character are headed by
+		the character, surrounded by single quotes and followed
+		by a colon. (^ replaces the first single quote for a
+		control character.) There are various commands interspered
+		among the plotting points, namely:
+
+			End Char	to end the list for a character
+			Pen Up		to raise the pen
+			Hair		to raise the pen and draw only
+					 every other dot of the next line
+			Bounds(x1,x2)	to define the left and right
+					 boundaries of a character (but
+					 HPLOT currently ignores this)
+			Height(y)	to define the height of characters
+					 above the base line
+			x Height(y)	to define the height of character
+					 bodies above the base line
+			Base(y)		to define the distance of the base
+					 line below y-coordinate 0
+			Depth(y)	to define the depth of a character
+					 below the baseline
+			Bearings(x,y)	to define the amount of white space
+					 at the left and right of the inked
+					 portion of the character
+			S(x,y)		for a point of a big serif
+			s(x,y)		for a point of a small serif
+
+		Any stuff in the file which is not recognized as a point
+		or any of the other items listed above is ignored, along
+		with the remainder of the line in which it occurs.
+
+
+z	Zap -- delete all plotting points
+
+		Plotting data (in a compressed format) is kept in
+		a buffer whose size depends on how much RAM happens to be
+		available in your system. If you're about to run out of
+		room, you'll want to clear out the buffer before reading
+		in another file of data.
+
+p	Plot a character
+
+		The plotted character is shown on the screen with the
+		lines that were drawn identified as '1','2',...,'9','A',...,
+		'Z','a',...,'z','"',....  This is some help in identifying
+		plotting points that need to be changed. When the character
+		crosses the base line, the latter is shown with '-'s.
+
+		The maximum size for a character plot is 160 by 160 dots
+		but at most 80 dots of width can be displayed.
+
+g	Generate a font by plotting all characters for which plotting
+	points are available and save the font in the file named with the
+	'n' command.
+
+c	Read a .fn2 font. A subsequent 'g' generates a vfont file with
+	equivalent rasters.
+
+v	Display the last character plotted.
+
+b	set the Base line adjust value
+
+		The base lines of characters are considered to be at this
+		value below y-coordinate 0.
+
+h	set the Height value
+
+		The top of the character is considered to be at this
+		value above the base line. The height and the base line
+		will determine which vertical portion of the plotted character
+		is placed in the font.
+
+d	set the Depth value
+
+f	set the magnification Factors
+
+		As characters are plotted, they are stretched or shrunk
+		by X1/X2 horizontally, and they are stretched or shrunk
+		by Y1/Y2 vertically. Negative fractions cause reflections
+		about the y- or x- axis.
+
+2	set the magnification Factors for other plot
+
+		If XX1 and XX2 or YY1 and YY2 are given non-zero values,
+		each character is plotted twice, once with the 2nd set
+		of magnification factors.
+
+^A	set factors for magnifying Ascenders
+
+		Ascenders of lower case letters are stretched or shrunk
+		by A1/A2. For this to work, commands 'Base(n)' and
+		'x Height(n)' must be present in the file of plotting
+		points.
+
+^D	set factors for magnifying Descenders
+
+		Descenders of lower case letters are stretched or shrunk
+		by D1/D2. For this to work, commands 'Base(n)' and
+		'x Height(n)' must be present in the file of plotting
+		points.
+
+^I	set factors for Italic slant
+
+		Positive I1/I2 back-slants characters to the left. This
+		is mainly useful for removing the rightward slant given
+		to some of the Hershey characters. If the font characters
+		are slanted, this produces ugly variations in spacing.
+
+t	toggle Tall switch
+
+		Tall makes the font duplex, so that characters can be
+		up to 48 dots high.
+
+^P	set Pen style
+
+		The imaginary pen that draws the lines between pairs of
+		plotting points can be widened and tilted. Its width is
+		one plus the value assigned to Width. Thinking of it as
+		a brush for a moment, the x- and y-distances between
+		bristles are given as Delta X and Delta Y. If Square Pen
+		has the value 3, the pen takes on the shape of a hollow
+		square (or diamond), but for values of 1 or 2, only two or
+		three sides of the square are drawn.
+
+		The width of the pen can be varied with Blob and Delta
+		Blob. Each time the pen goes down it is widened by one
+		eighth of the value of Blob, but this is decreased by
+		Delta Blob for each dot that is drawn in the course of
+		the stroke. (The stroke begins at the end of the line
+		that is furthest from the x-axis.)
+
+		The pen style parameters are all treated as signed
+		values. The width of the blob goes toward 0, but it
+		may oscillate if Delta Blob is large.
+
+^H	sHade
+
+		Characters can be shaded on the lower right side with a
+		series of diagonals, whose length is defined by the
+		value of Shading. The separation from the body of the
+		character is given by Y Shade, and the spacing of the
+		lines from each other is controlled by X Shade.
+
+^L	set Line style
+
+		The values of X Heavy, X Light, and Y Heavy, Y Light modify
+		the action of the line drawing algorithm. This is not
+		very useful.
+
+^R	Retrace
+
+		Causes the next plotted character to overlay the last.
+
+^O	toggle Open switch
+
+		Open causes interior dots to be deleted.
+
+l	toggle Light switch
+
+		Light causes every other interior dot to be deleted, and
+		insures that there will be no two contiguous horizontal
+		dots. This improves the appearance of fonts when used at
+		low resolution.
+
+^F	set Fill pattern
+
+		When ^O has been used to open up the interiors of characters,
+		the inside space can be filled with various patterns. The
+		pattern is configured by assigning values to the seven
+		parameters below. Except for Width, the number assigned
+		determines the periodicity of the pattern. Except for Width
+		and Grey, negative values give white-on-black instead of
+		black-on-white. For combinations of patterns, only dots
+		belonging to all the requested patterns are drawn.
+
+		Grey -- Fill with spaced dots. Values 0 and 1 have no effect.
+		A negative value prevents the outside of the character from
+		being drawn, and -1 does only this.
+
+		Vertical -- Vertical stripes.
+
+		Horizontal -- Horizontal stripes.
+
+		Checked -- Checkerboard pattern.
+
+		Hatched -- Cross-hatching.
+
+		Diagonal -- Diagonal stripes going from upper left to to
+		lower right. But if the value is negative, the stripes
+		go from lower left to upper right.
+
+		Width -- Controls the width of the stripes drawn for the
+		previous five types of pattern (Vertical, Horizontal,
+		Checked, Hatched, and Diagonal). If the value is 0, nothing
+		is drawn. Value 1 gives one dot wide lines, and value 2
+		gives stripes of width 1/2 the periodicity. Higher values
+		give wider stripes.
+
+^B	Box
+
+		Options for creating characters in boxes.
+
+		Width -- Sets the width of the box. Any non-zero value
+		causes a clearance of at least two dot-spaces to be left
+		on either side of each character.
+
+		Edge -- Sets the thickness of the edge.
+
+		Reverse -- A non-zero value causes a fill pattern for open
+		characters to be placed outside the character, rather than
+		inside.
+
+^S	set serif level
+
+		This has an effect only when a file of plotting points
+		is read in, and then only if the plotting points responsible
+		for drawing serifs have been identified with a prefix 'S'
+		or 's'. When the serif level is 0, points 'S(x,y)' and
+		's(x,y)' are ignored. When the level is 1, only points
+		'S(x,y)' are ignored.  For higher levels, all points are
+		used.
+
+n	assign Name to font file
+
+s	Save plotted characters in font file
+
+?	list commands and show room in buffers
+
+		Store room is what is left in the plotting point buffer.
+		Font room is what is left in the font buffer.
+
+\	debug
+
+		Shows more stuff on screen as characters are being plotted.
+
+x	eXit to unix
+
+
+
+
+
+HTRANS utility
+
+The Hershey data base of occidental characters is available in the National
+Bureau of Standards Special Publication 424, but the machine-readable form
+as supplied by the NBS (or with the Fancy Font system) is in a compressed,
+non-editable format. HPLOT, however, needs its plotting data in an editable
+text file. HTRANS will extract a continuous range of characters from the
+compressed file occidental.hsy and create the requisite text file. The
+compressed Hershey file is not in the same format as distributed by the NTIS.
+
+Four items of information are asked for by HTRANS:
+
+(1) the name of the text file to be made (the extension .CHR will be added)
+
+(2) the sequential number of the starting character in the Hershey data base,
+    from 0 to 1593 (these numbers are not the same as those given in the
+    NBS publication mentioned above)
+
+(3) the first letter to associate plotting data with --- you can answer
+    this query with a CR if you want the lists of points labeled by
+    Hershey number
+
+(4) the last letter in the range of letters to associate plotting data
+    or (if you answered the 3rd question with a CR)
+    the last sequential number in the Hershey data base
+
+
+When the points are labeled by Hershey number, you will have to edit the
+file later to replace the number labels with character labels, since HPLOT
+needs the latter.

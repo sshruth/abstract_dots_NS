@@ -1,0 +1,1 @@
+ABSRC = ../abmain.cc ../initRebel.cc ../rebelApp.cc ../rebelChain.cc ../rebelComment.cc ../rebelEdit.cc ../rebelFile.cc ../rebelFunction.cc ../rebelFunctionItem.cc ../rebelMenu.cc ../rebelMenuItem.cc ../rebelResource.cc ../rebelState.cc ../rebelVariable.cc ../rebelVariableItem.cc ../rebelWidget.cc ../rebelWindow.cc 

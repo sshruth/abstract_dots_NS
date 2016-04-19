@@ -1,0 +1,2 @@
+# MYLIB = -l socket -L../../../lib -l rex
+MYLIB = -lsocket -L../../../lib -lrex

@@ -1,0 +1,30 @@
+Here are some programs for making use of the Hershey character data.  Eplot
+and hplot allow the editing of vector fonts and the creation of other fonts
+from them -- vfont format raster fonts, PostScript analytic fonts -- as
+well as tfm files for TeX.  The file format for vector fonts is idiosyncratic,
+I'm sorry to say.  I have not had access to the Hershey data in the usual
+formats.  I have included two sets of four files each containing the Hershey
+simplex and triplex Roman characters in the format required for these
+programs -- these are sr?.chr and tr?.chr, where the ? is c for capital
+letters, s for small letters, d for digits, or p for punctuation.  Just
+in case anyone has the Hershey data in the compressed form I have it in
+(similar the National Bureau of Standards form) I included the utility
+htrans, which converts from the compressed form to my form.  (By the way,
+I would really like to have the Hershey data for oriental characters.)
+
+These programs have compiled ok in the Ultrix 1.2 and Sun 3.0 versions of
+BSD 4.2.
+
+Parts of the source (termio.c, termio.h) were taken from the Xum package
+distributed in net.sources by John Paul O'Brien, Nova University, Fort
+Lauderdale, Florida, {allegra, ucf-cs, usfvax2}!novavax!john, and (vfont.c) from
+the Hfont package by William LeFebvre, Department of Computer Science,
+Rice University, <phil@Rice.edu>.  These appear to be in the public domain.
+I am grateful to the above for the use of their code, and I hereby place
+the rest of the code and documents for these programs in the public domain.
+
+Greg Lee, Sept 12, 1987.
+U.S.mail: 562 Moore Hall, Dept. of Linguistics, Univ. of Hawaii, HONO, HI 96822
+INTERNET: lee@uhccux.uhcc.hawaii.edu
+UUCP:     {ihnp4,dcdwest,ucbvax}!sdcsvax!nosc!uhccux!lee
+BITNET:   lee%uhccux.uhcc.hawaii.edu@rutgers.edu

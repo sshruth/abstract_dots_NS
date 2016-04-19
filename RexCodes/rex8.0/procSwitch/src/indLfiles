@@ -1,0 +1,1 @@
+MYLIB = -L../../../lib -lrex -lact

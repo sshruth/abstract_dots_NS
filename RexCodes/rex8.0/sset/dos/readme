@@ -1,0 +1,48 @@
+This directory contains a DOS program to test the PC to PC
+messaging system.  To compile, copy these programs plus
+/rex/hdr/pcmsg.h and /rex/int/pcmsg.c to the DOS machine.
+Then use the 'tstmsg' spot file under REX.
+
+To compile under DOS, first edit pcmsg.h and defint the proper
+compiler (either Borland or Microsoft).  Then edit pcmsg.c and
+#define DOSPC.  Also set proper address for the 8255 chip on the DOS 
+side and make the DOS side 'female' (the REX side is set to male).
+For example, if the DOS side has the 8255 at address 0x280 the 
+relevant parts of 'pcmsg.c' on the DOS side would be:
+
+PCM pcm[PCM_NUMCHAN] = {
+    {0x280,		    /* I/O page address of 8255 */
+    0,			    /* 1 for male, 0 for female */
+    &pcm_rbuf0,		    /* pointer to receive buffer */
+    sizeof(pcm_rbuf0)},	    /* length of receive buffer */
+};
+
+This same section on the REX side would look like this if one
+were using the 3rd 8255 on the PCDIO board on the REX side:
+
+PCM pcm[PCM_NUMCHAN] = {
+    {0x288,		    /* I/O page address of 8255 */
+    1,			    /* 1 for male, 0 for female */
+    &pcm_rbuf0,		    /* pointer to receive buffer */
+    sizeof(pcm_rbuf0)},	    /* length of receive buffer */
+};
+
+Note well that on the REX side the first two 8255's are dedicated
+to REX.  Even if you are not using one of them in your
+configuration, don't try to use them for PC messaging.
+
+This test involves the REX side transmitting a string to the DOS
+side, and the DOS side responding by transmitting a string back
+to the REX side.
+
+To compile under Borland simply type "bcc main.c pcmsg.c".  To
+compile under Microsoft type "cl main.c pcmsg.c".  The makefile
+only works under QNX.
+
+Make sure that when you connect the two interfaces you dont
+connect the +5 from both computers together.  On the PCDIO
+boards from Industrial Computer source the +5 is carried on
+pin 50.  I cut this line on the flat cable (it is the last
+line and is on the edge of the cable- just make sure you
+cut the correct end of the cable and get pin 50 instead of
+pin 1!).

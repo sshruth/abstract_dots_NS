@@ -1,0 +1,2 @@
+DIRS = gcc_ntox86
+ALLDIRS = default gcc_ntox86

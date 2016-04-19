@@ -1,0 +1,35 @@
+head	1.1;
+access;
+symbols;
+locks
+	lmo:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	91.11.24.21.33.31;	author lmo;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@
+/*
+ *	STANDARD HEADER			GETC(3) / PUTC(3) / FOPEN(3) / FFLUSH(3)
+ */
+
+struct iobuf {
+	int fd;
+	int xleft;
+	char *cptr;
+	char cbuf[512];
+};
+@

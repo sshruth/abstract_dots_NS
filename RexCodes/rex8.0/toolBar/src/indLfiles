@@ -1,0 +1,2 @@
+# MYLIB = -l socket -L../../../lib -l int -l act -l rex
+MYLIB = -lsocket -L../../../lib -lint -lact -lrex -llabTools

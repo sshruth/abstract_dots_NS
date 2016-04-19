@@ -1,0 +1,1 @@
+ABOBJ = abmain.o initArgs.o initXcorr.o lsrTig.o manageWin.o setData.o 

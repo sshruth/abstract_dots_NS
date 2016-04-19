@@ -1,0 +1,5 @@
+#! /bin/ksh
+
+rm -f $1.d.c
+rm -f $1.d.o
+make sf=$1

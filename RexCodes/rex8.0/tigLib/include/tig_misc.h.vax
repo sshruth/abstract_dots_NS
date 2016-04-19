@@ -1,0 +1,78 @@
+/*
+ * tig_misc.h
+ *	contains constants and structures that are application
+ * or machine dependent
+ */
+#define MAX_X	10620	/* max x-deviation on laser writer */
+#define MAX_Y	8200	/* max y-deviation on laser writer */
+#define MIN_RES	1	/* Minimum resolution in 1000ths of an inch */
+
+
+typedef unsigned unsign;
+
+/*
+/*
+ * structure to access an
+ * integer in bytes
+ */
+#ifdef vax
+typedef struct
+{
+	char	lobyte;
+	char	hibyte;
+} * BYTES;
+#endif
+#ifdef sun
+typedef struct
+{
+	char	hibyte;
+	char	lobyte;
+} * BYTES;
+#endif
+
+
+/*
+ * structure to access a long as integers
+ */
+typedef struct {
+	short int	loword;
+	short int	hiword;
+} * WORDS;
+
+/*
+ * math stuff
+ */
+#define	PI	3.14159265358979323846264338
+#define twopi	(2 * PI)
+#define pi	(PI)
+#define deg2rad	 0.017453292519943
+#define rad2deg 57.295779513082320
+#define sqrt2	1.41421356237309504880
+
+/* HDDN.H -- Header for hidden-line surface generation */
+
+
+/* XFORM
+ *	structure to hold all variables needed to perform transformation
+ * from user space to TIG page
+ */
+typedef struct {
+	float xtrans, ytrans, ztrans;	/* user-unit translations
+					 * to center of rotation */
+	float alpha, beta, theta;	/* rotation angles (in deg), same as TIG */
+	float zht;			/* distance to observer on +z-axis */
+	float hscl, vscl;		/* user-to-TIG scale factor */
+	float hoff, voff;		/* user-to-TIG offset */
+	float xlo, xhi;			/* min, max in user-units */
+	float ylo, yhi;
+	float zlo, zhi;
+} XFORM;
+
+/* BOUNDS
+ *	structure for lower and upper bounds of plot space for
+ * hidden lines
+ */
+typedef struct {
+	int lower;
+	int upper;
+} BOUNDS;

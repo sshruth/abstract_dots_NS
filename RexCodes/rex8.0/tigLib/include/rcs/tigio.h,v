@@ -1,0 +1,36 @@
+head	1.1;
+access;
+symbols;
+locks
+	lmo:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	91.11.24.21.33.31;	author lmo;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/*
+ * tig i/o header
+ */
+	/* I/O control */
+
+struct TIGIO {			/* I/O buffers for disk and pipes */
+	char _ppflag;		/* Operation flags for pipeio, and diskio */
+	FILE * _ppiop;		/* Output buffer pointer */
+};
+
+extern struct TIGIO diskio, pipeio;	/* Disk and Pipe I/O structures */
+
+@

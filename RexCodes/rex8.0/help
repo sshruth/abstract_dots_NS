@@ -1,0 +1,146 @@
+		       REX Command Summary
+			 V5.4, Dec 94
+
+Verb, noun syntax:	verb noun[.[process]] {argstring}
+Menu name syntax:	menuname[.[process]] [argument]
+
+To quit REX type "quit rex".
+
+Process name 'int' specifies the currently running interrupt process.
+Note: a single dot after a noun or menuname (with no process name) forces
+that argument to be parsed as a noun or menuname respectively.
+Anything on a line after the comment char '~' (tilde) is ignored.
+Control b resets all REX processes to quiescent state, closes all data files,
+and provides option to exit system.
+
+			Verbs for REX Nouns
+
+			COMM Recognizes:
+			---- -----------
+names-
+    type names:		type name list (nouns and menus)
+    type names noun:	type nouns only
+    type names menus:	type menus only
+print_debug-
+    pname print_debug:	print debugging messages stored in memory for
+			process 'pname';  ex: 'int print_debug'
+proc-
+    change proc pname:	change int process to pname
+    end proc pname:	set pname to stop state
+    kill proc pname:	kill pname
+    load proc pname:	load (but dont run) pname
+    run proc pname:	run (do load if necessary first) pname
+    stop proc pname:	same as 'end proc'
+    type proc:		type list of currently loaded process names
+rex-
+    error rex:		print error file /tmp/rxerr
+    help rex:		print this file
+    quit rex:		exit REX system
+root-
+    read root fname:	read root file fname
+    eread root fname:	echo read root file fname
+    'verb' root fname [procname [menu [arg0 arg1 ...]] [, menu [a0..an]] ...]
+	if verb= 'wa':	write system and user menus, and statelist variables
+	if verb= 'wn':	write system menus only
+	if verb= 'wm':	write system and user menus
+	if verb= 'ws':	write statelist only (menu args of syntax dont apply)
+	if verb= 'wu':	write user menus only
+      Root reads and writes apply only to procs in the run state.  If
+      letter 'a' is prefixed to verb (e.g. 'awa' instead of 'wa') then any
+      existing root file of the same name will be appended when written.
+      Examples:
+	wa root foo			/* write all menus, statelist varibles
+					   to root file named 'foo' */
+	wm root foo int signals		/* write the signals menus only of the
+					   'int' process to root file 
+					   named 'foo' */
+	awm root foo int signals 3	/* write only signals menu number 3 
+					   using 'append' mode to append to 
+					   existing root file named 'foo' */
+tty-
+    clear tty:		clear tty screen
+    map tty:		map in VGA adapter for use by REX displays
+    reset tty:		clear tty screen and reset screen parameters
+    set tty:		same as 'clear'
+    unmap tty:		return VGA adapter to text mode
+trials-
+    clear trials:	clear accumulated trial data
+    type trials:	type trial data
+
+			SCRIBE Recognizes:
+			------ -----------
+Adata-
+    ignore Adata:	stop keeping analog data
+    keep Adata:		keep analog data
+Bdata-
+    ignore Bdata:	stop keeping both analog and event data
+    keep Bdata:		keep both analog and event data
+Edata-
+    ignore Edata:	stop keeping event data
+    keep Edata:		keep event data
+file-
+    close file fname:	close file fname
+    open file fname:	open file fname
+
+			DISPLAY Recognizes:
+			------- -----------
+dsplay-
+    both dsplay:	switch to moving + window display
+    clear dsplay:	clear and redraw current display
+    end dsplay:		end current display and clear screen
+    moving dsplay:	switch to moving (running line) display
+    pallette dsplay:	show possible color choices
+    raster dsplay:	switch to raster display
+    trigger dsplay:	trigger a running line scan
+    window dsplay:	switch to window display
+hist-
+    end hist:		disable histogram updating
+    on hist:		enable histogram updating
+raster-
+    iall raster:	init and clear all rasters, histograms
+    init raster num:	init and clear raster, histogram 'num'
+
+			INT Process Recognizes:
+			--- ------- -----------
+bit-
+    'verb' bit port bitpat [port bitpat...]
+	if verb= 'set':		set bit in default DIO device
+	if verb= 'clear':	clear bit in default DIO device
+    reset bit			reset all bits on all ports in default DIO
+				device
+      If 'bitpat' is prefixed with '0x' it is assumed to be a hex
+      value to output to port.  Otherwise, it is assumed to be the number
+      of a particular bit on the port.
+      Examples:
+        s bit 2 1		/* set bit 1 on port 2 */
+        s bit 2 0xff		/* turn on all bits on port 2 */
+cal_values-
+    clear cal_values:	clear accumulated calibration values
+    type cal_values:	type calibration values
+clock-
+    begin clock:	begin clock
+    end clock:		end clock
+da-
+    type da:		type current d/a converter configuration info
+mem-
+    type mem:		type current memory array configuration info
+running_line-
+    type running_line:	type current running line connfiguration info
+signals-
+    type signals:	type signal configuration info
+softswitch-
+    bitnum softswitch:  toggle the value of 'bitnum' in the software switch
+    pstop softswitch:	toggle the software PSTOP bit in the software switch
+    rlstop softswitch:	toggle the software RLSTOP bit in the software switch
+statelist-
+    reset statelist:	reinitialze statelists (does a sync)
+    set statelist page:	change state variables
+			  'page' specifies page number to begin printing
+			  states.
+		'<'	print previous page
+		'>'	print next page			  
+    time statelist:	print only states with positive times
+win-
+    enable win:		enable window check
+    disable win:	disable window check
+    type win:		type current window configuration info
