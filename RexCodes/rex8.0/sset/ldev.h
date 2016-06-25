@@ -30,8 +30,8 @@
 #define udpPORT   6665
 
 /* screen limits in degrees */
-#define SCR_LIM_HOR 614 
-#define SCR_LIM_VER 348
+#define SCR_LIM_HOR 325
+#define SCR_LIM_VER 240
 
 /* Polaris camera screen center in mm*10 */
 #define POLARISX_CENTER -50 // ~1 cm in "front" of screen

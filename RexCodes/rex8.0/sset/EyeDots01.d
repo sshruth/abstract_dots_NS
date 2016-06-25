@@ -27,26 +27,16 @@
 
 /* for gl_eye_flag */
 #define E_OFF	0
-#define E_FIX	1	 
-
-/* for gl_hand_flag */
-#define HAND_OFF	0
-#define HAND_FIX	1	 
+#define E_FIX	1 
 
 /** windows for eyeflag and objects **/
 #define WIND0	    0       /* will be used to enforce fixation */
-#define WIND1	    1		/* ts */
-#define WIND2		2		/* dot patch */
+#define WIND1	    1	    /* ts */
+#define WIND2	    2	    /* dot patch */
 #define WIND3       3       /* correct response window */
 #define WIND4       4       /* incorrect response window */
 #define WIND5       5       /* sure bet */
-#define WIND7		7
-
-#define HWIND0	    0       /* will be used to enforce hand fixation */
-#define HWIND1	    1		/* correct response window */
-#define HWIND2		2		/* incorrect response window */
-#define HWIND3		3		/* sure bet target
-
+#define WIND7	    7
 
 /*  calculate actual position from voltages from joystick. 
 ** In Rex's standard, every 40 steps of an analog signal corresponds to 1 degree  
@@ -57,16 +47,15 @@
 #define NUM_TARGETS			4
 
 /* tasks in this paradigm */
-#define NUM_TASKS			2
+#define NUM_TASKS			1
 #define TASK_EYE			0
-#define TASK_HAND 			1
 
 /* PRIVATE data structures */
 
 typedef struct menu_info_struct *menu_info;
 struct menu_info_struct {
 	int 	joystick;
-	int		repetitions;
+	int	repetitions;
 	int     seed;
 };
 
@@ -74,19 +63,19 @@ typedef struct rtvar_struct *rtvar;
 struct rtvar_struct {
 	int total_trials;
 	int total_correct;
-	int	num_completed;
-	int	num_correct;
-	int	num_wrong;
+	int num_completed;
+	int num_correct;
+	int num_wrong;
 	int num_sbet;	/* ts */
-	int	num_ncerr;
-	int	num_brfix;
-	int	num_brhandfix;
-	int	last_score;
-	int	coherence;
+	int num_ncerr;
+	int num_brfix;
+	int num_brhandfix;
+	int last_score;
+	int coherence;
 	int pulse_time;
-	int	duration;
-    int delay;
-	int	direction;
+	int duration;
+	int delay;
+	int direction;
 	int rt;
 	int joy_x_abs;
 	int joy_y_abs;
@@ -100,8 +89,10 @@ struct rtvar_struct {
 
 /* GLOBAL VARIABLES */
 
-//static int gl_coh_list[] = {0, 32, 64, 128, 256, 512, 999};
-static int gl_coh_list[] = {0, 32, 64, 128, 256, 512, 999};
+//static int gl_coh_list[] = {32, 64, 91, 128, 256, 512, 756};
+static int gl_coh_list[] = {0, 32, 64, 128, 256, 512, 756};
+//static int gl_coh_list[] = {64, 128, 192, 256, 384, 512, 756};
+//static int gl_coh_list[] = {32, 64, 91, 128, 181, 256, 362};
 static int gl_max_coh_num = sizeof(gl_coh_list)/sizeof(int);
 
 static _VSrecord 						gl_vsd=NULL;                       /* the big kahuna. see vs* */
@@ -112,7 +103,7 @@ static struct _VSobject_struct 			gl_object_teyeS[VSD_NUM_OBJECTS];	/* task eye 
 static struct _VSobject_struct 			gl_object_thandS[VSD_NUM_OBJECTS];	/* task hand 	*/
 
 struct rtvar_struct	            gl_rtvar;
-int 							gl_task;
+int 				gl_task;
 int 							gl_remain;
 int 							gl_eye_flag = 0;
 int 							gl_hand_flag = 0;
@@ -131,27 +122,12 @@ long							gl_teye_rt_err_sum[7];
 int							    gl_teye_rt_err_n[7];
 long							gl_teye_rt_sbet_sum[7];
 int							    gl_teye_rt_sbet_n[7];
-int							    gl_thand_perf_cor[7];
-int							    gl_thand_perf_sbet[7];
-int							    gl_thand_perf_tot[7];
-long							gl_thand_rt_cor_sum[7];
-int							    gl_thand_rt_cor_n[7];
-long							gl_thand_rt_err_sum[7];
-int							    gl_thand_rt_err_n[7];
-long							gl_thand_rt_sbet_sum[7];
-int							    gl_thand_rt_sbet_n[7];
 int							    gl_sbet_shown = 0;		/* ts */
 int                             gl_elestim_flag = 0;	/* electrical stimulation */
 
 
 int gl_correct_side;
 int storex, storey;
-
-int gl_pulse_size;
-int gl_pulse_dur;
-int gl_pulse_time;
-int pulse_dir;
-
 
 /* ROUTINES */
 
@@ -223,19 +199,6 @@ void rinitf(void)
 	 wd_cntrl 		(WIND4, WD_ON);
 	 wd_src_check 	(WIND4, WD_SIGNAL, EYEH_SIG, WD_SIGNAL, EYEV_SIG);
 	 wd_src_pos 	(WIND4, WD_DIRPOS, 0, WD_DIRPOS, 0);
-	 
-	 
-	 /* hand windows, always checking polaris signal */
-	 hwd_init();
-	 
-	 /* hand fixation spot */
-	 hwd_on(HWIND0);
-
-	 /* correct response */
-	 hwd_on(HWIND1);
-	 
-	 /* incorrect response */
-	 hwd_on(HWIND2);
 	 
  }
 
@@ -313,15 +276,6 @@ int make_tasks(void)
 		gl_teye_rt_err_n[i]=0;
 		gl_teye_rt_sbet_sum[i]=0;	/* ts */
 		gl_teye_rt_sbet_n[i]=0;
-		gl_thand_perf_cor[i]=0;
-		gl_thand_perf_sbet[i]=0;	/* ts */
-		gl_thand_perf_tot[i]=0;
-		gl_thand_rt_cor_sum[i]=0;
-		gl_thand_rt_cor_n[i]=0;
-		gl_thand_rt_err_sum[i]=0;	
-		gl_thand_rt_err_n[i]=0;
-		gl_thand_rt_sbet_sum[i]=0;	/* ts */
-		gl_thand_rt_sbet_n[i]=0;
 	}
 
 	/* initialize the tasks */
@@ -349,9 +303,9 @@ int make_tasks(void)
 ** the routine scales the original colors defined in the task menu. the original color is assigned a luminance
 ** of 1000. balck has a luminance of zero. 
 */ 
-int defTargLum(long lum1, long lum2, long lum3, long lum4, long lum5)
+int defTargLum(long lum1, long lum2, long lum3, long lum4)
  {
-   long lum[5] = {lum1, lum2, lum3, lum4, lum5};		//currently we have only 4 valid targets 
+   long lum[4] = {lum1, lum2, lum3, lum4};		//currently we have only 4 valid targets 
    RGB color;
    _VSobject obj_v;
    int i;
@@ -366,8 +320,6 @@ int defTargLum(long lum1, long lum2, long lum3, long lum4, long lum5)
                obj_v = VSD_GET_T2(gl_vsd);	    break;
            case 3:
                obj_v = VSD_GET_TS(gl_vsd);	    break;
-	       case 4:
-               obj_v = VSD_GET_HANDFP(gl_vsd);	    break;
        }
        if (lum[i]>=0)	 {
            color.R = lum[i] * obj_v->color.R / 1000;
@@ -388,15 +340,15 @@ int defTargLum(long lum1, long lum2, long lum3, long lum4, long lum5)
 ** if tflag is 1, prob2 and prob3 will refer to correct and wrong targets, respectively
 ** 
 */
-int drawTarg(long prob1, long prob2, long prob3, long prob4, long prob5, long tflag)
+int drawTarg(long prob1, long prob2, long prob3, long prob4, long tflag)
  {
-   long prob[5] = {prob1, prob2, prob3, prob4, prob5};
+   long prob[4] = {prob1, prob2, prob3, prob4};
    int num_show=0, num_hide=0;
    int show_ind[VSD_NUM_OBJECTS], hide_ind[VSD_NUM_OBJECTS];
    _VSobject obj_v;
    int i, tind;
    
-   for(i=0; i<5; i++)	{
+   for(i=0; i<4; i++)	{
        if(i==0)
            tind = (VSD_GET_FP(gl_vsd))->matlab_index;
        else if(i==1)
@@ -405,8 +357,6 @@ int drawTarg(long prob1, long prob2, long prob3, long prob4, long prob5, long tf
            tind = (tflag==1) ? (VSD_GET_TW(gl_vsd))->matlab_index : (VSD_GET_T2(gl_vsd))->matlab_index;
        else if(i==3)
            tind = (VSD_GET_TS(gl_vsd))->matlab_index;
-	   else if(i==4)
-           tind = (VSD_GET_HANDFP(gl_vsd))->matlab_index;
        else
            tind = i;
        
@@ -460,95 +410,6 @@ int showDots(void)
    return(0);
  }
 
-/* ROUTINBE: set_pulse_spec
-**
-** sets the spec of the motion pulse and starts timer to start pulse
-** 
-**/
-
-int set_pulse_spec(long pulse_prob, long pulse_size, long min_delay, long duration)
- {
-	 if (rand() % 1000 > pulse_prob || pulse_size <= 0) {
-		 printf("No pulse");
-		 gl_pulse_size = 0;
-		 gl_pulse_time = 0;
-	 } else {
-		 gl_pulse_dur = duration;
-		 if (gl_rtvar.duration-min_delay-gl_pulse_dur-25 > 0) {
-			 gl_pulse_time = gl_rtvar.pulse_time = 
-			   timer_set2(0,0,0,0,min_delay,gl_rtvar.duration-min_delay-gl_pulse_dur-25);
-			 gl_pulse_size = pulse_size;
-		 } else {
-			 gl_pulse_time = gl_rtvar.pulse_time = -1;
-			 gl_pulse_size = 0;
-		 }
-		 
-		 printf("pulse size: %d, time: %d, dur: %d, motion dur: %d\n",
-				gl_pulse_size, gl_pulse_time, gl_pulse_dur, gl_rtvar.duration);
-	 }
-	 return(0);
- }
-
-/* ROUTINE send_coherence_pulse
- * 
- * 
- */
-
-int send_coherence_pulse(int pulse_dir) {
-	_VSDdot_object dot = VSD_GET_DTOBJECT(gl_vsd);
-	int new_coh, dxdy_mult;
-	
-	if (pulse_dir == 0) {
-		pulse_dir = (rand() > RAND_MAX/2) ? 1 : -1;
-	}
-
-	switch (pulse_dir) {
-	case +1:
-		new_coh = dot->coherence + gl_pulse_size;
-		dxdy_mult = 1;
-		break;
-	case -1:
-		new_coh = dot->coherence - gl_pulse_size;
-		if (new_coh < 0) {
-			new_coh = -new_coh;
-			dxdy_mult = -1;
-		} else {
-			dxdy_mult = 1;
-		}
-		break;
-	case 'r':
-	case 2:
-		new_coh = dot->coherence;
-		break;
-	}
-	
-	mat_changeCoh(1, new_coh, dxdy_mult);
-	
-	if (pulse_dir < 2) {
-		timer_set2(0,0,0,0,gl_pulse_dur,0);
-		EC_TAG1(I_PLSSIZE, gl_pulse_size*pulse_dir);
-		EC_TAG2(I_PLSDUR,gl_pulse_dur);
-	}
-	
-	printf("dir: %d, new_coh: %d, old_coh: %d\n", pulse_dir, new_coh, dot->coherence);
-	return 0;
-}
-/* ROUTINE: stopPulse
-**
-** return coherence of dots to original value
-** 
-**
-**/
-
-int stopPulse()
- {
-
-	 /* change coherence */
-	 mat_dotsDefine(1, (VSD_GET_AP(gl_vsd))->x, (VSD_GET_AP(gl_vsd))->y, (VSD_GET_AP(gl_vsd))->diameter,
-					(VSD_GET_DTOBJECT(gl_vsd))->direction, (VSD_GET_DTOBJECT(gl_vsd))->coherence, (VSD_GET_DTOBJECT(gl_vsd))->speed);
-
-	 return(0);
- }
 
 /* ROUTINE: stopDots
 **
@@ -588,11 +449,6 @@ int showDots_done()
 int stopDots_done()
  {
    return mat_getWent(MAT_DOTS_STOP_CMD, IS_EXECUTED);
- } 
-
-int changeCoh_done()
- {
-   return mat_getWent(MAT_DOTS_DCOH_CMD, IS_EXECUTED);
  } 
 
 /****
@@ -661,142 +517,6 @@ int setup_eyewindows(long wd_width, long wd_height)
 	EC_TAG2(I_ETARG_ACCEPTHY, wd_height);
 }
 
-
-/* ROUTINE position_handwindow
- **
- ** sets hand window location
- */
-
-int position_handwindow(long xhalfextent, long yhalfextent, long zhalfextent, long flag)
-{
-	_VSobject vso;
-	HWD *hwdp = &i_b->hwd[HWIND0];		
-	long xpos, ypos, zpos;
-	
-	char sndBuf[256];
-	int 
-	  x_mm10, y_mm10, centerx, centery, centerz;
-	
-	
-	/* position window @ fix point */
-	if(flag == 0) {
-		vso = VSD_GET_FP(gl_vsd);
-		hwd_setPositionDegrees(HWIND0, vso->x,vso->y);
-		/* position window @ correct target */
-	} else if(flag == 1) {
-		vso = VSD_GET_TC(gl_vsd);
-		hwd_setPositionDegrees(HWIND0, vso->x, vso->y);
-		/* position window @ incorrect target */
-	} else if(flag == 2) {
-		vso = VSD_GET_TW(gl_vsd);
-		hwd_setPositionDegrees(HWIND0, vso->x, vso->y);
-	} else if(flag == 4) {
-		vso = VSD_GET_TS(gl_vsd);
-		hwd_setPositionDegrees(HWIND0, vso->x, vso->y);
-	} else if(flag == 5) {
-		vso = VSD_GET_HANDFP(gl_vsd);
-		hwd_setPositionDegrees(HWIND0, vso->x,vso->y);
-		EC_TAG2(I_HFIX_ACCEPTHX, xhalfextent);
-		EC_TAG2(I_HFIX_ACCEPTHY, yhalfextent);		
-		EC_TAG2(I_HFIX_ACCEPTHZ, zhalfextent);
-	} else if(flag == 6) {
-	  	POLARISDATA *poldatp;
-		poldatp = &i_b -> polarisdata;		
-	    hwd_setPosition(HWIND0, poldatp->x,poldatp->y,poldatp->z);
-		EC_TAG2(I_HFIX_ACCEPTHX, xhalfextent);
-		EC_TAG2(I_HFIX_ACCEPTHY, yhalfextent);		
-		EC_TAG2(I_HFIX_ACCEPTHZ, zhalfextent);		
-	}	
-
-	hwd_setSize(HWIND0, xhalfextent, yhalfextent, zhalfextent);
-	hwd_on(HWIND0);
-
-	InterruptLock(&i_b->spinLock);
-		{
-			xpos = hwdp -> hwd_xpos;
-			ypos = hwdp -> hwd_ypos;
-			zpos = hwdp -> hwd_zpos;
-		}
-	InterruptUnlock(&i_b->spinLock);
-	
-	centerx = zpos + POLARISX_CENTER;
-	centery = -1 * xpos + POLARISY_CENTER;
-	centerz = ypos + POLARISZ_CENTER;
-
-	memset(sndBuf, 0, sizeof(sndBuf));
-
-	sprintf(sndBuf, "%d %d %d %d %d %d %d %d %d %d",
-			1,
-			centerx, centery, centerz,
-			0, 0, 0,
-			zhalfextent, xhalfextent, yhalfextent);
-
-	udp_send(polarisIP, sndBuf);	
-	
-	return(0);
-}
- 
-int setup_handwindows(long flag, long xhalfextent, long yhalfextent, long zhalfextent)
-{
-	_VSobject vso;
-	char sndBuf[256];
-	int 
-	  centerx1, centery1, centerz1,
-	  centerx2, centery2, centerz2;
-
-	int x1_mm10, x2_mm10, y1_mm10, y2_mm10;
-	
-	vso = VSD_GET_TC(gl_vsd);
-	hwd_setPositionDegrees(HWIND1, vso->x, vso->y);
-	hwd_setSize(HWIND1, xhalfextent, yhalfextent, zhalfextent);
-	hwd_on(HWIND1);
-
-	if (vso->x < 0) 
-		gl_correct_side = -1;
-	else
-		gl_correct_side = 1;
-	
-	vso = VSD_GET_TW(gl_vsd);
-	hwd_setPositionDegrees(HWIND2, vso->x, vso->y);
-	hwd_setSize(HWIND2, xhalfextent, yhalfextent, zhalfextent);
-	hwd_on(HWIND2);
-
-	/* store extent of windows */
-	EC_TAG2(I_HTARG_ACCEPTHX, xhalfextent);
-	EC_TAG2(I_HTARG_ACCEPTHY, yhalfextent);		
-	EC_TAG2(I_HTARG_ACCEPTHZ, zhalfextent);		
-
-	/* Now send this stuff over to the Linux computer so it can plot stuff */
-	vso = VSD_GET_TC(gl_vsd);
-	x1_mm10 = 	(int) vso->x/10.*CM_PER_DEG*100;
-	y1_mm10 = 	(int) vso->y/10.*CM_PER_DEG*100;
-	
-	vso = VSD_GET_TW(gl_vsd);
-	x2_mm10 = 	vso->x/10.*CM_PER_DEG*100;
-	y2_mm10 = 	vso->y/10.*CM_PER_DEG*100;
-
-	centerx1 = POLARISX_CENTER;
-	centery1 = -1 * (x1_mm10) + POLARISY_CENTER;
-	centerz1 = y1_mm10 + POLARISZ_CENTER;
-	
-	centerx2 = POLARISX_CENTER;
-	centery2 = -1 * (x2_mm10) + POLARISY_CENTER;
-	centerz2 = y2_mm10 + POLARISZ_CENTER;
-	
-	memset(sndBuf, 0, sizeof(sndBuf));
-
-	sprintf(sndBuf, "%d %d %d %d %d %d %d %d %d %d",
-			2,
-			centerx1, centery1, centerz1,
-			centerx2, centery2, centerz2,
-			zhalfextent, xhalfextent, yhalfextent);
-
-	udp_send(polarisIP, sndBuf);
-	
-	return 0;
-	
-}
-
 /* ROUTINE: open_adata
 **
 ** Opens analog data
@@ -805,7 +525,7 @@ int open_adata(void)
 {
 	
 	//pl_start_record_();
-	awind(OPEN_W);
+	//awind(OPEN_W);
 	return(0);
 }
 
@@ -821,12 +541,7 @@ int end_trial(long aflag)
 	wd_cntrl(WIND1, WD_OFF);	/* ts */
 	wd_cntrl(WIND2, WD_OFF);	/* dots patch */
 	wd_cntrl(WIND3, WD_OFF);	/* correct response */
-	wd_cntrl(WIND4, WD_OFF);	/* incorrect response */
-	
-	/* turn hand position windows off */
-	hwd_off(HWIND0); /* hand fixation */	 
-	hwd_off(HWIND1); /* correct response */	 
-	hwd_off(HWIND2); /* incorrect response */	 
+	wd_cntrl(WIND4, WD_OFF);	/* incorrect response */ 
 	
 	/* blank the screen */
 	mat_allOff();
@@ -835,7 +550,7 @@ int end_trial(long aflag)
 	
 	/* close the analog data window */
 	//pl_stop_record_();
-	awind(aflag);
+	//awind(aflag);
 
 	return(0);
  }
@@ -849,22 +564,8 @@ int set_eye_flag(long flag)
 	gl_eye_flag = flag;
 	if (flag == E_FIX)
 	  ec_send_code(EFIXACQ);
-	return(0);
+	return(0);;
 }
-
-
-/* ROUTINE: set_hand_flag
-**
-*/
-int set_hand_flag(long flag)
- {
-	 gl_hand_flag = flag;	
-	 if (flag == HAND_FIX) 
-	   ec_send_code(HFIXACQ);
-	 return(0);
- }
-
-
  
 
 /* ROUTINE elestim_on
@@ -974,56 +675,6 @@ void print_experiment_info(void)
 		else
 			printf("\t----");
 	
-	printf("\n");
-	printf("-TASK 2-----------------------------------------------------\n");
-	printf("\t\t 0.0\t 3.2\t 6.4\t12.8\t25.6\t51.2\n\t99.9");
-	printf("Performance");
-
-	for (i=0;i<7;i++)
-		if (gl_thand_perf_tot[i])
-			printf("\t %3d",(int)(gl_thand_perf_cor[i]/(gl_thand_perf_tot[i]/100.0)+.5));
-		else
-			printf("\t ---");
-
-	printf("\n");
-	printf("Sure-bet");			/* ts */
-		
-	for (i=0;i<7;i++)
-		if (gl_thand_perf_tot[i])
-			printf("\t %3d",(int)(gl_thand_perf_sbet[i]/(gl_thand_perf_tot[i]/100.0)+.5));
-		else
-			printf("\t ---");
-	
-	printf("\n");
-	printf("Correct RT");
-
-	for (i=0;i<7;i++)
-		if (gl_thand_rt_cor_n[i])
-			printf("\t%4d",(int)((float)gl_thand_rt_cor_sum[i]/gl_thand_rt_cor_n[i]+.5));
-		else
-			printf("\t----");
-
-	printf("\n");
-	printf("Error RT");
-
-	for (i=0;i<7;i++)
-		if (gl_thand_rt_err_n[i])
-			printf("\t%4d",(int)((float)gl_thand_rt_err_sum[i]/gl_thand_rt_err_n[i]+.5));
-		else
-			printf("\t----");
-	
-	printf("\n");
-	printf("Sure-bet RT");		/* ts */
-	
-	for (i=0;i<7;i++)
-		if (gl_thand_rt_sbet_n[i])
-			printf("\t%4d",(int)((float)gl_thand_rt_sbet_sum[i]/gl_thand_rt_sbet_n[i]+.5));
-		else
-			printf("\t----");
-	
-	printf("\n");
-	printf("------------------------------------------------------------\n");
-	printf("\n");	
  }
 
 
@@ -1116,8 +767,8 @@ int set_punishment_timer(long max_time, long scaling, long cutoff, long non_rt)
    
    return 0;
  }
-
-
+ 
+ 
 /* ROUTNE: give_reward
 ** 
 ** description: activates the water reward system
@@ -1129,7 +780,7 @@ int give_reward(long dio, long duration, long who_calling)
    
    if (gl_correct_side == -1)
 	   duration = duration;
-	 
+
    dio_on(dio);
    timer_set1(0,0,0,0,duration,0);
    
@@ -1217,7 +868,7 @@ int show_sbet(long prob)		/* ts */
   	if ( prob > 0 && TOY_RAND(1000.0) < (int) prob ) {
 		wd_pos ( WIND1, VSD_GET_TS(gl_vsd)->x, VSD_GET_TS(gl_vsd)->y);
 		wd_siz ( WIND1, VSD_GET_TS(gl_vsd)->diameter/2, VSD_GET_TS(gl_vsd)->diameter/2);
-		drawTarg(-1,-1,-1,1000,-1,0);		
+		drawTarg(-1,-1,-1,1000,0);		
 		gl_sbet_shown = 1;		
   	} else {
 		wd_siz ( WIND1, 0, 0 );
@@ -1308,12 +959,7 @@ int nexttrl (long do_over, long min_block_size, long randomize_flag)
 		for(i=0;i<VSD_NUM_OBJECTS;i++)
 		  vs_copy_object(&(gl_object_teyeS[i]), gl_vsd->display->object_array[i]);
 		vsd_copy_dot_object(&gl_dotS[0], VSD_GET_DTOBJECT(gl_vsd));
-	} else if(gl_task == TASK_HAND) {
-		for(i=0;i<VSD_NUM_OBJECTS;i++)
-		  vs_copy_object(&(gl_object_thandS[i]), gl_vsd->display->object_array[i]);
-		vsd_copy_dot_object(&gl_dotS[1], VSD_GET_DTOBJECT(gl_vsd));
-	}
-
+	} 
 	
 	/* Luke was here to modify how joystick is used to update positions of T1 and T2 */
 	i = gl_menu_infoS.joystick;
@@ -1361,7 +1007,6 @@ int nexttrl (long do_over, long min_block_size, long randomize_flag)
 	mat_targDefine(2, (VSD_GET_T1(gl_vsd))->x, (VSD_GET_T1(gl_vsd))->y, (VSD_GET_T1(gl_vsd))->diameter, &((VSD_GET_T1(gl_vsd))->color));
 	mat_targDefine(3, (VSD_GET_T2(gl_vsd))->x, (VSD_GET_T2(gl_vsd))->y, (VSD_GET_T2(gl_vsd))->diameter, &((VSD_GET_T2(gl_vsd))->color));
 	mat_targDefine(4, (VSD_GET_TS(gl_vsd))->x, (VSD_GET_TS(gl_vsd))->y, (VSD_GET_TS(gl_vsd))->diameter, &((VSD_GET_TS(gl_vsd))->color));
-	mat_targDefine(5, (VSD_GET_HANDFP(gl_vsd))->x, (VSD_GET_HANDFP(gl_vsd))->y, (VSD_GET_HANDFP(gl_vsd))->diameter, &((VSD_GET_HANDFP(gl_vsd))->color));
 	
 	
 	/*
@@ -1391,10 +1036,6 @@ int nexttrl (long do_over, long min_block_size, long randomize_flag)
 	EC_TAG1(I_FIXXCD, (VSD_GET_FP(gl_vsd))->x);
 	EC_TAG1(I_FIXYCD, (VSD_GET_FP(gl_vsd))->y);
 	EC_TAG2(I_EFIXDIAMCD, (VSD_GET_FP(gl_vsd))->diameter);
-	/* hand fixation x, y, diameter */
-	EC_TAG1(I_FIX2XCD, (VSD_GET_HANDFP(gl_vsd))->x);
-	EC_TAG1(I_FIX2YCD, (VSD_GET_HANDFP(gl_vsd))->y);
-	EC_TAG2(I_HFIXDIAMCD, (VSD_GET_HANDFP(gl_vsd))->diameter);
 	/* target 1 x, y, lum, diameter*/
 	EC_TAG1(I_TRG1XCD, (VSD_GET_T1(gl_vsd))->x);
 	EC_TAG1(I_TRG1YCD, (VSD_GET_T1(gl_vsd))->y);
@@ -1475,11 +1116,7 @@ int total(long score)
 		ec_send_code(FIXBREAKCD);
 		EC_TAG1(I_RESPONSE, -2);
 		again(); 			/* this is equivalent of reset_s(), it executes the abort list */
-	} else if(score == BRHANDFIX) {
-		ec_send_code(FIXHANDBREAKCD);
-		EC_TAG1(I_RESPONSE, -3);
-		again(); 			/* this is equivalent of reset_s(), it executes the abort list */
-	} else {
+	}  else {
 		EC_TAG1(I_RESPONSE, -10); /* default, for no fixation acquired */
 	}
 	
@@ -1491,7 +1128,6 @@ int total(long score)
 	gl_rtvar.num_sbet = gl_vsd->sbet;		/* ts */
 	gl_rtvar.num_ncerr = gl_vsd->ncerr;
 	gl_rtvar.num_brfix = gl_vsd->brfix;
-	gl_rtvar.num_brhandfix = gl_vsd->brhandfix;	
 	gl_rtvar.last_score = gl_vsd->last;
 	
 	/* find the type of last trial, which coherence */ 
@@ -1541,38 +1177,6 @@ int total(long score)
 		} 
 	}
 	
-	/* counts and RT for task2 */
-	if (gl_task==TASK_HAND)	{
-		/* total correct/wrong/sbet counts */
-		if (ind!=-1)		{
-			if ((score==CORRECT)||(score==WRONG)||(score==SBET))	{
-				if (score==CORRECT)
-				  gl_thand_perf_cor[ind]++;
-				else if (score==SBET)			/* ts */
-				  gl_thand_perf_sbet[ind]++;
-				gl_thand_perf_tot[ind]++;				
-			};
-		};
-		/* Reaction times */
-		if (gl_rt_flag)	{
-			if ((score==CORRECT)||(score==WRONG)||(score==SBET))	{
-				gl_rtvar.rt = gl_resp_time - gl_ref_time;
-				if (ind!=-1)		{
-					if (score==CORRECT)		{
-						gl_thand_rt_cor_sum[ind]+=gl_rtvar.rt;
-						gl_thand_rt_cor_n[ind]++;
-					} else if (score==WRONG)		{
-						gl_thand_rt_err_sum[ind]+=gl_rtvar.rt;
-						gl_thand_rt_err_n[ind]++;
-					} else if (score==SBET)	{	/* ts */
-						gl_thand_rt_sbet_sum[ind]+=gl_rtvar.rt;
-						gl_thand_rt_sbet_n[ind]++;
-					}
-				}
-			}
-		} 
-	}
-	
 	/* outta */
 	return(0);
 }
@@ -1582,17 +1186,6 @@ int joySet()
 {
 	storex=CALC_JOY(joyh);
 	storey=CALC_JOY(joyv);
-	return 0;
-}
-
-int checkTouch() {
-	return dio_in(Dio_id(PCDIO_DIO, 6, 0x02));
-}
-
-int touchSet()
-{
- 	static int a = 0;
-	printf("TOUCHING!!!! %d\n", a++);
 	return 0;
 }
 
@@ -1711,7 +1304,6 @@ int o2_maf(int flag, MENU *mp, char *astr, ME_RECUR *rp)
 VLIST state_vl[] = {
 	{"Joystick",				&(gl_menu_infoS.joystick), 			NP, NP, 0, ME_NVALD},
 	{"Proportion_TEYE", 		&(gl_task_infoS[0].proportion), 	NP, NP, 0, ME_DEC},
-	{"Proportion_THAND", 		&(gl_task_infoS[1].proportion), 	NP, NP, 0, ME_DEC},
 	{"Repetitions",			    &(gl_menu_infoS.repetitions),		NP, make_tasks, ME_AFT, ME_DEC},
 	{"RNG_Seed",			    &(gl_menu_infoS.seed),		        NP, NP, 0, ME_DEC},	
 	{"Max_prize_count",         &gl_prize_max, 						NP, NP, 0, ME_DEC},
@@ -1794,7 +1386,6 @@ RTVAR rtvars[] = {
    {"Trials this set", 	    	&(gl_rtvar.num_completed)},
    {"Previous score",       	&(gl_rtvar.last_score)},
    {"Broke fixation", 	    	&(gl_rtvar.num_brfix)},
-   {"Broke hand fixation", 	    &(gl_rtvar.num_brhandfix)},
    {"No choice", 		    	&(gl_rtvar.num_ncerr)},
    {"Correct", 			    	&(gl_rtvar.num_correct)},
    {"Wrong", 					&(gl_rtvar.num_wrong)},
@@ -1854,21 +1445,15 @@ begin	first:
 		to loop
 	task:			/**** TASK BRANCHING ... ****/
 		to teye_start on TASK_EYE = gl_task
-		to thand_start on TASK_HAND = gl_task
 
 	/* position window, wait for fixation */
 	fixeyewinpos:
 	    do position_eyewindow(10, 10, 0)
 	    time 10	/* this is very important - it takes time to set window */
-		to fixhandwinpos
-	fixhandwinpos:
-	    do position_handwindow(200, 200, 200, 5) 
-	    time 10	/* this is very important - it takes time to set window */
-		to fixeyehandwait
-	fixeyehandwait:    /* wait for either eye or hand fixation */
+		to fixeyewait
+	fixeyewait:    /* wait for either eye or hand fixation */
 	    time 5000
-	    to fixeye1delay on -WD0_XY & eyeflag
-	    to fixhand1delay on -HWD0_XYZTOUCH & handflag
+	    to fixeyedelay on -WD0_XY & eyeflag
 		to nofix
 	nofix:		/* failed to attain either eye or hand fixation or both*/
 	    do total(DO_OVER) // just redo the trial
@@ -1878,45 +1463,18 @@ begin	first:
 		do end_trial(CANCEL_W)
 		to loop
 	
-	/* Monkey attained eye fixation before hand fixation */
-	fixeye1delay:
+	fixeyedelay:
 	    time 100 /* delay before activating eye_flag - noise on the eye position signal should not be able to "break eye fixation" */
-		to fixeye1set
-	fixeye1set:		/* set flag to check for eye fixation breaks */
+		to fixeyeset
+	fixeyeset:		/* set flag to check for eye fixation breaks */
 		do set_eye_flag(E_FIX)
 	    time 2000 /* additional time to attain hand fixation */
-	    to fixhand2delay on -HWD0_XYZTOUCH & handflag
-	    to nofix
-	fixhand2delay:
-	    time 100 /* delay before activating hand_flag */
-		to fixhand2set
-    fixhand2set:
-	    do set_hand_flag(HAND_FIX)
-	    time 250 /* give the gaze and hand position time to settle into place */
-	    to fixeyehanddone
-	  
-	/* Monkey attained hand fixation before eye fixation */
-    fixhand1delay:
-	    time 100 /* delay before activating hand_flag - noise on the hand signal should not be able to "break hand fixation" */
-		to fixhand1set
-	fixhand1set:		/* set flag to check for hand fixation breaks */
-		do set_hand_flag(HAND_FIX)
-	    time 2000 /* additional time to attain eye fixation */
-    	to fixeye2delay on -WD0_XY & eyeflag /* he's now also attained eye fixation */
-	    to nofix
-	fixeye2delay:
-	    time 100 /* delay before activating eye_flag */
-		to fixeye2set
-    fixeye2set:
-	    do set_eye_flag(E_FIX)
-	    time 250 /* give the gaze and hand position time to settle into place */
-	    to fixeyehanddone  
+	    to fixeyedone
 		
 	/* Done with fixating stuff */
-	fixeyehanddone:		/**** TASK BRANCHING ... ****/
+	fixeyedone:		/**** TASK BRANCHING ... ****/
 	    do position_eyewindow(25, 25, 0)
 		to teye_targ_wait on TASK_EYE = gl_task
-		to thand_targ_wait on TASK_HAND = gl_task
 
 /*** CHAIN FOR TASK EYE
 ***/
@@ -1924,9 +1482,9 @@ begin	first:
 	    do setup_eyewindows(25, 25)
 		to teye_fp
 	teye_fp:
-		do drawTarg(1000,-1,-1,-1,1000,0)
-	    to teye_fp_cd on MAT_WENT % drawTarg_done
-		/*to teye_fp_cd on PHOTO_DETECT_UP % dio_check_photodetector */
+		do drawTarg(1000,0,0,0,0)
+		to teye_fp_cd on MAT_WENT % drawTarg_done
+		/* to teye_fp_cd on PHOTO_DETECT_UP % dio_check_photodetector */
 	teye_fp_cd:
 		do ec_send_code(FPONCD)
 		to fixeyewinpos
@@ -1934,12 +1492,12 @@ begin	first:
 		do timer_set1_shell(1000,200,600,100,0,0)
 		to teye_targ_def on +MET % timer_check1
 	teye_targ_def:
-		do defTargLum(-1, -1, -1, -1, -1)
+		do defTargLum(-1, -1, -1, -1)
 		to teye_targ
 	teye_targ: /* show the targets */
-		do drawTarg(1000, 1000, 1000, -1, 1000, 0)
-		/* to teye_targ_cd on MAT_WENT % drawTarg_done */
-  	    to teye_targ_cd on PHOTO_DETECT_DOWN % dio_check_photodetector 
+		do drawTarg(1000, 1000, 1000, -1, 0)
+		to teye_targ_cd on MAT_WENT % drawTarg_done
+  	    /* to teye_targ_cd on PHOTO_DETECT_DOWN % dio_check_photodetector */ 
 	teye_targ_cd:
 		do ec_send_code(TARGC1CD)
 		to teye_waitdots
@@ -1950,8 +1508,8 @@ begin	first:
 		to teye_startdots on +MET % timer_check1
 	teye_startdots:	/* START DOTS */
 		do showDots()
-		/* to teye_wentdots on MAT_WENT % showDots_done */
-	    to teye_wentdots on PHOTO_DETECT_UP % dio_check_photodetector 
+		to teye_wentdots on MAT_WENT % showDots_done
+	    /* to teye_wentdots on PHOTO_DETECT_UP % dio_check_photodetector */
 	teye_wentdots:
 		do ec_send_code(GOCOHCD)
 		to teye_elestondots
@@ -1976,8 +1534,8 @@ begin	first:
 		to teye_rtnore on +MET % timer_check1	/* timeout */
 	teye_rtnore:
 		do stopDots()
- 		/* to teye_rtdone on MAT_WENT % stopDots_done */
-	  	to teye_rtdone on PHOTO_DETECT_DOWN % dio_check_photodetector 
+ 		to teye_rtdone on MAT_WENT % stopDots_done
+	  	/* to teye_rtdone on PHOTO_DETECT_DOWN % dio_check_photodetector */
 	teye_rtdone:
 		do ec_send_code(STOFFCD)
 		to ncerr
@@ -1989,8 +1547,8 @@ begin	first:
 		to teye_rtstod
 	teye_rtstod:
 		do stopDots()		
-		/* to teye_rtsdcd on MAT_WENT % stopDots_done */
-	    to teye_rtsdcd on PHOTO_DETECT_DOWN % dio_check_photodetector 
+		to teye_rtsdcd on MAT_WENT % stopDots_done
+	    /* to teye_rtsdcd on PHOTO_DETECT_DOWN % dio_check_photodetector */
 	teye_rtsdcd:		/* drop the stop dots code */
 		do ec_send_code(STOFFCD)
 		to teye_rtelestoff
@@ -2001,27 +1559,7 @@ begin	first:
 	/* FIXED DURATION TASK */
 	teye_setdotdur:		/* set the dots duration timer */
 		do set_dots_duration(1000,100,1500,300,0,0)
-	    to teye_checkpulse
-	teye_checkpulse:
-	    do set_pulse_spec(0,0,0,0)
-	    to teye_waitpulse on 0 < gl_pulse_size
-	    to teye_checkdots
-	teye_waitpulse:
-	    to teye_startpulse on +MET % timer_check2
-	teye_startpulse:
-	    do send_coherence_pulse(1)
-	    to teye_startpulsecd on MAT_WENT % changeCoh_done
-	teye_startpulsecd:
-	    do ec_send_code(PLSONCD)
-	    to teye_endpulse on +MET % timer_check2
-	teye_endpulse:
-	    do send_coherence_pulse(2)
-	    to teye_endpulsecd on MAT_WENT % changeCoh_done
-    teye_endpulsecd:
-	    do ec_send_code(PLSOFFCD)
-	    to teye_checkdots
-	teye_checkdots:
-	    to teye_stopdots on +MET % timer_check1
+		to teye_stopdots on +MET % timer_check1 /* check the timer */
 	teye_stopdots:
 		do stopDots()
 		to teye_stopdotscd on MAT_WENT % stopDots_done
@@ -2072,162 +1610,10 @@ begin	first:
 		do ec_send_code(SACMADCD)
 		to check_eye_response
 		
-/*** CHAIN FOR TASK HAND
-***/
-	thand_start:
-		do setup_handwindows(1, 200, 200, 200)
-		to thand_fp
-	thand_fp:
-		do drawTarg(1000,-1,-1,-1,1000,0)
-		/* to thand_fp_cd on MAT_WENT % drawTarg_done */
-	    to thand_fp_cd on PHOTO_DETECT_UP % dio_check_photodetector 
-	thand_fp_cd:
-		do ec_send_code(FPONCD)
-		to fixeyewinpos
-	thand_targ_wait:
-		do timer_set1_shell(1000,200,600,100,0,0)
-		to thand_targ_def on +MET % timer_check1
-	thand_targ_def:
-		do defTargLum(-1, -1, -1, -1, -1)
-		to thand_targ
-	thand_targ: /* show the targets */
-		do drawTarg(1000, 1000, 1000, -1, 1000, 0)
-		/* to thand_targ_cd on MAT_WENT % drawTarg_done */
-	    to thand_targ_cd on PHOTO_DETECT_DOWN % dio_check_photodetector 
-	thand_targ_cd:
-		do ec_send_code(TARGC1CD)
-		to thand_waitdots
-		
-	/* START SHOWING DOTS */
-	thand_waitdots:
-		do timer_set1_shell(1000,100,600,150,0,0)
-		to thand_startdots on +MET % timer_check1
-	thand_startdots:	/* START DOTS */
-		do showDots()
-		/* to thand_wentdots on MAT_WENT % showDots_done */
-	    to thand_wentdots on PHOTO_DETECT_UP % dio_check_photodetector 
- 	thand_wentdots:
-		do ec_send_code(GOCOHCD)
-		to thand_elestondots
-	thand_elestondots:		/* define the delay from dots onset to electrical stim */
-		do timer_set1_shell(0,0,0,0,0,0)
-		to thand_eleston on +MET % timer_check1
-	thand_eleston:		/* deliver the electrical stim, with the specified probability */
-		do elestim_on(FTTL1, FTTL2, 0)
-		to thand_rtreft on 1 = gl_rt_flag
-		to thand_setdotdur
-	
-	/* RT task */
-	thand_rtreft: /* store reference time */
-		do get_ref_time()
-		to thand_rthandf
-	thand_rthandf:	/* monkey is now allowed to break fixation */
-		do set_hand_flag(HAND_OFF)
-		to thand_rtdotdur
-	thand_rtdotdur:	/* set the dots timeout */
-		do set_dots_duration(0,0,0,0,5000,0)
-		to thand_rtsacc on +HWD_TOUCH & handflag	/* hand movement detected */
-		to thand_rtnore on +MET % timer_check1	/* timeout */
-	thand_rtnore:
-		do stopDots()
-		/* to thand_rtdone on MAT_WENT % stopDots_done */
-	    to thand_rtdone on PHOTO_DETECT_DOWN % dio_check_photodetector 
-	thand_rtdone:
-		do ec_send_code(STOFFCD)
-		to ncerr
-	thand_rtsacc:
-		do ec_send_code(REACHMADCD)
-		to thand_rtrest
-	thand_rtrest: /* store response time */
-		do get_resp_time()
-		to thand_rtstod
-	thand_rtstod:
-		do stopDots()		
-		/* to thand_rtsdcd on MAT_WENT % stopDots_done */
-	  	to thand_rtsdcd on PHOTO_DETECT_DOWN % dio_check_photodetector 
-	thand_rtsdcd:		/* drop the stop dots code */
-		do ec_send_code(STOFFCD)
-		to thand_rtelestoff
-	thand_rtelestoff:
-		do elestim_off(FTTL1, FTTL2, 1)
-		to check_hand_response
-		
-	/* FIXED DURATION TASK */
-	thand_setdotdur:		/* set the dots duration timer */
-		do set_dots_duration(1000,100,1500,300,0,0)
-	    to thand_checkpulse
-	thand_checkpulse:
-	    do set_pulse_spec(0,0,0,0)
-	    to thand_waitpulse on 0 < gl_pulse_size
-	    to thand_checkdots
-	thand_waitpulse:
-	    to thand_startpulse on +MET % timer_check2
-	thand_startpulse:
-	    do send_coherence_pulse(0)
-	    to thand_startpulsecd on MAT_WENT % changeCoh_done
-	thand_startpulsecd:
-	    do ec_send_code(PLSONCD)
-	    to thand_endpulse on +MET % timer_check2
-	thand_endpulse:
-	    do send_coherence_pulse(2)
-	    to thand_endpulsecd on MAT_WENT % changeCoh_done
-    thand_endpulsecd:
-	    do ec_send_code(PLSOFFCD)
-	    to thand_checkdots
-	thand_checkdots:
-	    to thand_stopdots on +MET % timer_check1	
-	thand_stopdots:
-		do stopDots()
-		to thand_stopdotscd on MAT_WENT % stopDots_done
-	thand_stopdotscd:		/* drop the stop dots code */
-		do ec_send_code(STOFFCD)
-		to thand_elestoffd
-	thand_elestoffd:	/* define the delay from dots offset to end of electrical stim */
-		do timer_set1_shell(0,0,0,0,0,0)
-		to thand_elestoff on +MET % timer_check1		
-	thand_elestoff:		/* stop electrical stim */ 
-		do elestim_off(FTTL1, FTTL2, 1)		/* the third argument, 1, means store the time in the datafile */
-		to thand_waitfpoff
-	
-	/* FINAL WAIT, FP OFF */
-	thand_waitfpoff:
-        do set_delay_duration(1000,500,1000,100,0,0)	
-		to thand_waitsbet
-	thand_waitsbet:
-		do timer_set2_shell(0,0,0,0,0,0)
-		to thand_showsbet on +MET % timer_check2
-	thand_showsbet:
-		do show_sbet(0)
-		to thand_wentsbet on MAT_WENT % drawTarg_done
-	thand_wentsbet:
-		do dropcode_sbet()
-		to thand_chkwait
-	thand_chkwait:
-		to thand_fpoff on +MET % timer_check1
-	thand_fpoff: /* turn the FP off */
-		do drawTarg(0,-1,-1,-1,-1, 0)
-		to thand_fpoff_cd on MAT_WENT % drawTarg_done
-	thand_fpoff_cd:
-		do ec_send_code(FPOFFCD)
-		to thand_grace	/* wait for sac */
-	/* grace period in which monsieur le monk has to 
-	** break hand fixation and start the hand movement
-	*/
-	thand_grace:
-		do set_hand_flag(HAND_OFF)
-		to thand_gracea
-	thand_gracea:
-		time 500
-		to thand_moved on +HWD_TOUCH & handflag
-		to ncshow
-	thand_moved:
-		do ec_send_code(REACHMADCD)
-		to check_hand_response
 
 	/* end trial possibilities:
 	**
 	** - brfix. broke fixation, counted regardless of trial type
-	** - brhandfix. broke hand fixation, counted regardless of trial type
 	** - ncerr. didn't complete trial once something happened
 	** - null.  chose wrong target in dots discrimination task
 	** - pref.  finished correctly and got rewarded
@@ -2251,28 +1637,6 @@ begin	first:
 		do ec_send_code(TRGACQUIRECD)
 		time 50 /* gotta hold for this long	*/
 		to ncshow on +WD5_XY & eyeflag
-		to sbet
-
-	/* Determine where monkey ended up with his hand movement response */  
-	check_hand_response:
-	    time 1000
-	    to phandhold on -HWD1_XYZ & handflag
-	    to nhandhold on -HWD2_XYZ & handflag
-	    to ncshow
-	phandhold: 	 
-		do ec_send_code(TRGACQUIRECD)
-		time 50 /* gotta hold for this long	*/
-		to ncshow on +HWD1_XYZ & handflag
-		to pref
-	nhandhold:		
-		do ec_send_code(TRGACQUIRECD)
-		time 50 /* gotta hold for this long	*/
-		to ncshow on +HWD2_XYZ & handflag
-		to nushow
-	shandhold:
-		do ec_send_code(TRGACQUIRECD)
-		time 50 /* gotta hold for this long	*/
-		to ncshow on +HWD3_XYZ & handflag
 		to sbet
 
 	/* visual feedback if not successful (NO CHOICE) */
@@ -2317,10 +1681,11 @@ begin	first:
 	/* PREF: update the totals and give a reward
 	*/
 	pref:
+	    time 250
 		do total(CORRECT)
 		to prend
 	prend:
-		do end_trial(CLOSE_W)
+		do drawTarg(-1, 1000, -1, -1, -1, 1)
 		to prdelay
 	prdelay: /* guarantee a minimum time between dot onset and reward */
 		do set_reward_delay(0)
@@ -2337,6 +1702,7 @@ begin	first:
 		to prize_delay
 	prize_delay:
 		time 150		/* the delay between consecutive rewards */
+		do drawTarg(-1, 0, -1, -1, -1, 1)
 		to prize 
 	prize:
 		do give_reward(REW, 50, PRIZE)
@@ -2360,6 +1726,7 @@ begin	first:
 		do dio_off(REW)
 		to prdone
 	prdone:
+		do end_trial(CLOSE_W)
 		time 0
 		to loop
 		
@@ -2391,22 +1758,6 @@ begin	efirst:
 	efail:
 		do total(BRFIX)
 		to etest
-
-abort list:
-}
-
-hand_set {
-status ON
-begin	hfirst:
-		to htest
-	htest:
-		to hchk on HAND_FIX = gl_hand_flag
-	hchk:
-	    to hfail on +HWD0_XYZTOUCH & handflag
-    	to htest on HAND_OFF = gl_hand_flag
-	hfail:
-	    do total(BRHANDFIX)
-	    to htest
 
 abort list:
 }

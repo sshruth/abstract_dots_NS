@@ -24,10 +24,6 @@
 #define E_OFF	0
 #define E_FIX	1	 
 
-/* for gl_move_flag */
-#define MOVE_OFF	0
-#define MOVE_ON	    1	 
-
 /* windows for eyeflag and screen */
 #define WIND0	    0
 #define WIND1       1
@@ -47,7 +43,7 @@ struct visObj {
 static struct visObj            gl_fixObjEye;
 static struct visObj            gl_fixObjHand;
 
-int 							gl_eye_flag = 0;
+int                             gl_eye_flag = 0;
 int  	                        gl_prize_count = 0;
 int  	                        gl_max_prize = 0;
 
@@ -56,12 +52,6 @@ int                             gl_eyeFixX;
 int                             gl_eyeFixY;
 int                             gl_joy_flag;
 int                             storex = 0, storey = 0;
-
-int gl_move_dir = 1, gl_target_speed = 150, gl_max_displacement = 200;
-float gl_mon_refresh = 60;
-int gl_last_move_time;
-int gl_move_flag;
-
 
 /* ROUTINE: rinitf
  **
@@ -183,33 +173,6 @@ int nexttrl()
 	return 0;
 }
 
-int move_targ()
-{
-	//int shift_in_deg = (int) (1./gl_mon_refresh * gl_target_speed);
-	int elapsed_time = i_b->i_time - gl_last_move_time;
-	int shift_in_deg = (int) (elapsed_time/1000. * gl_target_speed);
-	gl_last_move_time = i_b->i_time;
-	//shift_in_deg = 1;
-	
-	if (gl_move_dir == 1) 
-	  gl_fixObjEye.x += shift_in_deg;
-	else if (gl_move_dir == -1)
-	  gl_fixObjEye.x -= shift_in_deg;
-	
-	mat_targDefine(1, gl_fixObjEye.x, gl_fixObjEye.y, gl_fixObjEye.diameter, &(gl_fixObjEye.color));
-	drawTarg(1);
-	
-	if (gl_fixObjEye.x > gl_max_displacement) {
-	  gl_move_dir = -1;
-	} else if (gl_fixObjEye.x < -1*gl_max_displacement)
-	  gl_move_dir = 1;
-}
-
-int set_move_start_time()
-{
-	gl_last_move_time = i_b->i_time;
-}
-
 /* ROUTINE position_eyewindow
 **
 ** sets window location
@@ -236,12 +199,6 @@ int set_eye_flag(long flag)
 	   ec_send_code(EFIXACQ);
 	return(0);
 }
-
-int set_move_flag(long flag)
-{
-	gl_move_flag = flag;
-	return(0);
-}
 		
 int joySet()
 {
@@ -250,11 +207,6 @@ int joySet()
 	return 0;
 }
 
-
-int changeCoh_done()
- {
-   return mat_getWent(MAT_DOTS_DCOH_CMD, IS_EXECUTED);
- } 
 
 int give_reward(long dio, long duration)
  {	
@@ -268,9 +220,6 @@ int total(long score)
 {
 	/* set globals for eye checking */
 	gl_eye_flag   = 0;
-	
-	/* set globals for moving target */
-	gl_move_flag   = 0;
 
 	/* turn off reward if it was on */
 	dio_off(REW);
@@ -305,14 +254,13 @@ int total(long score)
 int end_trial(long aflag)
  {
 	 /* turn eye position windows off */
-	 wd_cntrl(WIND0, WD_OFF);
-	 
-	 gl_move_flag = 0;
-	 printf("turning off flag %d\n", gl_move_flag);
+	 wd_cntrl(WIND0, WD_OFF); 	
 	 
 	 /* blank the screen */
+	 printf("Aborting\n");
 	 mat_allOff();
-	 ec_send_code(LASTCD);
+	 
+	 ec_send_code(LASTCD);		   
 	 
 	 /* close the analog data window */
 	 awind(aflag);
@@ -336,7 +284,7 @@ int abort_cleanup(void)
 VLIST state_vl[] = {
 	{"EyeFixX", 		        &(gl_eyeFixX),          NP, NP, 0, ME_DEC},
 	{"EyeFixY", 		        &(gl_eyeFixY),          NP, NP, 0, ME_DEC},
-	{"EyeFixDiameter", 		    &(gl_eyeFixDiam),       NP, NP, 0, ME_DEC},
+	{"EyeFixDiameter", 		&(gl_eyeFixDiam),       NP, NP, 0, ME_DEC},
 	{"MaxConsecutiveRew", 		&(gl_max_prize),        NP, NP, 0, ME_DEC},
 	{"SetPosWithJoystick", 		&(gl_joy_flag),         NP, NP, 0, ME_DEC},
 	{NS}};
@@ -376,7 +324,6 @@ begin	first:
 		to fixeyewait
 	fixeyewait:    /* wait for either eye or hand fixation */
 	    time 5000
-	    do set_move_flag(MOVE_ON)
 	    to fixeyedelay on -WD0_XY & eyeflag
 		to nofix
 	nofix:		/* failed to attain either eye or hand fixation */
@@ -450,31 +397,6 @@ begin	efirst:
 
 abort list:
 }
-
-move_targ_set {
-status ON
-begin	mfirst:
-		to mtest
-	mtest:
-		to mstart on MOVE_ON = gl_move_flag
-	mstart:
-	    do set_move_start_time()
-	    to mtarg
-	mtarg:
-        do move_targ()
-	    to meyewinpos on MAT_WENT % drawTarg_done
-	meyewinpos:
-	    time 30
-	    do position_eyewindow(15, 15, 0)
-		to mchk
-	mchk:
-	    to mtarg on MOVE_ON = gl_move_flag
-	    to mtest on MOVE_OFF = gl_move_flag
-
-abort list:
-}
-
-
 
 joy_set {
 status ON

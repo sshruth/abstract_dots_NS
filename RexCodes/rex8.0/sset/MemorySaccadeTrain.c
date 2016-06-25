@@ -69,9 +69,9 @@ int                             gl_reward_flag = 0;
 int gl_joySet = 0, storex = 0, storey = 0;
 
 
-int *gl_xPositions = NULL;
-int *gl_yPositions = NULL;
-int   *gl_trialIndices = NULL;
+int  *gl_xPositions = NULL;
+int  *gl_yPositions = NULL;
+int  *gl_trialIndices = NULL;
 
 int   gl_record = 0;
 int   gl_ntrials = 0;
@@ -87,17 +87,14 @@ int   gl_positionMult = 1;
  */
 
 /* ROUTINE: rinitf
- **
  ** initialize at first pass or at r s from keyboard 
  */
 void rinitf(void)
 {  
 	/* close/open udp connection */
-	
 	 /*	 	
 	 ** This is now done in clock.c so that we can open multiple paradigms
 	 ** without causing clashes when binding to the socket
-	 **
 	 */
 	 
 //	udp_close();
@@ -120,7 +117,6 @@ void rinitf(void)
 	wd_pos 		    (WIND7,	 0, 0);
 	wd_siz	        (WIND7, SCR_LIM_HOR, SCR_LIM_VER); /* from ldev.h! */
 #endif
-	
 }
 
 

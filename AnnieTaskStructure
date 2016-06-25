@@ -1,3 +1,5 @@
+FLOW OF A TRIAL
+
 Wait for fixation
 Allow fixation to stabilize: 0.05s
 Hold fixation: Minimum 0.5s + draw from exponential with mean 0.3s (max 1.6s tot)
@@ -10,3 +12,17 @@ Reward solenoid open time: 0.1s + (steps of 0.04s for consecutive corrects - max
 
 Timeout for wrong choice: 4s
 Intertrial interval: 2s
+
+
+
+
+STIMULUS PARAMETERS
+
+Fixation point size: 0.3°
+Fixation color: []
+Fixation acceptance window: 
+Target size: 
+Target colors: Cyan = [ ]; Yellow = []
+Target distance range: 
+Target configuration limitations:
+Target acceptance window:  
