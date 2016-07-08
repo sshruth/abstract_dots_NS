@@ -1,9 +1,10 @@
 /*
-** VS_DOTS_SS.H
+** VS_DOTS.H
 **
 ** "VisualStimulation_DOTS.h" ... 
 **
-**	VisualStimulation objects specific to Abstract Dots
+**	VisualStimulation objects specific to DOTS paradigms
+**	(e.g., 502)
 **
 ** Objects:
 **		FIXATION POINT

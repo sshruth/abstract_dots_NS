@@ -1,10 +1,10 @@
 /*
-** VS_dots_SS.C
+** VS_dots.C
 **
 ** "VisualStimulation_DOTS.c" ... 
 **
-**	create stimulus objects for abstract dot discrimination
-**	paradigms
+**		create stimulus objects for dot discrimination
+**		paradigms (e.g., 502)
 */
 
 #include <stdio.h>
@@ -15,7 +15,7 @@
 #include "rexhdrs.h"
 
 #include "toys.h"
-#include "vs_dots_ss.h"
+#include "vs_dots.h"
 #include "matlab.h"
 
 /* PRIVATE ROUTINE PROTOTYPES */
@@ -270,29 +270,20 @@ void vsd_add_task(int coh_num, int *coh_list, _VSrecord rec, _VSDtask_info task_
 	**		- rotate object_2 around object_1 "angl_n" times
 	**		- make "coh_ind_n" different coherences
 	*/
-     
-    /* SHUSH here */
-//	task->num_trials  = series_n * coh_n;
-    task->num_trials  = series_n * coh_n * 2; /* For number of target locations */
-     
+	task->num_trials  = series_n * coh_n;
 	task->trial_array = SAFE_ZALLOC(_VStrial, task->num_trials);
 	
-	/* loop for each coh, angle & number of target location*/
+	/* loop for each coh, angle */
 	for ( i=0,k=0 ; k<coh_n ; coh_i++,k++ ) {
 		for ( series_angle=series_o,j=0 ; j<series_n ; series_angle+=series_delta,j++,i++ ) {
-            for (m=0; m<2; m++) { /* SHUSH added loop */
-                
-            
 			trial_info = SAFE_STALLOC(_VSDtrial_info_struct);
 			trial_info->planet_angle 	= series_angle;
 			trial_info->coherence	 	= coh_list[coh_i];
-            trial_info->corr_tar        = m; /* SHUSH */
-                
+			
 			task->trial_array[i] 		= vsd_init_trial(trial_info);
 			task->trial_array[i]->id	= type*100 + i;	
 			task->trial_array[i]->task 	= task;
 			
-                
 /*			task->trial_array[i]->reps = (long)100/series_n; */
 			/* Luke was here */
 //			if (coh_list[coh_i] == 32)
@@ -303,7 +294,6 @@ void vsd_add_task(int coh_num, int *coh_list, _VSrecord rec, _VSDtask_info task_
 
 			// Luke was here
 			task->trial_array[i]->perf_loopback = task->trial_array[i];
-        }
 		}
 	}
 	
@@ -346,7 +336,7 @@ _VStrial vsd_init_trial(_VSDtrial_info trial_info)
 
 		trial_info->planet_angle	= NULLI;
 		trial_info->coherence		= NULLI;
-        trial_info->corr_tar        = NULLI; /* SHUSH */
+		
 		/* Luke was here */
 		trial_info->seed_base		= NULLI;
 		trial_info->seed_var		= NULLI;		

@@ -1,10 +1,10 @@
 /*
-** VS_dots.C
+** VS_dots_SS.C
 **
 ** "VisualStimulation_DOTS.c" ... 
 **
-**		create stimulus objects for dot discrimination
-**		paradigms (e.g., 502)
+**	create stimulus objects for abstract dot discrimination
+**	paradigms
 */
 
 #include <stdio.h>
@@ -239,7 +239,7 @@ void vsd_add_task(int coh_num, int *coh_list, _VSrecord rec, _VSDtask_info task_
  {
 	int	*coh, coh_i, coh_n, 
 		series_o, series_n, series_delta, series_angle;
-	register int i, j, k, count;
+	register int i, j, k, count, m; /* SHUSH added m*/
 	_VSDtrial_info trial_info;
 	_VStask 			task;
 	
@@ -270,20 +270,29 @@ void vsd_add_task(int coh_num, int *coh_list, _VSrecord rec, _VSDtask_info task_
 	**		- rotate object_2 around object_1 "angl_n" times
 	**		- make "coh_ind_n" different coherences
 	*/
-	task->num_trials  = series_n * coh_n;
+     
+    /* SHUSH here */
+//	task->num_trials  = series_n * coh_n;
+    task->num_trials  = series_n * coh_n * 2; /* For number of target locations */
+     
 	task->trial_array = SAFE_ZALLOC(_VStrial, task->num_trials);
 	
-	/* loop for each coh, angle */
+	/* loop for each coh, angle & number of target location*/
 	for ( i=0,k=0 ; k<coh_n ; coh_i++,k++ ) {
-		for ( series_angle=series_o,j=0 ; j<series_n ; series_angle+=series_delta,j++,i++ ) {
+		for ( series_angle=series_o,j=0 ; j<series_n ; series_angle+=series_delta,j++ ) {
+            for (m=0; m<2; m++,i++) { /* SHUSH added loop, moved i counter from previous loop */
+                
+            
 			trial_info = SAFE_STALLOC(_VSDtrial_info_struct);
 			trial_info->planet_angle 	= series_angle;
 			trial_info->coherence	 	= coh_list[coh_i];
-			
+            trial_info->corr_tar        = m; /* SHUSH */
+                
 			task->trial_array[i] 		= vsd_init_trial(trial_info);
 			task->trial_array[i]->id	= type*100 + i;	
 			task->trial_array[i]->task 	= task;
 			
+                
 /*			task->trial_array[i]->reps = (long)100/series_n; */
 			/* Luke was here */
 //			if (coh_list[coh_i] == 32)
@@ -294,6 +303,7 @@ void vsd_add_task(int coh_num, int *coh_list, _VSrecord rec, _VSDtask_info task_
 
 			// Luke was here
 			task->trial_array[i]->perf_loopback = task->trial_array[i];
+        }
 		}
 	}
 	
@@ -336,7 +346,7 @@ _VStrial vsd_init_trial(_VSDtrial_info trial_info)
 
 		trial_info->planet_angle	= NULLI;
 		trial_info->coherence		= NULLI;
-		
+        trial_info->corr_tar        = NULLI; /* SHUSH */
 		/* Luke was here */
 		trial_info->seed_base		= NULLI;
 		trial_info->seed_var		= NULLI;		
@@ -452,7 +462,23 @@ void vsd_update_display(_VSrecord rec, int rev_dot_targ_association)
 		!(task_info  = (_VSDtask_info) (rec->cur_trial->task->task_info)) ||
 		!(objAP 	 = rec->display->object_array))
 		return;
-
+		
+	/**
+	*** SHUSH - fill in x, y based on trial type 
+	***/
+	if(trial_info->corr_tar == 0){
+		objAP[VSD_OBJECT_T1]->x = 80;
+        objAP[VSD_OBJECT_T1]->y = 80;
+        objAP[VSD_OBJECT_T2]->x = -80;
+        objAP[VSD_OBJECT_T1]->y = 80;
+        
+    } else {
+        objAP[VSD_OBJECT_T1]->x = -80;
+        objAP[VSD_OBJECT_T1]->y = 80;
+        objAP[VSD_OBJECT_T2]->x = 80;
+        objAP[VSD_OBJECT_T1]->y = 80;
+    }
+	
 	
 	/**
 	*** we should make sure that the sun and planet are valid

@@ -10,7 +10,7 @@
 #include "../labTools/toys.h"
 #include "../labTools/matlab.h"
 #include "../labTools/timer.h"
-#include "../labTools/vs_dots_ss.h"
+#include "../labTools/vs_dots.h"
 #include "../labTools/udpmsg.h"
 #include "../labTools/dio_lab.h"
 
@@ -989,21 +989,6 @@ int nexttrl (long do_over, long min_block_size, long randomize_flag)
 //			gl_vsd->display->object_array[i]->y = storey;
 //		}
 //	}
-	
-    /* SHUSH updating target locations based on current trial marker */
-    if(trial->corr_tar){
-        gl_vsd->display->object_array[VSD_OBJECT_T1]->x = 80;
-        gl_vsd->display->object_array[VSD_OBJECT_T1]->y = 80;
-        gl_vsd->display->object_array[VSD_OBJECT_T2]->x = -80;
-        gl_vsd->display->object_array[VSD_OBJECT_T1]->y = 80;
-        
-    } else {
-        gl_vsd->display->object_array[VSD_OBJECT_T1]->x = -80;
-        gl_vsd->display->object_array[VSD_OBJECT_T1]->y = 80;
-        gl_vsd->display->object_array[VSD_OBJECT_T2]->x = 80;
-        gl_vsd->display->object_array[VSD_OBJECT_T1]->y = 80;
-    }
-    
     
 	/* call update display to parse the object info */
 	vsd_update_display(gl_vsd, 0); /* Zero indicates no reverse dot-motion/target association */

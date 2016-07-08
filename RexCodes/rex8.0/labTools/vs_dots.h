@@ -1,10 +1,9 @@
 /*
-** VS_DOTS.H
+** VS_DOTS_SS.H
 **
 ** "VisualStimulation_DOTS.h" ... 
 **
-**	VisualStimulation objects specific to DOTS paradigms
-**	(e.g., 502)
+**	VisualStimulation objects specific to Abstract Dots
 **
 ** Objects:
 **		FIXATION POINT
@@ -46,7 +45,7 @@ struct _VSDtrial_info_struct {
    int coherence;
    int seed_base;	
    int seed_var;		
-   
+   int corr_tar; /* SHUSH added*/
 };
 
 /* _VSDtask_info_struct
