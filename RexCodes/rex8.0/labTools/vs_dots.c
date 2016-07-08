@@ -1,10 +1,10 @@
 /*
-** VS_dots_SS.C
+** VS_dots.C
 **
 ** "VisualStimulation_DOTS.c" ... 
 **
-**	create stimulus objects for abstract dot discrimination
-**	paradigms
+**	Create stimulus objects for dot discrimination paradigms.
+**	This version includes support for abstract dots.
 */
 
 #include <stdio.h>
@@ -273,7 +273,7 @@ void vsd_add_task(int coh_num, int *coh_list, _VSrecord rec, _VSDtask_info task_
      
     /* SHUSH here */
 //	task->num_trials  = series_n * coh_n;
-    task->num_trials  = series_n * coh_n * 2; /* For number of target locations */
+    task->num_trials  = series_n * coh_n * 2; /* For both target locations in abstract dots*/
      
 	task->trial_array = SAFE_ZALLOC(_VStrial, task->num_trials);
 	
@@ -285,8 +285,14 @@ void vsd_add_task(int coh_num, int *coh_list, _VSrecord rec, _VSDtask_info task_
             
 			trial_info = SAFE_STALLOC(_VSDtrial_info_struct);
 			trial_info->planet_angle 	= series_angle;
+            
+            /* SHUSH - location flags for abstract dots */
 			trial_info->coherence	 	= coh_list[coh_i];
-            trial_info->corr_tar        = m; /* SHUSH */
+                if (task_info->t_flag==3) {
+                    trial_info->corr_tar        = m;
+                } else {
+                    trial_info->corr_tar        = NULLI;
+                }
                 
 			task->trial_array[i] 		= vsd_init_trial(trial_info);
 			task->trial_array[i]->id	= type*100 + i;	
@@ -464,19 +470,19 @@ void vsd_update_display(_VSrecord rec, int rev_dot_targ_association)
 		return;
 		
 	/**
-	*** SHUSH - fill in x, y based on trial type 
+	*** SHUSH - fill in x, y based on trial type if
 	***/
 	if(trial_info->corr_tar == 0){
-		objAP[VSD_OBJECT_T1]->x = 80;
-        objAP[VSD_OBJECT_T1]->y = 80;
-        objAP[VSD_OBJECT_T2]->x = -80;
-        objAP[VSD_OBJECT_T1]->y = 80;
+		objAP[VSD_OBJECT_T1]->x = 100;
+        objAP[VSD_OBJECT_T1]->y = 100;
+        objAP[VSD_OBJECT_T2]->x = -100;
+        objAP[VSD_OBJECT_T2]->y = 100;
         
-    } else {
-        objAP[VSD_OBJECT_T1]->x = -80;
-        objAP[VSD_OBJECT_T1]->y = 80;
-        objAP[VSD_OBJECT_T2]->x = 80;
-        objAP[VSD_OBJECT_T1]->y = 80;
+    } else if(trial_info->corr_tar == 1){
+        objAP[VSD_OBJECT_T1]->x = -100;
+        objAP[VSD_OBJECT_T1]->y = 100;
+        objAP[VSD_OBJECT_T2]->x = 100;
+        objAP[VSD_OBJECT_T2]->y = 100;
     }
 	
 	

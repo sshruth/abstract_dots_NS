@@ -449,7 +449,7 @@ void vs_make_trial_array(_VSrecord rec, long min_block_size, long randomize_flag
 				trial_info_new->planet_angle	= trial_info_orig->planet_angle;
 				trial_info_new->coherence		= trial_info_orig->coherence;
 				
-				trial_info_new->corr_tar			= trial_info_orig->corr_tar; /* SHUSH */
+				trial_info_new->corr_tar		= trial_info_orig->corr_tar; /* SHUSH */
 		
 				trial_info_new->seed_base		= 0;
 				trial_info_new->seed_var		= 0;						
