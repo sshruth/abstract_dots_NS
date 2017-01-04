@@ -3,7 +3,21 @@ Target locations were hardcoded in vs_dots_v01. Runs under AbstractDots02
 No of target locations could be controlled by State_vars->Proportion_TEYE. Options are 2, 4 & 8, which uses the top two, top two+bottom two and all 4 locations respectively. 
 
 SET 02: 
-Target locations can now be specified. Runs under AbastractDots02. Quadrant 1 location to be set using 
+Target locations can now be specified. Runs under AbstractDots02. Quadrant 1 location to be set using 
 task1_object_varsÑ>object3->vertex as x
 task1_object_varsÑ>object3->wrt as y
 This location is reflected across the 4 quadrants. Can still use Proportion_TEYE for # of target locations.
+
+This version of vs_dots is now deprecated to vs_dots02
+
+SET 03:
+Moved target location specification into the AbstractDots file itself from vs_dots.
+
+a. AbstractDots03: Set the two target locations at 
+task1_object_varsÑ>object3->x and task1_object_varsÑ>object4->x
+task1_object_varsÑ>object3->y and task1_object_varsÑ>object4->y
+The two target locations are reflected along the horizontal axis. So always 4 target locations now. No control over it. 
+
+
+
+ 

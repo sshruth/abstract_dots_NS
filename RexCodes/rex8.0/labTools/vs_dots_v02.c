@@ -476,50 +476,50 @@ void vsd_update_display(_VSrecord rec, int rev_dot_targ_association)
 	if(trial_info->corr_tar == 0){
 		objAP[VSD_OBJECT_T1]->x = objAP[VSD_OBJECT_T1]->vertex;
         objAP[VSD_OBJECT_T1]->y = objAP[VSD_OBJECT_T1]->wrt;
-        objAP[VSD_OBJECT_T2]->x = objAP[VSD_OBJECT_T2]->vertex;
-        objAP[VSD_OBJECT_T2]->y = objAP[VSD_OBJECT_T2]->wrt;
+        objAP[VSD_OBJECT_T2]->x = objAP[VSD_OBJECT_T1]->vertex*-1;
+        objAP[VSD_OBJECT_T2]->y = objAP[VSD_OBJECT_T1]->wrt;
         
     } else if(trial_info->corr_tar == 1){
-        objAP[VSD_OBJECT_T1]->x = objAP[VSD_OBJECT_T2]->vertex;
-        objAP[VSD_OBJECT_T1]->y = objAP[VSD_OBJECT_T2]->wrt;
+        objAP[VSD_OBJECT_T1]->x = objAP[VSD_OBJECT_T1]->vertex*-1;
+        objAP[VSD_OBJECT_T1]->y = objAP[VSD_OBJECT_T1]->wrt;
         objAP[VSD_OBJECT_T2]->x = objAP[VSD_OBJECT_T1]->vertex;
         objAP[VSD_OBJECT_T2]->y = objAP[VSD_OBJECT_T1]->wrt;
         
-//    }else if(trial_info->corr_tar ==2){
-//        objAP[VSD_OBJECT_T1]->x = objAP[VSD_OBJECT_T1]->vertex;
-//        objAP[VSD_OBJECT_T1]->y = objAP[VSD_OBJECT_T1]->wrt*-1;
-//        objAP[VSD_OBJECT_T2]->x = objAP[VSD_OBJECT_T1]->vertex*-1;
-//        objAP[VSD_OBJECT_T2]->y = objAP[VSD_OBJECT_T1]->vertex*-1;
-//        
-//    }else if(trial_info->corr_tar == 3){
-//        objAP[VSD_OBJECT_T1]->x = objAP[VSD_OBJECT_T1]->vertex*-1;
-//        objAP[VSD_OBJECT_T1]->y = objAP[VSD_OBJECT_T1]->wrt*-1;
-//        objAP[VSD_OBJECT_T2]->x = objAP[VSD_OBJECT_T1]->vertex;
-//        objAP[VSD_OBJECT_T2]->y = objAP[VSD_OBJECT_T1]->wrt*-1;
-//        
-//    }else if(trial_info->corr_tar == 4){
-//        objAP[VSD_OBJECT_T1]->x = objAP[VSD_OBJECT_T1]->vertex;
-//        objAP[VSD_OBJECT_T1]->y = objAP[VSD_OBJECT_T1]->wrt;
-//        objAP[VSD_OBJECT_T2]->x = objAP[VSD_OBJECT_T1]->vertex;
-//        objAP[VSD_OBJECT_T2]->y = objAP[VSD_OBJECT_T1]->wrt*-1;
-//        
-//    }else if(trial_info->corr_tar == 5){
-//        objAP[VSD_OBJECT_T1]->x = objAP[VSD_OBJECT_T1]->vertex;
-//        objAP[VSD_OBJECT_T1]->y = objAP[VSD_OBJECT_T1]->wrt*-1;
-//        objAP[VSD_OBJECT_T2]->x = objAP[VSD_OBJECT_T1]->vertex;
-//        objAP[VSD_OBJECT_T2]->y = objAP[VSD_OBJECT_T1]->wrt;
-//        
-//    }else if(trial_info->corr_tar == 6){
-//        objAP[VSD_OBJECT_T1]->x = objAP[VSD_OBJECT_T1]->vertex*-1;
-//        objAP[VSD_OBJECT_T1]->y = objAP[VSD_OBJECT_T1]->wrt;
-//        objAP[VSD_OBJECT_T2]->x = objAP[VSD_OBJECT_T1]->vertex*-1;
-//        objAP[VSD_OBJECT_T2]->y = objAP[VSD_OBJECT_T1]->wrt*-1;
-//        
-//    }else if(trial_info->corr_tar == 7){
-//        objAP[VSD_OBJECT_T1]->x = objAP[VSD_OBJECT_T1]->vertex*-1;
-//        objAP[VSD_OBJECT_T1]->y = objAP[VSD_OBJECT_T1]->wrt*-1;
-//        objAP[VSD_OBJECT_T2]->x = objAP[VSD_OBJECT_T1]->vertex*-1;
-//        objAP[VSD_OBJECT_T2]->y = objAP[VSD_OBJECT_T1]->wrt;
+    }else if(trial_info->corr_tar ==2){
+        objAP[VSD_OBJECT_T1]->x = objAP[VSD_OBJECT_T1]->vertex;
+        objAP[VSD_OBJECT_T1]->y = objAP[VSD_OBJECT_T1]->wrt*-1;
+        objAP[VSD_OBJECT_T2]->x = objAP[VSD_OBJECT_T1]->vertex*-1;
+        objAP[VSD_OBJECT_T2]->y = objAP[VSD_OBJECT_T1]->vertex*-1;
+        
+    }else if(trial_info->corr_tar == 3){
+        objAP[VSD_OBJECT_T1]->x = objAP[VSD_OBJECT_T1]->vertex*-1;
+        objAP[VSD_OBJECT_T1]->y = objAP[VSD_OBJECT_T1]->wrt*-1;
+        objAP[VSD_OBJECT_T2]->x = objAP[VSD_OBJECT_T1]->vertex;
+        objAP[VSD_OBJECT_T2]->y = objAP[VSD_OBJECT_T1]->wrt*-1;
+        
+    }else if(trial_info->corr_tar == 4){
+        objAP[VSD_OBJECT_T1]->x = objAP[VSD_OBJECT_T1]->vertex;
+        objAP[VSD_OBJECT_T1]->y = objAP[VSD_OBJECT_T1]->wrt;
+        objAP[VSD_OBJECT_T2]->x = objAP[VSD_OBJECT_T1]->vertex;
+        objAP[VSD_OBJECT_T2]->y = objAP[VSD_OBJECT_T1]->wrt*-1;
+        
+    }else if(trial_info->corr_tar == 5){
+        objAP[VSD_OBJECT_T1]->x = objAP[VSD_OBJECT_T1]->vertex;
+        objAP[VSD_OBJECT_T1]->y = objAP[VSD_OBJECT_T1]->wrt*-1;
+        objAP[VSD_OBJECT_T2]->x = objAP[VSD_OBJECT_T1]->vertex;
+        objAP[VSD_OBJECT_T2]->y = objAP[VSD_OBJECT_T1]->wrt;
+        
+    }else if(trial_info->corr_tar == 6){
+        objAP[VSD_OBJECT_T1]->x = objAP[VSD_OBJECT_T1]->vertex*-1;
+        objAP[VSD_OBJECT_T1]->y = objAP[VSD_OBJECT_T1]->wrt;
+        objAP[VSD_OBJECT_T2]->x = objAP[VSD_OBJECT_T1]->vertex*-1;
+        objAP[VSD_OBJECT_T2]->y = objAP[VSD_OBJECT_T1]->wrt*-1;
+        
+    }else if(trial_info->corr_tar == 7){
+        objAP[VSD_OBJECT_T1]->x = objAP[VSD_OBJECT_T1]->vertex*-1;
+        objAP[VSD_OBJECT_T1]->y = objAP[VSD_OBJECT_T1]->wrt*-1;
+        objAP[VSD_OBJECT_T2]->x = objAP[VSD_OBJECT_T1]->vertex*-1;
+        objAP[VSD_OBJECT_T2]->y = objAP[VSD_OBJECT_T1]->wrt;
         
     }
 		
