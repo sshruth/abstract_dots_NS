@@ -273,14 +273,16 @@ void vsd_add_task(int coh_num, int *coh_list, _VSrecord rec, _VSDtask_info task_
      
     /* SHUSH here */
 //	task->num_trials  = series_n * coh_n;
-    task->num_trials  = series_n * coh_n * 2; /* For both target locations in abstract dots*/
+//    task->num_trials  = series_n * coh_n * 2; /* For both target locations in abstract dots*/
+      task->num_trials  = series_n * coh_n * task_info->proportion; /* For both target locations in abstract dots*/
      
 	task->trial_array = SAFE_ZALLOC(_VStrial, task->num_trials);
 	
 	/* loop for each coh, angle & number of target location*/
 	for ( i=0,k=0 ; k<coh_n ; coh_i++,k++ ) {
 		for ( series_angle=series_o,j=0 ; j<series_n ; series_angle+=series_delta,j++ ) {
-            for (m=0; m<2; m++,i++) { /* SHUSH added loop, moved i counter from previous loop */
+            for (m=0; m<task_info->proportion; m++,i++) { /* SHUSH added loop, moved i counter from previous loop */
+                
             
 			trial_info = SAFE_STALLOC(_VSDtrial_info_struct);
 			trial_info->planet_angle 	= series_angle;
