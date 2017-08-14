@@ -848,27 +848,30 @@ xsiz_10s		-
 ysiz_10s		-
 ~
 ~Menu:
-State_vars.HandEyeDots01
-Joystick		3
-Proportion_TEYE		1
-Repetitions		999
+State_vars.AbstractDots04
+Proportion		1
+Repetitions		100
+RF_radius		90
+RF_theta		0
+RF_jitter		360
 RNG_Seed		-32768
-Max_prize_count		0
+Max_prize_count		8
+Joystick		-1
 ~
 ~Menu:
-Task1_info.HandEyeDots01
+Task1_info.AbstractDots04
 object_1		1
 object_2		6
 series_o		0
 series_n		2
 series_delta		180
-t_flag			2
-coherence_lo		756
-coherence_hi		756
+t_flag			3
+coherence_lo		300
+coherence_hi		700
 RT_task			0
 ~
 ~Menu:
-Task1_objList.HandEyeDots01 0
+Task1_objList.AbstractDots04 0
 x			0
 y			0
 amplitude		0
@@ -876,13 +879,13 @@ angle			0
 vertex			0
 wrt			0
 angle_offset		0
-diameter		3
+diameter		2
 color.R			255
 color.G			0
 color.B			0
 ~
 ~Menu:
-Task1_objList.HandEyeDots01 1
+Task1_objList.AbstractDots04 1
 x			0
 y			0
 amplitude		0
@@ -890,13 +893,13 @@ angle			0
 vertex			0
 wrt			0
 angle_offset		0
-diameter		50
+diameter		75
 color.R			0
 color.G			0
 color.B			0
 ~
 ~Menu:
-Task1_objList.HandEyeDots01 2
+Task1_objList.AbstractDots04 2
 x			0
 y			0
 amplitude		0
@@ -910,35 +913,35 @@ color.G			0
 color.B			0
 ~
 ~Menu:
-Task1_objList.HandEyeDots01 3
-x			100
-y			0
+Task1_objList.AbstractDots04 3
+x			-32768
+y			-32768
 amplitude		-32768
 angle			-32768
-vertex			0
-wrt			0
+vertex			-32768
+wrt			-32768
 angle_offset		0
-diameter		10
-color.R			255
-color.G			0
+diameter		12
+color.R			0
+color.G			255
+color.B			255
+~
+~Menu:
+Task1_objList.AbstractDots04 4
+x			-32768
+y			-32768
+amplitude		-32768
+angle			-32768
+vertex			-32768
+wrt			-32768
+angle_offset		0
+diameter		12
+color.R			212
+color.G			255
 color.B			0
 ~
 ~Menu:
-Task1_objList.HandEyeDots01 4
-x			-100
-y			0
-amplitude		-32768
-angle			-32768
-vertex			0
-wrt			0
-angle_offset		0
-diameter		10
-color.R			255
-color.G			0
-color.B			0
-~
-~Menu:
-Task1_objList.HandEyeDots01 5
+Task1_objList.AbstractDots04 5
 x			0
 y			0
 amplitude		0
@@ -952,7 +955,7 @@ color.G			0
 color.B			0
 ~
 ~Menu:
-Task1_objList.HandEyeDots01 6
+Task1_objList.AbstractDots04 6
 x			-32768
 y			-32768
 amplitude		-32768
@@ -966,7 +969,7 @@ color.G			0
 color.B			0
 ~
 ~Menu:
-Task1_dots.HandEyeDots01
+Task1_dots.AbstractDots04
 coherence		-32768
 direction		-32768
 speed			50
@@ -974,7 +977,7 @@ novar_pct		0
 seed_base		0
 ~
 ~Menu:
-Task2_info.HandEyeDots01
+Task2_info.AbstractDots04
 object_1		0
 object_2		0
 series_o		0
@@ -986,7 +989,7 @@ coherence_hi		0
 RT_task			0
 ~
 ~Menu:
-Task2_objList.HandEyeDots01 0
+Task2_objList.AbstractDots04 0
 x			0
 y			0
 amplitude		0
@@ -1000,7 +1003,7 @@ color.G			0
 color.B			0
 ~
 ~Menu:
-Task2_objList.HandEyeDots01 1
+Task2_objList.AbstractDots04 1
 x			0
 y			0
 amplitude		0
@@ -1014,7 +1017,7 @@ color.G			0
 color.B			0
 ~
 ~Menu:
-Task2_objList.HandEyeDots01 2
+Task2_objList.AbstractDots04 2
 x			0
 y			0
 amplitude		0
@@ -1028,7 +1031,7 @@ color.G			0
 color.B			0
 ~
 ~Menu:
-Task2_objList.HandEyeDots01 3
+Task2_objList.AbstractDots04 3
 x			0
 y			0
 amplitude		0
@@ -1042,7 +1045,7 @@ color.G			0
 color.B			0
 ~
 ~Menu:
-Task2_objList.HandEyeDots01 4
+Task2_objList.AbstractDots04 4
 x			0
 y			0
 amplitude		0
@@ -1056,7 +1059,7 @@ color.G			0
 color.B			0
 ~
 ~Menu:
-Task2_objList.HandEyeDots01 5
+Task2_objList.AbstractDots04 5
 x			0
 y			0
 amplitude		0
@@ -1070,7 +1073,7 @@ color.G			0
 color.B			0
 ~
 ~Menu:
-Task2_objList.HandEyeDots01 6
+Task2_objList.AbstractDots04 6
 x			0
 y			0
 amplitude		0
@@ -1084,7 +1087,7 @@ color.G			0
 color.B			0
 ~
 ~Menu:
-Task2_dots.HandEyeDots01
+Task2_dots.AbstractDots04
 coherence		0
 direction		0
 speed			0
@@ -1107,7 +1110,7 @@ g_arg 0  h_arg 0  i_arg 0 j_arg 0
 ~
 setup
 preset 0  random 0  type_flag_rl 0  value_rl 0
-a_arg 0x24  b_arg 0x3c  c_arg 0x4
+a_arg 0x20  b_arg 0x30  c_arg 0x4
 d_arg 0x1  e_arg 0  f_arg 0
 g_arg 0  h_arg 0  i_arg 0 j_arg 0
 ~
@@ -1149,7 +1152,7 @@ g_arg 0  h_arg 0  i_arg 0 j_arg 0
 ~
 fixeyewinpos
 preset 10  random 0  type_flag_rl 0  value_rl 0
-a_arg 0x28  b_arg 0x28  c_arg 0
+a_arg 0x14  b_arg 0x14  c_arg 0
 d_arg 0  e_arg 0  f_arg 0
 g_arg 0  h_arg 0  i_arg 0 j_arg 0
 ~
@@ -1178,14 +1181,14 @@ d_arg 0  e_arg 0  f_arg 0
 g_arg 0  h_arg 0  i_arg 0 j_arg 0
 ~
 fixeyeset
-preset 100  random 0  type_flag_rl 0  value_rl 0
+preset 0  random 0  type_flag_rl 0  value_rl 0
 a_arg 0x1  b_arg 0  c_arg 0
 d_arg 0  e_arg 0  f_arg 0
 g_arg 0  h_arg 0  i_arg 0 j_arg 0
 ~
 fixeyedone
 preset 0  random 0  type_flag_rl 0  value_rl 0
-a_arg 0x28  b_arg 0x28  c_arg 0
+a_arg 0x1e  b_arg 0x1e  c_arg 0
 d_arg 0  e_arg 0  f_arg 0
 g_arg 0  h_arg 0  i_arg 0 j_arg 0
 ~
@@ -1215,25 +1218,19 @@ g_arg 0  h_arg 0  i_arg 0 j_arg 0
 ~
 teye_targ_def
 preset 0  random 0  type_flag_rl 0  value_rl 0
-a_arg 0xffffffff  b_arg 0xffffffff  c_arg 0xffffffff
+a_arg 0xffffffff  b_arg 0  c_arg 0
 d_arg 0xffffffff  e_arg 0  f_arg 0
 g_arg 0  h_arg 0  i_arg 0 j_arg 0
 ~
 teye_targ
 preset 0  random 0  type_flag_rl 0  value_rl 0
-a_arg 0x3e8  b_arg 0  c_arg 0
-d_arg 0  e_arg 0  f_arg 0
-g_arg 0  h_arg 0  i_arg 0 j_arg 0
-~
-teye_targ_cd
-preset 0  random 0  type_flag_rl 0  value_rl 0
-a_arg 0xbb9  b_arg 0  c_arg 0
-d_arg 0  e_arg 0  f_arg 0
+a_arg 0xffffffff  b_arg 0x3e8  c_arg 0x3e8
+d_arg 0xffffffff  e_arg 0  f_arg 0
 g_arg 0  h_arg 0  i_arg 0 j_arg 0
 ~
 teye_waitdots
 preset 0  random 0  type_flag_rl 0  value_rl 0
-a_arg 0x3e8  b_arg 0x12c  c_arg 0x4b0
+a_arg 0x3e8  b_arg 0x1f4  c_arg 0x514
 d_arg 0x12c  e_arg 0  f_arg 0
 g_arg 0  h_arg 0  i_arg 0 j_arg 0
 ~
@@ -1249,82 +1246,10 @@ a_arg 0x1325  b_arg 0  c_arg 0
 d_arg 0  e_arg 0  f_arg 0
 g_arg 0  h_arg 0  i_arg 0 j_arg 0
 ~
-teye_elestondots
-preset 0  random 0  type_flag_rl 0  value_rl 0
-a_arg 0  b_arg 0  c_arg 0
-d_arg 0  e_arg 0  f_arg 0
-g_arg 0  h_arg 0  i_arg 0 j_arg 0
-~
-teye_eleston
-preset 0  random 0  type_flag_rl 0  value_rl 0
-a_arg 0x7040001  b_arg 0x7040002  c_arg 0
-d_arg 0  e_arg 0  f_arg 0
-g_arg 0  h_arg 0  i_arg 0 j_arg 0
-~
-teye_rtreft
-preset 0  random 0  type_flag_rl 0  value_rl 0
-a_arg 0  b_arg 0  c_arg 0
-d_arg 0  e_arg 0  f_arg 0
-g_arg 0  h_arg 0  i_arg 0 j_arg 0
-~
-teye_rteyef
-preset 0  random 0  type_flag_rl 0  value_rl 0
-a_arg 0  b_arg 0  c_arg 0
-d_arg 0  e_arg 0  f_arg 0
-g_arg 0  h_arg 0  i_arg 0 j_arg 0
-~
-teye_rtdotdur
-preset 0  random 0  type_flag_rl 0  value_rl 0
-a_arg 0  b_arg 0  c_arg 0
-d_arg 0  e_arg 0x1388  f_arg 0
-g_arg 0  h_arg 0  i_arg 0 j_arg 0
-~
-teye_rtnore
-preset 0  random 0  type_flag_rl 0  value_rl 0
-a_arg 0  b_arg 0  c_arg 0
-d_arg 0  e_arg 0  f_arg 0
-g_arg 0  h_arg 0  i_arg 0 j_arg 0
-~
-teye_rtdone
-preset 0  random 0  type_flag_rl 0  value_rl 0
-a_arg 0x44d  b_arg 0  c_arg 0
-d_arg 0  e_arg 0  f_arg 0
-g_arg 0  h_arg 0  i_arg 0 j_arg 0
-~
-teye_rtsacc
-preset 0  random 0  type_flag_rl 0  value_rl 0
-a_arg 0x3ef  b_arg 0  c_arg 0
-d_arg 0  e_arg 0  f_arg 0
-g_arg 0  h_arg 0  i_arg 0 j_arg 0
-~
-teye_rtrest
-preset 0  random 0  type_flag_rl 0  value_rl 0
-a_arg 0  b_arg 0  c_arg 0
-d_arg 0  e_arg 0  f_arg 0
-g_arg 0  h_arg 0  i_arg 0 j_arg 0
-~
-teye_rtstod
-preset 0  random 0  type_flag_rl 0  value_rl 0
-a_arg 0  b_arg 0  c_arg 0
-d_arg 0  e_arg 0  f_arg 0
-g_arg 0  h_arg 0  i_arg 0 j_arg 0
-~
-teye_rtsdcd
-preset 0  random 0  type_flag_rl 0  value_rl 0
-a_arg 0x44d  b_arg 0  c_arg 0
-d_arg 0  e_arg 0  f_arg 0
-g_arg 0  h_arg 0  i_arg 0 j_arg 0
-~
-teye_rtelestoff
-preset 0  random 0  type_flag_rl 0  value_rl 0
-a_arg 0x7040001  b_arg 0x7040002  c_arg 0
-d_arg 0  e_arg 0  f_arg 0
-g_arg 0  h_arg 0  i_arg 0 j_arg 0
-~
 teye_setdotdur
 preset 0  random 0  type_flag_rl 0  value_rl 0
-a_arg 0x3e8  b_arg 0x1f4  c_arg 0x672
-d_arg 0x15e  e_arg 0  f_arg 0
+a_arg 0x3e8  b_arg 0x15e  c_arg 0x3e8
+d_arg 0xc8  e_arg 0  f_arg 0
 g_arg 0  h_arg 0  i_arg 0 j_arg 0
 ~
 teye_stopdots
@@ -1339,40 +1264,10 @@ a_arg 0x44d  b_arg 0  c_arg 0
 d_arg 0  e_arg 0  f_arg 0
 g_arg 0  h_arg 0  i_arg 0 j_arg 0
 ~
-teye_elestoffd
-preset 0  random 0  type_flag_rl 0  value_rl 0
-a_arg 0  b_arg 0  c_arg 0
-d_arg 0  e_arg 0  f_arg 0
-g_arg 0  h_arg 0  i_arg 0 j_arg 0
-~
-teye_elestoff
-preset 0  random 0  type_flag_rl 0  value_rl 0
-a_arg 0x7040001  b_arg 0x7040002  c_arg 0
-d_arg 0  e_arg 0  f_arg 0
-g_arg 0  h_arg 0  i_arg 0 j_arg 0
-~
 teye_waitfpoff
 preset 0  random 0  type_flag_rl 0  value_rl 0
-a_arg 0x3e8  b_arg 0  c_arg 0
-d_arg 0  e_arg 0  f_arg 0
-g_arg 0  h_arg 0  i_arg 0 j_arg 0
-~
-teye_waitsbet
-preset 0  random 0  type_flag_rl 0  value_rl 0
 a_arg 0  b_arg 0  c_arg 0
-d_arg 0  e_arg 0  f_arg 0
-g_arg 0  h_arg 0  i_arg 0 j_arg 0
-~
-teye_showsbet
-preset 0  random 0  type_flag_rl 0  value_rl 0
-a_arg 0  b_arg 0  c_arg 0
-d_arg 0  e_arg 0  f_arg 0
-g_arg 0  h_arg 0  i_arg 0 j_arg 0
-~
-teye_wentsbet
-preset 0  random 0  type_flag_rl 0  value_rl 0
-a_arg 0  b_arg 0  c_arg 0
-d_arg 0  e_arg 0  f_arg 0
+d_arg 0  e_arg 0x190  f_arg 0
 g_arg 0  h_arg 0  i_arg 0 j_arg 0
 ~
 teye_chkwait
@@ -1381,15 +1276,27 @@ a_arg 0  b_arg 0  c_arg 0
 d_arg 0  e_arg 0  f_arg 0
 g_arg 0  h_arg 0  i_arg 0 j_arg 0
 ~
+teye_tarlumup
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0xffffffff  b_arg 0x3e8  c_arg 0x3e8
+d_arg 0xffffffff  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
 teye_fpoff
 preset 0  random 0  type_flag_rl 0  value_rl 0
-a_arg 0  b_arg 0x3e8  c_arg 0xffffffff
-d_arg 0  e_arg 0x1  f_arg 0
+a_arg 0  b_arg 0xffffffff  c_arg 0xffffffff
+d_arg 0xffffffff  e_arg 0x3e8  f_arg 0
 g_arg 0  h_arg 0  i_arg 0 j_arg 0
 ~
 teye_fpoff_cd
 preset 0  random 0  type_flag_rl 0  value_rl 0
 a_arg 0x401  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+teye_targ_cd
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0xbb9  b_arg 0  c_arg 0
 d_arg 0  e_arg 0  f_arg 0
 g_arg 0  h_arg 0  i_arg 0 j_arg 0
 ~
@@ -1412,13 +1319,13 @@ d_arg 0  e_arg 0  f_arg 0
 g_arg 0  h_arg 0  i_arg 0 j_arg 0
 ~
 check_eye_response
-preset 500  random 0  type_flag_rl 0  value_rl 0
+preset 2000  random 0  type_flag_rl 0  value_rl 0
 a_arg 0  b_arg 0  c_arg 0
 d_arg 0  e_arg 0  f_arg 0
 g_arg 0  h_arg 0  i_arg 0 j_arg 0
 ~
 peyehold
-preset 50  random 0  type_flag_rl 0  value_rl 0
+preset 200  random 0  type_flag_rl 0  value_rl 0
 a_arg 0x1337  b_arg 0  c_arg 0
 d_arg 0  e_arg 0  f_arg 0
 g_arg 0  h_arg 0  i_arg 0 j_arg 0
@@ -1461,12 +1368,12 @@ g_arg 0  h_arg 0  i_arg 0 j_arg 0
 ~
 nushow
 preset 0  random 0  type_flag_rl 0  value_rl 0
-a_arg 0xffffffff  b_arg 0xffffffff  c_arg 0xffffffff
-d_arg 0xffffffff  e_arg 0xffffffff  f_arg 0
+a_arg 0xffffffff  b_arg 0x3e8  c_arg 0
+d_arg 0xffffffff  e_arg 0x1  f_arg 0
 g_arg 0  h_arg 0  i_arg 0 j_arg 0
 ~
 nuwait
-preset 0  random 0  type_flag_rl 0  value_rl 0
+preset 150  random 0  type_flag_rl 0  value_rl 0
 a_arg 0  b_arg 0  c_arg 0
 d_arg 0  e_arg 0  f_arg 0
 g_arg 0  h_arg 0  i_arg 0 j_arg 0
@@ -1485,8 +1392,8 @@ g_arg 0  h_arg 0  i_arg 0 j_arg 0
 ~
 nupunish
 preset 0  random 0  type_flag_rl 0  value_rl 0
-a_arg 0  b_arg 0x3e8  c_arg 0
-d_arg 0  e_arg 0  f_arg 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0xbb8  e_arg 0  f_arg 0
 g_arg 0  h_arg 0  i_arg 0 j_arg 0
 ~
 nuend
@@ -1503,8 +1410,8 @@ g_arg 0  h_arg 0  i_arg 0 j_arg 0
 ~
 prend
 preset 0  random 0  type_flag_rl 0  value_rl 0
-a_arg 0xffffffff  b_arg 0x3e8  c_arg 0xffffffff
-d_arg 0xffffffff  e_arg 0x1  f_arg 0x1
+a_arg 0xffffffff  b_arg 0x3e8  c_arg 0
+d_arg 0xffffffff  e_arg 0x1  f_arg 0
 g_arg 0  h_arg 0  i_arg 0 j_arg 0
 ~
 prdelay
@@ -1515,7 +1422,7 @@ g_arg 0  h_arg 0  i_arg 0 j_arg 0
 ~
 prrew
 preset 0  random 0  type_flag_rl 0  value_rl 0
-a_arg 0x7050001  b_arg 0x352  c_arg 0x1
+a_arg 0x7050001  b_arg 0x96  c_arg 0x1
 d_arg 0  e_arg 0  f_arg 0
 g_arg 0  h_arg 0  i_arg 0 j_arg 0
 ~
@@ -1532,48 +1439,18 @@ d_arg 0  e_arg 0  f_arg 0
 g_arg 0  h_arg 0  i_arg 0 j_arg 0
 ~
 prize_delay
-preset 150  random 0  type_flag_rl 0  value_rl 0
+preset 25  random 0  type_flag_rl 0  value_rl 0
 a_arg 0xffffffff  b_arg 0  c_arg 0xffffffff
-d_arg 0xffffffff  e_arg 0xffffffff  f_arg 0x1
+d_arg 0xffffffff  e_arg 0x1  f_arg 0x1
 g_arg 0  h_arg 0  i_arg 0 j_arg 0
 ~
 prize
 preset 0  random 0  type_flag_rl 0  value_rl 0
-a_arg 0x7050001  b_arg 0x32  c_arg 0x6
+a_arg 0x7050001  b_arg 0x64  c_arg 0x6
 d_arg 0  e_arg 0  f_arg 0
 g_arg 0  h_arg 0  i_arg 0 j_arg 0
 ~
 prize_off
-preset 0  random 0  type_flag_rl 0  value_rl 0
-a_arg 0x7050001  b_arg 0  c_arg 0
-d_arg 0  e_arg 0  f_arg 0
-g_arg 0  h_arg 0  i_arg 0 j_arg 0
-~
-sbet
-preset 0  random 0  type_flag_rl 0  value_rl 0
-a_arg 0x5  b_arg 0  c_arg 0
-d_arg 0  e_arg 0  f_arg 0
-g_arg 0  h_arg 0  i_arg 0 j_arg 0
-~
-sbend
-preset 0  random 0  type_flag_rl 0  value_rl 0
-a_arg 0x1  b_arg 0  c_arg 0
-d_arg 0  e_arg 0  f_arg 0
-g_arg 0  h_arg 0  i_arg 0 j_arg 0
-~
-sbdelay
-preset 0  random 0  type_flag_rl 0  value_rl 0
-a_arg 0  b_arg 0  c_arg 0
-d_arg 0  e_arg 0  f_arg 0
-g_arg 0  h_arg 0  i_arg 0 j_arg 0
-~
-sbrew
-preset 0  random 0  type_flag_rl 0  value_rl 0
-a_arg 0x7050001  b_arg 0x32  c_arg 0x5
-d_arg 0  e_arg 0  f_arg 0
-g_arg 0  h_arg 0  i_arg 0 j_arg 0
-~
-sbrew_off
 preset 0  random 0  type_flag_rl 0  value_rl 0
 a_arg 0x7050001  b_arg 0  c_arg 0
 d_arg 0  e_arg 0  f_arg 0

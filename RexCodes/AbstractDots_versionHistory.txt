@@ -18,6 +18,13 @@ task1_object_varsÑ>object3->x and task1_object_varsÑ>object4->x
 task1_object_varsÑ>object3->y and task1_object_varsÑ>object4->y
 The two target locations are reflected along the horizontal axis. So always 4 target locations now. No control over it. 
 
+b. AbstractDots04: The target locations are set by RF_radius and RF_theta. In RF_jitter, specify the maximum theta that can be randomly added to RF_theta on each trial.
 
+c. AbstractDots05: 
+* Ability to control fraction of trials at particular coherences to fight biases. 
+
+
+
+____________ABSTRACT DOTS-IN-RF__________
 
  
