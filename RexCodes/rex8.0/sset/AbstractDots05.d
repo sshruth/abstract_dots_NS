@@ -53,29 +53,28 @@ struct menu_info_struct {
 
 typedef struct rtvar_struct *rtvar;
 struct rtvar_struct {
-	int 	total_trials;
-	int 	total_correct;
+	int total_trials;
+	int total_correct;
 	int	num_completed;
 	int	num_correct;
 	int	num_wrong;
-	int 	num_sbet;	/* ts */
+	int num_sbet;	/* ts */
 	int	num_ncerr;
 	int	num_brfix;
 	int	last_score;
 	int	coherence;
-	int 	pulse_time;
+	int pulse_time;
 	int	duration;
-    int 	delay;
+    int delay;
 	int	direction;
-	int 	rt;
+	int rt;
 };
 
 
 
 /* GLOBAL VARIABLES */
 
-//static int gl_coh_list[] = {0, 40, 80, 160, 320, 640, 800};
-static int gl_coh_list[] = {0, 640};
+static int gl_coh_list[] = {0, 40, 80, 160, 320, 640, 800};
 static int gl_max_coh_num = sizeof(gl_coh_list)/sizeof(int);
 
 static _VSrecord 						gl_vsd=NULL;                       /* the big kahuna. see vs* */
@@ -106,7 +105,6 @@ int							    gl_teye_rt_err_n[7];
 long							gl_teye_rt_sbet_sum[7];
 int							    gl_teye_rt_sbet_n[7];
 int							    gl_sbet_shown = 0;		/* ts */
-
 
 int gl_correct_side;
 
@@ -276,8 +274,8 @@ int make_tasks(void)
  
 /*  ROUTINE: defTargLum
 ** changes the defined luminance of targets, no change is made on the screen until drawTarg is called
-** the routine scales the original colors defined in the task menu. the original color is assigned a luminance
-** of 1000. black has a luminance of zero.
+** the routine scales the original colors defined in the task menu. the original color is assigned a
+** luminance of 1000. black has a luminance of zero.
 */ 
 int defTargLum(long lum1, long lum2, long lum3, long lum4)
  {
@@ -522,7 +520,6 @@ int open_adata(void)
     i = gl_menu_infoS.rft + TOY_RAND(gl_menu_infoS.tarjit);
     j =  TOY_RAND(1000);
     if (j < 334) {
-        
         gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = TOY_RT_TO_X(0,gl_menu_infoS.rfr,i);
         gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = TOY_RT_TO_Y(0,gl_menu_infoS.rfr,i);
         gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = TOY_RT_TO_X(0,gl_menu_infoS.rfr,i+120);

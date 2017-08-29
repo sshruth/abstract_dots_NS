@@ -1423,7 +1423,7 @@ begin	first:
 		do ec_send_code(HEADCD)
 		to setup
 	setup: 		/* SETUP THE SCREEN */
-		do setup_screen(40, 57, 4, 1, 0)
+		do setup_screen(32, 48, 4, 1, 0)
 		to loop on 1 % initScreen_done
         		
  	loop: 		/* START THE LOOP -- loop on # trials */

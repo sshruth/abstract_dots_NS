@@ -22,7 +22,7 @@ b. AbstractDots04: The target locations are set by RF_radius and RF_theta. In RF
 
 c. AbstractDots05: 
 * Ability to control fraction of trials at particular coherences to fight biases. 
-
+? The eye check window grows after choosing (maybe repurpose sure-bet target window). 
 
 
 ____________ABSTRACT DOTS-IN-RF__________

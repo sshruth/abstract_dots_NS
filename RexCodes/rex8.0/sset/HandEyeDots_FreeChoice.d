@@ -1,329 +1,4 @@
 #include <stdio.h>
-#include <sys/types.h>
-#include "rexhdrs.h"
-#include "ecode.h"
-#include "int.h"
-
-
-
-
-extern int ec_send_code();
-extern int setup_screen();
-extern int initScreen_done();
-extern int softswitch;
-extern int ec_send_code();
-extern int softswitch;
-extern int gl_remain;
-extern int ec_send_code();
-extern int gl_remain;
-extern int nexttrl();
-extern int gl_remain;
-extern int gl_task;
-extern int position_eyewindow();
-extern int eyeflag;
-extern int total();
-extern int end_trial();
-extern int set_eye_flag();
-extern int position_eyewindow();
-extern int gl_task;
-extern int setup_eyewindows();
-extern int drawTarg();
-extern int drawTarg_done();
-extern int ec_send_code();
-extern int timer_set1_shell();
-extern int timer_check1();
-extern int defTargLum();
-extern int drawTarg();
-extern int drawTarg_done();
-extern int ec_send_code();
-extern int timer_set1_shell();
-extern int timer_check1();
-extern int showDots();
-extern int showDots_done();
-extern int ec_send_code();
-extern int timer_set1_shell();
-extern int timer_check1();
-extern int elestim_on();
-extern int gl_rt_flag;
-extern int get_ref_time();
-extern int set_eye_flag();
-extern int set_dots_duration();
-extern int eyeflag;
-extern int timer_check1();
-extern int stopDots();
-extern int stopDots_done();
-extern int ec_send_code();
-extern int ec_send_code();
-extern int get_resp_time();
-extern int stopDots();
-extern int stopDots_done();
-extern int ec_send_code();
-extern int elestim_off();
-extern int set_dots_duration();
-extern int timer_check1();
-extern int stopDots();
-extern int stopDots_done();
-extern int ec_send_code();
-extern int timer_set1_shell();
-extern int timer_check1();
-extern int elestim_off();
-extern int set_delay_duration();
-extern int timer_set2_shell();
-extern int timer_check2();
-extern int show_sbet();
-extern int drawTarg_done();
-extern int dropcode_sbet();
-extern int timer_check1();
-extern int drawTarg();
-extern int drawTarg_done();
-extern int ec_send_code();
-extern int set_eye_flag();
-extern int eyeflag;
-extern int ec_send_code();
-extern int eyeflag;
-extern int eyeflag;
-extern int ec_send_code();
-extern int eyeflag;
-extern int ec_send_code();
-extern int eyeflag;
-extern int ec_send_code();
-extern int eyeflag;
-extern int drawTarg();
-extern int drawTarg_done();
-extern int total();
-extern int end_trial();
-extern int drawTarg();
-extern int drawTarg_done();
-extern int total();
-extern int end_trial();
-extern int set_punishment_timer();
-extern int timer_check1();
-extern int total();
-extern int drawTarg();
-extern int set_reward_delay();
-extern int timer_check1();
-extern int give_reward();
-extern int timer_check1();
-extern int dio_off();
-extern int gl_prize_count;
-extern int gl_prize_count;
-extern int drawTarg();
-extern int give_reward();
-extern int timer_check1();
-extern int dio_off();
-extern int total();
-extern int end_trial();
-extern int set_reward_delay();
-extern int timer_check1();
-extern int give_reward();
-extern int timer_check1();
-extern int dio_off();
-extern int end_trial();
-extern int abort_cleanup();
-extern int gl_eye_flag;
-extern int eyeflag;
-extern int gl_eye_flag;
-extern int total();
-extern int dio_check_joybut();
-extern int joySet();
-extern int udpCheckReceiveFork();
-extern int udpCheckReceiveFork();
-
-
-
-STATE sfirst;
-STATE sfirstcd;
-STATE ssetup;
-STATE sloop;
-STATE spause;
-STATE sgo;
-STATE sdonelist;
-STATE ssettrl;
-STATE stask;
-STATE sfixeyewinpos;
-STATE sfixeyewait;
-STATE snofix;
-STATE snofixDone;
-STATE sfixeyedelay;
-STATE sfixeyeset;
-STATE sfixeyedone;
-STATE steye_start;
-STATE steye_fp;
-STATE steye_fp_cd;
-STATE steye_targ_wait;
-STATE steye_targ_def;
-STATE steye_targ;
-STATE steye_targ_cd;
-STATE steye_waitdots;
-STATE steye_startdots;
-STATE steye_wentdots;
-STATE steye_elestondots;
-STATE steye_eleston;
-STATE steye_rtreft;
-STATE steye_rteyef;
-STATE steye_rtdotdur;
-STATE steye_rtnore;
-STATE steye_rtdone;
-STATE steye_rtsacc;
-STATE steye_rtrest;
-STATE steye_rtstod;
-STATE steye_rtsdcd;
-STATE steye_rtelestoff;
-STATE steye_setdotdur;
-STATE steye_stopdots;
-STATE steye_stopdotscd;
-STATE steye_elestoffd;
-STATE steye_elestoff;
-STATE steye_waitfpoff;
-STATE steye_waitsbet;
-STATE steye_showsbet;
-STATE steye_wentsbet;
-STATE steye_chkwait;
-STATE steye_fpoff;
-STATE steye_fpoff_cd;
-STATE steye_grace;
-STATE steye_gracea;
-STATE steye_saccd;
-STATE scheck_eye_response;
-STATE speyehold;
-STATE sneyehold;
-STATE sseyehold;
-STATE sncshow;
-STATE sncwait;
-STATE sncerr;
-STATE sncend;
-STATE snushow;
-STATE snuwait;
-STATE snull;
-STATE snuclose;
-STATE snupunish;
-STATE snuend;
-STATE spref;
-STATE sprend;
-STATE sprdelay;
-STATE sprrew;
-STATE sprrew_off;
-STATE sprize_loop;
-STATE sprize_delay;
-STATE sprize;
-STATE sprize_off;
-STATE ssbet;
-STATE ssbend;
-STATE ssbdelay;
-STATE ssbrew;
-STATE ssbrew_off;
-STATE sprdone;
-STATE sabtst;
-STATE sefirst;
-STATE setest;
-STATE sechk;
-STATE sefail;
-STATE sjfirst;
-STATE sjchk;
-STATE sjoyButton;
-STATE sufirst;
-STATE suchk;
-STATE suchkAgain;
-
-
-
-STATE *snames[] = {
-&sfirst,
-&sfirstcd,
-&ssetup,
-&sloop,
-&spause,
-&sgo,
-&sdonelist,
-&ssettrl,
-&stask,
-&sfixeyewinpos,
-&sfixeyewait,
-&snofix,
-&snofixDone,
-&sfixeyedelay,
-&sfixeyeset,
-&sfixeyedone,
-&steye_start,
-&steye_fp,
-&steye_fp_cd,
-&steye_targ_wait,
-&steye_targ_def,
-&steye_targ,
-&steye_targ_cd,
-&steye_waitdots,
-&steye_startdots,
-&steye_wentdots,
-&steye_elestondots,
-&steye_eleston,
-&steye_rtreft,
-&steye_rteyef,
-&steye_rtdotdur,
-&steye_rtnore,
-&steye_rtdone,
-&steye_rtsacc,
-&steye_rtrest,
-&steye_rtstod,
-&steye_rtsdcd,
-&steye_rtelestoff,
-&steye_setdotdur,
-&steye_stopdots,
-&steye_stopdotscd,
-&steye_elestoffd,
-&steye_elestoff,
-&steye_waitfpoff,
-&steye_waitsbet,
-&steye_showsbet,
-&steye_wentsbet,
-&steye_chkwait,
-&steye_fpoff,
-&steye_fpoff_cd,
-&steye_grace,
-&steye_gracea,
-&steye_saccd,
-&scheck_eye_response,
-&speyehold,
-&sneyehold,
-&sseyehold,
-&sncshow,
-&sncwait,
-&sncerr,
-&sncend,
-&snushow,
-&snuwait,
-&snull,
-&snuclose,
-&snupunish,
-&snuend,
-&spref,
-&sprend,
-&sprdelay,
-&sprrew,
-&sprrew_off,
-&sprize_loop,
-&sprize_delay,
-&sprize,
-&sprize_off,
-&ssbet,
-&ssbend,
-&ssbdelay,
-&ssbrew,
-&ssbrew_off,
-&sprdone,
-&sabtst,
-&sefirst,
-&setest,
-&sechk,
-&sefail,
-&sjfirst,
-&sjchk,
-&sjoyButton,
-&sufirst,
-&suchk,
-&suchkAgain,
-0};
-
-#include <stdio.h>
 #include <stddef.h>
 #include <unistd.h>
 #include <math.h>
@@ -1737,1727 +1412,437 @@ RTVAR rtvars[] = {
 
 /* THE STATE SET 
 */
-STATE sfirst = {
-	{"first"},0,0
-	,0,0
-	,{0,0,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&sfirstcd,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE sfirstcd = {
-	{"firstcd"},0,0
-	,0,0
-	,{ec_send_code,HEADCD,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&ssetup,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE ssetup = {
-	{"setup"},0,0
-	,0,0
-	,{setup_screen,40,57,4,1,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&sloop,FUNC,&initScreen_done,1 },
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE sloop = {
-	{"loop"},0,0
-	,0,0
-	,{0,0,0,0,0,0,0,0,0,0,0}
-	,1000,0
-	,{
-	{0,0,&spause,BITON,&softswitch,PSTOP },
-	{0,0,&sgo,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE spause = {
-	{"pause"},0,0
-	,0,0
-	,{ec_send_code,PAUSECD,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&sgo,BITOFF,&softswitch,PSTOP },
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE sgo = {
-	{"go"},0,0
-	,0,0
-	,{0,0,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&sdonelist,BITOFF,&gl_remain,ONES },
-	{0,0,&ssettrl,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE sdonelist = {
-	{"donelist"},0,0
-	,0,0
-	,{ec_send_code,LISTDONECD,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&sloop,BITON,&gl_remain,ONES },
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE ssettrl = {
-	{"settrl"},0,0
-	,0,0
-	,{nexttrl,0,10,1,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&stask,BITON,&gl_remain,ONES },
-	{0,0,&sloop,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE stask = {
-	{"task"},0,0
-	,0,0
-	,{0,0,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&steye_start,EQUAL,&gl_task,TASK_EYE },
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE sfixeyewinpos = {
-	{"fixeyewinpos"},0,0
-	,0,0
-	,{position_eyewindow,10,10,0,0,0,0,0,0,0,0}
-	,10,0
-	,{
-	{0,0,&sfixeyewait,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE sfixeyewait = {
-	{"fixeyewait"},0,0
-	,0,0
-	,{0,0,0,0,0,0,0,0,0,0,0}
-	,5000,0
-	,{
-	{0,0,&sfixeyedelay,BITOFF,&eyeflag,WD0_XY },
-	{0,0,&snofix,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE snofix = {
-	{"nofix"},0,0
-	,0,0
-	,{total,DO_OVER,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&snofixDone,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE snofixDone = {
-	{"nofixDone"},0,0
-	,0,0
-	,{end_trial,CANCEL_W,0,0,0,0,0,0,0,0,0}
-	,2000,0
-	,{
-	{0,0,&sloop,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE sfixeyedelay = {
-	{"fixeyedelay"},0,0
-	,0,0
-	,{0,0,0,0,0,0,0,0,0,0,0}
-	,100 ,0
-	,{
-	{0,0,&sfixeyeset,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE sfixeyeset = {
-	{"fixeyeset"},0,0
-	,0,0
-	,{set_eye_flag,E_FIX,0,0,0,0,0,0,0,0,0}
-	,2000 ,0
-	,{
-	{0,0,&sfixeyedone,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE sfixeyedone = {
-	{"fixeyedone"},0,0
-	,0,0
-	,{position_eyewindow,25,25,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&steye_targ_wait,EQUAL,&gl_task,TASK_EYE },
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE steye_start = {
-	{"teye_start"},0,0
-	,0,0
-	,{setup_eyewindows,25,25,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&steye_fp,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE steye_fp = {
-	{"teye_fp"},0,0
-	,0,0
-	,{drawTarg,1000,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&steye_fp_cd,FUNC,&drawTarg_done,MAT_WENT },
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE steye_fp_cd = {
-	{"teye_fp_cd"},0,0
-	,0,0
-	,{ec_send_code,FPONCD,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&sfixeyewinpos,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE steye_targ_wait = {
-	{"teye_targ_wait"},0,0
-	,0,0
-	,{timer_set1_shell,1000,200,600,100,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&steye_targ_def,FUNC,&timer_check1,MET },
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE steye_targ_def = {
-	{"teye_targ_def"},0,0
-	,0,0
-	,{defTargLum,-1,-1,-1,-1,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&steye_targ,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE steye_targ = {
-	{"teye_targ"},0,0
-	,0,0
-	,{drawTarg,1000,1000,1000,-1,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&steye_targ_cd,FUNC,&drawTarg_done,MAT_WENT },
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE steye_targ_cd = {
-	{"teye_targ_cd"},0,0
-	,0,0
-	,{ec_send_code,TARGC1CD,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&steye_waitdots,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE steye_waitdots = {
-	{"teye_waitdots"},0,0
-	,0,0
-	,{timer_set1_shell,1000,100,600,150,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&steye_startdots,FUNC,&timer_check1,MET },
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE steye_startdots = {
-	{"teye_startdots"},0,0
-	,0,0
-	,{showDots,0,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&steye_wentdots,FUNC,&showDots_done,MAT_WENT },
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE steye_wentdots = {
-	{"teye_wentdots"},0,0
-	,0,0
-	,{ec_send_code,GOCOHCD,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&steye_elestondots,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE steye_elestondots = {
-	{"teye_elestondots"},0,0
-	,0,0
-	,{timer_set1_shell,0,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&steye_eleston,FUNC,&timer_check1,MET },
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE steye_eleston = {
-	{"teye_eleston"},0,0
-	,0,0
-	,{elestim_on,FTTL1,FTTL2,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&steye_rtreft,EQUAL,&gl_rt_flag,1 },
-	{0,0,&steye_setdotdur,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE steye_rtreft = {
-	{"teye_rtreft"},0,0
-	,0,0
-	,{get_ref_time,0,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&steye_rteyef,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE steye_rteyef = {
-	{"teye_rteyef"},0,0
-	,0,0
-	,{set_eye_flag,E_OFF,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&steye_rtdotdur,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE steye_rtdotdur = {
-	{"teye_rtdotdur"},0,0
-	,0,0
-	,{set_dots_duration,0,0,0,0,5000,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&steye_rtsacc,BITON,&eyeflag,WD0_XY },
-	{0,0,&steye_rtnore,FUNC,&timer_check1,MET },
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE steye_rtnore = {
-	{"teye_rtnore"},0,0
-	,0,0
-	,{stopDots,0,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&steye_rtdone,FUNC,&stopDots_done,MAT_WENT },
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE steye_rtdone = {
-	{"teye_rtdone"},0,0
-	,0,0
-	,{ec_send_code,STOFFCD,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&sncerr,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE steye_rtsacc = {
-	{"teye_rtsacc"},0,0
-	,0,0
-	,{ec_send_code,SACMADCD,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&steye_rtrest,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE steye_rtrest = {
-	{"teye_rtrest"},0,0
-	,0,0
-	,{get_resp_time,0,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&steye_rtstod,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE steye_rtstod = {
-	{"teye_rtstod"},0,0
-	,0,0
-	,{stopDots,0,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&steye_rtsdcd,FUNC,&stopDots_done,MAT_WENT },
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE steye_rtsdcd = {
-	{"teye_rtsdcd"},0,0
-	,0,0
-	,{ec_send_code,STOFFCD,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&steye_rtelestoff,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE steye_rtelestoff = {
-	{"teye_rtelestoff"},0,0
-	,0,0
-	,{elestim_off,FTTL1,FTTL2,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&scheck_eye_response,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE steye_setdotdur = {
-	{"teye_setdotdur"},0,0
-	,0,0
-	,{set_dots_duration,1000,100,1500,300,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&steye_stopdots,FUNC,&timer_check1,MET },
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE steye_stopdots = {
-	{"teye_stopdots"},0,0
-	,0,0
-	,{stopDots,0,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&steye_stopdotscd,FUNC,&stopDots_done,MAT_WENT },
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE steye_stopdotscd = {
-	{"teye_stopdotscd"},0,0
-	,0,0
-	,{ec_send_code,STOFFCD,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&steye_elestoffd,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE steye_elestoffd = {
-	{"teye_elestoffd"},0,0
-	,0,0
-	,{timer_set1_shell,0,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&steye_elestoff,FUNC,&timer_check1,MET },
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE steye_elestoff = {
-	{"teye_elestoff"},0,0
-	,0,0
-	,{elestim_off,FTTL1,FTTL2,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&steye_waitfpoff,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE steye_waitfpoff = {
-	{"teye_waitfpoff"},0,0
-	,0,0
-	,{set_delay_duration,1000,500,1000,100,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&steye_waitsbet,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE steye_waitsbet = {
-	{"teye_waitsbet"},0,0
-	,0,0
-	,{timer_set2_shell,0,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&steye_showsbet,FUNC,&timer_check2,MET },
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE steye_showsbet = {
-	{"teye_showsbet"},0,0
-	,0,0
-	,{show_sbet,0,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&steye_wentsbet,FUNC,&drawTarg_done,MAT_WENT },
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE steye_wentsbet = {
-	{"teye_wentsbet"},0,0
-	,0,0
-	,{dropcode_sbet,0,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&steye_chkwait,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE steye_chkwait = {
-	{"teye_chkwait"},0,0
-	,0,0
-	,{0,0,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&steye_fpoff,FUNC,&timer_check1,MET },
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE steye_fpoff = {
-	{"teye_fpoff"},0,0
-	,0,0
-	,{drawTarg,0,-1,-1,-1,1000,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&steye_fpoff_cd,FUNC,&drawTarg_done,MAT_WENT },
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE steye_fpoff_cd = {
-	{"teye_fpoff_cd"},0,0
-	,0,0
-	,{ec_send_code,FPOFFCD,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&steye_grace,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE steye_grace = {
-	{"teye_grace"},0,0
-	,0,0
-	,{set_eye_flag,E_OFF,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&steye_gracea,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE steye_gracea = {
-	{"teye_gracea"},0,0
-	,0,0
-	,{0,0,0,0,0,0,0,0,0,0,0}
-	,500,0
-	,{
-	{0,0,&steye_saccd,BITON,&eyeflag,WD0_XY },
-	{0,0,&sncshow,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE steye_saccd = {
-	{"teye_saccd"},0,0
-	,0,0
-	,{ec_send_code,SACMADCD,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&scheck_eye_response,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE scheck_eye_response = {
-	{"check_eye_response"},0,0
-	,0,0
-	,{0,0,0,0,0,0,0,0,0,0,0}
-	,500,0
-	,{
-	{0,0,&speyehold,BITOFF,&eyeflag,WD3_XY },
-	{0,0,&sneyehold,BITOFF,&eyeflag,WD4_XY },
-	{0,0,&sncshow,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE speyehold = {
-	{"peyehold"},0,0
-	,0,0
-	,{ec_send_code,TRGACQUIRECD,0,0,0,0,0,0,0,0,0}
-	,50,0
-	,{
-	{0,0,&sncshow,BITON,&eyeflag,WD3_XY },
-	{0,0,&spref,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE sneyehold = {
-	{"neyehold"},0,0
-	,0,0
-	,{ec_send_code,TRGACQUIRECD,0,0,0,0,0,0,0,0,0}
-	,50 ,0
-	,{
-	{0,0,&sncshow,BITON,&eyeflag,WD4_XY },
-	{0,0,&snushow,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE sseyehold = {
-	{"seyehold"},0,0
-	,0,0
-	,{ec_send_code,TRGACQUIRECD,0,0,0,0,0,0,0,0,0}
-	,50 ,0
-	,{
-	{0,0,&sncshow,BITON,&eyeflag,WD5_XY },
-	{0,0,&ssbet,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE sncshow = {
-	{"ncshow"},0,0
-	,0,0
-	,{drawTarg,-1,-1,-1,-1,-1,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&sncwait,FUNC,&drawTarg_done,MAT_WENT },
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE sncwait = {
-	{"ncwait"},0,0
-	,0,0
-	,{0,0,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&sncerr,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE sncerr = {
-	{"ncerr"},0,0
-	,0,0
-	,{total,NCERR,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&sncend,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE sncend = {
-	{"ncend"},0,0
-	,0,0
-	,{end_trial,CLOSE_W,0,0,0,0,0,0,0,0,0}
-	,1000,0
-	,{
-	{0,0,&sloop,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE snushow = {
-	{"nushow"},0,0
-	,0,0
-	,{drawTarg,-1,-1,-1,-1,-1,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&snuwait,FUNC,&drawTarg_done,MAT_WENT },
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE snuwait = {
-	{"nuwait"},0,0
-	,0,0
-	,{0,0,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&snull,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE snull = {
-	{"null"},0,0
-	,0,0
-	,{total,WRONG,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&snuclose,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE snuclose = {
-	{"nuclose"},0,0
-	,0,0
-	,{end_trial,CLOSE_W,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&snupunish,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE snupunish = {
-	{"nupunish"},0,0
-	,0,0
-	,{set_punishment_timer,0,1000,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&snuend,FUNC,&timer_check1,MET },
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE snuend = {
-	{"nuend"},0,0
-	,0,0
-	,{0,0,0,0,0,0,0,0,0,0,0}
-	,1000 ,0
-	,{
-	{0,0,&sloop,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE spref = {
-	{"pref"},0,0
-	,0,0
-	,{total,CORRECT,0,0,0,0,0,0,0,0,0}
-	,250,0
-	,{
-	{0,0,&sprend,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE sprend = {
-	{"prend"},0,0
-	,0,0
-	,{drawTarg,-1,1000,-1,-1,-1,1,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&sprdelay,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE sprdelay = {
-	{"prdelay"},0,0
-	,0,0
-	,{set_reward_delay,0,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&sprrew,FUNC,&timer_check1,MET },
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE sprrew = {
-	{"prrew"},0,0
-	,0,0
-	,{give_reward,REW,150,CORRECT,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&sprrew_off,FUNC,&timer_check1,MET },
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE sprrew_off = {
-	{"prrew_off"},0,0
-	,0,0
-	,{dio_off,REW,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&sprize_loop,LESSOR,&gl_prize_count,0 },
-	{0,0,&sprdone,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE sprize_loop = {
-	{"prize_loop"},0,0
-	,0,0
-	,{0,0,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&sprdone,QUERY,&gl_prize_count,0 },
-	{0,0,&sprize_delay,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE sprize_delay = {
-	{"prize_delay"},0,0
-	,0,0
-	,{drawTarg,-1,0,-1,-1,-1,1,0,0,0,0}
-	,150,0
-	,{
-	{0,0,&sprize,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE sprize = {
-	{"prize"},0,0
-	,0,0
-	,{give_reward,REW,50,PRIZE,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&sprize_off,FUNC,&timer_check1,MET },
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE sprize_off = {
-	{"prize_off"},0,0
-	,0,0
-	,{dio_off,REW,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&sprize_loop,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE ssbet = {
-	{"sbet"},0,0
-	,0,0
-	,{total,SBET,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&ssbend,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE ssbend = {
-	{"sbend"},0,0
-	,0,0
-	,{end_trial,CLOSE_W,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&ssbdelay,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE ssbdelay = {
-	{"sbdelay"},0,0
-	,0,0
-	,{set_reward_delay,0,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&ssbrew,FUNC,&timer_check1,MET },
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE ssbrew = {
-	{"sbrew"},0,0
-	,0,0
-	,{give_reward,REW,50,SBET,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&ssbrew_off,FUNC,&timer_check1,MET },
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE ssbrew_off = {
-	{"sbrew_off"},0,0
-	,0,0
-	,{dio_off,REW,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&sprdone,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE sprdone = {
-	{"prdone"},0,0
-	,0,0
-	,{end_trial,CLOSE_W,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&sloop,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE sabtst = {
-	{"abtst"},0,0
-	,0,0
-	,{abort_cleanup,0,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&sprdone,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE sefirst = {
-	{"efirst"},0,0
-	,0,0
-	,{0,0,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&setest,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE setest = {
-	{"etest"},0,0
-	,0,0
-	,{0,0,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&sechk,EQUAL,&gl_eye_flag,E_FIX },
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE sechk = {
-	{"echk"},0,0
-	,0,0
-	,{0,0,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&sefail,BITON,&eyeflag,WD0_XY },
-	{0,0,&setest,EQUAL,&gl_eye_flag,E_OFF },
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE sefail = {
-	{"efail"},0,0
-	,0,0
-	,{total,BRFIX,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&setest,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE sjfirst = {
-	{"jfirst"},0,0
-	,0,0
-	,{0,0,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&sjchk,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE sjchk = {
-	{"jchk"},0,0
-	,0,0
-	,{0,0,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&sjoyButton,FUNC,&dio_check_joybut,0 },
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE sjoyButton = {
-	{"joyButton"},0,0
-	,0,0
-	,{joySet,0,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&sjchk,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE sufirst = {
-	{"ufirst"},0,0
-	,0,0
-	,{0,0,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&suchk,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE suchk = {
-	{"uchk"},0,0
-	,0,0
-	,{udpCheckReceiveFork,0,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&suchkAgain,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
-STATE suchkAgain = {
-	{"uchkAgain"},0,0
-	,0,0
-	,{udpCheckReceiveFork,0,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,0,&suchk,TIME,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0},
-	{0,0,0,0,0,0}
-	}
-};
+%%
+id 901
+restart rinitf
+main_set {
+status ON
+begin	first:
+		to firstcd
+	firstcd:
+		do ec_send_code(HEADCD)
+		to setup
+	setup: 		/* SETUP THE SCREEN */
+		do setup_screen(32, 48, 4, 1, 0)
+		to loop on 1 % initScreen_done
+        		
+ 	loop: 		/* START THE LOOP -- loop on # trials */
+		time 1000
+		to pause on +PSTOP & softswitch
+		to go
+	pause:
+		do ec_send_code(PAUSECD)
+		to go on -PSTOP & softswitch
+	go: 			/**** TRIAL !!! ****/
+		to donelist on -ONES & gl_remain
+		to settrl 
+	donelist:	/* done with current set... wait for "gl_remain" to update */
+		do ec_send_code(LISTDONECD)
+		to loop on +ONES & gl_remain
+	settrl:		/* set up current trial */
+		do nexttrl(0, 10, 1)
+		to task on +ONES & gl_remain
+		to loop
+	task:			/**** TASK BRANCHING ... ****/
+		to teye_start on TASK_EYE = gl_task
+
+	/* position window, wait for fixation */
+	fixeyewinpos:
+	    do position_eyewindow(10, 10, 0)
+	    time 10	/* this is very important - it takes time to set window */
+		to fixeyewait
+	fixeyewait:    /* wait for either eye or hand fixation */
+	    time 5000
+	    to fixeyedelay on -WD0_XY & eyeflag
+		to nofix
+	nofix:		/* failed to attain either eye or hand fixation or both*/
+	    do total(DO_OVER) // just redo the trial
+	    to nofixDone
+	nofixDone:
+	    time 2000
+		do end_trial(CANCEL_W)
+		to loop
+	
+	fixeyedelay:
+	    time 100 /* delay before activating eye_flag - noise on the eye position signal should not be able to "break eye fixation" */
+		to fixeyeset
+	fixeyeset:		/* set flag to check for eye fixation breaks */
+		do set_eye_flag(E_FIX)
+	    time 2000 /* additional time to attain hand fixation */
+	    to fixeyedone
+		
+	/* Done with fixating stuff */
+	fixeyedone:		/**** TASK BRANCHING ... ****/
+	    do position_eyewindow(25, 25, 0)
+		to teye_targ_wait on TASK_EYE = gl_task
+
+/*** CHAIN FOR TASK EYE
+***/
+	teye_start:
+	    do setup_eyewindows(25, 25)
+		to teye_fp
+	teye_fp:
+		do drawTarg(1000,0,0,0,0)
+		to teye_fp_cd on MAT_WENT % drawTarg_done
+		/* to teye_fp_cd on PHOTO_DETECT_UP % dio_check_photodetector */
+	teye_fp_cd:
+		do ec_send_code(FPONCD)
+		to fixeyewinpos
+	teye_targ_wait:
+		do timer_set1_shell(1000,200,600,100,0,0)
+		to teye_targ_def on +MET % timer_check1
+	teye_targ_def:
+		do defTargLum(-1, -1, -1, -1)
+		to teye_targ
+	teye_targ: /* show the targets */
+		do drawTarg(1000, 1000, 1000, -1, 0)
+		to teye_targ_cd on MAT_WENT % drawTarg_done
+  	    /* to teye_targ_cd on PHOTO_DETECT_DOWN % dio_check_photodetector */ 
+	teye_targ_cd:
+		do ec_send_code(TARGC1CD)
+        to fc_tarwait on 2 = gl_rt_flag /* Branch to FREE CHOICE task*/
+		to teye_waitdots
+		
+	/* START SHOWING DOTS */
+	teye_waitdots:
+		do timer_set1_shell(1000,100,600,150,0,0)
+		to teye_startdots on +MET % timer_check1
+	teye_startdots:	/* START DOTS */
+		do showDots()
+		to teye_wentdots on MAT_WENT % showDots_done
+	    /* to teye_wentdots on PHOTO_DETECT_UP % dio_check_photodetector */
+	teye_wentdots:
+		do ec_send_code(GOCOHCD)
+		to teye_elestondots
+	teye_elestondots:		/* define the delay from dots onset to electrical stim */
+		do timer_set1_shell(0,0,0,0,0,0)
+		to teye_eleston on +MET % timer_check1
+	teye_eleston:		/* deliver the electrical stim, with the specified probability */
+		do elestim_on(FTTL1, FTTL2, 0)
+		to teye_rtreft on 1 = gl_rt_flag
+		to teye_setdotdur
+	
+	/* RT task */
+	teye_rtreft:        /* store reference time */
+		do get_ref_time()
+		to teye_rteyef
+	teye_rteyef:	    /* monkey is now allowed to break fixation */
+		do set_eye_flag(E_OFF)
+		to teye_rtdotdur
+	teye_rtdotdur:	    /* set the dots timeout */
+		do set_dots_duration(0,0,0,0,5000,0)
+		to teye_rtsacc on +WD0_XY & eyeflag	    /* saccade detected */
+		to teye_rtnore on +MET % timer_check1	/* timeout */
+	teye_rtnore:
+		do stopDots()
+ 		to teye_rtdone on MAT_WENT % stopDots_done
+	  	/* to teye_rtdone on PHOTO_DETECT_DOWN % dio_check_photodetector */
+	teye_rtdone:
+		do ec_send_code(STOFFCD)
+		to ncerr
+	teye_rtsacc:
+		do ec_send_code(SACMADCD)
+		to teye_rtrest
+	teye_rtrest:        /* store response time */
+		do get_resp_time()
+		to teye_rtstod
+	teye_rtstod:
+		do stopDots()		
+		to teye_rtsdcd on MAT_WENT % stopDots_done
+	    /* to teye_rtsdcd on PHOTO_DETECT_DOWN % dio_check_photodetector */
+	teye_rtsdcd:		/* drop the stop dots code */
+		do ec_send_code(STOFFCD)
+		to teye_rtelestoff
+	teye_rtelestoff:
+		do elestim_off(FTTL1, FTTL2, 0)
+		to check_eye_response
+		
+	/* FIXED DURATION TASK */
+	teye_setdotdur:		/* set the dots duration timer */
+		do set_dots_duration(1000,100,1500,300,0,0)
+		to teye_stopdots on +MET % timer_check1 /* check the timer */
+	teye_stopdots:
+		do stopDots()
+		to teye_stopdotscd on MAT_WENT % stopDots_done
+	teye_stopdotscd:		/* drop the stop dots code */
+		do ec_send_code(STOFFCD)
+		to teye_elestoffd
+	teye_elestoffd:	/* define the delay from dots offset to end of electrical stim */
+		do timer_set1_shell(0,0,0,0,0,0)
+		to teye_elestoff on +MET % timer_check1		
+	teye_elestoff:		/* stop electrical stim */ 
+		do elestim_off(FTTL1, FTTL2, 0)		/* the third argument, 1, means store the time in the datafile */
+		to teye_waitfpoff
+    
+    /* FREE CHOICE TASK */
+    fc_tarwait:
+        do set_delay_duration(0,0,0,0,200,0)
+        to fc_taroff on +MET % timer_check1
+    fc_taroff:
+        do drawTarg(-1,0,0,-1,1000, 0)
+        to fc_taroff_cd on MAT_WENT % drawTarg_done
+    fc_taroff_cd:
+        do ec_send_code(TARGC1OFFCD)
+        to fc_delay
+    fc_delay:
+        do set_delay_duration(1000,500,1000,100,0,0)
+        to fc_fpoff on +MET % timer_check1
+    fc_fpoff:
+        do drawTarg(0,-1,-1,-1,1000, 0)
+        to fc_fpoff_cd on MAT_WENT % drawTarg_done
+    fc_fpoff_cd:
+        do ec_send_code(FPOFFCD)
+        to fc_grace	/* wait for sac */
+    fc_grace:
+        do set_eye_flag(E_OFF)
+        to fc_gracea
+    fc_gracea:
+        time 2000
+        to fc_saccd on +WD0_XY & eyeflag
+        to ncshow /* NEED TO DEAL WITH NO-CHOICE SITUATIONS */
+    fc_saccd:
+        do ec_send_code(EYINWD)
+        to fc_check_eye_response
+    fc_check_eye_response:
+        time 50				 /* checking windows takes time! around 20 ms per window seems ok, 25 to be safe */
+        to fc_leyehold on -WD3_XY & eyeflag		/* got correct target! USING LEFT AS CORRECT AND RIGHT AS WRONG*/
+        to fc_reyehold on -WD4_XY & eyeflag		/* got incorrect target! */
+        to ncshow                               /* got nada  FIX LATER IF HE DOESN'T CHOOSE EITHER */    
+    fc_leyehold:
+        do ec_send_code(TRGACQUIRECD)
+        time 200	/* gotta hold for this long	*/
+        to ncshow on +WD3_XY & eyeflag /* !!!!!IMPORTANT!!!!! NEED TO FIX */
+        to fc_lchoice
+    fc_reyehold:
+        do ec_send_code(TRGACQUIRECD)
+        time 200 /* gotta hold for this long	*/
+        to ncshow on +WD4_XY & eyeflag /* FIX LATER*/
+        to fc_rchoice
+    fc_lchoice: /* HACK - Using left as correct, and right as wrong */
+        do total(CORRECT) /*Code is dropped within the function*/
+        to fc_lreward
+    fc_rchoice:
+        do total(WRONG)
+        to fc_rreward
+    fc_lreward: /* NEED TO IMPLEMENT PROBABILISTIC REWARD */
+        do give_reward(REW, 150, CORRECT)
+        to prrew_off on +MET % timer_check1
+    fc_rreward: /* NEED TO IMPLEMENT PROBABILISTIC REWARD */
+        do give_reward(REW, 150, CORRECT)
+        to prrew_off on +MET % timer_check1
+	
+	/* FINAL WAIT, FP OFF */
+	teye_waitfpoff:
+        do set_delay_duration(1000,500,1000,100,0,0)
+		to teye_waitsbet
+	teye_waitsbet:
+		do timer_set2_shell(0,0,0,0,0,0)
+		to teye_showsbet on +MET % timer_check2
+	teye_showsbet:
+		do show_sbet(0)
+		to teye_wentsbet on MAT_WENT % drawTarg_done
+	teye_wentsbet:
+		do dropcode_sbet()
+		to teye_chkwait
+	teye_chkwait:
+		to teye_fpoff on +MET % timer_check1
+	teye_fpoff: /* turn the FP off */
+		do drawTarg(0,-1,-1,-1,1000, 0)
+		to teye_fpoff_cd on MAT_WENT % drawTarg_done
+	teye_fpoff_cd:
+		do ec_send_code(FPOFFCD)
+		to teye_grace	/* wait for sac */
+
+	
+	/* grace period in which monsieur le monk has to 
+	** break fixation and start the saccade
+	*/
+	teye_grace:
+		do set_eye_flag(E_OFF)
+		to teye_gracea
+	teye_gracea:
+		time 500
+		to teye_saccd on +WD0_XY & eyeflag
+		to ncshow
+	teye_saccd:
+		do ec_send_code(SACMADCD)
+		to check_eye_response
+		
+
+	/* end trial possibilities:
+	**
+	** - brfix. broke fixation, counted regardless of trial type
+	** - ncerr. didn't complete trial once something happened
+	** - null.  chose wrong target in dots discrimination task
+	** - pref.  finished correctly and got rewarded
+	*/
+	check_eye_response:
+		time 500
+    	to peyehold on -WD3_XY & eyeflag		/* got correct target! */
+	    to neyehold on -WD4_XY & eyeflag		/* got incorrect target! */
+        to ncshow                               /* got nada */
+	peyehold: 	
+		do ec_send_code(TRGACQUIRECD)
+		time 50	/* gotta hold for this long	*/
+		to ncshow on +WD3_XY & eyeflag
+		to pref
+	neyehold:	
+		do ec_send_code(TRGACQUIRECD)
+		time 50 /* gotta hold for this long	*/
+		to ncshow on +WD4_XY & eyeflag
+		to nushow
+	seyehold:
+		do ec_send_code(TRGACQUIRECD)
+		time 50 /* gotta hold for this long	*/
+		to ncshow on +WD5_XY & eyeflag
+		to sbet
+
+	/* visual feedback if not successful (NO CHOICE) */
+	ncshow: /* show the targets */		
+		do drawTarg(-1, -1, -1, -1, -1, 0)
+		to ncwait on MAT_WENT % drawTarg_done
+	ncwait:
+		time 0
+		to ncerr  
+	
+	/* NO CHOICE: didn't complete the task */
+	ncerr:
+		do total(NCERR) 
+		to ncend
+	ncend:
+		do end_trial(CLOSE_W)
+		time 1000
+		to loop
+	
+	/* visual feedback if not successful (WRONG CHOICE) */
+	nushow: /* show the targets */		
+		do drawTarg(-1, -1, -1, -1, -1, 0)
+		to nuwait on MAT_WENT % drawTarg_done
+	nuwait:
+		time 0
+		to null  
+	
+	/* NULL: chose wrong target in dots task */
+	null:
+		do total(WRONG)
+		to nuclose
+	nuclose:
+		do end_trial(CLOSE_W)
+		to nupunish
+	nupunish:
+		do set_punishment_timer(0,1000,0,0)
+		to nuend on +MET % timer_check1
+	nuend:
+		time 1000 
+		to loop
+
+	/* PREF: update the totals and give a reward
+	*/
+	pref:
+	    time 250
+		do total(CORRECT)
+		to prend
+	prend:
+		do drawTarg(-1, 1000, -1, -1, -1, 1)
+		to prdelay
+	prdelay: /* guarantee a minimum time between dot onset and reward */
+		do set_reward_delay(0)
+		to prrew on +MET % timer_check1
+	prrew:
+		do give_reward(REW, 150, CORRECT)
+		to prrew_off on +MET % timer_check1
+	prrew_off:
+		do dio_off(REW)
+		to prize_loop on 0 < gl_prize_count
+		to prdone 
+	prize_loop:
+		to prdone on 0 ? gl_prize_count
+		to prize_delay
+	prize_delay:
+		time 150		/* the delay between consecutive rewards */
+		do drawTarg(-1, 0, -1, -1, -1, 1)
+		to prize 
+	prize:
+		do give_reward(REW, 50, PRIZE)
+		to prize_off on +MET % timer_check1
+	prize_off:
+		do dio_off(REW)
+		to prize_loop
+	sbet:
+		do total(SBET)
+		to sbend
+	sbend:
+		do end_trial(CLOSE_W)
+		to sbdelay
+	sbdelay:
+		do set_reward_delay(0)
+		to sbrew on +MET % timer_check1
+	sbrew:
+		do give_reward(REW, 50, SBET)
+		to sbrew_off on +MET % timer_check1
+	sbrew_off:
+		do dio_off(REW)
+		to prdone
+	prdone:
+		do end_trial(CLOSE_W)
+		time 0
+		to loop
+		
+		
+	abtst:	/* for abort list */
+		do abort_cleanup()
+		to prdone
+		
+		
+abort list:
+	abtst
+}
 
 
 
-STATE *aborta[] = {
-&sabtst,
-0};
+/* set to check for fixation break during task...
+**	use set_eye_flag to set gl_eye_state to non-zero
+** to enable loop
+*/
+eye_set {
+status ON
+begin	efirst:
+		to etest
+	etest:
+		to echk on E_FIX = gl_eye_flag
+	echk:
+		to efail on +WD0_XY & eyeflag
+		to etest on E_OFF = gl_eye_flag
+	efail:
+		do total(BRFIX)
+		to etest
 
-STATE *abortb[] = {
-0};
+abort list:
+}
 
-STATE *abortc[] = {
-0};
+joy_set {
+status ON
+begin   jfirst:
+        to jchk
+	jchk:  
+	   	to joyButton on 0 % dio_check_joybut
+    joyButton:
+        do joySet()
+	    to jchk
 
-STATE *abortd[] = {
-0};
+abort list:
+}
 
-int sf_init();
-
-STATE sps_state;
-
-AWAKE init_state[] = {
-	{0,ON,ON,&sps_state,&sps_state,0,(STATE *)&init_state[1],0,
-			&sps_state.escape}
-	,{0,0,0,0,0,0,0,0,&sps_state.escape[1]}
-};
-STATE sps_state = {
-	{"spec"},1,0
-	,1,0
-	,{sf_init,901,0,0,0,0,0,0,0,0,0}
-	,0,0
-	,{
-	{0,init_state,&sps_state,TIME,0,0}
-	,{0,0,0,0,0,0}
-	}
-};
-AWAKE nowstate[] = {
-	{0,ON,ON,&sfirst,&sfirst,aborta,0,0,0}
-	,{0,ON,ON,&sefirst,&sefirst,abortb,0,0,0}
-	,{0,ON,ON,&sjfirst,&sjfirst,abortc,0,0,0}
-	,{0,ON,ON,&sufirst,&sufirst,abortd,0,0,0}
-	,{0,0,0,0,0,0,0,0,0}
-};
-
-void rinitf();
-int (*init_list[])() = {
-rinitf,
-0};
-NOUN unouns[] = {
-"",
-};
+udp_set {
+status ON
+begin ufirst:
+		to uchk
+	uchk:	
+		do udpCheckReceiveFork()
+		to uchkAgain
+	uchkAgain: // simply prevents looping back on same state, which Rex doesn't always like	
+		do udpCheckReceiveFork()
+		to uchk
+		
+abort list:
+} 
