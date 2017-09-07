@@ -49,6 +49,9 @@ struct menu_info_struct {
     int     rfr;
     int     rft;
     int     tarjit;
+    int 	skip_dir;
+    int 	skip_coh;
+    int 	skip_p;
 };
 
 typedef struct rtvar_struct *rtvar;
@@ -75,6 +78,7 @@ struct rtvar_struct {
 /* GLOBAL VARIABLES */
 
 static int gl_coh_list[] = {0, 40, 80, 160, 320, 640, 800};
+//static int gl_coh_list[] = {0, 800};
 static int gl_max_coh_num = sizeof(gl_coh_list)/sizeof(int);
 
 static _VSrecord 						gl_vsd=NULL;                       /* the big kahuna. see vs* */
@@ -571,24 +575,23 @@ int open_adata(void)
      */
     vsd_print_record(gl_vsd);
    
-   /* Check if trial needs to be skipped
+  	  /* Check if trial needs to be skipped
      ** for e.g, for bias correction, reducing 0% trials ,etc
      */
     
     _VSDdot_object dot = VSD_GET_DTOBJECT(gl_vsd);
     printf("\n");
     printf("COHERENCE = %d\n",dot->coherence);
-    if(dot->coherence==0){
+    if ( dot->direction==gl_menu_infoS.skip_dir && dot->coherence<=gl_menu_infoS.skip_coh && TOY_RAND(1000)<gl_menu_infoS.skip_p){
         gl_sbet_shown = 1; /* Hijacking sbet to skip trials */
         return(0);
     }
-    
+  
     /* save the parameters */
     /* task identifier */
-    //	EC_TAG2(I_TRIALIDCD,SHOW_DOTS(gl_vsd)?8:(SHOW_FPCOLOR(gl_vsd)?2:1));
     ec_send_code(STARTCD);	/* official start of trial ! */
-    
-    EC_TAG2(I_TRIALIDCD,20+gl_task); // 20 is eye, 21 is hand
+
+    EC_TAG2(I_TRIALIDCD,35); /* 3 is Abstract dot series,  5 is version*/  
     EC_TAG2(I_MONITORDISTCD, VIEW_DIST_CM);
     /* fixation x, y, diameter */
     EC_TAG1(I_FIXXCD, (VSD_GET_FP(gl_vsd))->x);
@@ -622,6 +625,7 @@ int open_adata(void)
         gl_rtvar.direction = dot->direction;
         gl_rtvar.coherence = dot->coherence;
     }
+    
     return(0);
 }
 
@@ -1177,13 +1181,16 @@ int o2_maf(int flag, MENU *mp, char *astr, ME_RECUR *rp)
 /* Top-level state menu
 */
 VLIST state_vl[] = {
-    {"Proportion",              &(gl_task_infoS[0].proportion), 	NP, NP, 0, ME_DEC},
     {"Repetitions",			    &(gl_menu_infoS.repetitions),		NP, make_tasks, ME_AFT, ME_DEC},
     {"RF_radius",               &(gl_menu_infoS.rfr),		        NP, NP, 0, ME_DEC},
     {"RF_theta",                &(gl_menu_infoS.rft),		        NP, NP, 0, ME_DEC},
     {"RF_jitter",               &(gl_menu_infoS.tarjit),		    NP, NP, 0, ME_DEC},
 	{"RNG_Seed",			    &(gl_menu_infoS.seed),		        NP, NP, 0, ME_DEC},
 	{"Max_prize_count",         &gl_prize_max, 						NP, NP, 0, ME_DEC},
+	{"Skip_dir",               &(gl_menu_infoS.skip_dir),		        NP, NP, 0, ME_DEC},
+	{"Skip_coh",               &(gl_menu_infoS.skip_coh),		        NP, NP, 0, ME_DEC},
+	{"Skip_p",               &(gl_menu_infoS.skip_p),		        NP, NP, 0, ME_DEC},
+	{"Proportion",              &(gl_task_infoS[0].proportion), 	NP, NP, 0, ME_DEC},
 	{NS}};
 
 /* task_info vlist ... used for the two dots-style tasks */

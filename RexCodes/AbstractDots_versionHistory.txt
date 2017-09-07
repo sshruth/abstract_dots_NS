@@ -20,9 +20,8 @@ The two target locations are reflected along the horizontal axis. So always 4 ta
 
 b. AbstractDots04: The target locations are set by RF_radius and RF_theta. In RF_jitter, specify the maximum theta that can be randomly added to RF_theta on each trial.
 
-c. AbstractDots05: 
-* Ability to control fraction of trials at particular coherences to fight biases. 
-? The eye check window grows after choosing (maybe repurpose sure-bet target window). 
+c. AbstractDots05: (Trial ID: 35)
+* It's now possible to control fraction of trials at particular coherences to fight biases. Trials of direction specified by Skip_dir and of coherence lower than that specified by Skip_coh will be skipped with the probability specified by Skip_p (0-1000) 
 
 
 ____________ABSTRACT DOTS-IN-RF__________
