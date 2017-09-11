@@ -69,9 +69,9 @@ int                             gl_reward_flag = 0;
 int gl_joySet = 0, storex = 0, storey = 0;
 
 
-int  *gl_xPositions = NULL;
-int  *gl_yPositions = NULL;
-int  *gl_trialIndices = NULL;
+int *gl_xPositions = NULL;
+int *gl_yPositions = NULL;
+int   *gl_trialIndices = NULL;
 
 int   gl_record = 0;
 int   gl_ntrials = 0;
@@ -92,7 +92,7 @@ int   gl_positionMult = 1;
 void rinitf(void)
 {  
 	/* close/open udp connection */
-	 /*	 	
+	/*
 	 ** This is now done in clock.c so that we can open multiple paradigms
 	 ** without causing clashes when binding to the socket
 	 */
@@ -539,10 +539,6 @@ int total(long score)
 		ec_send_code(FIXBREAKCD);
 		EC_TAG1(I_RESPONSE, -2);
 		again(); 			/* this is equivalent of reset_s(), it executes the abort list */
-	} else if(score == BRHANDFIX) {
-		ec_send_code(FIXHANDBREAKCD);
-		EC_TAG1(I_RESPONSE, -3);
-		again(); 			/* this is equivalent of reset_s(), it executes the abort list */
 	}
 	/* outta */
 	return(0);
@@ -606,7 +602,7 @@ begin	first:
 		do ec_send_code(HEADCD)
 		to setup
 	setup: 		/* SETUP THE SCREEN */
-		do setup_screen(60, 25, 3, 0)
+		do setup_screen(32, 48, 3, 0)
 		to loop on 1 % initScreen_done
         		
  	loop: 		/* START THE LOOP -- loop on # trials */
@@ -725,7 +721,7 @@ begin	first:
 		do set_eye_flag(E_OFF)
 		to teye_gracea
 	teye_gracea:
-		time 500
+		time 2000
 		to teye_saccd on +WD0_XY & eyeflag
 		to wcshow
 	teye_saccd:

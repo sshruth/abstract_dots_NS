@@ -1321,7 +1321,7 @@ begin	first:
 		to loop
 	task:			/* control what to do on current trial */
         do open_adata() 
-        to skiptrl on 1 = gl_sbet_shown
+        to skiptrl on 1 = gl_sbet_shown /* Skipped trials are considered sure bet choices */
 		to teye_start on TASK_EYE = gl_task
     skiptrl:
         do total(SBET)
@@ -1339,7 +1339,7 @@ begin	first:
 	    time 5000
 	    to fixeyedelay on -WD0_XY & eyeflag
 		to nofix
-	nofix:		/* failed to attain either eye or hand fixation or both*/
+	nofix:		/* failed to attain fixation */
 	    do total(DO_OVER) // just redo the trial
 	    to nofixDone
 	nofixDone:
@@ -1360,8 +1360,7 @@ begin	first:
 		to teye_targ_wait on TASK_EYE = gl_task
 //        to teye_waitdots
             
-/*** CHAIN FOR TASK EYE
-***/
+/*** CHAIN FOR TASK EYE ***/
 	teye_start:
 	    do setup_eyewindows(35, 30)
 		to teye_fp
