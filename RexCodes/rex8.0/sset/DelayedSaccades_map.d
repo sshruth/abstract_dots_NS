@@ -331,11 +331,6 @@ int give_reward(long dio, long duration)
 	return 0;
 }
 
-/* ROUTINE: make_task
- **
- ** generates a set of random trial values
- */
-
 int make_task(void) {
 
 	int i, cx, cy;
@@ -442,18 +437,15 @@ int make_task(void) {
 */
 int nexttrl()
 {
-	 open_adata();
+
+	open_adata();
 
 	printf("nexttrl\n");
 	if (gl_record) {
-		if (gl_trialCtr < 0) {
-			gl_remain = 0;
-			return(0);
-		} else {
-			gl_targObj.x = (int) round(gl_xPositions[gl_trialIndices[gl_trialCtr]]);
-			gl_targObj.y = (int) round(gl_yPositions[gl_trialIndices[gl_trialCtr]]);
-			gl_remain = 1;
-		}
+        gl_targObj.x = TOY_RT_TO_X(gl_eyeFixX,gl_ecc,gl_rft);
+        gl_targObj.y = TOY_RT_TO_Y(gl_eyeFixY,gl_ecc,gl_rft);
+        gl_remain = 1;
+		
 	} else {
 		/* just get the joystick */
 		gl_targObj.x = storex;
@@ -557,18 +549,19 @@ USER_FUNC ufuncs[] = {};
 */
 
 VLIST state_vl[] = {
-	{"NTRIALS", 		        &(gl_ntrials), 	        NP, make_task, ME_AFT, ME_DEC},
+//	{"NTRIALS", 		        &(gl_ntrials), 	        NP, make_task, ME_AFT, ME_DEC},
     {"Delay", 		            &(gl_delay), 	        NP, NP, 0, ME_DEC},
-    {"nPositions",              &(gl_positions),        NP, NP, 0, ME_DEC},
+//    {"nPositions",              &(gl_positions),        NP, NP, 0, ME_DEC},
 	{"RF_Radius",               &(gl_ecc), 	            NP, NP, 0, ME_DEC},
     {"RF_Theta",                &(gl_rft), 	            NP, NP, 0, ME_DEC},
-    {"RF_T_Delta",              &(gl_rftd),             NP, NP, 0, ME_DEC},
+//    {"RF_T_Delta",              &(gl_rftd),             NP, NP, 0, ME_DEC},
     {"EyeFixX", 		        &(gl_eyeFixX),          NP, NP, 0, ME_DEC},
 	{"EyeFixY", 		        &(gl_eyeFixY),          NP, NP, 0, ME_DEC},
 	{"EyeFixDiameter", 		    &(gl_eyeFixDiam),       NP, NP, 0, ME_DEC},
 	{"TargDiameter", 		    &(gl_targDiam),         NP, NP, 0, ME_DEC},
     {"RewardFixation", 	        &(gl_reward_fixation), 	NP, NP, 0, ME_DEC},
-    {"RECORDING", 		        &(gl_record),           NP, make_task, ME_AFT, ME_DEC},
+    {"RECORDING", 		        &(gl_record),           NP, NP, 0, ME_DEC},
+//    {"RECORDING", 		        &(gl_record),           NP, make_task, ME_AFT, ME_DEC},
 	{NS}};
 
 /* Help strings */
@@ -605,7 +598,7 @@ begin	first:
 		do ec_send_code(PAUSECD)
 		to go on -PSTOP & softswitch
 	go: 			/**** TRIAL !!! ****/
-		to donelist on -ONES & gl_remain
+//		to donelist on -ONES & gl_remain
 		to settrl 
 	donelist:	/* done with current set... wait for "gl_remain" to update */
 		do ec_send_code(LISTDONECD)
@@ -775,7 +768,6 @@ begin	first:
 abort list:
 	abtst
 }
-
 
 
 /* set to check for fixation break during task...
