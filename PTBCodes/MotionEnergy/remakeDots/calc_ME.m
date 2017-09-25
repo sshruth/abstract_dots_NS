@@ -20,7 +20,7 @@ clear data
 
 motion_energy  = cell(nTrials,1);
 % parfor n = 1:nTrials
-for n = 1:5%:nTrials
+for n = 1:nTrials
     disp(['Num trials: ',num2str(n)]);
     if isempty(dots_xyt{n})
         continue
