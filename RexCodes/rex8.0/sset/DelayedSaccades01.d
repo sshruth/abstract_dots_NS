@@ -445,7 +445,7 @@ int nexttrl()
 	 open_adata();
 
 	printf("nexttrl\n");
-	if (gl_record) {
+	if (gl_record) { /* draw location from randomized array */
 		if (gl_trialCtr < 0) {
 			gl_remain = 0;
 			return(0);
@@ -454,10 +454,13 @@ int nexttrl()
 			gl_targObj.y = (int) round(gl_yPositions[gl_trialIndices[gl_trialCtr]]);
 			gl_remain = 1;
 		}
-	} else {
-		/* just get the joystick */
-		gl_targObj.x = storex;
-		gl_targObj.y = storey;
+	} else { /* present the single location specified */
+		gl_targObj.x = TOY_RT_TO_X(gl_eyeFixX,gl_ecc,gl_rft);
+    	gl_targObj.y = TOY_RT_TO_Y(gl_eyeFixY,gl_ecc,gl_rft);
+
+//		/* uncomment below if using the joystick */
+//		gl_targObj.x = storex;
+//		gl_targObj.y = storey;
 		gl_remain = 1;
 	}
 	

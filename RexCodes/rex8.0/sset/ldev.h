@@ -44,8 +44,8 @@
 #define CAPSENSOR_ZCENTER 0
 
 /* Distance from monk to monitor in mm*10 (for Polaris) */
-#define VIEW_DIST_CM 27
-#define VIEW_DIST 27
+#define VIEW_DIST_CM 48
+#define VIEW_DIST 48
 
 /* for Polaris conversions */
 #define PI 3.1415926535897931f
