@@ -399,8 +399,31 @@ int make_task(void) {
             gl_yPositions[i] = y[i%4]+gl_eyeFixY;
         }
     
-    }
-    else { /* defaults to presenting at just one location */
+    } else if (gl_positions==8) { /* 6 positions beside RF*/
+        int cx1, cx2, cx3, cx4, cx5, cx6, cy1, cy2, cy3, cy4, cy5, cy6;
+        cx1 = TOY_RT_TO_X(gl_eyeFixX,gl_ecc,gl_rft+gl_rftd);
+        cy1 = TOY_RT_TO_Y(gl_eyeFixX,gl_ecc,gl_rft+gl_rftd);
+        cx2 = TOY_RT_TO_X(gl_eyeFixX,gl_ecc,gl_rft-gl_rftd);
+        cy2 = TOY_RT_TO_Y(gl_eyeFixX,gl_ecc,gl_rft-gl_rftd);
+        cx3 = TOY_RT_TO_X(gl_eyeFixX,gl_ecc,gl_rft+(gl_rftd*2));
+        cy3 = TOY_RT_TO_Y(gl_eyeFixX,gl_ecc,gl_rft+(gl_rftd*2));
+        cx4 = TOY_RT_TO_X(gl_eyeFixX,gl_ecc,gl_rft-(gl_rftd*2));
+        cy4 = TOY_RT_TO_Y(gl_eyeFixX,gl_ecc,gl_rft-(gl_rftd*2));
+        cx5 = TOY_RT_TO_X(gl_eyeFixX,gl_ecc,gl_rft+(gl_rftd*3));
+        cy5 = TOY_RT_TO_Y(gl_eyeFixX,gl_ecc,gl_rft+(gl_rftd*3));
+        cx6 = TOY_RT_TO_X(gl_eyeFixX,gl_ecc,gl_rft-(gl_rftd*3));
+        cy6 = TOY_RT_TO_Y(gl_eyeFixX,gl_ecc,gl_rft-(gl_rftd*3));
+
+        float x[]={-1*cx, 1*cx, cx1, cx2, cx3, cx4, cx5, cx6};
+        float y[]={-1*cy, 1*cy, cy1, cy2, cy3, cy4, cy5, cy6};
+
+        for (i = 0; i<gl_ntrials; i++) {
+            //printf("here %f\n", x[i%7]);
+            gl_xPositions[i] = x[i%8]+gl_eyeFixX;
+            gl_yPositions[i] = y[i%8]+gl_eyeFixY;
+        }
+
+    } else { /* defaults to presenting at just one location */
         for (i = 0; i < gl_ntrials; i++) {
             //printf("%d ", i);
             gl_xPositions[i]= 1 * cx;
