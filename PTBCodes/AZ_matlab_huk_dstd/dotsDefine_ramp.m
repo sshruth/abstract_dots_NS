@@ -1,32 +1,32 @@
 % function dotsDefine(patch_index, aperture, direction, coherence, speed, coherence_std, density, interval, dot_size, dot_color)
 function dotsDefine_ramp(patch_index, aperture, direction, coherence, speed, coherence_std, density, interval, dot_size, dot_color)
-% 2017-09 modified by SS to ramp up 
-% August 2014. modified by adz. Load the huk textures and adapt them to the
-% aperture size. Then add them to the huk struct.
+
+% 2017-09 modified by SS to allow control of coherences during trials 
 
 
-global screen_struct dots_struct huk_struct
+global screen_struct dots_struct
+color_dots = false; % Should the dots be colored
 
-if nargin<1 || isempty(patch_index),
+if nargin<1 || isempty(patch_index)
     return;
-end;
+end
 
-for i = 1 : length(patch_index),
+for i = 1 : length(patch_index)
     index = patch_index(i);
     
         %fill in the structure based on the supplied parameters 
-    if nargin>=2 && ~isempty(aperture),
+    if nargin>=2 && ~isempty(aperture)
         dots_struct(index).aperture = aperture(i,:);
-    end;
-    if nargin>=3 && ~isempty(direction),
+    end
+    if nargin>=3 && ~isempty(direction)
         dots_struct(index).direction = direction(i);
-    end;
-    if nargin>=4 && ~isempty(coherence),
+    end
+    if nargin>=4 && ~isempty(coherence)
         dots_struct(index).coherence = coherence(i);
-    end;
-    if nargin>=5 && ~isempty(speed),
+    end
+    if nargin>=5 && ~isempty(speed)
         dots_struct(index).speed = speed(i);
-    end;
+    end
     
     % coh_std is a flag to indicate type of ramp
     if nargin>=6 && ~isempty(coherence_std)
@@ -34,18 +34,18 @@ for i = 1 : length(patch_index),
         
     end
     
-    if nargin>=7 && ~isempty(density),
+    if nargin>=7 && ~isempty(density)
         dots_struct(index).density = density(i);
-    end;
-    if nargin>=8 && ~isempty(interval),
+    end
+    if nargin>=8 && ~isempty(interval)
         dots_struct(index).interval = interval(i);
-    end;
-    if nargin>=9 && ~isempty(dot_size),
+    end
+    if nargin>=9 && ~isempty(dot_size)
         dots_struct(index).dot_size = dot_size(i);
-    end;
-    if nargin>=10 && ~isempty(dot_color),
+    end
+    if nargin>=10 && ~isempty(dot_color)
         dots_struct(index).dot_color = dot_color(i,:);
-    end;
+    end
     dots_struct(index).dot_pos = [];
     dots_struct(index).shown_frames = 0;
     
@@ -74,51 +74,22 @@ for i = 1 : length(patch_index),
     if length(dots_struct(index).dot_color)~=3 || any(~isfinite(dots_struct(index).dot_color)),
         dots_struct(index).dot_color = screen_struct.screen_bkg;
     end;
-end;
-
-%% Vector of coherences based on coherence_std flag
-% Fill in the vector for 10s 
-for f = 1 : length(patch_index)
-    index = patch_index(f);
-    vCohs = zeros(1,10*screen_struct.mon_refresh);
-    if 
-        
-    end
-end
-
-%% adz - huk textures
-if ~isempty(aperture) && isempty(huk_struct.stimuli)
-    ap_radius_px = floor(mean(aperture(1,3:4)) * screen_struct.pix_per_deg);
     
-    xx = -ap_radius_px:ap_radius_px;
-    [X,Y] = meshgrid(xx,xx);
-    R = sqrt(X.^2+Y.^2);
-    nt = huk_struct.max_dur*screen_struct.mon_refresh;
-    R3D = repmat(R,[1,1,nt]);
-    idxBkg = R3D>ap_radius_px;
-    nx = length(xx);
-    
-    huk_struct.stimuli = cell(huk_struct.num_stims,1);
-    for i = 1:huk_struct.num_stims
-        archiv    = ['huknoise_fid',num2str(huk_struct.file_identifier),'_stimid',num2str(i)];
-        s = load(fullfile('HukStim',archiv)); %this takes too long !!
-        Igamma = s.Igamma(1:nx,1:nx,:);
-        huk_struct.stimuli{i} = Igamma;
-        %sanity check
-        if ~all(size(Igamma))==size(R3D)
-            error('sizes dont match')
+    % Change dot color based on dot direction
+    if color_dots
+        if dots_struct(index).direction==0
+            dots_struct(index).dot_color = [212 255 0];
+        elseif dots_struct(index).direction==180
+            dots_struct(index).dot_color = [0 255 255];
         end
-        
-        media(i) = nanmean(Igamma(:));
     end
     
-    %re-set background
-    screen_struct.screen_bkg = round(mean(media));
-    for i = 1:huk_struct.num_stims
-        %Igamma = huk_struct.stimuli{i};
-        huk_struct.stimuli{i}(idxBkg) = screen_struct.screen_bkg;
-
-    end
-    
-    
+    % Coherence specified as vector to allow control during trial
+    % By default, fill in the vector for 10s 
+    dots_struct(index).coherence = ones(1,10*screen_struct.mon_refresh)*coherence;
+%     % Ramp to 300 ms
+%     if coherence==0.64
+%         time2pk = round(0.25*screen_struct.mon_refresh);
+%         dots_struct(index).coherence(1:time2pk) = linspace(0.04,0.64,time2pk);
+%     end
 end
