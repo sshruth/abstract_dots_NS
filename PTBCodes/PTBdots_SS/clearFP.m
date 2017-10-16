@@ -1,0 +1,1 @@
+function clearFP% This function shows fixation pointglobal FP_SIZE_PIXglobal CUR_WINDOW CENTER_X CENTER_Yglobal APBG_INDEXScreen('FillRect',CUR_WINDOW,APBG_INDEX,[CENTER_X-FP_SIZE_PIX/2 ...									   CENTER_Y-FP_SIZE_PIX/2 ...									   CENTER_X+FP_SIZE_PIX/2 ...									   CENTER_Y+FP_SIZE_PIX/2]);Screen('Flip',CUR_WINDOW);

@@ -1,0 +1,1 @@
+function dummyWent()% function dummyWent% returns a "went" signal after doing nothingpcmsg('send', 'Went');

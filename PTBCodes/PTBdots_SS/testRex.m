@@ -1,0 +1,1 @@
+% loop testcontinue = 1;i = 1;% loop until "continue" is set to 0while (continue)	% wait for a message	[message size] = pcmsg('get');  	if size~=0		fprintf('%4d:%s\n',i,message);		% send a went flag		%dummyWent;		%fprintf('went sent\n');	end	end

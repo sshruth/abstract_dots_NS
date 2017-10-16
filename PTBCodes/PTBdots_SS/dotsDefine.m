@@ -1,5 +1,5 @@
-% function dotsDefine(patch_index, aperture, direction, coherence, speed, coherence_std, density, interval, dot_size, dot_color)
-function dotsDefine_ramp(patch_index, aperture, direction, coherence, speed, coherence_std, density, interval, dot_size, dot_color)
+function dotsDefine(patch_index, aperture, direction, coherence, speed, coherence_std, density, interval, dot_size, dot_color)
+% function dotsDefine_ramp(patch_index, aperture, direction, coherence, speed, coherence_std, density, interval, dot_size, dot_color)
 
 % 2017-09 modified by SS to allow control of coherences during trials 
 
@@ -90,6 +90,7 @@ for i = 1 : length(patch_index)
     % Ramp to 300 ms
     if coherence==0.64
         time2pk = round(0.25*screen_struct.mon_refresh);
-        dots_struct(index).coherence(1:time2pk) = 1e-2*exp(linspace(log(1),log(64),time2pk));
+%         dots_struct(index).coherence(1:time2pk) = linspace(0.04,0.64,time2pk); % linear
+        dots_struct(index).coherence(1:time2pk) = 1e-2*exp(linspace(log(1),log(64),time2pk)); % exponential
     end
 end
