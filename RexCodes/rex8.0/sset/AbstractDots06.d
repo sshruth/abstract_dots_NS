@@ -495,13 +495,13 @@ int setup_eyewindows(long wd_width, long wd_height)
 
 /* ROUTINE: open_adata
 **
-** Specify object locations, set up display,  
-** check if the trial should be shown or skipped and 
-** send trial data if it is not to be skipped
+** Specify object locations, set up display, send trial data
+** and check if the trial should be shown or skipped
 */
 int open_adata(void)
 {
     int i, j, x, y;
+    int coh_std;
     
     /*
      ** Clear all the old objects,then call the big kahuna
@@ -544,11 +544,21 @@ int open_adata(void)
     
     vsd_update_display(gl_vsd, 0); /* Zero indicates no reverse dot-motion/target association */
     /* send the dots setup command if necessary */
-    
+
+    /* Specify coh_std, a flag sent to PTB for control of coherence within trial */
+    /* flag is 2 digits - see PTB side for more explanation */
+    if (TOY_RAND(1000)<666)
+        coh_std = 10 + TOY_RAND(5);
+    else
+        coh_std = 0;
+
+
     if(SHOW_DOTS(gl_vsd))	{
         /* define the dots patch */
+//        mat_dotsDefine(1, (VSD_GET_AP(gl_vsd))->x, (VSD_GET_AP(gl_vsd))->y, (VSD_GET_AP(gl_vsd))->diameter,
+//                       (VSD_GET_DTOBJECT(gl_vsd))->direction, (VSD_GET_DTOBJECT(gl_vsd))->coherence, (VSD_GET_DTOBJECT(gl_vsd))->speed);
         mat_dotsDefine(1, (VSD_GET_AP(gl_vsd))->x, (VSD_GET_AP(gl_vsd))->y, (VSD_GET_AP(gl_vsd))->diameter,
-                       (VSD_GET_DTOBJECT(gl_vsd))->direction, (VSD_GET_DTOBJECT(gl_vsd))->coherence, (VSD_GET_DTOBJECT(gl_vsd))->speed);
+                       (VSD_GET_DTOBJECT(gl_vsd))->direction, (VSD_GET_DTOBJECT(gl_vsd))->coherence, coh_std);
     }
     
     /* send the target setup commands */
@@ -572,18 +582,7 @@ int open_adata(void)
     /* FOR DEBUGGING */
     vsd_print_record(gl_vsd);
    
-    /* Check if trial needs to be skipped
-    ** for e.g, for bias correction, reducing 0% trials ,etc
-    */
-    
-    _VSDdot_object dot = VSD_GET_DTOBJECT(gl_vsd);
-    printf("\n");
-    printf("COHERENCE = %d\n",dot->coherence);
-    if ( dot->direction==gl_menu_infoS.skip_dir && dot->coherence<gl_menu_infoS.skip_coh && TOY_RAND(1000)<gl_menu_infoS.skip_p){
-        gl_sbet_shown = 1; /* Hijacking sbet to skip trials */
-        return(0);
-    }
-  
+
     /* save the parameters */
     /* task identifier */
     ec_send_code(STARTCD);	/* official start of trial ! */
@@ -617,15 +616,29 @@ int open_adata(void)
         EC_TAG2(I_SPDCD, dot->speed);
         EC_TAG2(I_STDIACD, (VSD_GET_AP(gl_vsd))->diameter);
         EC_TAG1(I_STXCD, (VSD_GET_AP(gl_vsd))->x);
-        EC_TAG1(I_STYCD, (VSD_GET_AP(gl_vsd))->y);    
+        EC_TAG1(I_STYCD, (VSD_GET_AP(gl_vsd))->y);
+        EC_TAG2(I_PLSSIZE, coh_std);
         /* also update real-time variables */
         gl_rtvar.direction = dot->direction;
         gl_rtvar.coherence = dot->coherence;
     }
-    
+
+    /* Check if trial needs to be skipped
+    ** for e.g, for bias correction, reducing 0% trials ,etc
+    */
+
+    _VSDdot_object dot = VSD_GET_DTOBJECT(gl_vsd);
+    printf("\n");
+    printf("COHERENCE = %d\n",dot->coherence);
+    printf("Coh_std = %d\n",coh_std);
+    if ( dot->direction==gl_menu_infoS.skip_dir && dot->coherence<gl_menu_infoS.skip_coh && TOY_RAND(1000)<gl_menu_infoS.skip_p){
+        printf("skipping...\n");
+        gl_sbet_shown = 1; /* Hijacking sbet to skip trials */
+        return(0);
+    }
+
     return(0);
 }
-
 
 
 /* ROUTINE: end_trial
@@ -1274,7 +1287,6 @@ RTVAR rtvars[] = {
    {"Coherence", 	    		&(gl_rtvar.coherence)},
    {"Duration", 				&(gl_rtvar.duration)},
    {"Direction", 				&(gl_rtvar.direction)},
-//   {"Elec stim", 				&gl_elestim_flag},
    {"Pulse", 					&(gl_rtvar.pulse_time)},
    {"Delay", 					&(gl_rtvar.delay)},
    {"", 0}
