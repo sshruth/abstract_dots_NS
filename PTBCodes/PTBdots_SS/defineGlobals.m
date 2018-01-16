@@ -1,4 +1,4 @@
-global screen_struct dots_struct target_struct MAX_DOTS_PER_FRAME udpmsg_struct abort_key PhotoDetectorFlash TR_NUM
+global screen_struct dots_struct target_struct MAX_DOTS_PER_FRAME udpmsg_struct abort_key PhotoDetectorFlash TR_NUM save_struct
 %May 2014. modif by adz.
 
 % define the screen structure for the experiment
@@ -12,41 +12,13 @@ screen_struct = struct ( 'cur_screen'  , 1, ...        % which screen will be sh
                          'screen_rect' , [], ...
                          'pix_per_deg' , []);
 
-
-% %added by adz
-% huk_struct  = struct ('max_px', 300, ...       %pixels
-%                       'max_dur', 1,...          %sec
-%                       'range100', [0 2], ... %percent of max lum (= 100) used by the texture
-%                       'sigma_gauss', 1, ... %std of the noise. scale doesn't matter.
-%                       'cutoff', 2, ... %cutoff of the Gaussian noise. Same scale as above.
-%                       'num_stims', 4, ... % number of pre-made stimuli
-%                       'setup','shin',...
-%                       'stimuli',[],...
-%                       'file_identifier', 1); % to know which ones to load
-% 
-% % huk_struct  = struct ('max_diam', 15, ...       %deg
-% %                       'max_dur', 3,...          %sec
-% %                       'resolution_deg', .1, ... %degrees. Defines the spatial resolution of the noise.
-% %                       'sigma_gauss', .01 * 255, ... %std of the noise, in scale [0...255]
-% %                       'cutoff', .02 * 255, ... %cutoff of the Gaussian noise. Resample.
-% %                       'num_stims', 5, ... % number of pre-made stimuli
-% %                       'file_identifier', 1); % to know which ones can be loaded
-% 
-% 
-% % gamma corrected background. overwritten in dotsDefine
-% addpath('make_huk_stim/');
-% bkg = diff(huk_struct.range100)/2;
-% % screen_struct.screen_bkg = round(gamma_correct(bkg,huk_struct.setup,100));
-% 
-% %screen_struct.screen_bkg = round(255 * (huk_struct.cutoff/255).^(1/screen_struct.mon_gamma));
-
-
 % define maximum number of dots in each dots patch 
 MAX_DOTS_PER_FRAME = 200;
 
 
 % trial counter for saving dot positions (adz)
 TR_NUM = 0;
+save_struct = struct();
 
 % defines structure for the dots patch. each patch has its own set
 % of parameters. the patches on the screen are therefore defined by an

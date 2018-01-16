@@ -1,5 +1,5 @@
-function dotsDefine(patch_index, aperture, direction, coherence, speed, coherence_std, density, interval, dot_size, dot_color)
-% function dotsDefine_SS(patch_index, aperture, direction, coherence, speed, coherence_std, density, interval, dot_size, dot_color)
+function dotsDefine(patch_index, aperture, direction, coherence, coherence_std, speed, density, interval, dot_size, dot_color)
+% function dotsDefine_ramp(patch_index, aperture, direction, coherence, speed, coherence_std, density, interval, dot_size, dot_color)
 
 % 2017-09 modified by SS to allow control of coherences during trials 
 
@@ -24,14 +24,14 @@ for i = 1 : length(patch_index)
     if nargin>=4 && ~isempty(coherence)
         dots_struct(index).coherence = coherence(i);
     end
-    if nargin>=5 && ~isempty(speed)
-        dots_struct(index).speed = speed(i);
-    end
     
     % coh_std is a flag to indicate type of ramp
-    if nargin>=6 && ~isempty(coherence_std)
+    if nargin>=5 && ~isempty(coherence_std)
         dots_struct(index).coherence_std = coherence_std(i);
-        
+    end
+    
+    if nargin>=6 && ~isempty(speed)
+        dots_struct(index).speed = speed(i);
     end
     
     if nargin>=7 && ~isempty(density)
@@ -87,7 +87,10 @@ for i = 1 : length(patch_index)
     % Coherence specified as vector to allow control during trial
     % By default, fill in the vector for 5s 
     dots_struct(index).coherence = ones(1,5*screen_struct.mon_refresh)*coherence;
-
+    % Ramp based on sent value
+    if coherence>=0.32 && coherence_std>0
+        rampCoh(index,coherence,coherence_std*10);
+    end
 end
 
 % For saving online
