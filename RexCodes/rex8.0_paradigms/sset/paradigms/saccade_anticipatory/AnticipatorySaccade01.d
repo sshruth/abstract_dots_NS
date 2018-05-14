@@ -335,19 +335,35 @@ int give_reward(long dio, long duration)
 ** Weibull timer - generates a random draw from Weibull distribution
 ** and sends that drawn time to timer
 ** [(-1/alpha)*ln(1-x)]^(1/beta)
+** We will use alphas and betas as in Janssen & Shadlen (2005)
+** alpha is 3/2, beta is 3. Also min of 500 & max of 1700 is enforced
 */
 
-int weib_timer(double min, double max, double alpha, double beta) {
-    double unival;
-    double drawnum;
-    double duration;
+// int weib_timer(double min, double max, double alpha, double beta) {
+int weib_timer() {
+    double alfa_inv = 0.666;
+    double beta_inv = 0.333;
+		double min = 500;
+		double max = 1200; // before adding min
+		double unival;
+		double drawnnum;
+		double tmax = 5000;
 
-    unival = ((double) rand()) / ((double) RAND_MAX);
-    drawnum = pow((double)((-1/alpha)*log(1-unival)),(double) beta) * 1000;
+		// % Generate uniform random values, and apply the Weibull inverse CDF.
+		// r = A .* (-log(rand(sizeOut))) .^ (1./B); % == wblinv(u, A, B)
+
+		int crand = TOY_RAND(tmax); // Avoid zero
+    unival = -1 * log(crand/tmax);
+    drawnnum = alfa_inv * 1000 * pow(unival,beta_inv);
+    printf("\n");
+    printf("Drawn logrand: %lf \n ", unival);
+	printf("Drawn number: %lf \n", drawnnum);
     if (drawnnum > max){
         drawnnum = max;
     }
-    duration = min + drawnnum;
+    int duration = min + drawnnum;
+	printf("Drawn duration: %d ", duration);
+	printf("\n");
 
     timer_set1(0,0,0,0,duration,0);
     return 0;
