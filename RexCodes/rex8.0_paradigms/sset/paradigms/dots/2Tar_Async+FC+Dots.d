@@ -1097,20 +1097,7 @@ int nexttrl (long do_over, long min_block_size, long randomize_flag)
 
     if (gl_rt_flag >= 0){ /* For variable duration (0), RT (1), and free choice (2). Note that this change may screw up the functionality to pick target locations based on dot direction/angle. */
 
-        if (gl_menu_infoS.rft>=361){ /*Get theta from dot direction  */
-        	_VSDtrial_info ctrial_info;
-        	ctrial_info = gl_vsd->cur_trial->trial_info;
-        	angl = ctrial_info->planet_angle;
-
-        } else {
-            angl = gl_menu_infoS.rft;
-        }
-
-//		printf("\n"); /* For debugging*/
-//	   	printf("Base angle: %d \n", angl);
-//	   	printf("\n");
-
-			/* Define XY based on RF parameters and jitters*/
+        	/* Define XY based on RF parameters and jitters*/
 			if (TOY_RAND(1000) < 500){
 				i = gl_menu_infoS.rfx1 + TOY_RAND(gl_menu_infoS.rf_jit);
 			} else {

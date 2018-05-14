@@ -13,7 +13,7 @@
 #include "../labTools/dio_lab.h"
 
 /* signal numbers for eyes */
-#define EYEH_SIG   0	   
+#define EYEH_SIG   0
 #define EYEV_SIG   1
 
 /* signal numbers for joy */
@@ -22,10 +22,10 @@
 
 /* for gl_eye_flag */
 #define E_OFF	0
-#define E_FIX	1	 
+#define E_FIX	1
 
 #define REWARD_LOOP_OFF	0
-#define REWARD_LOOP_ON	1	 
+#define REWARD_LOOP_ON	1
 
 /* windows for eyeflag and screen */
 #define WIND0	    0
@@ -35,14 +35,14 @@
 /* Number of objects in this task, Fix Point and Single Target */
 #define NUM_OBJECTS 2
 
-/*  calculate actual position from voltages from joystick. 
-** In Rex's standard, every 40 steps of an analog signal corresponds to 1 degree  
-** multiply by 0.25 to get to a resolution of 10 steps per degree. 
+/*  calculate actual position from voltages from joystick.
+** In Rex's standard, every 40 steps of an analog signal corresponds to 1 degree
+** multiply by 0.25 to get to a resolution of 10 steps per degree.
 */
 #define CALC_JOY(x)	((int) (0.25 * (double) (x)))
 
 struct visObj {
-	long x; 
+	long x;
 	long y;
     long diameter;
 	RGB color;
@@ -89,29 +89,29 @@ int   gl_positions = 1;
  */
 
 /* ROUTINE: rinitf
- ** initialize at first pass or at r s from keyboard 
+ ** initialize at first pass or at r s from keyboard
  */
 void rinitf(void)
-{  
+{
 	/* close/open udp connection */
 	/*
 	 ** This is now done in clock.c so that we can open multiple paradigms
 	 ** without causing clashes when binding to the socket
 	 */
-	 
+
 //	udp_close();
 //	udp_open(rexIP, udpPORT);
-	
+
 	/* initialize interface (window) parameters */
 	wd_cntrl 		(WIND0, WD_ON);
 	wd_src_check 	(WIND0, WD_SIGNAL, EYEH_SIG, WD_SIGNAL, EYEV_SIG);
 	wd_src_pos 	    (WIND0, WD_DIRPOS, 0, WD_DIRPOS, 0);
-	
+
 	/* for correct reponse */
 	wd_cntrl 		(WIND1, WD_ON);
 	wd_src_check 	(WIND1, WD_SIGNAL, EYEH_SIG, WD_SIGNAL, EYEV_SIG);
 	wd_src_pos 	    (WIND1, WD_DIRPOS, 0, WD_DIRPOS, 0);
-	
+
 	/* static window for screen limits */
 #ifdef SCR_LIM_HOR /* defined in ldev.h */
 	wd_cntrl	 	(WIND7, WD_ON);
@@ -138,18 +138,18 @@ void rinitf(void)
 int setup_screen(long mon_width_cm, long view_dist_cm, long num_targets, long long repeat_flag)
 {
 	static int first_time = 1;
-	
+
 	/* Do these only if first time through or if explicitly
 	 ** told to do each time... enable pcmsg & init the screen
 	 */
 	if(repeat_flag || first_time) {
 		first_time = 0;
-		
+
 		/* init the screen */
 		printf("\n");
 		printf("Initializing screen with values from state list (root file):\n");
 		mat_initScreen(mon_width_cm, view_dist_cm, num_targets, 0);
-		
+
 		printf("\n");
 		printf("Horizontal screen size: %d cm\n", mon_width_cm);
 		printf("Viewing distance: %d cm\n", view_dist_cm);
@@ -157,16 +157,16 @@ int setup_screen(long mon_width_cm, long view_dist_cm, long num_targets, long lo
 
 	}
 
-	return 0; 
+	return 0;
 }
 
 /****
  ***** VISUAL STIMULUS (MATLAB) routines
  ****/
 
-/*  
+/*
  ** ROUTINE: drawTarg, 1 to show, 0 to erase
- **    
+ **
  */
 int drawTarg(long showFixEye, long showTarg)
 {
@@ -174,16 +174,16 @@ int drawTarg(long showFixEye, long showTarg)
 	int show_ind[NUM_OBJECTS], hide_ind[NUM_OBJECTS];
 	int flags[2] = {showFixEye, showTarg};
 	int i;
-	
+
 	for(i=0; i<2; i++)	{
 		if (flags[i])
 		  show_ind[num_show++] = i+1;
 		else
 		  hide_ind[num_hide++] = i+1;
 	}
-	
+
 	mat_targDraw(num_show, show_ind, num_hide, hide_ind);
-	
+
 	return 0;
 }
 
@@ -198,7 +198,7 @@ int defTargLum(long fixEyeLum, long targLum)
 	RGB color;
 	struct visObj v_obj;
 	int i;
-	
+
 	for(i=0; i<2; i++)	{
 		switch (i) {
 		case 0:
@@ -211,7 +211,7 @@ int defTargLum(long fixEyeLum, long targLum)
 			color.G = lum[i]*v_obj.color.G / 1000.;
 			color.B = lum[i]*v_obj.color.B / 1000.;
 			mat_targDefine(i+1, v_obj.x, v_obj.y, v_obj.diameter,&color);
-			
+
 		}
 	}
 	drawTarg(1,1);
@@ -219,8 +219,8 @@ int defTargLum(long fixEyeLum, long targLum)
 }
 
 int initScreen_done()
-{ 
-	return mat_getWent(MAT_INIT_SCREEN_CMD, IS_EXECUTED); 
+{
+	return mat_getWent(MAT_INIT_SCREEN_CMD, IS_EXECUTED);
 }
 
 int drawTarg_done()
@@ -240,7 +240,7 @@ int drawTarg_done()
 
 int position_eyewindow(long wd_width, long wd_height, long flag)
 {
- 
+
   	if (flag == 0) { // Fixation point
 		wd_pos(WIND0, gl_fixObjEye.x, gl_fixObjEye.y);
 		EC_TAG2(I_EFIX_ACCEPTHX, wd_width);
@@ -282,17 +282,17 @@ int end_trial(long aflag)
  {
 	 printf("end_trial\n");
 	 /* turn eye position windows off */
-	 wd_cntrl(WIND0, WD_OFF); 	
-	 wd_cntrl(WIND1, WD_OFF); 	
-	 
-	 /* blank the screen */   	
+	 wd_cntrl(WIND0, WD_OFF);
+	 wd_cntrl(WIND1, WD_OFF);
+
+	 /* blank the screen */
 	 mat_allOff();
-	 
-	 ec_send_code(LASTCD);		   
-	 
+
+	 ec_send_code(LASTCD);
+
 	 /* close the analog data window */
 	 awind(aflag);
-	 
+
 	 return(0);
  }
 
@@ -304,7 +304,7 @@ int end_trial(long aflag)
 int set_eye_flag(long flag)
 {
 	gl_eye_flag = flag;
-	if (flag == E_FIX) 
+	if (flag == E_FIX)
 	   ec_send_code(EFIXACQ);
 	return(0);
 }
@@ -318,16 +318,16 @@ int set_reward_flag(long flag)
 
 
 /* ROUTINE: give_reward
-** 
+**
 ** description: activates the water reward system
 */
 int give_reward(long dio, long duration)
-{	
+{
 	dio_on(dio);
 	timer_set1(0,0,0,0,duration,0);
-	
+
 	EC_TAG2(I_REWSIZE_COR, duration);
-	
+
 	return 0;
 }
 
@@ -339,20 +339,20 @@ int give_reward(long dio, long duration)
 int make_task(void) {
 
 	int i, cx, cy;
-	
+
 	if (!gl_record) {
 		gl_remain = 1;
 		return 0;
 	}
-	
+
 	/* x positions */
 	gl_xPositions = (int *) realloc(gl_xPositions,gl_ntrials * sizeof(int));
 	if (gl_xPositions == NULL) {
 		free(gl_xPositions);
 		gl_xPositions = NULL;
 		printf("Could not allocate memory for gl_xPositions\n");
-	} 
-	
+	}
+
 	/* y positions */
 	gl_yPositions = (int *) realloc(gl_yPositions,gl_ntrials * sizeof(int));
 	if (gl_yPositions == NULL) {
@@ -360,20 +360,20 @@ int make_task(void) {
 		gl_yPositions = NULL;
 		printf("Could not allocate memory for gl_yPositions\n");
 	}
-	
+
 	/* trial indices */
 	gl_trialIndices = (int *) realloc(gl_trialIndices,gl_ntrials * sizeof(int));
 	if (gl_trialIndices == NULL) {
 		free(gl_trialIndices);
 		gl_trialIndices = NULL;
 		printf("Could not allocate memory for gl_trialIndices\n");
-	} 
-	
+	}
+
     /* Do number of target locations based on gl_positions*/
     cx = TOY_RT_TO_X(gl_eyeFixX,gl_ecc,gl_rft);
     cy = TOY_RT_TO_Y(gl_eyeFixY,gl_ecc,gl_rft);
     if (gl_positions==2){
-        
+
         float x[]={-1*cx, 1*cx };
         float y[]={-1*cy, 1*cy };
 
@@ -382,14 +382,14 @@ int make_task(void) {
             gl_xPositions[i] = x[i%2]+gl_eyeFixX;
             gl_yPositions[i] = y[i%2]+gl_eyeFixY;
         }
-        
+
     } else if (gl_positions==4) { /* 2 positions beside RF */
         int cx1, cx2, cy1, cy2;
         cx1 = TOY_RT_TO_X(gl_eyeFixX,gl_ecc,gl_rft+gl_rftd);
         cy1 = TOY_RT_TO_Y(gl_eyeFixX,gl_ecc,gl_rft+gl_rftd);
         cx2 = TOY_RT_TO_X(gl_eyeFixX,gl_ecc,gl_rft-gl_rftd);
         cy2 = TOY_RT_TO_Y(gl_eyeFixX,gl_ecc,gl_rft-gl_rftd);
-        
+
         float x[]={-1*cx, 1*cx, cx1, cx2};
         float y[]={-1*cy, 1*cy, cy1, cy2};
 
@@ -398,7 +398,7 @@ int make_task(void) {
             gl_xPositions[i] = x[i%4]+gl_eyeFixX;
             gl_yPositions[i] = y[i%4]+gl_eyeFixY;
         }
-    
+
     } else if (gl_positions==8) { /* 6 positions beside RF*/
         int cx1, cx2, cx3, cx4, cx5, cx6, cy1, cy2, cy3, cy4, cy5, cy6;
         cx1 = TOY_RT_TO_X(gl_eyeFixX,gl_ecc,gl_rft+gl_rftd);
@@ -423,7 +423,68 @@ int make_task(void) {
             gl_yPositions[i] = y[i%8]+gl_eyeFixY;
         }
 
-    } else { /* defaults to presenting at just one location */
+    } else if (gl_positions==10) { /* 8 positions beside RF*/
+        int cx1, cx2, cx3, cx4, cx5, cx6, cx7, cx8, cy1, cy2, cy3, cy4, cy5, cy6, cy7, cy8;
+        cx1 = TOY_RT_TO_X(gl_eyeFixX,gl_ecc,gl_rft+gl_rftd);
+        cy1 = TOY_RT_TO_Y(gl_eyeFixX,gl_ecc,gl_rft+gl_rftd);
+        cx2 = TOY_RT_TO_X(gl_eyeFixX,gl_ecc,gl_rft-gl_rftd);
+        cy2 = TOY_RT_TO_Y(gl_eyeFixX,gl_ecc,gl_rft-gl_rftd);
+        cx3 = TOY_RT_TO_X(gl_eyeFixX,gl_ecc,gl_rft+(gl_rftd*2));
+        cy3 = TOY_RT_TO_Y(gl_eyeFixX,gl_ecc,gl_rft+(gl_rftd*2));
+        cx4 = TOY_RT_TO_X(gl_eyeFixX,gl_ecc,gl_rft-(gl_rftd*2));
+        cy4 = TOY_RT_TO_Y(gl_eyeFixX,gl_ecc,gl_rft-(gl_rftd*2));
+        cx5 = TOY_RT_TO_X(gl_eyeFixX,gl_ecc,gl_rft+(gl_rftd*3));
+        cy5 = TOY_RT_TO_Y(gl_eyeFixX,gl_ecc,gl_rft+(gl_rftd*3));
+        cx6 = TOY_RT_TO_X(gl_eyeFixX,gl_ecc,gl_rft-(gl_rftd*3));
+        cy6 = TOY_RT_TO_Y(gl_eyeFixX,gl_ecc,gl_rft-(gl_rftd*3));
+				cx7 = TOY_RT_TO_X(gl_eyeFixX,gl_ecc,gl_rft+(gl_rftd*4));
+				cy7 = TOY_RT_TO_Y(gl_eyeFixX,gl_ecc,gl_rft+(gl_rftd*4));
+				cx8 = TOY_RT_TO_X(gl_eyeFixX,gl_ecc,gl_rft-(gl_rftd*4));
+				cy8 = TOY_RT_TO_Y(gl_eyeFixX,gl_ecc,gl_rft-(gl_rftd*4));
+
+        float x[]={-1*cx, 1*cx, cx1, cx2, cx3, cx4, cx5, cx6, cx7, cx8};
+        float y[]={-1*cy, 1*cy, cy1, cy2, cy3, cy4, cy5, cy6, cy7, cy8};
+
+        for (i = 0; i<gl_ntrials; i++) {
+            //printf("here %f\n", x[i%7]);
+            gl_xPositions[i] = x[i%10]+gl_eyeFixX;
+            gl_yPositions[i] = y[i%10]+gl_eyeFixY;
+        }
+
+    } else if (gl_positions==12) { /* 10 positions beside RF*/
+        int cx1, cx2, cx3, cx4, cx5, cx6, cx7, cx8, cx9, cx10;
+				int cy1, cy2, cy3, cy4, cy5, cy6, cy7, cy8, cy9, cy10;
+        cx1 = TOY_RT_TO_X(gl_eyeFixX,gl_ecc,gl_rft+gl_rftd);
+        cy1 = TOY_RT_TO_Y(gl_eyeFixX,gl_ecc,gl_rft+gl_rftd);
+        cx2 = TOY_RT_TO_X(gl_eyeFixX,gl_ecc,gl_rft-gl_rftd);
+        cy2 = TOY_RT_TO_Y(gl_eyeFixX,gl_ecc,gl_rft-gl_rftd);
+        cx3 = TOY_RT_TO_X(gl_eyeFixX,gl_ecc,gl_rft+(gl_rftd*2));
+        cy3 = TOY_RT_TO_Y(gl_eyeFixX,gl_ecc,gl_rft+(gl_rftd*2));
+        cx4 = TOY_RT_TO_X(gl_eyeFixX,gl_ecc,gl_rft-(gl_rftd*2));
+        cy4 = TOY_RT_TO_Y(gl_eyeFixX,gl_ecc,gl_rft-(gl_rftd*2));
+        cx5 = TOY_RT_TO_X(gl_eyeFixX,gl_ecc,gl_rft+(gl_rftd*3));
+        cy5 = TOY_RT_TO_Y(gl_eyeFixX,gl_ecc,gl_rft+(gl_rftd*3));
+        cx6 = TOY_RT_TO_X(gl_eyeFixX,gl_ecc,gl_rft-(gl_rftd*3));
+        cy6 = TOY_RT_TO_Y(gl_eyeFixX,gl_ecc,gl_rft-(gl_rftd*3));
+				cx7 = TOY_RT_TO_X(gl_eyeFixX,gl_ecc,gl_rft+(gl_rftd*4));
+				cy7 = TOY_RT_TO_Y(gl_eyeFixX,gl_ecc,gl_rft+(gl_rftd*4));
+				cx8 = TOY_RT_TO_X(gl_eyeFixX,gl_ecc,gl_rft-(gl_rftd*4));
+				cy8 = TOY_RT_TO_Y(gl_eyeFixX,gl_ecc,gl_rft-(gl_rftd*4));
+				cx9 = TOY_RT_TO_X(gl_eyeFixX,gl_ecc,gl_rft+(gl_rftd*5));
+				cy9 = TOY_RT_TO_Y(gl_eyeFixX,gl_ecc,gl_rft+(gl_rftd*5));
+				cx10 = TOY_RT_TO_X(gl_eyeFixX,gl_ecc,gl_rft-(gl_rftd*5));
+				cy10 = TOY_RT_TO_Y(gl_eyeFixX,gl_ecc,gl_rft-(gl_rftd*5));
+
+        float x[]={-1*cx, 1*cx, cx1, cx2, cx3, cx4, cx5, cx6, cx7, cx8, cx9, cx10};
+        float y[]={-1*cy, 1*cy, cy1, cy2, cy3, cy4, cy5, cy6, cy7, cy8, cy9, cy10};
+
+        for (i = 0; i<gl_ntrials; i++) {
+            //printf("here %f\n", x[i%7]);
+            gl_xPositions[i] = x[i%12]+gl_eyeFixX;
+            gl_yPositions[i] = y[i%12]+gl_eyeFixY;
+        }
+
+    }else { /* defaults to presenting at just one location */
         for (i = 0; i < gl_ntrials; i++) {
             //printf("%d ", i);
             gl_xPositions[i]= 1 * cx;
@@ -431,9 +492,9 @@ int make_task(void) {
         }
     }
 
-	  	
+
 	/* shuffle up the trials */
-	for (i = 0; i < gl_ntrials; i++) 
+	for (i = 0; i < gl_ntrials; i++)
 	  gl_trialIndices[i]=i;
 	for (i = gl_ntrials-1; i > 0; i--) {
 		int c = rand() % gl_ntrials;
@@ -486,44 +547,42 @@ int nexttrl()
 //		gl_targObj.y = storey;
 		gl_remain = 1;
 	}
-	
+
 	ec_send_code(STARTCD);	/* official start of trial ! */
-	
-	/* Update position to stored joystick position */
-	
+
 	gl_fixObjEye.color.R = 255;
 	gl_fixObjEye.color.G = 0;
 	gl_fixObjEye.color.B = 0;
-	
+
 	gl_fixObjEye.x = gl_eyeFixX;
 	gl_fixObjEye.y = gl_eyeFixY;
-	
-	gl_targObj.color.R=255;
-	gl_targObj.color.G=255;		
-	gl_targObj.color.B=255;
-		
+
+	gl_targObj.color.R = 255;
+	gl_targObj.color.G = 0;
+	gl_targObj.color.B = 0;
+
 	gl_fixObjEye.diameter = gl_eyeFixDiam;
 	gl_targObj.diameter = gl_targDiam;
-	
-	
+
+
 	/* send the target setup commands */
 	mat_targDefine(1, gl_fixObjEye.x, gl_fixObjEye.y, gl_fixObjEye.diameter, &(gl_fixObjEye.color));
 	mat_targDefine(2, gl_targObj.x, gl_targObj.y, gl_targObj.diameter, &(gl_targObj.color));
 
-	/* save the parameters */ 
+	/* save the parameters */
 
-	/* 
+	/*
 	 * TASK IDENTIFIER
 	 * 10 is overlap saccade, 11 is memory saccade
 	 */
 	EC_TAG2(I_TRIALIDCD,gl_delay+10); // 10 is overlap, 11 is memory guided
 	EC_TAG2(I_MONITORDISTCD, VIEW_DIST_CM);
-	
+
 	/* fixation x, y, diameter */
 	EC_TAG1(I_FIXXCD, gl_fixObjEye.x);
 	EC_TAG1(I_FIXYCD, gl_fixObjEye.y);
 	EC_TAG2(I_EFIXDIAMCD, gl_fixObjEye.diameter);
-	
+
 	/* target 1 x, y, diameter */
 	EC_TAG1(I_TRG1XCD, gl_targObj.x);
 	EC_TAG1(I_TRG1YCD, gl_targObj.y);
@@ -538,12 +597,12 @@ int total(long score)
 	gl_eye_flag   = 0;
 	gl_reward_flag = 0;
 
-	
+
 	/* Drop the appropriate code */
 	if(score == CORRECT) {
 		ec_send_code(CORRECTCD);
 		EC_TAG1(I_RESPONSE, 1);
-		if (gl_record) 
+		if (gl_record)
 		  gl_trialCtr--;
 	} else if(score == WRONG) {
 		ec_send_code(WRONGCD);
@@ -568,15 +627,15 @@ int abort_cleanup(void)
  {
 	// turn off reward if it was left on
 	printf("abort_cleanup\n");
-	dio_off(REW);	 
-	 
+	dio_off(REW);
+
 	timer_pause(100);				/* wait in case of went				*/
-	
+
 	end_trial(CANCEL_W);			/* cancel analog window, blank screen */
-	
-	return(0);	
+
+	return(0);
  }
- 
+
 USER_FUNC ufuncs[] = {};
 
 /* Top-level state menu
@@ -607,7 +666,7 @@ MENU umenus[] = {
 
 RTVAR rtvars[] = {};
 
-/* THE STATE SET 
+/* THE STATE SET
 */
 %%
 id 900
@@ -622,7 +681,7 @@ begin	first:
 	setup: 		/* SETUP THE SCREEN */
 		do setup_screen(32, 48, 3, 0)
 		to loop on 1 % initScreen_done
-        		
+
  	loop: 		/* START THE LOOP -- loop on # trials */
 		time 1000
 		to pause on +PSTOP & softswitch
@@ -632,7 +691,7 @@ begin	first:
 		to go on -PSTOP & softswitch
 	go: 			/**** TRIAL !!! ****/
 		to donelist on -ONES & gl_remain
-		to settrl 
+		to settrl
 	donelist:	/* done with current set... wait for "gl_remain" to update */
 		do ec_send_code(LISTDONECD)
 		to loop on +ONES & gl_remain
@@ -641,7 +700,7 @@ begin	first:
 		to task on +ONES & gl_remain
 		to loop
 	task:			/**** TASK BRANCHING ... ****/
-		to teye_start 
+		to teye_start
 
 	/* position window, wait for fixation */
 	fixeyewinpos:
@@ -656,7 +715,7 @@ begin	first:
 		time 2000
 		do end_trial(CANCEL_W)
 		to loop
-	
+
 	/* Monkey attained eye fixation */
 	fixeyedelay:
 	    time 20 /* delay before activating eye_flag - noise on the eye position signal should not be able to "break eye fixation" */
@@ -664,11 +723,11 @@ begin	first:
 	fixeyeset:		/* set flag to check for eye fixation breaks */
 		do set_eye_flag(E_FIX)
 	    to fixeyedone
-		
+
 	/* Done with fixating stuff */
 	fixeyedone:
 	    do position_eyewindow(25, 25, 3)
-		to teye_targ_wait 
+		to teye_targ_wait
 
 /*** CHAIN FOR TASK EYE
 ***/
@@ -692,7 +751,7 @@ begin	first:
 	teye_targ_cd:
 		do ec_send_code(TARGC1CD)
 	    to teye_activate_reward_loop on 1 = gl_reward_fixation
-	    to teye_removeTargWait on 1 = gl_delay	 
+	    to teye_removeTargWait on 1 = gl_delay
 	    to teye_waitfpoff
 	teye_activate_reward_loop:
 		do set_reward_flag(REWARD_LOOP_ON)
@@ -703,22 +762,22 @@ begin	first:
 	    to teye_removeTarg on +MET % timer_check1
 	teye_removeTarg:
 	    do defTargLum(1000, 0) /*  drawTarg is called inside*/
-		to teye_removeTarg_cd on MAT_WENT % drawTarg_done 
+		to teye_removeTarg_cd on MAT_WENT % drawTarg_done
 	  	/* to teye_removeTarg_cd on PHOTO_DETECT_UP % dio_check_photodetector */
 	teye_removeTarg_cd:
 	    do ec_send_code(TARGC1OFFCD)
 	    to teye_waitfpoff
-	  
+
 	/* FP OFF */
 	teye_waitfpoff:
-        do timer_set1_shell(1000,200,1500,1000,0,0)	
+        do timer_set1_shell(1000,200,1500,1000,0,0)
 		to teye_fpoffBranch on +MET % timer_check1
 	teye_fpoffBranch:
 	    to teye_fpoffOverlap on 0 = gl_delay
 	    to teye_fpoffMemory on 1 = gl_delay
 	teye_fpoffOverlap: /* turn the FP off */
 		do drawTarg(0,1)
-		to teye_fpoff_cd on MAT_WENT % drawTarg_done 
+		to teye_fpoff_cd on MAT_WENT % drawTarg_done
 	    /* to teye_fpoff_cd on PHOTO_DETECT_UP % dio_check_photodetector */
 	teye_fpoffMemory: /* turn the FP off */
 		do drawTarg(0,0)
@@ -730,8 +789,8 @@ begin	first:
 	teye_deactivate_reward_loop:
 		do set_reward_flag(REWARD_LOOP_OFF)
 		to teye_grace	/* wait for sac */
-	
-	/* grace period in which monsieur le monk has to 
+
+	/* grace period in which monsieur le monk has to
 	** break fixation and start the saccade
 	*/
 	teye_grace:
@@ -744,13 +803,13 @@ begin	first:
 	teye_saccd:
 		do ec_send_code(SACMADCD)
 		to check_eye_response
-		
+
 	/* end trial checking, can only be right or wrong */
 	check_eye_response:
 		time 50
 	    to peyehold on -WD1_XY & eyeflag /* got it!	*/
 		to wcshow
-	peyehold: 
+	peyehold:
 		do ec_send_code(TRGACQUIRECD)
 		time 50   /* gotta hold for this long	*/
 		to wcshow on +WD1_XY & eyeflag
@@ -758,16 +817,16 @@ begin	first:
 
 
 	/* visual feedback if not successful */
-	wcshow: /* show the targets */		
+	wcshow: /* show the targets */
 		do drawTarg(0, 1)
 		to wcwait on MAT_WENT % drawTarg_done
 	wcwait:
 		time 0
-		to wcerr  
-	
+		to wcerr
+
 	/* NO CHOICE: didn't complete the task */
 	wcerr:
-		do total(NCERR) 
+		do total(NCERR)
 		to wcend
 	wcend:
 		do end_trial(CLOSE_W)
@@ -781,23 +840,23 @@ begin	first:
 		to prend
 	prend:
 		do end_trial(CLOSE_W)
-		to prrew 
+		to prrew
 	prrew:
 		do give_reward(REW, 150)
 		to prrew_off on +MET % timer_check1
 	prrew_off:
 		do dio_off(REW)
-		to prdone 
+		to prdone
 	prdone:
 		time 0
 		to loop
-		
-		
+
+
 	abtst:	/* for abort list */
 		do abort_cleanup()
 		to prdone
-		
-		
+
+
 abort list:
 	abtst
 }
@@ -829,7 +888,7 @@ status ON
 begin   rfirst:
 	    to r_rtest
 	r_rtest:
-	    to r_prrew on REWARD_LOOP_ON = gl_reward_flag 
+	    to r_prrew on REWARD_LOOP_ON = gl_reward_flag
 	r_prrew:
 	    time 100
 		do dio_on(REW)
@@ -837,22 +896,22 @@ begin   rfirst:
 	r_prrew_off:
 	    time 100
 		do dio_off(REW)
-		to r_rtest 
+		to r_rtest
 
 abort list:
 }
-	  
-	  
+
+
 udp_set {
 status ON
 begin ufirst:
 		to uchk
-	uchk:	
+	uchk:
 		do udpCheckReceiveFork()
 		to uchkAgain
-	uchkAgain: // simply prevents looping back on same state, which Rex doesn't always like	
+	uchkAgain: // simply prevents looping back on same state, which Rex doesn't always like
 		do udpCheckReceiveFork()
 		to uchk
-		
+
 abort list:
 }

@@ -331,6 +331,29 @@ int give_reward(long dio, long duration)
 	return 0;
 }
 
+/* ROUTINE: weib_timer
+** Weibull timer - generates a random draw from Weibull distribution
+** and sends that drawn time to timer
+** [(-1/alpha)*ln(1-x)]^(1/beta)
+*/
+
+int weib_timer(double min, double max, double alpha, double beta) {
+    double unival;
+    double drawnum;
+    double duration;
+
+    unival = ((double) rand()) / ((double) RAND_MAX);
+    drawnum = pow((double)((-1/alpha)*log(1-unival)),(double) beta) * 1000;
+    if (drawnnum > max){
+        drawnnum = max;
+    }
+    duration = min + drawnnum;
+
+    timer_set1(0,0,0,0,duration,0);
+    return 0;
+}
+
+
 /* ROUTINE: make_task
  **
  ** generates a set of random trial values
@@ -550,8 +573,6 @@ int nexttrl()
 
 	ec_send_code(STARTCD);	/* official start of trial ! */
 
-	/* Update position to stored joystick position */
-
 	gl_fixObjEye.color.R = 255;
 	gl_fixObjEye.color.G = 0;
 	gl_fixObjEye.color.B = 0;
@@ -559,9 +580,9 @@ int nexttrl()
 	gl_fixObjEye.x = gl_eyeFixX;
 	gl_fixObjEye.y = gl_eyeFixY;
 
-	gl_targObj.color.R=255;
-	gl_targObj.color.G=255;
-	gl_targObj.color.B=255;
+	gl_targObj.color.R = 255;
+	gl_targObj.color.G = 0;
+	gl_targObj.color.B = 0;
 
 	gl_fixObjEye.diameter = gl_eyeFixDiam;
 	gl_targObj.diameter = gl_targDiam;
@@ -772,7 +793,8 @@ begin	first:
 
 	/* FP OFF */
 	teye_waitfpoff:
-        do timer_set1_shell(1000,200,1500,1000,0,0)
+        // do timer_set1_shell(1000,200,1500,1000,0,0)
+				do weib_timer()
 		to teye_fpoffBranch on +MET % timer_check1
 	teye_fpoffBranch:
 	    to teye_fpoffOverlap on 0 = gl_delay
