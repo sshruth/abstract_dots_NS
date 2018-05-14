@@ -24,10 +24,11 @@ c. AbstractDots05: (Trial ID: 35)
 * It's now possible to control fraction of trials at particular coherences to fight biases. Trials of direction specified by Skip_dir and of coherence lower than that specified by Skip_coh will be skipped with the probability specified by Skip_p (0-1000). Uses gl_sbet_shown to indicate skipped trials. 
 
 d. AbstractDots06: (Trial ID: 36)
-* USE ONLY FOR TRAINING. Hijacks in mat_dotsDefine, the speed code to send a coh_std value that is used on the PTB side to ramp up coherence within trial. Use dotsDefine_ramp on the PTB side to go with this. The rex chosen coh_std value is sent as EC_TAG2:I_PLSSIZE (8055). 
-
+* USE ONLY FOR TRAINING. Hijacks in mat_dotsDefine, the speed code to send a coh_std value that is used on the PTB side to ramp up coherence within trial. Use dotsDefine_ramp on the PTB side to go with this. The rex chosen coh_std value is sent as EC_TAG2:I_PLSSIZE (8055).
+* Can generate two types of ramps controlled by the main menu variable Coh_ramp. 
+	1: Exponential rise of coherence.  
+	2: Switches from 0 to full coherence in one frame. 
 
 
 ____________ABSTRACT DOTS-IN-RF__________
 
- 

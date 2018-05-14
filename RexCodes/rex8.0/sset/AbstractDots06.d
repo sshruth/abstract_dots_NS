@@ -52,6 +52,7 @@ struct menu_info_struct {
     int 	skip_dir;
     int 	skip_coh;
     int 	skip_p;
+    int     coh_ramp;
 };
 
 typedef struct rtvar_struct *rtvar;
@@ -108,8 +109,7 @@ int							    gl_teye_rt_err_n[7];
 long							gl_teye_rt_sbet_sum[7];
 int							    gl_teye_rt_sbet_n[7];
 int							    gl_sbet_shown = 0;		/* ts */
-
-int gl_correct_side;
+int                             gl_correct_side;
 
 /* ROUTINES */
 
@@ -547,10 +547,19 @@ int open_adata(void)
 
     /* Specify coh_std, a flag sent to PTB for control of coherence within trial */
     /* flag is 2 digits - see PTB side for more explanation */
-    if (TOY_RAND(1000)<666)
-        coh_std = 10 + TOY_RAND(5);
-    else
+    if (gl_menu_infoS.coh_ramp==1){
+        if (TOY_RAND(1000)<666)
+            coh_std = 10 + TOY_RAND(5);
+        else
+            coh_std = 0;
+    } else if(gl_menu_infoS.coh_ramp==2){
+        if (TOY_RAND(1000)<750)
+            coh_std = 22 + TOY_RAND(3);
+        else
+            coh_std = 0;
+    } else {
         coh_std = 0;
+    }
 
 
     if(SHOW_DOTS(gl_vsd))	{
@@ -1197,10 +1206,11 @@ VLIST state_vl[] = {
     {"RF_jitter",               &(gl_menu_infoS.tarjit),		    NP, NP, 0, ME_DEC},
 	{"RNG_Seed",			    &(gl_menu_infoS.seed),		        NP, NP, 0, ME_DEC},
 	{"Max_prize_count",         &gl_prize_max, 						NP, NP, 0, ME_DEC},
-	{"Skip_dir",               &(gl_menu_infoS.skip_dir),		        NP, NP, 0, ME_DEC},
-	{"Skip_coh",               &(gl_menu_infoS.skip_coh),		        NP, NP, 0, ME_DEC},
-	{"Skip_p",               &(gl_menu_infoS.skip_p),		        NP, NP, 0, ME_DEC},
-	{"Proportion",              &(gl_task_infoS[0].proportion), 	NP, NP, 0, ME_DEC},
+	{"Skip_dir",                &(gl_menu_infoS.skip_dir),		    NP, NP, 0, ME_DEC},
+	{"Skip_coh",                &(gl_menu_infoS.skip_coh),		    NP, NP, 0, ME_DEC},
+	{"Skip_p",                  &(gl_menu_infoS.skip_p),		    NP, NP, 0, ME_DEC},
+    {"Coh_ramp",                &(gl_menu_infoS.coh_ramp),          NP, NP, 0, ME_DEC},
+    {"Proportion",              &(gl_task_infoS[0].proportion), 	NP, NP, 0, ME_DEC},
 	{NS}};
 
 /* task_info vlist ... used for the two dots-style tasks */
