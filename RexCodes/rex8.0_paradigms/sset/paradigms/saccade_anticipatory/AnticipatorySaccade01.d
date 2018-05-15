@@ -67,6 +67,10 @@ int 							gl_eye_flag = 0;
 int                             gl_reward_fixation = 0;
 int                             gl_reward_flag = 0;
 
+long							gl_ref_time = 0; /* reference time for go-RT */
+long							gl_resp_time = 0; /* time of go-response  */
+
+
 
 int gl_joySet = 0, storex = 0, storey = 0;
 
@@ -331,6 +335,49 @@ int give_reward(long dio, long duration)
 	return 0;
 }
 
+/* ROUTINE: get_ref_time
+*/
+int get_ref_time(void)
+ {
+	gl_ref_time=i_b->i_time;
+	return 0;
+ }
+
+/* ROUTINE: get_resp_time
+*/
+int get_resp_time(void)
+ {
+	gl_resp_time=i_b->i_time;
+	return 0;
+ }
+
+ /* ROUTINE: give_timed_reward (reward is an inverse exponential function of go-RT)
+             timeout = max_time * exp (-RT/scaling)
+ 			if timeout > cutoff -> timeout = cutoff
+ 			timeout = non_rt for non-RT trials
+ */
+ int give_timed_reward(long max_time, long scaling, long cutoff, long non_rt)
+  {
+    int temp;
+
+    if (scaling==0)
+        scaling=1000; /* prevent division by zero */
+
+    if (gl_delay<1)
+        temp=non_rt; /* non-RT trial */
+    else
+        temp=min(cutoff, max_time*exp(-(gl_resp_time-gl_ref_time)/(float)scaling));
+
+    dio_on(REW);
+		timer_set1(0,0,0,0,temp,0);
+
+		EC_TAG2(I_REWSIZE_COR, temp);
+		printf("Reward size: %d\n", temp);
+
+    return 0;
+  }
+
+
 /* ROUTINE: weib_timer
 ** Weibull timer - generates a random draw from Weibull distribution
 ** and sends that drawn time to timer
@@ -350,20 +397,20 @@ int weib_timer() {
 		double tmax = 5000;
 
 		// % Generate uniform random values, and apply the Weibull inverse CDF.
-		// r = A .* (-log(rand(sizeOut))) .^ (1./B); % == wblinv(u, A, B)
+		// r = A .* (-log(rand(1))) .^ (1./B); % == wblinv(u, A, B)
 
 		int crand = TOY_RAND(tmax); // Avoid zero
     unival = -1 * log(crand/tmax);
     drawnnum = alfa_inv * 1000 * pow(unival,beta_inv);
     printf("\n");
-    printf("Drawn logrand: %lf \n ", unival);
-	printf("Drawn number: %lf \n", drawnnum);
+    // printf("Drawn log-rand: %lf \n ", unival);
+		// printf("Drawn number: %lf \n", drawnnum);
     if (drawnnum > max){
         drawnnum = max;
     }
     int duration = min + drawnnum;
-	printf("Drawn duration: %d ", duration);
-	printf("\n");
+		printf("Drawn duration: %d ", duration);
+		printf("\n");
 
     timer_set1(0,0,0,0,duration,0);
     return 0;
@@ -530,7 +577,6 @@ int make_task(void) {
             gl_yPositions[i]= 1 * cy;
         }
     }
-
 
 	/* shuffle up the trials */
 	for (i = 0; i < gl_ntrials; i++)
@@ -828,6 +874,9 @@ begin	first:
 		to teye_deactivate_reward_loop
 	teye_deactivate_reward_loop:
 		do set_reward_flag(REWARD_LOOP_OFF)
+		to teye_ref_time
+	teye_ref_time:
+		do get_ref_time()
 		to teye_grace	/* wait for sac */
 
 	/* grace period in which monsieur le monk has to
@@ -842,6 +891,9 @@ begin	first:
 		to wcshow
 	teye_saccd:
 		do ec_send_code(SACMADCD)
+		to teye_resp_time
+	teye_resp_time:
+		do get_resp_time()
 		to check_eye_response
 
 	/* end trial checking, can only be right or wrong */
@@ -854,7 +906,6 @@ begin	first:
 		time 50   /* gotta hold for this long	*/
 		to wcshow on +WD1_XY & eyeflag
 		to pref
-
 
 	/* visual feedback if not successful */
 	wcshow: /* show the targets */
@@ -877,20 +928,20 @@ begin	first:
 	*/
 	pref:
 		do total(CORRECT)
-		to prend
-	prend:
-		do end_trial(CLOSE_W)
 		to prrew
 	prrew:
-		do give_reward(REW, 150)
+		// do give_reward(REW, 150)
+		do give_timed_reward(700,250,500,150)
 		to prrew_off on +MET % timer_check1
 	prrew_off:
 		do dio_off(REW)
+		to prend
+	prend:
+		do end_trial(CLOSE_W)
 		to prdone
 	prdone:
 		time 0
 		to loop
-
 
 	abtst:	/* for abort list */
 		do abort_cleanup()
