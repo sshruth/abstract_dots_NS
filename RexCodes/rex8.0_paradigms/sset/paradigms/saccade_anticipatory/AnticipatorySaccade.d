@@ -855,8 +855,7 @@ begin	first:
 
 	/* FP OFF */
 	teye_waitfpoff:
-        // do timer_set1_shell(1000,200,1500,1000,0,0)
-				do weib_timer()
+    do weib_timer()
 		to teye_fpoffBranch on +MET % timer_check1
 	teye_fpoffBranch:
 	    to teye_fpoffOverlap on 0 = gl_delay
@@ -909,7 +908,7 @@ begin	first:
 
 	/* visual feedback if not successful */
 	wcshow: /* show the targets */
-		do drawTarg(0, 1)
+		do defTargLum(0, 1000)
 		to wcwait on MAT_WENT % drawTarg_done
 	wcwait:
 		time 0
@@ -928,7 +927,10 @@ begin	first:
 	*/
 	pref:
 		do total(CORRECT)
-		to prrew
+		to prshow
+	prshow: /* show the targets */
+		do defTargLum(0, 1000)
+		to prrew on MAT_WENT % drawTarg_done
 	prrew:
 		// do give_reward(REW, 150)
 		do give_timed_reward(700,250,500,150)
