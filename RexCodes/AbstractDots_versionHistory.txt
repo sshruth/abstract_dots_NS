@@ -31,5 +31,13 @@ d. AbstractDots06: (Trial ID: 36)
 
 
 ____________ABSTRACT DOTS VARIABLE DURATION__________
-Forked from AbstractDots05
+In this version of the task, the targets come on after the dots, but the FP stays on for a variable duration after that. The animal is allowed to choose a target only after the FP is off. 
+
+a. AbstractDots_VD01: (Trial ID: 41)
+Forked from AbstractDots05. Version allows control of target luminance in two steps, once after the target comes on and another when the FP goes off. Unfortunately, only one target on code is sent at the first appearance. 
+
+b. 
+
+
+
 

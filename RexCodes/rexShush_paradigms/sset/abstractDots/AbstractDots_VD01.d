@@ -15,7 +15,7 @@
 #include "../labTools/dio_lab.h"
 
 /* signal numbers for eyes */
-#define EYEH_SIG   0	   
+#define EYEH_SIG   0
 #define EYEV_SIG   1
 
 #define OTHERH_SIG 4
@@ -23,7 +23,7 @@
 
 /* for gl_eye_flag */
 #define E_OFF	0
-#define E_FIX	1 
+#define E_FIX	1
 
 /** windows for eyeflag and objects **/
 #define WIND0	    0       /* will be used to enforce fixation */
@@ -78,7 +78,6 @@ struct rtvar_struct {
 /* GLOBAL VARIABLES */
 
 static int gl_coh_list[] = {0, 40, 80, 160, 320, 640, 800};
-//static int gl_coh_list[] = {0, 800};
 static int gl_max_coh_num = sizeof(gl_coh_list)/sizeof(int);
 
 static _VSrecord 						gl_vsd=NULL;                       /* the big kahuna. see vs* */
@@ -123,10 +122,10 @@ int gl_correct_side;
 ** initialization of task infos
 ** executed automatically when running the paradigm
 */
-void autoinit(void) 
- { 
+void autoinit(void)
+ {
    int i;
-   
+
    for (i=0; i<NUM_TASKS; i++)
        vsd_init_task_info(&gl_task_infoS[i]);
 }
@@ -134,22 +133,22 @@ void autoinit(void)
 
 /* ROUTINE: rinitf
 **
-** initialize at first pass or at r s from keyboard 
+** initialize at first pass or at r s from keyboard
 */
 void rinitf(void)
- {  
+ {
 	 /* close/open udp connection */
-	 
-	 /*	 	
+
+	 /*
 	 ** This is now done in clock.c so that we can open multiple paradigms
 	 ** without causing clashes when binding to the socket
 	 */
-	 
+
 	 /* initialize interface (window) parameters */
 	 wd_cntrl 		(WIND0, WD_ON);
 	 wd_src_check 	(WIND0, WD_SIGNAL, EYEH_SIG, WD_SIGNAL, EYEV_SIG);
 	 wd_src_pos 	(WIND0, WD_DIRPOS, 0, WD_DIRPOS, 0);
-	 
+
 	 /* static window for screen limits */
 #ifdef SCR_LIM_HOR /* defined in ldev.h */
 	 wd_cntrl	 	(WIND7, WD_ON);
@@ -157,28 +156,28 @@ void rinitf(void)
 	 wd_pos 		(WIND7,	 0, 0);
 	 wd_siz	        (WIND7, SCR_LIM_HOR, SCR_LIM_VER); /* from ldev.h! */
 #endif
-	 
+
 	 /* WIND1 is used to mark the appearance of the sure bet target */
 	 wd_cntrl	 		(WIND1, WD_ON);
 	 wd_src_pos 		(WIND1, WD_DIRPOS, 0, WD_DIRPOS, 0);
 	 wd_pos 			(WIND1, 0, 0);
 	 wd_siz 			(WIND1, 0, 0);
-	 
+
 	 /* WIND2 is used to mark the appearance of the dots patch */
 	 wd_cntrl 			(WIND2, WD_ON);
 	 wd_src_pos 		(WIND2, WD_DIRPOS, 0, WD_DIRPOS, 0);
 	 wd_pos 			(WIND2, 0, 0);
-	 
+
 	 /* WIND3 will be checking correct response */
 	 wd_cntrl 		(WIND3, WD_ON);
 	 wd_src_check 	(WIND3, WD_SIGNAL, EYEH_SIG, WD_SIGNAL, EYEV_SIG);
 	 wd_src_pos 	(WIND3, WD_DIRPOS, 0, WD_DIRPOS, 0);
-	 
+
 	 /* WIND4 will be checking incorrect response */
 	 wd_cntrl 		(WIND4, WD_ON);
 	 wd_src_check 	(WIND4, WD_SIGNAL, EYEH_SIG, WD_SIGNAL, EYEV_SIG);
 	 wd_src_pos 	(WIND4, WD_DIRPOS, 0, WD_DIRPOS, 0);
-	 
+
  }
 
 
@@ -197,28 +196,28 @@ void rinitf(void)
 int setup_screen(long mon_width_cm, long view_dist_cm, long num_targets, long num_dots_patch, long long repeat_flag)
  {
    static int first_time = 1;
-   
+
    	/* Do these only if first time through or if explicitly
    	** told to do each time... enable pcmsg & init the screen
    	*/
    if(repeat_flag || first_time) {
        first_time = 0;
-       
+
        	/* Added here so reset states doesn't necessarily clear gl_vsd */
        make_tasks();
-       
+
        	/* init the screen */
        printf("\n");
        printf("Initializing screen with values from state list (root file):\n");
        mat_initScreen(mon_width_cm, view_dist_cm, num_targets, num_dots_patch);
    }
-   
+
    printf("\n");
    printf("Horizontal screen size: %d cm\n", mon_width_cm);
    printf("Viewing distance: %d cm\n", view_dist_cm);
    printf("\n");
-   
-   return 0; 
+
+   return 0;
  }
 
 
@@ -231,7 +230,7 @@ int setup_screen(long mon_width_cm, long view_dist_cm, long num_targets, long nu
 int make_tasks(void)
 {
 	int i;
-	
+
 	/* make sure the VSD REC exist and are clear */
 	if(!gl_vsd) {
 		gl_vsd					= vsd_init_record();
@@ -239,10 +238,10 @@ int make_tasks(void)
 	} else {
 		vsd_clear_record(gl_vsd);
 	}
-	
+
 	/* Luke was here, seed? */
 	gl_vsd->seed = (unsigned int) gl_menu_infoS.seed;
-	
+
 	/* initialize performance counters */
 	for (i=0; i<7; i++)	{
 		gl_teye_perf_cor[i]=0;
@@ -263,10 +262,10 @@ int make_tasks(void)
 	/* set the counters */
 	gl_vsd->num_repetitions 	= gl_menu_infoS.repetitions;
 	gl_remain 					= 1; /* dummy before we can really calculate it */
-    
+
 	/* FOR DEBUGGING */
 	vsd_print_record(gl_vsd);
-	
+
 	return 0;
 }
 
@@ -275,19 +274,19 @@ int make_tasks(void)
 ***** VISUAL STIMULUS (MATLAB) routines
 ****/
 
- 
+
 /*  ROUTINE: defTargLum
 ** changes the defined luminance of targets, no change is made on the screen until drawTarg is called
 ** the routine scales the original colors defined in the task menu. the original color is assigned a
 ** luminance of 1000. black has a luminance of zero.
-*/ 
+*/
 int defTargLum(long lum1, long lum2, long lum3, long lum4)
  {
-   long lum[4] = {lum1, lum2, lum3, lum4};		//currently we have only 4 valid targets 
+   long lum[4] = {lum1, lum2, lum3, lum4};		//currently we have only 4 valid targets
    RGB color;
    _VSobject obj_v;
    int i;
-   
+
    for(i=0; i<5; i++)	{
        switch(i)	{
            case 0:
@@ -306,17 +305,17 @@ int defTargLum(long lum1, long lum2, long lum3, long lum4)
            mat_targDefine(i+1, obj_v->x, obj_v->y, obj_v->diameter, &color);
        }
    }
-   
+
    return 0;
  }
 
- 
- 
+
+
 /*  ROUTINE: drawTarg
-** 
+**
 ** prob1-5 refer to FP, T1, T2, TCERT0 and TCERT1 if tflag is zero
 ** if tflag is 1, prob2 and prob3 will refer to correct and wrong targets, respectively
-** 
+**
 */
 int drawTarg(long prob1, long prob2, long prob3, long prob4, long tflag)
  {
@@ -325,7 +324,7 @@ int drawTarg(long prob1, long prob2, long prob3, long prob4, long tflag)
    int show_ind[VSD_NUM_OBJECTS], hide_ind[VSD_NUM_OBJECTS];
    _VSobject obj_v;
    int i, tind;
-   
+
    for(i=0; i<4; i++)	{
        if(i==0)
            tind = (VSD_GET_FP(gl_vsd))->matlab_index;
@@ -337,24 +336,24 @@ int drawTarg(long prob1, long prob2, long prob3, long prob4, long tflag)
            tind = (VSD_GET_TS(gl_vsd))->matlab_index;
        else
            tind = i;
-       
-       if (prob[i]>0 && TOY_RAND(1000.0)<(int)prob[i]) 
+
+       if (prob[i]>0 && TOY_RAND(1000.0)<(int)prob[i])
            show_ind[num_show++] = tind;
        else if (prob[i]>=0)
            hide_ind[num_hide++] = tind;
    }
-   
+
    mat_targDraw(num_show, show_ind, num_hide, hide_ind);
-   
+
 	/* set the da markers. Remember that by default:
 	** 	CU_DATA4 (octagon) is connected to DA channels 0 (x) and 1 (y)
-	** 	CU_DATA5 (X)       is connected to DA channels 2 (x) and 3 (y)	
+	** 	CU_DATA5 (X)       is connected to DA channels 2 (x) and 3 (y)
 	*/
    obj_v = VSD_GET_TC(gl_vsd);
    da_set_2(0, obj_v->x, 1, obj_v->y);
    obj_v = VSD_GET_TW(gl_vsd);
    da_set_2(2, obj_v->x, 3, obj_v->y);
-   
+
    return 0;
  }
 
@@ -369,21 +368,21 @@ int showDots(void)
    	/* showing dots */
    if(SHOW_DOTS(gl_vsd)) {
        _VSDdot_object dot = VSD_GET_DTOBJECT(gl_vsd);
-       
+
        	/* start the dots and mark it */
        mat_dotsShow(dot->seed_base, dot->seed_var, 5000);
        gl_dots_flag = -1;
-       		
+
        	/* update real-time variables */
        gl_rtvar.coherence = dot->coherence;
        gl_rtvar.direction = dot->direction;
-       
+
        	/* show dots patch on the Window Display */
        wd_pos ( WIND2, (VSD_GET_AP(gl_vsd))->x, (VSD_GET_AP(gl_vsd))->y);
        wd_siz ( WIND2, (VSD_GET_AP(gl_vsd))->diameter/2, (VSD_GET_AP(gl_vsd))->diameter/2);
        wd_cntrl ( WIND2, WD_ON );
    }
-   
+
    return(0);
  }
 
@@ -396,37 +395,37 @@ int stopDots(void)
 	/* dots are on .. call matlab routine to stop 'em */
    if(gl_dots_flag == -1) {	/* dots are on */
        mat_dotsStop();
-       
+
 	   wd_siz ( WIND2, 0, 0 );
 	   wd_cntrl ( WIND2, WD_ON );
    }
-   	
+
    gl_dots_flag = 0;
    return(0);
  }
 
 
 int initScreen_done()
- { 
-   return mat_getWent(MAT_INIT_SCREEN_CMD, IS_EXECUTED); 
+ {
+   return mat_getWent(MAT_INIT_SCREEN_CMD, IS_EXECUTED);
  }
- 
+
 int drawTarg_done()
  {
    //printf("time = %d\n", (int) i_b->i_time);
    //printf("matdone = %d\n", mat_getWent(MAT_TARG_DRAW_CMD, IS_EXECUTED));
    return mat_getWent(MAT_TARG_DRAW_CMD, IS_EXECUTED);
  }
- 
+
 int showDots_done()
  {
    return mat_getWent(MAT_DOTS_SHOW_CMD, IS_EXECUTED);
  }
- 
+
 int stopDots_done()
  {
    return mat_getWent(MAT_DOTS_STOP_CMD, IS_EXECUTED);
- } 
+ }
 
 /****
 ***** UTILITY routines
@@ -440,13 +439,13 @@ int stopDots_done()
 int position_eyewindow(long wd_width, long wd_height, long flag)
 {
 	_VSobject vso;
-	
+
 	/* position window @ fix point */
 	if(flag == 0) {
 		vso = VSD_GET_FP(gl_vsd);
 		wd_pos(WIND0, vso->x, vso->y);
 		EC_TAG2(I_EFIX_ACCEPTHX, wd_width);
-		EC_TAG2(I_EFIX_ACCEPTHY, wd_height);		
+		EC_TAG2(I_EFIX_ACCEPTHY, wd_height);
 		/* position window @ correct target */
 	} else if(flag == 1) {
 		vso = VSD_GET_TC(gl_vsd);
@@ -463,23 +462,23 @@ int position_eyewindow(long wd_width, long wd_height, long flag)
 		vso = VSD_GET_TS(gl_vsd);
 		wd_pos(WIND0, vso->x, vso->y);
 	}
-	
+
 	wd_siz(WIND0, wd_width, wd_height);
 	wd_cntrl(WIND0, WD_ON);
-	
+
 	return(0);
 }
 
 int setup_eyewindows(long wd_width, long wd_height)
 {
 	_VSobject vso;
-	
+
 	vso = VSD_GET_TC(gl_vsd);
 	wd_pos(WIND3, vso->x, vso->y);
 	wd_siz(WIND3, wd_width, wd_height);
 	wd_cntrl(WIND3, WD_ON);
 
-	if (vso->x < 0) 
+	if (vso->x < 0)
 		gl_correct_side = -1;
 	else
 		gl_correct_side = 1;
@@ -489,34 +488,34 @@ int setup_eyewindows(long wd_width, long wd_height)
 	wd_siz(WIND4, wd_width, wd_height);
 	wd_cntrl(WIND4, WD_ON);
 
-	
+
 	EC_TAG2(I_ETARG_ACCEPTHX, wd_width);
 	EC_TAG2(I_ETARG_ACCEPTHY, wd_height);
 }
 
 /* ROUTINE: open_adata
 **
-** Specify object locations, set up display,  
-** check if the trial should be shown or skipped and 
+** Specify object locations, set up display,
+** check if the trial should be shown or skipped and
 ** send trial data if it is not to be skipped
 */
 int open_adata(void)
 {
     int i, j, x, y;
-    
+
     /*
      ** Clear all the old objects,then call the big kahuna
      ** to update the display.
      */
     vsd_clear_display(gl_vsd->display);
-    
+
     /* copy the appropriate gl_object_t*S struct into the gl_vsd display */
     if(gl_task == TASK_EYE) {
         for(i=0;i<VSD_NUM_OBJECTS;i++)
         vs_copy_object(&(gl_object_teyeS[i]), gl_vsd->display->object_array[i]);
         vsd_copy_dot_object(&gl_dotS[0], VSD_GET_DTOBJECT(gl_vsd));
     }
-    
+
     /* call update display to parse the object info */
     /* This is the main section to randomize object locations on each trial
      ** APPROACH: Take R & Theta as input and jitter on Theta
@@ -528,37 +527,37 @@ int open_adata(void)
         gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = TOY_RT_TO_Y(0,gl_menu_infoS.rfr,i);
         gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = TOY_RT_TO_X(0,gl_menu_infoS.rfr,i+120);
         gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = TOY_RT_TO_Y(0,gl_menu_infoS.rfr,i+120);
-        
+
     } else if(j < 667){
         gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = TOY_RT_TO_X(0,gl_menu_infoS.rfr,i+120);
         gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = TOY_RT_TO_Y(0,gl_menu_infoS.rfr,i+120);
         gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = TOY_RT_TO_X(0,gl_menu_infoS.rfr,i+240);
         gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = TOY_RT_TO_Y(0,gl_menu_infoS.rfr,i+240);
-        
+
     } else {
         gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = TOY_RT_TO_X(0,gl_menu_infoS.rfr,i+240);
         gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = TOY_RT_TO_Y(0,gl_menu_infoS.rfr,i+240);
         gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = TOY_RT_TO_X(0,gl_menu_infoS.rfr,i+0);
         gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = TOY_RT_TO_Y(0,gl_menu_infoS.rfr,i+0);
     }
-    
-    
+
+
     vsd_update_display(gl_vsd, 0); /* Zero indicates no reverse dot-motion/target association */
     /* send the dots setup command if necessary */
-    
+
     if(SHOW_DOTS(gl_vsd))	{
         /* define the dots patch */
         mat_dotsDefine(1, (VSD_GET_AP(gl_vsd))->x, (VSD_GET_AP(gl_vsd))->y, (VSD_GET_AP(gl_vsd))->diameter,
                        (VSD_GET_DTOBJECT(gl_vsd))->direction, (VSD_GET_DTOBJECT(gl_vsd))->coherence, (VSD_GET_DTOBJECT(gl_vsd))->speed);
     }
-    
+
     /* send the target setup commands */
     mat_targDefine(1, (VSD_GET_FP(gl_vsd))->x, (VSD_GET_FP(gl_vsd))->y, (VSD_GET_FP(gl_vsd))->diameter, &((VSD_GET_FP(gl_vsd))->color));
     mat_targDefine(2, (VSD_GET_T1(gl_vsd))->x, (VSD_GET_T1(gl_vsd))->y, (VSD_GET_T1(gl_vsd))->diameter, &((VSD_GET_T1(gl_vsd))->color));
     mat_targDefine(3, (VSD_GET_T2(gl_vsd))->x, (VSD_GET_T2(gl_vsd))->y, (VSD_GET_T2(gl_vsd))->diameter, &((VSD_GET_T2(gl_vsd))->color));
     mat_targDefine(4, (VSD_GET_TS(gl_vsd))->x, (VSD_GET_TS(gl_vsd))->y, (VSD_GET_TS(gl_vsd))->diameter, &((VSD_GET_TS(gl_vsd))->color));
-    
-    
+
+
     /*
      ** Also set gl_dots_flag... kinda ugly:
      **		--  0 if showing nothing
@@ -569,16 +568,16 @@ int open_adata(void)
     gl_dots_flag = -2;
     else
     gl_dots_flag = 0;
-    
+
     /* FOR DEBUGGING
      **
      */
     vsd_print_record(gl_vsd);
-   
+
   	  /* Check if trial needs to be skipped
      ** for e.g, for bias correction, reducing 0% trials ,etc
      */
-    
+
     _VSDdot_object dot = VSD_GET_DTOBJECT(gl_vsd);
     printf("\n");
     printf("COHERENCE = %d\n",dot->coherence);
@@ -586,12 +585,12 @@ int open_adata(void)
         gl_sbet_shown = 1; /* Hijacking sbet to skip trials */
         return(0);
     }
-  
+
     /* save the parameters */
     /* task identifier */
     ec_send_code(STARTCD);	/* official start of trial ! */
 
-    EC_TAG2(I_TRIALIDCD,35); /* 3 is Abstract dot series,  5 is version*/  
+    EC_TAG2(I_TRIALIDCD,41); /* 4 is Abstract dot VD series,  1 is version*/
     EC_TAG2(I_MONITORDISTCD, VIEW_DIST_CM);
     /* fixation x, y, diameter */
     EC_TAG1(I_FIXXCD, (VSD_GET_FP(gl_vsd))->x);
@@ -620,12 +619,12 @@ int open_adata(void)
         EC_TAG2(I_SPDCD, dot->speed);
         EC_TAG2(I_STDIACD, (VSD_GET_AP(gl_vsd))->diameter);
         EC_TAG1(I_STXCD, (VSD_GET_AP(gl_vsd))->x);
-        EC_TAG1(I_STYCD, (VSD_GET_AP(gl_vsd))->y);    
+        EC_TAG1(I_STYCD, (VSD_GET_AP(gl_vsd))->y);
         /* also update real-time variables */
         gl_rtvar.direction = dot->direction;
         gl_rtvar.coherence = dot->coherence;
     }
-    
+
     return(0);
 }
 
@@ -635,19 +634,19 @@ int open_adata(void)
 **
 */
 int end_trial(long aflag)
-{ 
+{
 	/* turn eye position window off */
-	wd_cntrl(WIND0, WD_OFF); 	
+	wd_cntrl(WIND0, WD_OFF);
 	wd_cntrl(WIND1, WD_OFF);	/* ts */
 	wd_cntrl(WIND2, WD_OFF);	/* dots patch */
 	wd_cntrl(WIND3, WD_OFF);	/* correct response */
-	wd_cntrl(WIND4, WD_OFF);	/* incorrect response */ 
-	
+	wd_cntrl(WIND4, WD_OFF);	/* incorrect response */
+
 	/* blank the screen */
 	mat_allOff();
-	
-	ec_send_code(LASTCD);		   
-	
+
+	ec_send_code(LASTCD);
+
 	return(0);
  }
 
@@ -662,7 +661,7 @@ int set_eye_flag(long flag)
 	  ec_send_code(EFIXACQ);
 	return(0);;
 }
- 
+
 
 /* ROUTINE: print_status
 **
@@ -682,10 +681,10 @@ void print_experiment_info(void)
 
 	printf("\n");
 	printf("------------------------------------------------------------\n");
-	
+
 		printf("Number of repetitions      = %d\n", gl_vsd->num_repetitions);
 		printf("Number of unique trials    = %d\n", gl_vsd->num_trials);
-		printf("Number of total trials     = %d\n", gl_vsd->num_trials * gl_vsd->num_repetitions);	
+		printf("Number of total trials     = %d\n", gl_vsd->num_trials * gl_vsd->num_repetitions);
 
 	printf("Number of remaining trials = %d\n", gl_remain);
 	printf("-TASK 1-----------------------------------------------------\n");
@@ -706,7 +705,7 @@ void print_experiment_info(void)
 			printf("\t %3d",(int)(gl_teye_perf_sbet[i]/(gl_teye_perf_tot[i]/100.0)+.5));
 		else
 			printf("\t ---");
-	
+
 	printf("\n");
 	printf("Correct RT");
 
@@ -724,16 +723,16 @@ void print_experiment_info(void)
 			printf("\t%4d",(int)((float)gl_teye_rt_err_sum[i]/gl_teye_rt_err_n[i]+.5));
 		else
 			printf("\t----");
-	
+
 	printf("\n");
 	printf("Sure-bet RT");		/* ts */
-	
+
 	for (i=0;i<7;i++)
 		if (gl_teye_rt_sbet_n[i])
 			printf("\t%4d",(int)((float)gl_teye_rt_sbet_sum[i]/gl_teye_rt_sbet_n[i]+.5));
 		else
 			printf("\t----");
-	
+
  }
 
 
@@ -795,14 +794,14 @@ int set_reward_delay(long min_time)
 	//if ((cur_time-gl_ref_time)<min_time) /* extra delay necessary? */
 	//	set_timer_to=min_time-(cur_time-gl_ref_time);
 
-	/* Luke was here, based on actual RT time */ 
+	/* Luke was here, based on actual RT time */
 	if ((gl_resp_time - gl_ref_time)<min_time) /* extra delay necessary? */
-		set_timer_to=min_time-(gl_resp_time-gl_ref_time); 
+		set_timer_to=min_time-(gl_resp_time-gl_ref_time);
 
 	timer_set1(0,0,0,0,set_timer_to,0);
 
 	return 0;
- }	
+ }
 
 
 /* ROUTINE: set_punishment_timer (timeout is an exponential function of RT)
@@ -813,36 +812,36 @@ int set_reward_delay(long min_time)
 int set_punishment_timer(long max_time, long scaling, long cutoff, long non_rt)
  {
    int temp;
-   
+
    if (scaling==0)
        scaling=1000; /* prevent division by zero */
-   
+
    if (!gl_rt_flag)
        temp=non_rt; /* non-RT trial */
    else
        temp=min(cutoff, max_time*exp(-(gl_resp_time-gl_ref_time)/(float)scaling));
-   
+
    timer_set1(0,0,0,0,temp,0);
-   
+
    return 0;
  }
- 
- 
+
+
 /* ROUTNE: give_reward
-** 
+**
 ** description: activates the water reward system
 */
 int give_reward(long dio, long duration, long who_calling)
- {	
+ {
    static int gl_rew_size_cor = 0;	/* size of the reward */
    static int gl_rew_size_sbet = 0;
-   
+
    if (gl_correct_side == -1)
 	   duration = duration;
 
    dio_on(dio);
    timer_set1(0,0,0,0,duration,0);
-   
+
    switch ( who_calling ) {
        case CORRECT:
            gl_rew_size_cor = duration;
@@ -850,38 +849,38 @@ int give_reward(long dio, long duration, long who_calling)
        case SBET:
            gl_rew_size_sbet = duration;
            break;
-   }	
-   
-   	/* save the reward size only once on each trial */ 
+   }
+
+   	/* save the reward size only once on each trial */
    if (gl_prize_count==0) {
        EC_TAG2(I_REWSIZE_COR, gl_rew_size_cor);
        EC_TAG2(I_REWSIZE_SBET, gl_rew_size_sbet);
        printf("--reward. cor=%d, sbet=%d\n", gl_rew_size_cor, gl_rew_size_sbet);
    }
-   
+
    return 0;
  }
- 
+
 
 /* ROUTINE: update_prize_count
 **
 ** update gl_prize_count based on the score (CORRECT, WRONG, NCERR, BRFIX or BRHANDFIX) of
 ** the current trial and previous trials
-** prizes are additional reward drops that are given to the monkey for doing 
+** prizes are additional reward drops that are given to the monkey for doing
 ** several trials correct in a row
 ** <gl_prize_count> is a global variable that is updated by  <update_prize_count>
-** at the end of each trial. 
+** at the end of each trial.
 ** don't worry about the maximum number of prizes, it will be managed by
 ** <set_max_prize_count>
-** 
-*/ 
+**
+*/
 void update_prize_count ( long score )
  {
 	static int prev_score = WRONG;
 	static int prize_count = 0;
-	
+
 	if ( score == CORRECT )	{
-		if ( prev_score==CORRECT )		
+		if ( prev_score==CORRECT )
 			prize_count++;
 		prev_score = CORRECT;
 	} else if ( score==WRONG || score==NCERR )	{
@@ -889,7 +888,7 @@ void update_prize_count ( long score )
 		prev_score = WRONG;
 	}
 	gl_prize_count = min(prize_count, gl_prize_max);
-//	dprintf("prize count: %d, max: %d\n", gl_prize_count, gl_prize_max); 
+//	dprintf("prize count: %d, max: %d\n", gl_prize_count, gl_prize_max);
  }
 
 
@@ -905,13 +904,13 @@ void update_prize_count ( long score )
 double randsample(double base, double step, int n, char *flag)
  {
   double ret;
-  
+
   if (stricmp(flag,"log")==0)
 	ret = base * exp(log(step)*(double)TOY_RAND(n));
-  
+
   if (stricmp(flag,"linear")==0)
     ret = base+step*(double)TOY_RAND(n);
-  
+
   return(ret);
  }
 
@@ -931,12 +930,12 @@ int nexttrl (long do_over, long min_block_size, long randomize_flag)
 	int i, j, x, y;
 	_VStrial trial = NULL;
 	int corrtarg;
-	
+
 	gl_sbet_shown = 0;		/* ts */
 	wd_siz ( WIND1, 0, 0 ); /* ts */
 	wd_cntrl ( WIND1, WD_ON );
-	
-	
+
+
 	if ( !trial ) {
 		/* check "do_over" flag to see if we should just redo last trial */
 		if(do_over > 0) {
@@ -945,48 +944,48 @@ int nexttrl (long do_over, long min_block_size, long randomize_flag)
 			else
 			  gl_vsd->last = DO_OVER;
 		}
-		
+
 		/* vs_get_next_trial is the real workhorse.. makes
 		 ** trial_array in gl_vsd if necessary, randomizes it,
 		 ** & selects the next trial
 		 */
 		trial = vs_get_next_trial(gl_vsd, min_block_size, randomize_flag); /* trial = gl_vsd->cur_trial */
 	}
-    
+
     /* make sure we have a trial and are continuing... */
     if(!trial) {
         gl_remain = 0;
         return(0);
     }
-    
+
     /* set some globals */
     gl_task = trial->task->id;
     gl_remain = gl_vsd->num_trials;
     gl_rt_flag = gl_task_infoS[gl_task].rt_flag;
-    
+
     return 0;
 }
 
 
 /* ROUTINE: total
 **
-** use vs_score_trial to keep track of monkey's performance 
+** use vs_score_trial to keep track of monkey's performance
 */
 int total(long score)
 {
 
 	/* local variables */
 	int coh, ind, i;
-	
+
 	/* update the prize count */
 	update_prize_count(score);
-	
+
 	/* score the trial in the global rec */
 	vs_score_trial(gl_vsd, score, gl_sbet_shown);
-	
+
 	/* set globals for eye checking */
 	gl_eye_flag   = 0;
-	
+
 	/* Drop the appropriate code */
 	if(score == CORRECT) {
 		ec_send_code(CORRECTCD);
@@ -1007,7 +1006,7 @@ int total(long score)
 	}  else {
 		EC_TAG1(I_RESPONSE, -10); /* default, for no fixation acquired */
 	}
-	
+
 	/* record in real-time variables (for display) */
 	gl_rtvar.total_trials = gl_vsd->total;
 	gl_rtvar.num_completed = gl_vsd->correct + gl_vsd->wrong + gl_vsd->sbet;	/* ts */
@@ -1017,8 +1016,8 @@ int total(long score)
 	gl_rtvar.num_ncerr = gl_vsd->ncerr;
 	gl_rtvar.num_brfix = gl_vsd->brfix;
 	gl_rtvar.last_score = gl_vsd->last;
-	
-	/* find the type of last trial, which coherence */ 
+
+	/* find the type of last trial, which coherence */
 	coh=-1;
 	ind=-1;
 	if (SHOW_DOTS(gl_vsd)){
@@ -1029,10 +1028,10 @@ int total(long score)
 			  break;
 		  }
 	}
-	
+
 	/* set real time variable for RT to zero, revise below if an RT task */
-	gl_rtvar.rt = 0;	
-	
+	gl_rtvar.rt = 0;
+
 	/* counts and RT for task 1 */
 	if (gl_task==TASK_EYE)	{
 		/* total correct/wrong/sbet counts */
@@ -1062,9 +1061,9 @@ int total(long score)
 					}
 				}
 			}
-		} 
+		}
 	}
-	
+
 	/* outta */
 	return(0);
 }
@@ -1077,19 +1076,19 @@ int total(long score)
 int abort_cleanup(void)
  {
 	timer_pause(100);				/* wait in case of went				*/
-	
+
 //mat_getWent();/* make sure not waiting for went*/
-	
+
 	if(gl_dots_flag == -1) 	 	/* stop the dots, if they're on 	*/
      	mat_dotsAbort();
-     	
+
 	end_trial(CANCEL_W);			/* cancel analog window, blank screen */
-	
-	return(0);	
+
+	return(0);
  }
 
 
- 
+
 /* USER FUNCTIONS
 **
 ** functions that we can call from the command
@@ -1105,7 +1104,7 @@ USER_FUNC ufuncs[] = {
 {""},
 };
 
-/*  
+/*
 ** The geometry of a "vs_dots" task is defined as follows:
 **
 **	- Fixation point  ... X-Y coordinates defined at the top-level
@@ -1115,9 +1114,9 @@ USER_FUNC ufuncs[] = {
 **	- Target centroid ... Central point of the two targets, in R-T (TC_amp
 **							and TC_angle) relative to AP
 **	- Target p		  ... Pref (correct) target, in R-T (T1_amp and T1_angle)
-**							relative to TC						
+**							relative to TC
 **	- Target n		  ... Null (incorrect) target, in R-T (T1_amp and T1_angle)
-**							relative to TC						
+**							relative to TC
 **
 **	INDEX SCHEME FOR SUN/PLANET
 **		0  ... fixation point
@@ -1148,31 +1147,31 @@ int o_agf(int call_cnt, MENU *mp, char *astr)
 int o1_maf(int flag, MENU *mp, char *astr, ME_RECUR *rp)
  {
    int num;
-   
+
    if(*astr == '\0')
        num = 0;
    else
        num = atoi(astr);
-   
+
    if ( num<0 || num>=VSD_NUM_OBJECTS )
        return(-1);
-   
+
    mp->me_basep = (unsign)&gl_object_teyeS[num];
    return(0);
  }
- 
+
 int o2_maf(int flag, MENU *mp, char *astr, ME_RECUR *rp)
  {
    int num;
-   
+
    if(*astr == '\0')
        num = 0;
    else
        num = atoi(astr);
-   
+
    if ( num<0 || num>=VSD_NUM_OBJECTS)
        return(-1);
-   
+
    mp->me_basep = (unsign)&gl_object_thandS[num];
    return(0);
  }
@@ -1286,7 +1285,7 @@ RTVAR rtvars[] = {
 
 
 
-/* THE STATE SET 
+/* THE STATE SET
 */
 %%
 id 901
@@ -1301,7 +1300,7 @@ begin	first:
 	setup: 		/* SETUP THE SCREEN */
 		do setup_screen(32, 48, 4, 1, 0)
 		to loop on 1 % initScreen_done
-        		
+
  	loop: 		/* START THE LOOP -- loop on # trials */
 		time 1000
 		to pause on +PSTOP & softswitch
@@ -1311,7 +1310,7 @@ begin	first:
 		to go on -PSTOP & softswitch
 	go: 			/**** TRIAL !!! ****/
 		to donelist on -ONES & gl_remain
-		to settrl 
+		to settrl
 	donelist:	/* done with current set... wait for "gl_remain" to update */
 		do ec_send_code(LISTDONECD)
 		to loop on +ONES & gl_remain
@@ -1320,7 +1319,7 @@ begin	first:
 		to task on +ONES & gl_remain
 		to loop
 	task:			/* control what to do on current trial */
-        do open_adata() 
+        do open_adata()
         to skiptrl on 1 = gl_sbet_shown /* Skipped trials are considered sure bet choices */
 		to teye_start on TASK_EYE = gl_task
     skiptrl:
@@ -1329,7 +1328,7 @@ begin	first:
 	skipdone:
 		do end_trial(CLOSE_W)
 		to settrl
-		
+
 	/* position window, wait for fixation */
 	fixeyewinpos:
 	    do position_eyewindow(30, 30, 0)
@@ -1346,20 +1345,20 @@ begin	first:
 	    time 2000
 		do end_trial(CANCEL_W)
 		to loop
-	
+
 	fixeyedelay:
 	    time 100 /* delay before activating eye_flag - noise on the eye position signal should not be able to "break eye fixation" */
 		to fixeyeset
 	fixeyeset:		/* set flag to check for eye fixation breaks */
 		do set_eye_flag(E_FIX)
 	    to fixeyedone
-		
+
 	/* Done with fixating stuff */
 	fixeyedone:
 	    do position_eyewindow(35, 35, 0)
 		to teye_targ_wait on TASK_EYE = gl_task
 //        to teye_waitdots
-            
+
 /*** CHAIN FOR TASK EYE ***/
 	teye_start:
 	    do setup_eyewindows(35, 30)
@@ -1381,7 +1380,7 @@ begin	first:
 		do drawTarg(-1, 1000, 1000, -1, 0)
         to teye_waitdots on MAT_WENT % drawTarg_done
   	    /* to teye_targ_cd on PHOTO_DETECT_DOWN % dio_check_photodetector */
-		
+
 	/* START SHOWING DOTS */
 	teye_waitdots:
 		do timer_set1_shell(1000,200,1000,200,0,0)
@@ -1393,9 +1392,7 @@ begin	first:
 	teye_wentdots:
 		do ec_send_code(GOCOHCD)
 		to teye_setdotdur
-			
-	/* VARIABLE DURATION TASK */
-	teye_setdotdur:		/* set the dots duration timer */
+    teye_setdotdur:		/* set the dots duration timer */
 		do set_dots_duration(1000,600,1000,200,0,0)
 		to teye_stopdots on +MET % timer_check1 /* check the timer */
 	teye_stopdots:
@@ -1403,29 +1400,37 @@ begin	first:
 		to teye_stopdotscd on MAT_WENT % stopDots_done
 	teye_stopdotscd:		/* drop the stop dots code */
 		do ec_send_code(STOFFCD)
-		to teye_waitfpoff
-	
-	/* FINAL WAIT, FP OFF */
-	teye_waitfpoff:
-        do set_delay_duration(1000,300,50,400,0,0)
-		to teye_chkwait
-	teye_chkwait:
-		to teye_tarlumup on +MET % timer_check1
-	teye_tarlumup:
+		to ton_tarlum
+
+	/* ton: TURN TARGETS ON */
+	ton_tarlum:
 		do defTargLum(-1, 1000, 1000, -1) /* reheat targs */
-		to teye_fpoff
-	teye_fpoff: /* turn the FP off and show reheated targets */
+		to ton_wait
+	ton_wait:
+        do timer_set1_shell(0,0,0,0,300,0)
+		to ton_showtar on +MET % timer_check1
+	ton_showtar:
+		do drawTarg(1000,-1,-1,-1,1000, 0)
+		to ton_targcd on MAT_WENT % drawTarg_done
+	ton_targcd:
+		do ec_send_code(TARGC1CD)
+		to go_tarlum
+
+	/* go: FINAL WAIT, FP OFF */
+    go_tarlum: /* bring up to full luminance in case it wasn't before */
+        do defTargLum(-1, 1000, 1000, -1) /* reheat targs */
+        to go_waitfpoff
+    go_waitfpoff:
+        do timer_set1_shell(1000,300,50,400,0,0)
+		to go_fpoff on +MET % timer_check1
+	go_fpoff: /* turn the FP off */
 		do drawTarg(0,-1,-1,-1,1000, 0)
-		to teye_fpoff_cd on MAT_WENT % drawTarg_done
-	teye_fpoff_cd:
+		to go_fpoff_cd on MAT_WENT % drawTarg_done
+	go_fpoff_cd:
 		do ec_send_code(FPOFFCD)
-        to teye_targ_cd
-    teye_targ_cd:
-        do ec_send_code(TARGC1CD)
         to teye_grace /* wait for sac*/
 
-	
-	/* grace period in which monsieur le monk has to 
+	/* grace period in which monsieur le monk has to
 	** break fixation and start the saccade
 	*/
 	teye_grace:
@@ -1438,7 +1443,7 @@ begin	first:
 	teye_saccd:
 		do ec_send_code(SACMADCD)
 		to check_eye_response
-		
+
 
 	/* end trial possibilities:
 	**
@@ -1452,42 +1457,42 @@ begin	first:
     	to peyehold on -WD3_XY & eyeflag		/* got correct target! */
 	    to neyehold on -WD4_XY & eyeflag		/* got incorrect target! */
         to ncshow                               /* got nada */
-	peyehold: 	
+	peyehold:
 		do ec_send_code(TRGACQUIRECD)
 		time 50	/* gotta hold for this long	*/
 		to ncshow on +WD3_XY & eyeflag
 		to pref
-	neyehold:	
+	neyehold:
 		do ec_send_code(TRGACQUIRECD)
 		time 50 /* gotta hold for this long	*/
 		to ncshow on +WD4_XY & eyeflag
 		to nushow
-	
+
 	/* visual feedback if not successful (NO CHOICE) */
-	ncshow: /* show the targets */		
+	ncshow: /* show the targets */
 		do drawTarg(-1, -1, -1, -1, -1, 0)
 		to ncwait on MAT_WENT % drawTarg_done
 	ncwait:
 		time 0
-		to ncerr  
-	
+		to ncerr
+
 	/* NO CHOICE: didn't complete the task */
 	ncerr:
-		do total(NCERR) 
+		do total(NCERR)
 		to ncend
 	ncend:
 		do end_trial(CLOSE_W)
 		time 1000
 		to loop
-	
+
 	/* visual feedback if not successful (WRONG CHOICE) */
-	nushow: /* show the targets */		
+	nushow: /* show the targets */
 		do drawTarg(-1, 1000, 0, -1, 1, 0)
 		to nuwait on MAT_WENT % drawTarg_done
 	nuwait:
 		time 250
-		to null  
-	
+		to null
+
 	/* NULL: chose wrong target in dots task */
 	null:
 		do total(WRONG)
@@ -1499,7 +1504,7 @@ begin	first:
 		do set_punishment_timer(0,1000,0,2000)
 		to nuend on +MET % timer_check1
 	nuend:
-		time 1000 
+		time 1000
 		to loop
 
 	/* PREF: update the totals and give a reward
@@ -1520,14 +1525,14 @@ begin	first:
 	prrew_off:
 		do dio_off(REW)
 		to prize_loop on 0 < gl_prize_count
-		to prdone 
+		to prdone
 	prize_loop:
 		to prdone on 0 ? gl_prize_count
 		to prize_delay
 	prize_delay:
 		time 150		/* the delay between consecutive rewards */
 		do drawTarg(-1, 0, -1, -1, -1, 1)
-		to prize 
+		to prize
 	prize:
 		do give_reward(REW, 50, PRIZE)
 		to prize_off on +MET % timer_check1
@@ -1539,12 +1544,12 @@ begin	first:
 		time 0
 		to loop
 
-		
+
 	abtst:	/* for abort list */
 		do abort_cleanup()
 		to prdone
-		
-		
+
+
 abort list:
 	abtst
 }
@@ -1574,12 +1579,12 @@ udp_set {
 status ON
 begin ufirst:
 		to uchk
-	uchk:	
+	uchk:
 		do udpCheckReceiveFork()
 		to uchkAgain
-	uchkAgain: // simply prevents looping back on same state, which Rex doesn't always like	
+	uchkAgain: // simply prevents looping back on same state, which Rex doesn't always like
 		do udpCheckReceiveFork()
 		to uchk
-		
+
 abort list:
 }
