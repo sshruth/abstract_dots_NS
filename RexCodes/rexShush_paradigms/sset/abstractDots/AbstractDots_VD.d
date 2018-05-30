@@ -110,6 +110,7 @@ int							    gl_teye_rt_sbet_n[7];
 int							    gl_sbet_shown = 0;		/* ts */
 
 int gl_correct_side;
+int gl_ntarlocs;
 
 /* ROUTINES */
 
@@ -590,7 +591,7 @@ int open_adata(void)
     /* task identifier */
     ec_send_code(STARTCD);	/* official start of trial ! */
 
-    EC_TAG2(I_TRIALIDCD,41); /* 4 is Abstract dot VD series,  1 is version*/
+    EC_TAG2(I_TRIALIDCD,42); /* 4 is Abstract dot VD series,  2 is version*/
     EC_TAG2(I_MONITORDISTCD, VIEW_DIST_CM);
     /* fixation x, y, diameter */
     EC_TAG1(I_FIXXCD, (VSD_GET_FP(gl_vsd))->x);
@@ -860,6 +861,19 @@ int give_reward(long dio, long duration, long who_calling)
 
    return 0;
  }
+
+/* ROUTINE: give_prize
+ **
+ ** description: call for bonus rewards
+ */
+int give_prize(long dio, long duration)
+{
+    int rew_size = duration;
+    EC_TAG2(BIGREWCD, rew_size);
+    dio_on(dio);
+    timer_set1(0,0,0,0,duration,0);
+    return 0;
+}
 
 
 /* ROUTINE: update_prize_count
@@ -1181,14 +1195,15 @@ int o2_maf(int flag, MENU *mp, char *astr, ME_RECUR *rp)
 */
 VLIST state_vl[] = {
     {"Repetitions",			    &(gl_menu_infoS.repetitions),		NP, make_tasks, ME_AFT, ME_DEC},
+    {"Tar_locations",           &gl_ntarlocs,                       NP, NP, 0, ME_DEC},
     {"RF_radius",               &(gl_menu_infoS.rfr),		        NP, NP, 0, ME_DEC},
     {"RF_theta",                &(gl_menu_infoS.rft),		        NP, NP, 0, ME_DEC},
     {"RF_jitter",               &(gl_menu_infoS.tarjit),		    NP, NP, 0, ME_DEC},
 	{"RNG_Seed",			    &(gl_menu_infoS.seed),		        NP, NP, 0, ME_DEC},
 	{"Max_prize_count",         &gl_prize_max, 						NP, NP, 0, ME_DEC},
-	{"Skip_dir",               &(gl_menu_infoS.skip_dir),		        NP, NP, 0, ME_DEC},
-	{"Skip_coh",               &(gl_menu_infoS.skip_coh),		        NP, NP, 0, ME_DEC},
-	{"Skip_p",               &(gl_menu_infoS.skip_p),		        NP, NP, 0, ME_DEC},
+	{"Skip_dir",                &(gl_menu_infoS.skip_dir),		    NP, NP, 0, ME_DEC},
+	{"Skip_coh",                &(gl_menu_infoS.skip_coh),		    NP, NP, 0, ME_DEC},
+	{"Skip_p",                  &(gl_menu_infoS.skip_p),		    NP, NP, 0, ME_DEC},
 	{"Proportion",              &(gl_task_infoS[0].proportion), 	NP, NP, 0, ME_DEC},
 	{NS}};
 
@@ -1276,7 +1291,6 @@ RTVAR rtvars[] = {
    {"Coherence", 	    		&(gl_rtvar.coherence)},
    {"Duration", 				&(gl_rtvar.duration)},
    {"Direction", 				&(gl_rtvar.direction)},
-//   {"Elec stim", 				&gl_elestim_flag},
    {"Pulse", 					&(gl_rtvar.pulse_time)},
    {"Delay", 					&(gl_rtvar.delay)},
    {"", 0}
@@ -1428,22 +1442,19 @@ begin	first:
 		to go_fpoff_cd on MAT_WENT % drawTarg_done
 	go_fpoff_cd:
 		do ec_send_code(FPOFFCD)
-        to teye_grace /* wait for sac*/
+        to resp_ewinoff /* wait for sac*/
 
-	/* grace period in which monsieur le monk has to
-	** break fixation and start the saccade
-	*/
-	teye_grace:
+    /* resp: RESPONSE EPOCH	*/
+    resp_ewinoff:
 		do set_eye_flag(E_OFF)
-		to teye_gracea
-	teye_gracea:
-		time 2000
-		to teye_saccd on +WD0_XY & eyeflag
+		to resp_grace
+	resp_grace: /* grace time in which monk has to break fixation and start the saccade*/
+		time 1500
+		to resp_saccd on +WD0_XY & eyeflag
 		to ncshow
-	teye_saccd:
+	resp_saccd:
 		do ec_send_code(SACMADCD)
 		to check_eye_response
-
 
 	/* end trial possibilities:
 	**
@@ -1534,7 +1545,7 @@ begin	first:
 		do drawTarg(-1, 0, -1, -1, -1, 1)
 		to prize
 	prize:
-		do give_reward(REW, 50, PRIZE)
+		do give_prize(REW, 50)
 		to prize_off on +MET % timer_check1
 	prize_off:
 		do dio_off(REW)
@@ -1543,7 +1554,6 @@ begin	first:
 		do end_trial(CLOSE_W)
 		time 0
 		to loop
-
 
 	abtst:	/* for abort list */
 		do abort_cleanup()

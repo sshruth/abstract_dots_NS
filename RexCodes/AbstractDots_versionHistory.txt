@@ -36,7 +36,9 @@ In this version of the task, the targets come on after the dots, but the FP stay
 a. AbstractDots_VD01: (Trial ID: 41)
 Forked from AbstractDots05. Version allows control of target luminance in two steps, once after the target comes on and another when the FP goes off. Unfortunately, only one target on code is sent at the first appearance. 
 
-b. 
+b. AbstractDots_VD02: (Trial ID: 42)
+* Drops code for reward and prize
+
 
 
 

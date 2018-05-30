@@ -6,7 +6,7 @@ function showRewardSchedule(max_time,scaling,cutoff)
 % if timeout > cutoff, then reward = cutoff
 
 
-RT = 1:800;
+RT = 51:400;
 reward = max_time * exp (-RT/scaling);
 
 reward(reward>cutoff) = cutoff;
@@ -15,5 +15,6 @@ plot(RT,reward,'linewidth',2)
 ylabel 'Rewards (ms)'
 xlabel 'RT (ms)'
 set(gca,'TickDir','out','FontSize',18,'Box','off');
+text(55,100,'')
 grid on 
 grid minor
