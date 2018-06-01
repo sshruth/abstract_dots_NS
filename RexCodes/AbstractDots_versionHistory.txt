@@ -37,7 +37,11 @@ a. AbstractDots_VD01: (Trial ID: 41)
 Forked from AbstractDots05. Version allows control of target luminance in two steps, once after the target comes on and another when the FP goes off. Unfortunately, only one target on code is sent at the first appearance. 
 
 b. AbstractDots_VD02: (Trial ID: 42)
-* Drops code for reward and prize
+* Target jittering removed. Now number of target locations can be specified in main menu RF_n
+	- If 1, 120¡ is added to that location for the second target
+	- If 2, the location in 1 are mirrored on the y-axis
+* Drops different codes for reward and prize
+
 
 
 

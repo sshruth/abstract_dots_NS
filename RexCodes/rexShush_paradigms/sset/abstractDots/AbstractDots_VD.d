@@ -48,7 +48,7 @@ struct menu_info_struct {
 	int     seed;
     int     rfr;
     int     rft;
-    int     tarjit;
+    int     ntars;
     int 	skip_dir;
     int 	skip_coh;
     int 	skip_p;
@@ -110,7 +110,6 @@ int							    gl_teye_rt_sbet_n[7];
 int							    gl_sbet_shown = 0;		/* ts */
 
 int gl_correct_side;
-int gl_ntarlocs;
 
 /* ROUTINES */
 
@@ -502,7 +501,8 @@ int setup_eyewindows(long wd_width, long wd_height)
 */
 int open_adata(void)
 {
-    int i, j, x, y;
+    int i, j, r, t, n;
+		int x1, x2, y1 , y2;
 
     /*
      ** Clear all the old objects,then call the big kahuna
@@ -519,29 +519,36 @@ int open_adata(void)
 
     /* call update display to parse the object info */
     /* This is the main section to randomize object locations on each trial
-     ** APPROACH: Take R & Theta as input and jitter on Theta
+     ** APPROACH: Take R & Theta as input and randomize across ntars locations
      */
-    i = gl_menu_infoS.rft + TOY_RAND(gl_menu_infoS.tarjit);
+    n = gl_menu_infoS.ntars;
+		t = gl_menu_infoS.rft;
+		r = gl_menu_infoS.rfr;
     j =  TOY_RAND(1000);
-    if (j < 334) {
-        gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = TOY_RT_TO_X(0,gl_menu_infoS.rfr,i);
-        gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = TOY_RT_TO_Y(0,gl_menu_infoS.rfr,i);
-        gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = TOY_RT_TO_X(0,gl_menu_infoS.rfr,i+120);
-        gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = TOY_RT_TO_Y(0,gl_menu_infoS.rfr,i+120);
 
-    } else if(j < 667){
-        gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = TOY_RT_TO_X(0,gl_menu_infoS.rfr,i+120);
-        gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = TOY_RT_TO_Y(0,gl_menu_infoS.rfr,i+120);
-        gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = TOY_RT_TO_X(0,gl_menu_infoS.rfr,i+240);
-        gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = TOY_RT_TO_Y(0,gl_menu_infoS.rfr,i+240);
+	  if (n==1)	{ // only one target location
+				gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = TOY_RT_TO_X(0,r,t);
+				gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = TOY_RT_TO_Y(0,r,t);
+				gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = TOY_RT_TO_X(0,r,t+120);
+				gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = TOY_RT_TO_Y(0,r,t+120);
 
-    } else {
-        gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = TOY_RT_TO_X(0,gl_menu_infoS.rfr,i+240);
-        gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = TOY_RT_TO_Y(0,gl_menu_infoS.rfr,i+240);
-        gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = TOY_RT_TO_X(0,gl_menu_infoS.rfr,i+0);
-        gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = TOY_RT_TO_Y(0,gl_menu_infoS.rfr,i+0);
-    }
-
+		} else if (n==2){ // two target locations
+				x1 = TOY_RT_TO_X(0,r,t);
+				y1 = TOY_RT_TO_Y(0,r,t);
+				x2 = TOY_RT_TO_X(0,r,t+120);
+				y2 = TOY_RT_TO_Y(0,r,t+120);
+				if (j < 500) {
+					gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = x1;
+					gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = y1;
+					gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = x2;
+					gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = y2;
+				} else {
+					gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = -1 * x1;
+					gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = y1;
+					gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = -1 * x2;
+					gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = y2;
+				}
+		}
 
     vsd_update_display(gl_vsd, 0); /* Zero indicates no reverse dot-motion/target association */
     /* send the dots setup command if necessary */
@@ -1195,10 +1202,9 @@ int o2_maf(int flag, MENU *mp, char *astr, ME_RECUR *rp)
 */
 VLIST state_vl[] = {
     {"Repetitions",			    &(gl_menu_infoS.repetitions),		NP, make_tasks, ME_AFT, ME_DEC},
-    {"Tar_locations",           &gl_ntarlocs,                       NP, NP, 0, ME_DEC},
     {"RF_radius",               &(gl_menu_infoS.rfr),		        NP, NP, 0, ME_DEC},
     {"RF_theta",                &(gl_menu_infoS.rft),		        NP, NP, 0, ME_DEC},
-    {"RF_jitter",               &(gl_menu_infoS.tarjit),		    NP, NP, 0, ME_DEC},
+    {"RF_n",               &(gl_menu_infoS.ntars),		    NP, NP, 0, ME_DEC},
 	{"RNG_Seed",			    &(gl_menu_infoS.seed),		        NP, NP, 0, ME_DEC},
 	{"Max_prize_count",         &gl_prize_max, 						NP, NP, 0, ME_DEC},
 	{"Skip_dir",                &(gl_menu_infoS.skip_dir),		    NP, NP, 0, ME_DEC},
