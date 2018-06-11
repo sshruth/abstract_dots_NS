@@ -522,33 +522,55 @@ int open_adata(void)
      ** APPROACH: Take R & Theta as input and randomize across ntars locations
      */
     n = gl_menu_infoS.ntars;
-		t = gl_menu_infoS.rft;
-		r = gl_menu_infoS.rfr;
+    t = gl_menu_infoS.rft;
+    r = gl_menu_infoS.rfr;
     j =  TOY_RAND(1000);
 
-	  if (n==1)	{ // only one target location
-				gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = TOY_RT_TO_X(0,r,t);
-				gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = TOY_RT_TO_Y(0,r,t);
-				gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = TOY_RT_TO_X(0,r,t+120);
-				gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = TOY_RT_TO_Y(0,r,t+120);
+    x1 = TOY_RT_TO_X(0,r,t);
+    y1 = TOY_RT_TO_Y(0,r,t);
+    x2 = TOY_RT_TO_X(0,r,t+90);
+    y2 = TOY_RT_TO_Y(0,r,t+90);
 
-		} else if (n==2){ // two target locations
-				x1 = TOY_RT_TO_X(0,r,t);
-				y1 = TOY_RT_TO_Y(0,r,t);
-				x2 = TOY_RT_TO_X(0,r,t+120);
-				y2 = TOY_RT_TO_Y(0,r,t+120);
-				if (j < 500) {
-					gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = x1;
-					gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = y1;
-					gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = x2;
-					gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = y2;
-				} else {
-					gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = -1 * x1;
-					gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = y1;
-					gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = -1 * x2;
-					gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = y2;
-				}
-		}
+    if (n==2){ // two pairs of target locations
+        if (j < 500) {
+            gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = x1;
+            gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = y1;
+            gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = x2;
+            gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = y2;
+        } else { // reflects about the Y axis
+            gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = -1 * x1;
+            gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = y1;
+            gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = -1 * x2;
+            gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = y2;
+        }
+    } else if (n==4){ // four pairs of target locations
+        if (j < 250) { // original pair
+            gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = x1;
+            gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = y1;
+            gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = x2;
+            gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = y2;
+        } else if (j < 500){ // pair reflected on Y axis
+            gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = -1 * x1;
+            gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = y1;
+            gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = -1 * x2;
+            gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = y2;
+        } else if (j < 750){ // one original and one reflected
+            gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = x1;
+            gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = y1;
+            gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = -1* x1;
+            gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = y1;
+        } else { // second original and second reflected
+            gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = x2;
+            gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = y2;
+            gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = -1 * x2;
+            gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = y2;
+        }
+    } else { // defaults to only one pair of target location
+        gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = x1;
+        gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = y1;
+        gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = x2;
+        gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = y2;
+    }
 
     vsd_update_display(gl_vsd, 0); /* Zero indicates no reverse dot-motion/target association */
     /* send the dots setup command if necessary */
@@ -588,7 +610,7 @@ int open_adata(void)
 
     _VSDdot_object dot = VSD_GET_DTOBJECT(gl_vsd);
     printf("\n");
-    printf("COHERENCE = %d\n",dot->coherence);
+    printf("Coherence = %d\n",dot->coherence);
     if ( dot->direction==gl_menu_infoS.skip_dir && dot->coherence<=gl_menu_infoS.skip_coh && TOY_RAND(1000)<gl_menu_infoS.skip_p){
         gl_sbet_shown = 1; /* Hijacking sbet to skip trials */
         return(0);
