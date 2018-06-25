@@ -1223,16 +1223,16 @@ int o2_maf(int flag, MENU *mp, char *astr, ME_RECUR *rp)
 /* Top-level state menu
 */
 VLIST state_vl[] = {
-    {"Repetitions",			    &(gl_menu_infoS.repetitions),		NP, make_tasks, ME_AFT, ME_DEC},
-    {"RF_radius",               &(gl_menu_infoS.rfr),		        NP, NP, 0, ME_DEC},
-    {"RF_theta",                &(gl_menu_infoS.rft),		        NP, NP, 0, ME_DEC},
-    {"RF_n",               &(gl_menu_infoS.ntars),		    NP, NP, 0, ME_DEC},
-	{"RNG_Seed",			    &(gl_menu_infoS.seed),		        NP, NP, 0, ME_DEC},
-	{"Max_prize_count",         &gl_prize_max, 						NP, NP, 0, ME_DEC},
-	{"Skip_dir",                &(gl_menu_infoS.skip_dir),		    NP, NP, 0, ME_DEC},
-	{"Skip_coh",                &(gl_menu_infoS.skip_coh),		    NP, NP, 0, ME_DEC},
+  {"Repetitions",			    		&(gl_menu_infoS.repetitions),		NP, make_tasks, ME_AFT, ME_DEC},
+  {"RF_radius",               &(gl_menu_infoS.rfr),		        NP, NP, 0, ME_DEC},
+  {"RF_theta",                &(gl_menu_infoS.rft),		        NP, NP, 0, ME_DEC},
+  {"RF_n",               			&(gl_menu_infoS.ntars),		    	NP, NP, 0, ME_DEC},
+	{"RNG_Seed",			    			&(gl_menu_infoS.seed),		      NP, NP, 0, ME_DEC},
+	{"Max_prize_count",         &gl_prize_max, 									NP, NP, 0, ME_DEC},
+	{"Skip_dir",                &(gl_menu_infoS.skip_dir),		  NP, NP, 0, ME_DEC},
+	{"Skip_coh",                &(gl_menu_infoS.skip_coh),		  NP, NP, 0, ME_DEC},
 	{"Skip_p",                  &(gl_menu_infoS.skip_p),		    NP, NP, 0, ME_DEC},
-	{"Proportion",              &(gl_task_infoS[0].proportion), 	NP, NP, 0, ME_DEC},
+	{"Proportion",              &(gl_task_infoS[0].proportion),	NP, NP, 0, ME_DEC},
 	{NS}};
 
 /* task_info vlist ... used for the two dots-style tasks */
@@ -1241,11 +1241,11 @@ VLIST task1_info_vl[] = {
    {"object_2", 				&(gl_task_infoS[0].object_2), NP, NP, ME_GB, ME_DEC},
    {"series_o", 				&(gl_task_infoS[0].series_o), NP, NP, ME_GB, ME_DEC},
    {"series_n", 				&(gl_task_infoS[0].series_n), NP, NP, ME_GB, ME_DEC},
-   {"series_delta", 		    &(gl_task_infoS[0].series_delta), NP, NP, ME_GB, ME_DEC},
+   {"series_delta", 		&(gl_task_infoS[0].series_delta), NP, NP, ME_GB, ME_DEC},
    {"t_flag", 					&(gl_task_infoS[0].t_flag), NP, NP, ME_GB, ME_DEC},
-   {"coherence_lo", 		    &(gl_task_infoS[0].coherence_lo), NP, NP, ME_GB, ME_DEC},
-   {"coherence_hi", 		    &(gl_task_infoS[0].coherence_hi), NP, NP, ME_GB, ME_DEC},
-   {"RT_task", 				    &(gl_task_infoS[0].rt_flag), NP, NP, ME_GB, ME_DEC},
+   {"coherence_lo", 		&(gl_task_infoS[0].coherence_lo), NP, NP, ME_GB, ME_DEC},
+   {"coherence_hi", 		&(gl_task_infoS[0].coherence_hi), NP, NP, ME_GB, ME_DEC},
+   {"RT_task", 				  &(gl_task_infoS[0].rt_flag), NP, NP, ME_GB, ME_DEC},
    {NS}};
 
 VLIST task2_info_vl[] = {
@@ -1253,10 +1253,10 @@ VLIST task2_info_vl[] = {
    {"object_2", 				&(gl_task_infoS[1].object_2), NP, NP, ME_GB, ME_DEC},
    {"series_o", 				&(gl_task_infoS[1].series_o), NP, NP, ME_GB, ME_DEC},
    {"series_n", 				&(gl_task_infoS[1].series_n), NP, NP, ME_GB, ME_DEC},
-   {"series_delta", 	    	&(gl_task_infoS[1].series_delta), NP, NP, ME_GB, ME_DEC},
+   {"series_delta", 	  &(gl_task_infoS[1].series_delta), NP, NP, ME_GB, ME_DEC},
    {"t_flag", 					&(gl_task_infoS[1].t_flag), NP, NP, ME_GB, ME_DEC},
-   {"coherence_lo", 		    &(gl_task_infoS[1].coherence_lo), NP, NP, ME_GB, ME_DEC},
-   {"coherence_hi", 		    &(gl_task_infoS[1].coherence_hi), NP, NP, ME_GB, ME_DEC},
+   {"coherence_lo", 		&(gl_task_infoS[1].coherence_lo), NP, NP, ME_GB, ME_DEC},
+	 {"coherence_hi", 		&(gl_task_infoS[1].coherence_hi), NP, NP, ME_GB, ME_DEC},
    {"RT_task",					&(gl_task_infoS[1].rt_flag), NP, NP, ME_GB, ME_DEC},
    {NS}};
 
@@ -1361,49 +1361,48 @@ begin	first:
 		to task on +ONES & gl_remain
 		to loop
 	task:			/* control what to do on current trial */
-        do open_adata()
-        to skiptrl on 1 = gl_sbet_shown /* Skipped trials are considered sure bet choices */
+    do open_adata()
+    to skiptrl on 1 = gl_sbet_shown /* Skipped trials are considered sure bet choices */
 		to teye_start on TASK_EYE = gl_task
-    skiptrl:
-        do total(SBET)
-        to skipdone
+  skiptrl:
+    do total(SBET)
+    to skipdone
 	skipdone:
 		do end_trial(CLOSE_W)
 		to settrl
 
 	/* position window, wait for fixation */
 	fixeyewinpos:
-	    do position_eyewindow(30, 30, 0)
-	    time 10	/* this is very important - it takes time to set window */
+    do position_eyewindow(30, 30, 0)
+    time 10	/* this is very important - it takes time to set window */
 		to fixeyewait
 	fixeyewait:    /* wait for either eye or hand fixation */
-	    time 5000
-	    to fixeyedelay on -WD0_XY & eyeflag
+    time 5000
+    to fixeyedelay on -WD0_XY & eyeflag
 		to nofix
 	nofix:		/* failed to attain fixation */
-	    do total(DO_OVER) // just redo the trial
-	    to nofixDone
+    do total(DO_OVER) // just redo the trial
+    to nofixDone
 	nofixDone:
-	    time 2000
+    time 2000
 		do end_trial(CANCEL_W)
 		to loop
 
 	fixeyedelay:
-	    time 100 /* delay before activating eye_flag - noise on the eye position signal should not be able to "break eye fixation" */
+    time 100 /* delay before activating eye_flag - noise on the eye position signal should not be able to "break eye fixation" */
 		to fixeyeset
 	fixeyeset:		/* set flag to check for eye fixation breaks */
 		do set_eye_flag(E_FIX)
-	    to fixeyedone
+    to fixeyedone
 
 	/* Done with fixating stuff */
 	fixeyedone:
-	    do position_eyewindow(35, 35, 0)
+    do position_eyewindow(35, 35, 0)
 		to teye_targ_wait on TASK_EYE = gl_task
-//        to teye_waitdots
 
 /*** CHAIN FOR TASK EYE ***/
 	teye_start:
-	    do setup_eyewindows(35, 30)
+    do setup_eyewindows(35, 30)
 		to teye_fp
 	teye_fp:
 		do drawTarg(1000,0,0,0,0)
@@ -1420,8 +1419,8 @@ begin	first:
 		to teye_targ
 	teye_targ: /* initialize the targets */
 		do drawTarg(-1, 1000, 1000, -1, 0)
-        to teye_waitdots on MAT_WENT % drawTarg_done
-  	    /* to teye_targ_cd on PHOTO_DETECT_DOWN % dio_check_photodetector */
+    to teye_waitdots on MAT_WENT % drawTarg_done
+    /* to teye_targ_cd on PHOTO_DETECT_DOWN % dio_check_photodetector */
 
 	/* START SHOWING DOTS */
 	teye_waitdots:
@@ -1430,11 +1429,11 @@ begin	first:
 	teye_startdots:	/* START DOTS */
 		do showDots()
 		to teye_wentdots on MAT_WENT % showDots_done
-	    /* to teye_wentdots on PHOTO_DETECT_UP % dio_check_photodetector */
+    /* to teye_wentdots on PHOTO_DETECT_UP % dio_check_photodetector */
 	teye_wentdots:
 		do ec_send_code(GOCOHCD)
 		to teye_setdotdur
-    teye_setdotdur:		/* set the dots duration timer */
+  teye_setdotdur:		/* set the dots duration timer */
 		do set_dots_duration(1000,600,1000,200,0,0)
 		to teye_stopdots on +MET % timer_check1 /* check the timer */
 	teye_stopdots:
@@ -1449,7 +1448,7 @@ begin	first:
 		do defTargLum(-1, 1000, 1000, -1) /* reheat targs */
 		to ton_wait
 	ton_wait:
-        do timer_set1_shell(0,0,0,0,300,0)
+    do timer_set1_shell(0,0,0,0,300,0)
 		to ton_showtar on +MET % timer_check1
 	ton_showtar:
 		do drawTarg(1000,-1,-1,-1,1000, 0)
@@ -1459,21 +1458,21 @@ begin	first:
 		to go_tarlum
 
 	/* go: FINAL WAIT, FP OFF */
-    go_tarlum: /* bring up to full luminance in case it wasn't before */
-        do defTargLum(-1, 1000, 1000, -1) /* reheat targs */
-        to go_waitfpoff
-    go_waitfpoff:
-        do timer_set1_shell(1000,300,50,400,0,0)
+  go_tarlum: /* bring up to full luminance in case it wasn't before */
+    do defTargLum(-1, 1000, 1000, -1) /* reheat targs */
+    to go_waitfpoff
+  go_waitfpoff:
+    do timer_set1_shell(1000,300,50,400,0,0)
 		to go_fpoff on +MET % timer_check1
 	go_fpoff: /* turn the FP off */
 		do drawTarg(0,-1,-1,-1,1000, 0)
 		to go_fpoff_cd on MAT_WENT % drawTarg_done
 	go_fpoff_cd:
 		do ec_send_code(FPOFFCD)
-        to resp_ewinoff /* wait for sac*/
+    to resp_ewinoff /* wait for sac*/
 
     /* resp: RESPONSE EPOCH	*/
-    resp_ewinoff:
+  resp_ewinoff:
 		do set_eye_flag(E_OFF)
 		to resp_grace
 	resp_grace: /* grace time in which monk has to break fixation and start the saccade*/
@@ -1492,10 +1491,10 @@ begin	first:
 	** - pref.  finished correctly and got rewarded
 	*/
 	check_eye_response:
-		time 500
-    	to peyehold on -WD3_XY & eyeflag		/* got correct target! */
-	    to neyehold on -WD4_XY & eyeflag		/* got incorrect target! */
-        to ncshow                               /* got nada */
+	time 500
+  	to peyehold on -WD3_XY & eyeflag		/* got correct target! */
+    to neyehold on -WD4_XY & eyeflag		/* got incorrect target! */
+    to ncshow                               /* got nada */
 	peyehold:
 		do ec_send_code(TRGACQUIRECD)
 		time 50	/* gotta hold for this long	*/
@@ -1549,7 +1548,7 @@ begin	first:
 	/* PREF: update the totals and give a reward
 	*/
 	pref:
-	    time 250
+    time 250
 		do total(CORRECT)
 		to prend
 	prend:
