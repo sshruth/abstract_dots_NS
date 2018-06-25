@@ -885,7 +885,7 @@ begin	first:
 		do set_eye_flag(E_OFF)
 		to teye_gracea
 	teye_gracea:
-		time 2000
+		time 1000
 		to teye_saccd on +WD0_XY & eyeflag
 		to wcshow
 	teye_saccd:

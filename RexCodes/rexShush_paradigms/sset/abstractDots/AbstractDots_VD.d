@@ -26,12 +26,12 @@
 #define E_FIX	1
 
 /** windows for eyeflag and objects **/
-#define WIND0	    0       /* will be used to enforce fixation */
-#define WIND1	    1		/* ts */
-#define WIND2		2		/* dot patch */
-#define WIND3       3       /* correct response window */
-#define WIND4       4       /* incorrect response window */
-#define WIND5       5       /* sure bet */
+#define WIND0	  0       /* will be used to enforce fixation */
+#define WIND1	  1				/* ts */
+#define WIND2		2				/* dot patch */
+#define WIND3   3       /* correct response window */
+#define WIND4   4       /* incorrect response window */
+#define WIND5   5       /* sure bet */
 #define WIND7		7       /* monitor token */
 
 #define NUM_TARGETS			4
@@ -45,13 +45,13 @@
 typedef struct menu_info_struct *menu_info;
 struct menu_info_struct {
 	int		repetitions;
-	int     seed;
-    int     rfr;
-    int     rft;
-    int     ntars;
-    int 	skip_dir;
-    int 	skip_coh;
-    int 	skip_p;
+	int   seed;
+  int   rfr;
+  int   rft;
+  int   ntars;
+  int 	skip_dir;
+  int 	skip_coh;
+  int 	skip_p;
 };
 
 typedef struct rtvar_struct *rtvar;
@@ -68,7 +68,7 @@ struct rtvar_struct {
 	int	coherence;
 	int pulse_time;
 	int	duration;
-    int delay;
+  int delay;
 	int	direction;
 	int rt;
 };
@@ -93,21 +93,21 @@ int 							gl_remain;
 int 							gl_eye_flag = 0;
 int 							gl_hand_flag = 0;
 int 							gl_dots_flag;
-int							    gl_prize_count;
-int							    gl_prize_max = 0;
+int							  gl_prize_count;
+int							  gl_prize_max = 0;
 int 							gl_rt_flag = 0; /*Is current trial an RT task?*/
 long							gl_ref_time = 0; /* reference time for the RT task */
 long							gl_resp_time = 0; /* (absolute) response time for the RT task */
-int							    gl_teye_perf_cor[7]; /* performance counters */
-int							    gl_teye_perf_sbet[7];
-int							    gl_teye_perf_tot[7];
+int							  gl_teye_perf_cor[7]; /* performance counters */
+int							  gl_teye_perf_sbet[7];
+int							  gl_teye_perf_tot[7];
 long							gl_teye_rt_cor_sum[7];
-int							    gl_teye_rt_cor_n[7];
+int							  gl_teye_rt_cor_n[7];
 long							gl_teye_rt_err_sum[7];
-int							    gl_teye_rt_err_n[7];
+int							  gl_teye_rt_err_n[7];
 long							gl_teye_rt_sbet_sum[7];
-int							    gl_teye_rt_sbet_n[7];
-int							    gl_sbet_shown = 0;		/* ts */
+int							  gl_teye_rt_sbet_n[7];
+int							  gl_sbet_shown = 0;		/* ts */
 
 int gl_correct_side;
 
@@ -1273,9 +1273,9 @@ VLIST object_vl[] = {
    {"wrt",        	OS->wrt,          NP, NP, ME_GB, ME_DEC},
    {"angle_offset",	OS->angle_offset, NP, NP, ME_GB, ME_DEC},
    {"diameter",   	OS->diameter,     NP, NP, ME_GB, ME_DEC},
-   {"color.R",  	OS->color.R,      NP, NP, ME_GB, ME_DEC},
-   {"color.G",  	OS->color.G,      NP, NP, ME_GB, ME_DEC},
-   {"color.B",  	OS->color.B,      NP, NP, ME_GB, ME_DEC},
+   {"color.R",  		OS->color.R,      NP, NP, ME_GB, ME_DEC},
+   {"color.G",  		OS->color.G,      NP, NP, ME_GB, ME_DEC},
+   {"color.B",  		OS->color.B,      NP, NP, ME_GB, ME_DEC},
    {NS}};
 
 /* Dots parameters vlist */
@@ -1307,20 +1307,20 @@ MENU umenus[] = {
 
 /* REAL-TIME VARIABLES */
 RTVAR rtvars[] = {
-   {"Total trials", 			&(gl_rtvar.total_trials)},
+   {"Total trials", 				&(gl_rtvar.total_trials)},
    {"Total correct", 	    	&(gl_rtvar.total_correct)},
-   {"Trials this set", 	    	&(gl_rtvar.num_completed)},
-   {"Previous score",       	&(gl_rtvar.last_score)},
-   {"Broke fixation", 	    	&(gl_rtvar.num_brfix)},
-   {"No choice", 		    	&(gl_rtvar.num_ncerr)},
-   {"Correct", 			    	&(gl_rtvar.num_correct)},
-   {"Wrong", 					&(gl_rtvar.num_wrong)},
-   {"Sure Bet", 				&(gl_rtvar.num_sbet)},
-   {"Coherence", 	    		&(gl_rtvar.coherence)},
-   {"Duration", 				&(gl_rtvar.duration)},
-   {"Direction", 				&(gl_rtvar.direction)},
-   {"Pulse", 					&(gl_rtvar.pulse_time)},
-   {"Delay", 					&(gl_rtvar.delay)},
+   {"Trials this set", 	    &(gl_rtvar.num_completed)},
+   {"Previous score",       &(gl_rtvar.last_score)},
+   {"Broke fixation", 	    &(gl_rtvar.num_brfix)},
+   {"No choice", 		    		&(gl_rtvar.num_ncerr)},
+   {"Correct", 			    		&(gl_rtvar.num_correct)},
+   {"Wrong", 								&(gl_rtvar.num_wrong)},
+   {"Sure Bet", 						&(gl_rtvar.num_sbet)},
+   {"Coherence", 	    			&(gl_rtvar.coherence)},
+   {"Duration", 						&(gl_rtvar.duration)},
+   {"Direction", 						&(gl_rtvar.direction)},
+   {"Pulse", 								&(gl_rtvar.pulse_time)},
+   {"Delay", 								&(gl_rtvar.delay)},
    {"", 0}
 };
 
