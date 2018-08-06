@@ -38,9 +38,13 @@ Forked from AbstractDots05. Version allows control of target luminance in two st
 
 b. AbstractDots_VD02: (Trial ID: 42)
 * Target jittering removed. Now number of target locations can be specified in main menu RF_n
-	- If 1, 120¡ is added to that location for the second target
+	- If 1, 90¡ is added to that location for the second target
 	- If 2, the location in 1 are mirrored on the y-axis
+	- If 4, the unused pairings of two are now in play
 * Drops different codes for reward and prize
+
+c. AbstractDots_VD03: (Trial ID: 43)
+* FP stays on for a little bit on fix breaks 
 
 
 

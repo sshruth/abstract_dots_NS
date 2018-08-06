@@ -108,8 +108,7 @@ int							  gl_teye_rt_err_n[7];
 long							gl_teye_rt_sbet_sum[7];
 int							  gl_teye_rt_sbet_n[7];
 int							  gl_sbet_shown = 0;		/* ts */
-
-int gl_correct_side;
+int 							gl_tar_wait = 0; /* keeping track of targ wait period */
 
 /* ROUTINES */
 
@@ -478,16 +477,10 @@ int setup_eyewindows(long wd_width, long wd_height)
 	wd_siz(WIND3, wd_width, wd_height);
 	wd_cntrl(WIND3, WD_ON);
 
-	if (vso->x < 0)
-		gl_correct_side = -1;
-	else
-		gl_correct_side = 1;
-
 	vso = VSD_GET_TW(gl_vsd);
 	wd_pos(WIND4, vso->x, vso->y);
 	wd_siz(WIND4, wd_width, wd_height);
 	wd_cntrl(WIND4, WD_ON);
-
 
 	EC_TAG2(I_ETARG_ACCEPTHX, wd_width);
 	EC_TAG2(I_ETARG_ACCEPTHY, wd_height);
@@ -620,7 +613,7 @@ int open_adata(void)
     /* task identifier */
     ec_send_code(STARTCD);	/* official start of trial ! */
 
-    EC_TAG2(I_TRIALIDCD,42); /* 4 is Abstract dot VD series,  2 is version*/
+    EC_TAG2(I_TRIALIDCD,43); /* 4 is Abstract dot VD series,  3 is version*/
     EC_TAG2(I_MONITORDISTCD, VIEW_DIST_CM);
     /* fixation x, y, diameter */
     EC_TAG1(I_FIXXCD, (VSD_GET_FP(gl_vsd))->x);
@@ -689,7 +682,17 @@ int set_eye_flag(long flag)
 	gl_eye_flag = flag;
 	if (flag == E_FIX)
 	  ec_send_code(EFIXACQ);
-	return(0);;
+	return(0);
+}
+
+/* ROUTINE: set_taron_flag
+**
+** To keep track of target on during wait period
+*/
+int set_taron_flag(long flag)
+{
+	gl_tar_wait = flag;
+	return(0);
 }
 
 
@@ -700,69 +703,6 @@ int set_eye_flag(long flag)
 void print_status(void)
  {
 	printf("status\n");
- }
-
-/* ROUTINE: print_experiment_info
-**
-*/
-void print_experiment_info(void)
- {
-	register int i;
-
-	printf("\n");
-	printf("------------------------------------------------------------\n");
-
-		printf("Number of repetitions      = %d\n", gl_vsd->num_repetitions);
-		printf("Number of unique trials    = %d\n", gl_vsd->num_trials);
-		printf("Number of total trials     = %d\n", gl_vsd->num_trials * gl_vsd->num_repetitions);
-
-	printf("Number of remaining trials = %d\n", gl_remain);
-	printf("-TASK 1-----------------------------------------------------\n");
-	printf("\t\t 0.0\t 3.2\t 6.4\t12.8\t25.6\t51.2\t99.9\n");
-	printf("Performance");
-
-	for (i=0;i<7;i++)
-		if (gl_teye_perf_tot[i])
-			printf("\t %3d",(int)(gl_teye_perf_cor[i]/(gl_teye_perf_tot[i]/100.0)+.5));
-		else
-			printf("\t ---");
-
-	printf("\n");
-	printf("Sure-bet");		/* ts */
-
-	for (i=0;i<7;i++)
-		if (gl_teye_perf_tot[i])
-			printf("\t %3d",(int)(gl_teye_perf_sbet[i]/(gl_teye_perf_tot[i]/100.0)+.5));
-		else
-			printf("\t ---");
-
-	printf("\n");
-	printf("Correct RT");
-
-	for (i=0;i<7;i++)
-		if (gl_teye_rt_cor_n[i])
-			printf("\t%4d",(int)((float)gl_teye_rt_cor_sum[i]/gl_teye_rt_cor_n[i]+.5));
-		else
-			printf("\t----");
-
-	printf("\n");
-	printf("Error RT");
-
-	for (i=0;i<7;i++)
-		if (gl_teye_rt_err_n[i])
-			printf("\t%4d",(int)((float)gl_teye_rt_err_sum[i]/gl_teye_rt_err_n[i]+.5));
-		else
-			printf("\t----");
-
-	printf("\n");
-	printf("Sure-bet RT");		/* ts */
-
-	for (i=0;i<7;i++)
-		if (gl_teye_rt_sbet_n[i])
-			printf("\t%4d",(int)((float)gl_teye_rt_sbet_sum[i]/gl_teye_rt_sbet_n[i]+.5));
-		else
-			printf("\t----");
-
  }
 
 
@@ -819,10 +759,6 @@ int set_delay_rtvar (long a)
 int set_reward_delay(long min_time)
  {
 	int set_timer_to = 0;
-	//long cur_time = i_b->i_time;
-
-	//if ((cur_time-gl_ref_time)<min_time) /* extra delay necessary? */
-	//	set_timer_to=min_time-(cur_time-gl_ref_time);
 
 	/* Luke was here, based on actual RT time */
 	if ((gl_resp_time - gl_ref_time)<min_time) /* extra delay necessary? */
@@ -865,9 +801,6 @@ int give_reward(long dio, long duration, long who_calling)
  {
    static int gl_rew_size_cor = 0;	/* size of the reward */
    static int gl_rew_size_sbet = 0;
-
-   if (gl_correct_side == -1)
-	   duration = duration;
 
    dio_on(dio);
    timer_set1(0,0,0,0,duration,0);
@@ -1125,6 +1058,16 @@ int abort_cleanup(void)
 	if(gl_dots_flag == -1) 	 	/* stop the dots, if they're on 	*/
      	mat_dotsAbort();
 
+	if(gl_tar_wait == 1){ /* if aborting during tar wait, blow up the FP */
+		/* TODO!!!: Might be risky to call it outside a state as I don't know how to check for went here
+		** assuming the long pause after will work out. Also need to make the pause controllable
+		** from the menu
+		*/
+			drawTarg(1000, 0, 0 ,0 ,0); /* keep the FP on but turn off targets */
+			gl_tar_wait = 0; /*reset the flag to 0 */
+			timer_pause(300); /*TODO: need to be menu controllable*/
+	}
+
 	end_trial(CANCEL_W);			/* cancel analog window, blank screen */
 
 	return(0);
@@ -1143,7 +1086,7 @@ int abort_cleanup(void)
 */
 USER_FUNC ufuncs[] = {
 {"status",      &print_status,    			"void"},
-{"performance", &print_experiment_info, 	"void"},
+// {"performance", &print_experiment_info, 	"void"},
 {""},
 };
 
@@ -1455,8 +1398,10 @@ begin	first:
 		to ton_targcd on MAT_WENT % drawTarg_done
 	ton_targcd:
 		do ec_send_code(TARGC1CD)
+		to ton_setflag
+	ton_setflag:
+		do set_taron_flag(1)
 		to go_tarlum
-
 	/* go: FINAL WAIT, FP OFF */
   go_tarlum: /* bring up to full luminance in case it wasn't before */
     do defTargLum(-1, 1000, 1000, -1) /* reheat targs */
@@ -1469,7 +1414,10 @@ begin	first:
 		to go_fpoff_cd on MAT_WENT % drawTarg_done
 	go_fpoff_cd:
 		do ec_send_code(FPOFFCD)
-    to resp_ewinoff /* wait for sac*/
+    to go_tonflag
+	go_tonflag:
+		do set_taron_flag(0)
+		to resp_ewinoff /* wait for sac*/
 
     /* resp: RESPONSE EPOCH	*/
   resp_ewinoff:
