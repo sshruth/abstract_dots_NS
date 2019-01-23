@@ -613,7 +613,7 @@ int open_adata(void)
     /* task identifier */
     ec_send_code(STARTCD);	/* official start of trial ! */
 
-    EC_TAG2(I_TRIALIDCD,43); /* 4 is Abstract dot VD series,  3 is version*/
+    EC_TAG2(I_TRIALIDCD,44); /* 4 is Abstract dot VD series,  4 is version*/
     EC_TAG2(I_MONITORDISTCD, VIEW_DIST_CM);
     /* fixation x, y, diameter */
     EC_TAG1(I_FIXXCD, (VSD_GET_FP(gl_vsd))->x);
@@ -752,6 +752,25 @@ int set_delay_rtvar (long a)
 	gl_rtvar.delay = a;
   	return(0);
  }
+
+/* ROUTINE: set_fpoff_timer (allows setting an increasing exponential delay for
+	the FP off timer)
+*/
+ int set_fpoff_timer(long t_min, long t_max, long t_mean)
+  {
+		long t_set;
+		double tmp;
+		tmp = ((double) rand()) / ((double) RAND_MAX);
+		t_set = t_max - (long) ((double) t_mean * -1 * log(tmp));
+
+		if (t_set > t_min){
+			t_set = t_max;
+		}
+
+		timer_set1(0,0,0,0,t_set,0);
+ 		return(0);
+  }
+
 
 
 /* ROUTINE: set_reward_delay_timer (guarantee a minimum time between dot onset and reward)
@@ -1086,7 +1105,6 @@ int abort_cleanup(void)
 */
 USER_FUNC ufuncs[] = {
 {"status",      &print_status,    			"void"},
-// {"performance", &print_experiment_info, 	"void"},
 {""},
 };
 
@@ -1407,7 +1425,7 @@ begin	first:
     do defTargLum(-1, 1000, 1000, -1) /* reheat targs */
     to go_waitfpoff
   go_waitfpoff:
-    do timer_set1_shell(1000,300,50,400,0,0)
+    do set_fpoff_timer(800,1300,200) /* min,max, mean - inverted exponential*/
 		to go_fpoff on +MET % timer_check1
 	go_fpoff: /* turn the FP off */
 		do drawTarg(0,-1,-1,-1,1000, 0)
@@ -1439,7 +1457,7 @@ begin	first:
 	** - pref.  finished correctly and got rewarded
 	*/
 	check_eye_response:
-	time 500
+		time 500
   	to peyehold on -WD3_XY & eyeflag		/* got correct target! */
     to neyehold on -WD4_XY & eyeflag		/* got incorrect target! */
     to ncshow                               /* got nada */

@@ -46,6 +46,20 @@ b. AbstractDots_VD02: (Trial ID: 42)
 c. AbstractDots_VD03: (Trial ID: 43)
 * FP stays on for a little bit on fix breaks 
 
+d. AbstractDots_VD04: (Trial ID: 44)
+* FP off times are drawn from an increasing exponential distribution
+
+d. PLANNED: AbstractDots_VD05: (Trial ID: 45)
+
+
+____________ABSTRACT DOTS IN RF (For Recordings)__________
+a. AbstractDotsInRF01: (Trial ID: 50)
+Forked from AbstractDots05. Usable in single and array recordings. 
+* RF_n specifies the number of RFs to consider
+	- If 1, single electrode recording. Targets are separated by 120¡ and Target 1 or Target 2 appears in RF in 66% of trials. 
+	- If 2, multichannel recording with 2 clearly separated RFs. 
+	- If 3, multichannel recording with 3 RFs, but RF1 & 2 are too close for simultaneous target presentation. 
+
 
 
 
