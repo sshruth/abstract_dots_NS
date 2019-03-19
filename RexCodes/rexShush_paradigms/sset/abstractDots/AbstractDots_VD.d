@@ -495,7 +495,7 @@ int setup_eyewindows(long wd_width, long wd_height)
 int open_adata(void)
 {
     int i, j, r, t, n;
-		int x1, x2, y1 , y2;
+		int x1, x2, x3, x4, y1 , y2, y3, y4;
 
     /*
      ** Clear all the old objects,then call the big kahuna
@@ -523,39 +523,45 @@ int open_adata(void)
     y1 = TOY_RT_TO_Y(0,r,t);
     x2 = TOY_RT_TO_X(0,r,t+90);
     y2 = TOY_RT_TO_Y(0,r,t+90);
+		x3 = TOY_RT_TO_X(0,r,t+180);
+    y3 = TOY_RT_TO_Y(0,r,t+180);
+		x4 = TOY_RT_TO_X(0,r,t+270);
+    y4 = TOY_RT_TO_Y(0,r,t+270);
+
+
 
     if (n==2){ // two pairs of target locations
-        if (j < 500) {
+        if (j < 500) { // RF + anticlockwise pair
             gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = x1;
             gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = y1;
             gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = x2;
             gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = y2;
-        } else { // reflects about the Y axis
-            gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = -1 * x1;
-            gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = y1;
-            gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = -1 * x2;
-            gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = y2;
+        } else { // non-RF pair
+            gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = x3;
+            gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = y3;
+            gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = x4;
+            gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = y4;
         }
     } else if (n==4){ // four pairs of target locations
-        if (j < 250) { // original pair
+        if (j < 250) { // RF + anticlockwise
             gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = x1;
             gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = y1;
             gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = x2;
             gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = y2;
-        } else if (j < 500){ // pair reflected on Y axis
-            gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = -1 * x1;
-            gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = y1;
-            gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = -1 * x2;
-            gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = y2;
-        } else if (j < 750){ // one original and one reflected
+        } else if (j < 500){ // RF + clockwise
             gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = x1;
             gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = y1;
-            gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = -1* x1;
-            gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = y1;
-        } else { // second original and second reflected
-            gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = x2;
-            gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = y2;
-            gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = -1 * x2;
+            gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = x4;
+            gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = y4;
+        } else if (j < 750){ // AntiRF + clockwise
+            gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = x3;
+            gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = y3;
+            gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = x4;
+            gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = y4;
+        } else { // AntiRF + anticlockwise
+            gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = x3;
+            gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = y3;
+            gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = x2;
             gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = y2;
         }
     } else { // defaults to only one pair of target location
@@ -613,7 +619,7 @@ int open_adata(void)
     /* task identifier */
     ec_send_code(STARTCD);	/* official start of trial ! */
 
-    EC_TAG2(I_TRIALIDCD,44); /* 4 is Abstract dot VD series,  4 is version*/
+    EC_TAG2(I_TRIALIDCD,45); /* 4 is Abstract dot VD series,  5 is version*/
     EC_TAG2(I_MONITORDISTCD, VIEW_DIST_CM);
     /* fixation x, y, diameter */
     EC_TAG1(I_FIXXCD, (VSD_GET_FP(gl_vsd))->x);
