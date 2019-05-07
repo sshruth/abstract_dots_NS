@@ -769,7 +769,7 @@ int set_delay_rtvar (long a)
 		tmp = ((double) rand()) / ((double) RAND_MAX);
 		t_set = t_max - (long) ((double) t_mean * -1 * log(tmp));
 
-		if (t_set > t_min){
+		if (t_set < t_min){
 			t_set = t_max;
 		}
 
