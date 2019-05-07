@@ -53,19 +53,19 @@ static struct visObj            gl_targObj;
 
 /* GLOBAL VARIABLES */
 int 							gl_delay;
-int                             gl_ecc;
-int                             gl_rft;
-int                             gl_rftd;
+int               gl_ecc;
+int               gl_rft;
+int               gl_rftd;
 
-int                             gl_eyeFixDiam;
-int                             gl_eyeFixX;
-int                             gl_eyeFixY;
+int               gl_eyeFixDiam;
+int               gl_eyeFixX;
+int               gl_eyeFixY;
 
-int                             gl_targDiam;
+int               gl_targDiam;
 
 int 							gl_eye_flag = 0;
-int                             gl_reward_fixation = 0;
-int                             gl_reward_flag = 0;
+int               gl_reward_fixation = 0;
+int               gl_reward_flag = 0;
 
 long							gl_ref_time = 0; /* reference time for go-RT */
 long							gl_resp_time = 0; /* time of go-response  */
@@ -708,15 +708,17 @@ int total(long score)
 **
 ** called only from abort list
 */
-int abort_cleanup(void)
+int abort_cleanup(long duration)
  {
 	// turn off reward if it was left on
 	printf("abort_cleanup\n");
 	dio_off(REW);
 
-	timer_pause(100);				/* wait in case of went				*/
+	timer_pause(300);				/* keep the FP on for a bit	*/
 
 	end_trial(CANCEL_W);			/* cancel analog window, blank screen */
+	timer_pause(duration);				/* timout punishment if needed				*/
+
 
 	return(0);
  }
@@ -728,17 +730,17 @@ USER_FUNC ufuncs[] = {};
 
 VLIST state_vl[] = {
 	{"NTRIALS", 		        &(gl_ntrials), 	        NP, make_task, ME_AFT, ME_DEC},
-    {"Delay", 		            &(gl_delay), 	        NP, NP, 0, ME_DEC},
-    {"nPositions",              &(gl_positions),        NP, NP, 0, ME_DEC},
-	{"RF_Radius",               &(gl_ecc), 	            NP, NP, 0, ME_DEC},
-    {"RF_Theta",                &(gl_rft), 	            NP, NP, 0, ME_DEC},
-    {"RF_T_Delta",              &(gl_rftd),             NP, NP, 0, ME_DEC},
-    {"EyeFixX", 		        &(gl_eyeFixX),          NP, NP, 0, ME_DEC},
+	{"Delay", 		          &(gl_delay), 	        	NP, NP, 0, ME_DEC},
+  {"nPositions",          &(gl_positions),        NP, NP, 0, ME_DEC},
+	{"RF_Radius",           &(gl_ecc), 	            NP, NP, 0, ME_DEC},
+  {"RF_Theta",            &(gl_rft), 	            NP, NP, 0, ME_DEC},
+  {"RF_T_Delta",          &(gl_rftd),             NP, NP, 0, ME_DEC},
+  {"EyeFixX", 		        &(gl_eyeFixX),          NP, NP, 0, ME_DEC},
 	{"EyeFixY", 		        &(gl_eyeFixY),          NP, NP, 0, ME_DEC},
-	{"EyeFixDiameter", 		    &(gl_eyeFixDiam),       NP, NP, 0, ME_DEC},
+	{"EyeFixDiameter", 		  &(gl_eyeFixDiam),       NP, NP, 0, ME_DEC},
 	{"TargDiameter", 		    &(gl_targDiam),         NP, NP, 0, ME_DEC},
-    {"RewardFixation", 	        &(gl_reward_fixation), 	NP, NP, 0, ME_DEC},
-    {"RECORDING", 		        &(gl_record),           NP, make_task, ME_AFT, ME_DEC},
+  {"RewardFixation", 	    &(gl_reward_fixation), 	NP, NP, 0, ME_DEC},
+  {"RECORDING", 		      &(gl_record),           NP, make_task, ME_AFT, ME_DEC},
 	{NS}};
 
 /* Help strings */
@@ -946,7 +948,7 @@ begin	first:
 		to loop
 
 	abtst:	/* for abort list */
-		do abort_cleanup()
+		do abort_cleanup(1000)
 		to prdone
 
 
