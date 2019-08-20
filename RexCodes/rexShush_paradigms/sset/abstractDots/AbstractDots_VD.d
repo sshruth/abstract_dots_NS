@@ -619,7 +619,7 @@ int open_adata(void)
     /* task identifier */
     ec_send_code(STARTCD);	/* official start of trial ! */
 
-    EC_TAG2(I_TRIALIDCD,45); /* 4 is Abstract dot VD series,  5 is version*/
+    EC_TAG2(I_TRIALIDCD,46); /* 4 is Abstract dot VD series,  6 is version*/
     EC_TAG2(I_MONITORDISTCD, VIEW_DIST_CM);
     /* fixation x, y, diameter */
     EC_TAG1(I_FIXXCD, (VSD_GET_FP(gl_vsd))->x);
@@ -629,13 +629,18 @@ int open_adata(void)
     EC_TAG1(I_TRG1XCD, (VSD_GET_T1(gl_vsd))->x);
     EC_TAG1(I_TRG1YCD, (VSD_GET_T1(gl_vsd))->y);
     EC_TAG2(I_TRG1DIAMCD, (VSD_GET_T1(gl_vsd))->diameter);
+		EC_TAG2(I_TRG1LCDR, (VSD_GET_T1(gl_vsd))->color.R); // sending target RGB info
+		EC_TAG2(I_TRG1LCDG, (VSD_GET_T1(gl_vsd))->color.G);
+		EC_TAG2(I_TRG1LCDB, (VSD_GET_T1(gl_vsd))->color.B);
+
     /* target 2 x, y, lum, diameter */
     EC_TAG1(I_TRG2XCD, (VSD_GET_T2(gl_vsd))->x);
     EC_TAG1(I_TRG2YCD, (VSD_GET_T2(gl_vsd))->y);
     EC_TAG2(I_TRG2DIAMCD, (VSD_GET_T2(gl_vsd))->diameter);
-    /* sure target x, y, lum */
-    EC_TAG1(I_TRG3XCD, (VSD_GET_TS(gl_vsd))->x);
-    EC_TAG1(I_TRG3YCD, (VSD_GET_TS(gl_vsd))->y);
+		EC_TAG2(I_TRG2LCDR, (VSD_GET_T2(gl_vsd))->color.R); // sending target RGB info
+		EC_TAG2(I_TRG2LCDG, (VSD_GET_T2(gl_vsd))->color.G);
+		EC_TAG2(I_TRG2LCDB, (VSD_GET_T2(gl_vsd))->color.B);
+
     /* correct target */
     EC_TAG1(I_CORRTARGCD, gl_vsd->display->t_correct==VSD_OBJECT_T1?1:2);
     /* Dots dir, coh (if necessary), speed, and aperture size	*/
@@ -774,7 +779,7 @@ int set_delay_rtvar (long a)
 		}
 
 		timer_set1(0,0,0,0,t_set,0);
- 		return(0);
+		return(0);
   }
 
 
@@ -818,7 +823,7 @@ int set_punishment_timer(long max_time, long scaling, long cutoff, long non_rt)
  }
 
 
-/* ROUTNE: give_reward
+/* ROUTINE: give_reward
 **
 ** description: activates the water reward system
 */
@@ -842,8 +847,7 @@ int give_reward(long dio, long duration, long who_calling)
    	/* save the reward size only once on each trial */
    if (gl_prize_count==0) {
        EC_TAG2(I_REWSIZE_COR, gl_rew_size_cor);
-       EC_TAG2(I_REWSIZE_SBET, gl_rew_size_sbet);
-       printf("--reward. cor=%d, sbet=%d\n", gl_rew_size_cor, gl_rew_size_sbet);
+       printf("--reward. cor=%d\n", gl_rew_size_cor);
    }
 
    return 0;
@@ -889,7 +893,7 @@ void update_prize_count ( long score )
 		prev_score = WRONG;
 	}
 	gl_prize_count = min(prize_count, gl_prize_max);
-//	dprintf("prize count: %d, max: %d\n", gl_prize_count, gl_prize_max);
+	printf("prize count: %d, max: %d\n", gl_prize_count, gl_prize_max);
  }
 
 
@@ -972,20 +976,22 @@ int nexttrl (long do_over, long min_block_size, long randomize_flag)
 **
 ** use vs_score_trial to keep track of monkey's performance
 */
-int total(long score)
+int total(long score, long update_prize)
 {
 
 	/* local variables */
 	int coh, ind, i;
 
 	/* update the prize count */
-	update_prize_count(score);
+	if (update_prize == 1){
+		update_prize_count(score);
+	}
 
 	/* score the trial in the global rec */
 	vs_score_trial(gl_vsd, score, gl_sbet_shown);
 
 	/* set globals for eye checking */
-	gl_eye_flag   = 0;
+	gl_eye_flag  = 0;
 
 	/* Drop the appropriate code */
 	if(score == CORRECT) {
@@ -1078,26 +1084,35 @@ int abort_cleanup(void)
  {
 	timer_pause(100);				/* wait in case of went				*/
 
-//mat_getWent();/* make sure not waiting for went*/
-
 	if(gl_dots_flag == -1) 	 	/* stop the dots, if they're on 	*/
      	mat_dotsAbort();
-
-	if(gl_tar_wait == 1){ /* if aborting during tar wait, blow up the FP */
-		/* TODO!!!: Might be risky to call it outside a state as I don't know how to check for went here
-		** assuming the long pause after will work out. Also need to make the pause controllable
-		** from the menu
-		*/
-			drawTarg(1000, 0, 0 ,0 ,0); /* keep the FP on but turn off targets */
-			gl_tar_wait = 0; /*reset the flag to 0 */
-			timer_pause(300); /*TODO: need to be menu controllable*/
-	}
 
 	end_trial(CANCEL_W);			/* cancel analog window, blank screen */
 
 	return(0);
  }
 
+ /* ROUTINE: earlyCleanup
+ **
+ ** called if saccade is made before FP is off
+ */
+ int earlyCleanup(long duration)
+  {
+ 	timer_pause(100);				/* wait in case of went				*/
+
+ //mat_getWent();/* make sure not waiting for went*/
+
+		/* TODO!!!: Do I need to check for went here? Assuming a long pause after
+		**  will suffice.
+		*/
+	drawTarg(1000, 0, 0 ,0 ,0); /* keep the FP on but turn off targets */
+	gl_tar_wait = 0; /*reset the flag to 0 */
+	timer_pause(duration);
+
+ 	end_trial(CANCEL_W);			/* cancel analog window, blank screen */
+
+ 	return(0);
+  }
 
 
 /* USER FUNCTIONS
@@ -1282,7 +1297,6 @@ RTVAR rtvars[] = {
    {"No choice", 		    		&(gl_rtvar.num_ncerr)},
    {"Correct", 			    		&(gl_rtvar.num_correct)},
    {"Wrong", 								&(gl_rtvar.num_wrong)},
-   {"Sure Bet", 						&(gl_rtvar.num_sbet)},
    {"Coherence", 	    			&(gl_rtvar.coherence)},
    {"Duration", 						&(gl_rtvar.duration)},
    {"Direction", 						&(gl_rtvar.direction)},
@@ -1332,7 +1346,7 @@ begin	first:
     to skiptrl on 1 = gl_sbet_shown /* Skipped trials are considered sure bet choices */
 		to teye_start on TASK_EYE = gl_task
   skiptrl:
-    do total(SBET)
+    do total(SBET, 0)
     to skipdone
 	skipdone:
 		do end_trial(CLOSE_W)
@@ -1348,7 +1362,7 @@ begin	first:
     to fixeyedelay on -WD0_XY & eyeflag
 		to nofix
 	nofix:		/* failed to attain fixation */
-    do total(DO_OVER) // just redo the trial
+    do total(DO_OVER, 0) // just redo the trial
     to nofixDone
 	nofixDone:
     time 2000
@@ -1362,12 +1376,11 @@ begin	first:
 		do set_eye_flag(E_FIX)
     to fixeyedone
 
-	/* Done with fixating stuff */
-	fixeyedone:
+	fixeyedone: /* Done with fixating stuff */
     do position_eyewindow(35, 35, 0)
 		to teye_targ_wait on TASK_EYE = gl_task
 
-/*** CHAIN FOR TASK EYE ***/
+	/*** CHAIN FOR TASK EYE ***/
 	teye_start:
     do setup_eyewindows(35, 30)
 		to teye_fp
@@ -1432,6 +1445,10 @@ begin	first:
     to go_waitfpoff
   go_waitfpoff:
     do set_fpoff_timer(800,1300,200) /* min,max, mean - inverted exponential*/
+		to go_setfixfree
+	go_setfixfree: /* monkey is now free to saccade */
+		do set_eye_flag(E_OFF)
+		to early_sacmdcd on +WD0_XY & eyeflag /* went early */
 		to go_fpoff on +MET % timer_check1
 	go_fpoff: /* turn the FP off */
 		do drawTarg(0,-1,-1,-1,1000, 0)
@@ -1441,12 +1458,38 @@ begin	first:
     to go_tonflag
 	go_tonflag:
 		do set_taron_flag(0)
-		to resp_ewinoff /* wait for sac*/
+		to resp_grace /* wait for sac*/
 
-    /* resp: RESPONSE EPOCH	*/
-  resp_ewinoff:
-		do set_eye_flag(E_OFF)
-		to resp_grace
+  /* early: EARLY RESPONSES	*/
+	early_sacmdcd:
+		do ec_send_code(SACMADCD)
+		to early_chkresp
+	early_chkresp:
+		time 100
+		to early_corr on -WD3_XY & eyeflag	/* got correct target! */
+		to early_err on -WD4_XY & eyeflag		/* got incorrect target! */
+		to early_nc                         /* got nada */
+  early_corr:
+		do ec_send_code(TRGACQUIRECD)
+		to early_corr_end
+	early_corr_end:
+		do total(CORRECT, 0)
+		to early_end
+	early_err:
+		do ec_send_code(TRGACQUIRECD)
+		to early_err_end
+	early_err_end:
+		do total(WRONG, 0)
+		to early_end
+	early_nc:
+		do total(BRFIX, 0)
+		to early_end
+	early_end:
+		do earlyCleanup(300) /* argument is amount of time FP stays on after*/
+		time 1000 	/* punishment time for early break */
+		to loop
+
+	/* resp: RESPONSE EPOCH	*/
 	resp_grace: /* grace time in which monk has to break fixation and start the saccade*/
 		time 1500
 		to resp_saccd on +WD0_XY & eyeflag
@@ -1488,7 +1531,7 @@ begin	first:
 
 	/* NO CHOICE: didn't complete the task */
 	ncerr:
-		do total(NCERR)
+		do total(NCERR, 1)
 		to ncend
 	ncend:
 		do end_trial(CLOSE_W)
@@ -1505,7 +1548,7 @@ begin	first:
 
 	/* NULL: chose wrong target in dots task */
 	null:
-		do total(WRONG)
+		do total(WRONG, 1)
 		to nuclose
 	nuclose:
 		do end_trial(CLOSE_W)
@@ -1521,7 +1564,7 @@ begin	first:
 	*/
 	pref:
     time 250
-		do total(CORRECT)
+		do total(CORRECT, 1)
 		to prend
 	prend:
 		do drawTarg(-1, 1000, 0, -1, -1, 1)
@@ -1578,7 +1621,7 @@ begin	efirst:
 		to efail on +WD0_XY & eyeflag
 		to etest on E_OFF = gl_eye_flag
 	efail:
-		do total(BRFIX)
+		do total(BRFIX, 0)
 		to etest
 
 abort list:

@@ -49,7 +49,16 @@ c. AbstractDots_VD03: (Trial ID: 43)
 d. AbstractDots_VD04: (Trial ID: 44)
 * FP off times are drawn from an increasing exponential distribution
 
-d. PLANNED: AbstractDots_VD05: (Trial ID: 45)
+d. AbstractDots_VD05: (Trial ID: 45)
+* Target locations are now specified as +90, +180 and +270 from RF theta.
+* Early fix breaks can be punished
+
+e. AbstractDots_VD06: (Trial ID: 46) - UNDER CONSTRUCTION
+* Monkey's choices are recorded even with a fix break during FP off wait
+* Drops target color codes
+TODO 
+* Cleaner way to skip trials that does not rely on sure bet
+
 
 
 ____________ABSTRACT DOTS IN RF (For Recordings)__________
