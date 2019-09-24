@@ -31,7 +31,6 @@
 #define WIND2		2				/* dot patch */
 #define WIND3   3       /* correct response window */
 #define WIND4   4       /* incorrect response window */
-#define WIND5   5       /* sure bet */
 #define WIND7		7       /* monitor token */
 
 #define NUM_TARGETS			4
@@ -433,40 +432,26 @@ int stopDots_done()
 
 /* ROUTINE position_eyewindow
 **
-** sets window location
+** sets window location for fixation
 */
 int position_eyewindow(long wd_width, long wd_height, long flag)
 {
 	_VSobject vso;
 
-	/* position window @ fix point */
-	if(flag == 0) {
-		vso = VSD_GET_FP(gl_vsd);
-		wd_pos(WIND0, vso->x, vso->y);
-		EC_TAG2(I_EFIX_ACCEPTHX, wd_width);
-		EC_TAG2(I_EFIX_ACCEPTHY, wd_height);
-		/* position window @ correct target */
-	} else if(flag == 1) {
-		vso = VSD_GET_TC(gl_vsd);
-		wd_pos(WIND0, vso->x, vso->y);
-		/* position window @ incorrect target */
-	} else if(flag == 2) {
-		vso = VSD_GET_TW(gl_vsd);
-		wd_pos(WIND0, vso->x, vso->y);
-		/* position window @ eye position */
-	} else if(flag == 3) {
-		wd_pos(WIND0, (long)(eyeh/4), (long)(eyev/4));
-		/* position window @ sure target */ /* ts */
-	} else if(flag == 4) {
-		vso = VSD_GET_TS(gl_vsd);
-		wd_pos(WIND0, vso->x, vso->y);
-	}
+	vso = VSD_GET_FP(gl_vsd);
+	wd_pos(WIND0, vso->x, vso->y);
+	EC_TAG2(I_EFIX_ACCEPTHX, wd_width);
+	EC_TAG2(I_EFIX_ACCEPTHY, wd_height);
 
 	wd_siz(WIND0, wd_width, wd_height);
 	wd_cntrl(WIND0, WD_ON);
 
 	return(0);
 }
+/* ROUTINE setup_eyewindows
+**
+** sets window locations for targets
+*/
 
 int setup_eyewindows(long wd_width, long wd_height)
 {
@@ -496,6 +481,7 @@ int open_adata(void)
 {
     int i, j, r, t, n;
 		int x1, x2, x3, x4, y1 , y2, y3, y4;
+		int x2_, x3_, x4_, x5_, x6_, y2_, y3_, y4_, y5_, y6_;
 
     /*
      ** Clear all the old objects,then call the big kahuna
@@ -519,6 +505,7 @@ int open_adata(void)
     r = gl_menu_infoS.rfr;
     j =  TOY_RAND(1000);
 
+		/* These locations are at 90 deg from RF */
     x1 = TOY_RT_TO_X(0,r,t);
     y1 = TOY_RT_TO_Y(0,r,t);
     x2 = TOY_RT_TO_X(0,r,t+90);
@@ -528,9 +515,19 @@ int open_adata(void)
 		x4 = TOY_RT_TO_X(0,r,t+270);
     y4 = TOY_RT_TO_Y(0,r,t+270);
 
+		/* These locations are at 60 deg from RF */
+		x2_ = TOY_RT_TO_X(0,r,t+60);
+    y2_ = TOY_RT_TO_Y(0,r,t+60);
+		x3_ = TOY_RT_TO_X(0,r,t+120);
+    y3_ = TOY_RT_TO_Y(0,r,t+120);
+		x4_ = TOY_RT_TO_X(0,r,t+180);
+    y4_ = TOY_RT_TO_Y(0,r,t+180);
+		x5_ = TOY_RT_TO_X(0,r,t+240);
+    y5_ = TOY_RT_TO_Y(0,r,t+240);
+		x6_ = TOY_RT_TO_X(0,r,t+300);
+    y6_ = TOY_RT_TO_Y(0,r,t+300);
 
-
-    if (n==2){ // two pairs of target locations
+    if (n==2){ // two pairs of target locations each with 90 deg separation
         if (j < 500) { // RF + anticlockwise pair
             gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = x1;
             gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = y1;
@@ -542,33 +539,65 @@ int open_adata(void)
             gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = x4;
             gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = y4;
         }
-    } else if (n==4){ // four pairs of target locations
-        if (j < 250) { // RF + anticlockwise
+    } else if (n==4){ // four pairs of target locations - 90 deg separation
+        if (j < 300) { // RF + anticlockwise
             gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = x1;
             gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = y1;
             gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = x2;
             gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = y2;
-        } else if (j < 500){ // RF + clockwise
-            gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = x1;
-            gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = y1;
-            gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = x4;
-            gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = y4;
-        } else if (j < 750){ // AntiRF + clockwise
+        } else if (j < 600){ // RF + clockwise
+            gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = x4;
+            gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = y4;
+            gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = x1;
+            gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = y1;
+        } else if (j < 800){ // AntiRF + clockwise
             gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = x3;
             gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = y3;
             gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = x4;
             gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = y4;
         } else { // AntiRF + anticlockwise
-            gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = x3;
-            gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = y3;
-            gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = x2;
-            gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = y2;
+            gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = x2;
+            gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = y2;
+            gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = x3;
+            gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = y3;
         }
-    } else { // defaults to only one pair of target location
-        gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = x1;
-        gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = y1;
-        gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = x2;
-        gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = y2;
+    } else if (n==6){ // six pairs of target locations
+			int rand2 =  TOY_RAND(1000);
+			if (j < 600) { // RF triplets
+				if (rand2<500){ // RF + anticlockwise
+					gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = x1;
+					gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = y1;
+					gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = x3_;
+					gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = y3_;
+				} else { // RF + clockwise
+					gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = x5_;
+					gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = y5_;
+					gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = x1;
+					gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = y1;
+				}
+			} else { // nonRF triplets
+				if (rand2<334){ // antiRF + anticlockwise
+					gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = x4_;
+					gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = y4_;
+					gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = x2_;
+					gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = y2_;
+				} else if (rand2<666){ // RF + clockwise
+					gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = x6_;
+					gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = y6_;
+					gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = x4_;
+					gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = y4_;
+				} else { // third pair
+					gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = x2_;
+					gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = y2_;
+					gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = x6_;
+					gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = y6_;
+				}
+			}
+		} else { // defaults to only one pair of target location
+      gl_vsd->display->object_array[VSD_OBJECT_T1]->vertex = x1;
+      gl_vsd->display->object_array[VSD_OBJECT_T1]->wrt = y1;
+      gl_vsd->display->object_array[VSD_OBJECT_T2]->vertex = x4;
+      gl_vsd->display->object_array[VSD_OBJECT_T2]->wrt = y4;
     }
 
     vsd_update_display(gl_vsd, 0); /* Zero indicates no reverse dot-motion/target association */
@@ -599,7 +628,6 @@ int open_adata(void)
     gl_dots_flag = 0;
 
     /* FOR DEBUGGING
-     **
      */
     vsd_print_record(gl_vsd);
 
@@ -609,7 +637,7 @@ int open_adata(void)
 
     _VSDdot_object dot = VSD_GET_DTOBJECT(gl_vsd);
     printf("\n");
-    printf("Coherence = %d\n",dot->coherence);
+    printf("Direction = %d; Coherence = %d\n",dot->direction,dot->coherence);
     if ( dot->direction==gl_menu_infoS.skip_dir && dot->coherence<=gl_menu_infoS.skip_coh && TOY_RAND(1000)<gl_menu_infoS.skip_p){
         gl_sbet_shown = 1; /* Hijacking sbet to skip trials */
         return(0);
@@ -619,7 +647,7 @@ int open_adata(void)
     /* task identifier */
     ec_send_code(STARTCD);	/* official start of trial ! */
 
-    EC_TAG2(I_TRIALIDCD,46); /* 4 is Abstract dot VD series,  6 is version*/
+    EC_TAG2(I_TRIALIDCD,47); /* 4 is Abstract dot VD series,  7 is version*/
     EC_TAG2(I_MONITORDISTCD, VIEW_DIST_CM);
     /* fixation x, y, diameter */
     EC_TAG1(I_FIXXCD, (VSD_GET_FP(gl_vsd))->x);
@@ -661,7 +689,6 @@ int open_adata(void)
 
     return(0);
 }
-
 
 
 /* ROUTINE: end_trial
@@ -783,7 +810,6 @@ int set_delay_rtvar (long a)
   }
 
 
-
 /* ROUTINE: set_reward_delay_timer (guarantee a minimum time between dot onset and reward)
 */
 int set_reward_delay(long min_time)
@@ -869,7 +895,7 @@ int give_prize(long dio, long duration)
 
 /* ROUTINE: update_prize_count
 **
-** update gl_prize_count based on the score (CORRECT, WRONG, NCERR, BRFIX or BRHANDFIX) of
+** update gl_prize_count based on the score (CORRECT, WRONG, NCERR or BRFIX) of
 ** the current trial and previous trials
 ** prizes are additional reward drops that are given to the monkey for doing
 ** several trials correct in a row
@@ -895,30 +921,6 @@ void update_prize_count ( long score )
 	gl_prize_count = min(prize_count, gl_prize_max);
 	printf("prize count: %d, max: %d\n", gl_prize_count, gl_prize_max);
  }
-
-
-
-/* ROUNTINE: randsample
-**
-** randomly samples from an array of numbers. the array is defined by 4 variables
-** 	base	first element of the array
-**  step	distance of consecutive elements in the array (on a linear or log scale)
-**  n		number of elements in the array
-**  flag	"log" or "linear", defines the scaling of elements
-*/
-double randsample(double base, double step, int n, char *flag)
- {
-  double ret;
-
-  if (stricmp(flag,"log")==0)
-	ret = base * exp(log(step)*(double)TOY_RAND(n));
-
-  if (stricmp(flag,"linear")==0)
-    ret = base+step*(double)TOY_RAND(n);
-
-  return(ret);
- }
-
 
 /* ROUTINE: nexttrl
 **
