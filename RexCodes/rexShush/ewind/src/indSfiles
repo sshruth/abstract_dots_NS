@@ -1,0 +1,1 @@
+MYSRC = ../PtScale.c ../rex_main.c ../rex_alert.c ../pcsSocket.c

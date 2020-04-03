@@ -1,0 +1,1 @@
+ABOBJ = abmain.o initRebel.o rebelApp.o rebelChain.o rebelComment.o rebelEdit.o rebelFile.o rebelFunction.o rebelFunctionItem.o rebelMenu.o rebelMenuItem.o rebelResource.o rebelState.o rebelVariable.o rebelVariableItem.o rebelWidget.o rebelWindow.o 

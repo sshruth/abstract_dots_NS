@@ -1,0 +1,350 @@
+/usr/bin/i386-pc-nto-qnx6.4.0-ld: warning: cannot find entry symbol _start; defaulting to 08048238
+awind.o: In function `pre_post':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/awind.c:58: undefined reference to `m_pre'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/awind.c:58: undefined reference to `w_pre'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/awind.c:59: undefined reference to `w_pre'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/awind.c:60: undefined reference to `m_post'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/awind.c:60: undefined reference to `w_post'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/awind.c:61: undefined reference to `w_post'
+awind.o: In function `tst_mx_new':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/awind.c:117: undefined reference to `pcsRecvdMexMsgLen'
+awind.o: In function `awind':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/awind.c:33: undefined reference to `w_flags'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/awind.c:36: undefined reference to `w_flags'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/awind.c:39: undefined reference to `w_flags'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/awind.c:42: undefined reference to `rxerr'
+awind.o: In function `mwind':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/awind.c:80: undefined reference to `pcsMexConnected'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/awind.c:82: undefined reference to `i_b'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/awind.c:82: undefined reference to `mexTime'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/awind.c:83: undefined reference to `mexTime'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/awind.c:83: undefined reference to `mexTime'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/awind.c:87: undefined reference to `mexTime'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/awind.c:90: undefined reference to `mexTime'
+awind.o:/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/awind.c:93: more undefined references to `mexTime' follow
+awind.o: In function `mwind':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/awind.c:105: undefined reference to `rxerr'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/awind.c:108: undefined reference to `mexTime'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/awind.c:108: undefined reference to `pcsSendMex'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/awind.c:109: undefined reference to `mexClockSendCtr'
+cal.o: In function `hold_eye':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/cal.c:28: undefined reference to `eyeh'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/cal.c:28: undefined reference to `c_xhold'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/cal.c:29: undefined reference to `eyev'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/cal.c:29: undefined reference to `c_yhold'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/cal.c:30: undefined reference to `oeyeh'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/cal.c:30: undefined reference to `c_oxhold'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/cal.c:31: undefined reference to `oeyev'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/cal.c:31: undefined reference to `c_oyhold'
+cal.o: In function `keep_eye':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/cal.c:41: undefined reference to `c_curp'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/cal.c:41: undefined reference to `c_curp'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/cal.c:42: undefined reference to `c_curp'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/cal.c:42: undefined reference to `c_xhold'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/cal.c:42: undefined reference to `c_eyekeep'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/cal.c:43: undefined reference to `c_yhold'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/cal.c:43: undefined reference to `c_eyekeep'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/cal.c:44: undefined reference to `c_oxhold'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/cal.c:44: undefined reference to `c_eyekeep'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/cal.c:45: undefined reference to `c_oyhold'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/cal.c:45: undefined reference to `c_eyekeep'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/cal.c:46: undefined reference to `c_curp'
+dout.o: In function `dio_out':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/dout.c:62: undefined reference to `dio_set'
+dout.o: In function `dio_onoff':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/dout.c:49: undefined reference to `dio_set'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/dout.c:50: undefined reference to `dio_set'
+dout.o: In function `dio_off':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/dout.c:36: undefined reference to `dio_set'
+dout.o: In function `dio_on':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/dout.c:23: undefined reference to `dio_set'
+ramp_act.o: In function `ramptd':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ramp_act.c:313: undefined reference to `ramp'
+ramp_act.o: In function `ra_init':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ramp_act.c:334: undefined reference to `ra_first'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ramp_act.c:335: undefined reference to `ra_first'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ramp_act.c:335: undefined reference to `ra_last'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ramp_act.c:336: undefined reference to `ra_last'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ramp_act.c:336: undefined reference to `ra_first'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ramp_act.c:337: undefined reference to `ra_last'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ramp_act.c:338: undefined reference to `ramp'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ramp_act.c:338: undefined reference to `ramp'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ramp_act.c:338: undefined reference to `ramp'
+ramp_act.o: In function `ra_compute_time':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ramp_act.c:275: undefined reference to `rxerr'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ramp_act.c:279: undefined reference to `ramp'
+ramp_act.o: In function `ra_phistart':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ramp_act.c:187: undefined reference to `rxerr'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ramp_act.c:190: undefined reference to `ramp'
+ramp_act.o: In function `ra_tostart':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ramp_act.c:154: undefined reference to `rxerr'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ramp_act.c:157: undefined reference to `ramp'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ramp_act.c:159: undefined reference to `rxerr'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ramp_act.c:163: undefined reference to `rxerr'
+ramp_act.o: In function `ra_start':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ramp_act.c:92: undefined reference to `rxerr'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ramp_act.c:95: undefined reference to `ramp'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ramp_act.c:105: undefined reference to `ra_last'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ramp_act.c:107: undefined reference to `ra_last'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ramp_act.c:108: undefined reference to `ra_last'
+ramp_act.o: In function `ra_stop':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ramp_act.c:131: undefined reference to `rxerr'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ramp_act.c:134: undefined reference to `ramp'
+ramp_act.o: In function `ra_phiend':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ramp_act.c:211: undefined reference to `rxerr'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ramp_act.c:214: undefined reference to `ramp'
+ramp_act.o: In function `ra_new':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ramp_act.c:37: undefined reference to `rxerr'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ramp_act.c:40: undefined reference to `ramp'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ramp_act.c:41: undefined reference to `ramp'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ramp_act.c:43: undefined reference to `rxerr'
+ramp.o: In function `ra_compute':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ramp.c:58: undefined reference to `rxerr'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ramp.c:60: undefined reference to `ramp'
+score.o: In function `score':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/score.c:37: undefined reference to `tyes'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/score.c:38: undefined reference to `i_b'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/score.c:40: undefined reference to `tno'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/score.c:41: undefined reference to `i_b'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/score.c:42: undefined reference to `noflag'
+sd_set.o: In function `sd_set':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/sd_set.c:27: undefined reference to `m_sdctl'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/sd_set.c:27: undefined reference to `sdctl'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/sd_set.c:28: undefined reference to `sdctl'
+sd_set.o: In function `Psd_startPos':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/sd_set.c:38: undefined reference to `h_sacinit'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/sd_set.c:39: undefined reference to `v_sacinit'
+sd_set.o: In function `Psd_finalPos':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/sd_set.c:49: undefined reference to `h_sacend'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/sd_set.c:50: undefined reference to `v_sacend'
+sd_set.o: In function `Psd_size':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/sd_set.c:60: undefined reference to `h_sacsize'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/sd_set.c:61: undefined reference to `v_sacsize'
+sd_set.o: In function `sd_mark':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/sd_set.c:73: undefined reference to `rxerr'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/sd_set.c:77: undefined reference to `rxerr'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/sd_set.c:80: undefined reference to `i_b'
+sd_set.o: In function `sd_mark_sig':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/sd_set.c:94: undefined reference to `i_b'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/sd_set.c:101: undefined reference to `rxerr'
+ustatus.o: In function `ustatus':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ustatus.c:28: undefined reference to `i_b'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ustatus.c:29: undefined reference to `i_b'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ustatus.c:29: undefined reference to `r_sendmsg'
+stateTime.o: In function `getClockTime':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/stateTime.c:49: undefined reference to `i_b'
+stateTime.o: In function `set_times':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/stateTime.c:29: undefined reference to `snames'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/stateTime.c:32: undefined reference to `snames'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/stateTime.c:29: undefined reference to `snames'
+off_eye.o: In function `off_eye':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/off_eye.c:25: undefined reference to `m_offmenu'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/off_eye.c:30: undefined reference to `m_eho'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/off_eye.c:30: undefined reference to `i_b'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/off_eye.c:31: undefined reference to `i_b'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/off_eye.c:33: undefined reference to `m_evo'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/off_eye.c:33: undefined reference to `i_b'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/off_eye.c:34: undefined reference to `i_b'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/off_eye.c:36: undefined reference to `i_b'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/off_eye.c:36: undefined reference to `eho'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/off_eye.c:37: undefined reference to `evo'
+off_oeye.o: In function `off_oeye':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/off_oeye.c:25: undefined reference to `m_offmenu'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/off_oeye.c:30: undefined reference to `m_oeho'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/off_oeye.c:30: undefined reference to `i_b'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/off_oeye.c:31: undefined reference to `i_b'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/off_oeye.c:33: undefined reference to `m_oevo'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/off_oeye.c:33: undefined reference to `i_b'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/off_oeye.c:34: undefined reference to `i_b'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/off_oeye.c:36: undefined reference to `i_b'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/off_oeye.c:36: undefined reference to `oeho'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/off_oeye.c:37: undefined reference to `oevo'
+wd_set.o: In function `wd_init':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:579: undefined reference to `i_b'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:580: undefined reference to `i_b'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:581: undefined reference to `i_b'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:582: undefined reference to `i_b'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:585: undefined reference to `i_b'
+wd_set.o:/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:559: more undefined references to `i_b' follow
+wd_set.o: In function `wd_test':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:561: undefined reference to `r_sendmsg'
+wd_set.o: In function `wd_pos':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:521: undefined reference to `rxerr'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:524: undefined reference to `i_b'
+wd_set.o: In function `wd_siz':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:485: undefined reference to `rxerr'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:488: undefined reference to `i_b'
+wd_set.o: In function `wd_src_check':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:306: undefined reference to `rxerr'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:309: undefined reference to `i_b'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:342: undefined reference to `ramp'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:351: undefined reference to `ramp'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:355: undefined reference to `joyh'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:359: undefined reference to `joyv'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:368: undefined reference to `da'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:376: undefined reference to `sa_gvptr'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:385: undefined reference to `ma'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:405: undefined reference to `ramp'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:414: undefined reference to `ramp'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:418: undefined reference to `joyh'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:422: undefined reference to `joyv'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:431: undefined reference to `da'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:439: undefined reference to `sa_gvptr'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:448: undefined reference to `ma'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:466: undefined reference to `rxerr'
+wd_set.o: In function `wd_src_pos':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:117: undefined reference to `rxerr'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:120: undefined reference to `i_b'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:157: undefined reference to `ramp'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:166: undefined reference to `ramp'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:170: undefined reference to `joyh'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:174: undefined reference to `joyv'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:183: undefined reference to `da'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:191: undefined reference to `sa_gvptr'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:200: undefined reference to `ma'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:220: undefined reference to `ramp'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:229: undefined reference to `ramp'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:233: undefined reference to `joyh'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:237: undefined reference to `joyv'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:246: undefined reference to `da'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:254: undefined reference to `sa_gvptr'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:263: undefined reference to `ma'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:281: undefined reference to `rxerr'
+wd_set.o: In function `wd_cntrl':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:43: undefined reference to `rxerr'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:46: undefined reference to `i_b'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:56: undefined reference to `eyeflag'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:73: undefined reference to `i_b'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:75: undefined reference to `i_b'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:76: undefined reference to `i_b'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/wd_set.c:91: undefined reference to `rxerr'
+rl_set.o: In function `rl_setbar':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/rl_set.c:62: undefined reference to `i_b'
+rl_set.o: In function `rl_addbar':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/rl_set.c:69: undefined reference to `i_b'
+rl_set.o: In function `rl_setspike_bits':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/rl_set.c:45: undefined reference to `i_b'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/rl_set.c:50: undefined reference to `rxerr'
+rl_set.o: In function `rl_setspike':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/rl_set.c:29: undefined reference to `rxerr'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/rl_set.c:32: undefined reference to `i_b'
+sf_init.o: In function `sf_init':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/sf_init.c:29: undefined reference to `init_list'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/sf_init.c:29: undefined reference to `init_list'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/sf_init.c:33: undefined reference to `stateinit'
+scntrl.o: In function `awake':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/scntrl.c:31: undefined reference to `nowstate'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/scntrl.c:31: undefined reference to `nowstate'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/scntrl.c:32: undefined reference to `nowstate'
+scntrl.o: In function `asleep':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/scntrl.c:42: undefined reference to `nowstate'
+scntrl.o: In function `abort_s':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/scntrl.c:61: undefined reference to `nowstate'
+scntrl.o:/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/scntrl.c:62: more undefined references to `nowstate' follow
+da_set.o: In function `da_cursor':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:402: undefined reference to `rxerr'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:406: undefined reference to `rxerr'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:413: undefined reference to `m_da_cur_xda'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:413: undefined reference to `da'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:413: undefined reference to `da_cur_xda_p'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:414: undefined reference to `da'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:414: undefined reference to `da_cur_xda_p'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:415: undefined reference to `m_da_cur_yda'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:415: undefined reference to `da'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:415: undefined reference to `da_cur_yda_p'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:416: undefined reference to `da'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:416: undefined reference to `da_cur_yda_p'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:419: undefined reference to `m_oda_cur_xda'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:419: undefined reference to `da'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:419: undefined reference to `oda_cur_xda_p'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:420: undefined reference to `da'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:420: undefined reference to `oda_cur_xda_p'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:421: undefined reference to `m_oda_cur_yda'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:421: undefined reference to `da'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:421: undefined reference to `oda_cur_yda_p'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:422: undefined reference to `da'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:422: undefined reference to `oda_cur_yda_p'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:429: undefined reference to `rxerr'
+da_set.o: In function `da_offset':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:371: undefined reference to `rxerr'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:374: undefined reference to `da'
+da_set.o: In function `da_mode':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:236: undefined reference to `rxerr'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:239: undefined reference to `da'
+da_set.o: In function `da_cntrl':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:52: undefined reference to `da'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:83: undefined reference to `ramp'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:93: undefined reference to `ramp'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:100: undefined reference to `joyh'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:106: undefined reference to `joyv'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:116: undefined reference to `i_b'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:126: undefined reference to `i_b'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:136: undefined reference to `sa_gvptr'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:145: undefined reference to `ma'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:146: undefined reference to `ma'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:158: undefined reference to `da_last'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:160: undefined reference to `da_last'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:161: undefined reference to `da_last'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:174: undefined reference to `rxerr'
+da_set.o: In function `da_set':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:271: undefined reference to `rxerr'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:282: undefined reference to `da'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:306: undefined reference to `dio_da'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:314: undefined reference to `rxerr'
+da_set.o: In function `da_init':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:448: undefined reference to `da_first'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:449: undefined reference to `da_first'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:449: undefined reference to `da_last'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:450: undefined reference to `da_last'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:450: undefined reference to `da_first'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:451: undefined reference to `da_last'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:452: undefined reference to `da'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:452: undefined reference to `da'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:444: undefined reference to `da'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/da_set.c:452: undefined reference to `da'
+uw_set.o: In function `uw_set':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/uw_set.c:29: undefined reference to `m_uwind'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/uw_set.c:30: undefined reference to `uwind'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/uw_set.c:34: undefined reference to `uwind'
+uw_set.o: In function `PspkCount':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/uw_set.c:49: undefined reference to `i_b'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/uw_set.c:64: undefined reference to `i_b'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/uw_set.c:83: undefined reference to `i_b'
+ma_set.o: In function `ma_stop':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ma_set.c:184: undefined reference to `rxerr'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ma_set.c:188: undefined reference to `ma'
+ma_set.o: In function `ma_start':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ma_set.c:144: undefined reference to `rxerr'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ma_set.c:147: undefined reference to `ma'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ma_set.c:150: undefined reference to `rxerr'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ma_set.c:159: undefined reference to `ma_last'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ma_set.c:161: undefined reference to `ma_last'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ma_set.c:162: undefined reference to `ma_last'
+ma_set.o: In function `ma_reset':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ma_set.c:111: undefined reference to `rxerr'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ma_set.c:115: undefined reference to `ma'
+ma_set.o: In function `ma_init':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ma_set.c:234: undefined reference to `ma_first'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ma_set.c:235: undefined reference to `ma_first'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ma_set.c:235: undefined reference to `ma_last'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ma_set.c:236: undefined reference to `ma_last'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ma_set.c:236: undefined reference to `ma_first'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ma_set.c:237: undefined reference to `ma_last'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ma_set.c:238: undefined reference to `ma'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ma_set.c:238: undefined reference to `ma'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ma_set.c:238: undefined reference to `ma'
+ma_set.o: In function `ma_cntrl':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ma_set.c:41: undefined reference to `ma'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/ma_set.c:91: undefined reference to `rxerr'
+vexActions.o: In function `tst_rx_new':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/vexActions.c:33: undefined reference to `pcsRecvdVexMsgLen'
+vexActions.o: In function `PvexMessage':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/vexActions.c:718: undefined reference to `pcsRecvdVexMsgLen'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/vexActions.c:718: undefined reference to `pcsRecvdVexMsg'
+vexActions.o: In function `vex_message':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/vexActions.c:85: undefined reference to `pcsRecvdVexMsgLen'
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/vexActions.c:85: undefined reference to `pcsRecvdVexMsg'
+vexActions.o: In function `to_vex':
+/sa/home/nih/JWM/develop/Rex/qnx640/rex7.9/act/vexActions.c:66: undefined reference to `pcsSendVex'
+collect2: ld returned 1 exit status
+make: *** [../lib/libact.a] Error 1

@@ -1,0 +1,3 @@
+MYSRC = ../rex_main.c \
+../rex_alert.c \
+../rex_proc.c \

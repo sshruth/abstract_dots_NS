@@ -1,0 +1,47 @@
+			TIG HELP
+				by Lance M. Optican, NEI, NIH
+
+INTRODUCTION:
+	This directory contains the Terminal Independent Graphics
+package from Johns Hopkins University, as modified and
+currently running at the National Eye Institute, NIH.
+It is configured to run on VAX computers running UNIX - BSD 4.2/BRL.
+	The TIG software is described in the TIG user's manual,
+by George Toth of Johns Hopkins.  It is best to use a copy of
+the manual which includes annotations by Lance Optican of NEI.
+
+INSTALLATION:
+	This directory is complete, and can be archived on tape in
+"tar" format.  When installing this package for the first time,
+some care must be taken.
+	It is necessary to install a new system library, libt.a
+(see "lib" directory makefile).
+	Some common definitions have been put in system files
+in /usr/include.  Therefore, our /usr/include files must be
+searched to see if any missing macros or definitions are needed.
+The tig include files are "tig.h" and "tig_misc.h".
+	The fonts supplied originally with TIG were poor, so the NEI
+group installed a set of Hershey fonts.  These should be installed
+in a special font directory, such as "/usr/local/lib/tig".  The
+name of this directory is specified in the file "putsymb.c", if you
+need to install it somewhere else.
+Note that the old fonts and the new fonts can not be easily mixed,
+since Toth made some mistakes in the way he defined his kearn values.
+(These can be overridden with %K in strings, however.)
+
+EXAMPLES:
+	There are some examples in the "ex" directory, to test your
+installation.  Many users can benefit from some simple plotting
+programs, such as plot or simplot, which insulate them from the details
+of TIG.
+
+QUERIES:
+	The TIG package really belongs to JHU, and so questions should
+be addressed to:
+	George Toth
+	Dept. Electrical Engineering
+	Johns Hopkins University
+	Baltimore, MD
+	Also, be advised that Toth is selling TIG as part of a combined
+text processing and graphics package (that's how the user's manual
+was produced), so commercial users should be directed to Toth.

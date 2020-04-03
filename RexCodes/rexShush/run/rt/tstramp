@@ -1,0 +1,1397 @@
+~
+~Menu:
+control_param.tstramp
+ad_overall_gain		1
+ad_max_rate		2000
+pre_time_msec		-
+post_time_msec		-
+unit_wind_ctl		-
+state_proc_rate		1
+debug_state		0
+doutput_inmem		0
+doutput_rotate		1
+doutput_tofile		0
+mexwex_units		2
+~
+~Menu:
+signals.tstramp 0
+sig_enable		1
+ad_chan			0
+ad_mem_variable		eyeh
+ad_acquire_rate		2000
+ad_calib		1
+ad_delay_100_us		23
+memory_source		-
+signal_store_rate	1000
+signal_title		horiz_eye
+~
+~Menu:
+signals.tstramp 1
+sig_enable		1
+ad_chan			1
+ad_mem_variable		eyev
+ad_acquire_rate		2000
+ad_calib		1
+ad_delay_100_us		23
+memory_source		-
+signal_store_rate	1000
+signal_title		vert_eye
+~
+~Menu:
+signals.tstramp 2
+sig_enable		1
+ad_chan			2
+ad_mem_variable		oeyeh
+ad_acquire_rate		2000
+ad_calib		1
+ad_delay_100_us		23
+memory_source		-
+signal_store_rate	1000
+signal_title		other_eyeh
+~
+~Menu:
+signals.tstramp 3
+sig_enable		1
+ad_chan			3
+ad_mem_variable		oeyev
+ad_acquire_rate		2000
+ad_calib		1
+ad_delay_100_us		23
+memory_source		-
+signal_store_rate	1000
+signal_title		other_eyev
+~
+~Menu:
+signals.tstramp 4
+sig_enable		1
+ad_chan			4
+ad_mem_variable		addh
+ad_acquire_rate		2000
+ad_calib		1
+ad_delay_100_us		23
+memory_source		-
+signal_store_rate	1000
+signal_title		add_h
+~
+~Menu:
+signals.tstramp 5
+sig_enable		1
+ad_chan			5
+ad_mem_variable		addv
+ad_acquire_rate		2000
+ad_calib		1
+ad_delay_100_us		23
+memory_source		-
+signal_store_rate	1000
+signal_title		add_v
+~
+~Menu:
+signals.tstramp 6
+sig_enable		1
+ad_chan			6
+ad_mem_variable		joyh
+ad_acquire_rate		2000
+ad_calib		1
+ad_delay_100_us		23
+memory_source		-
+signal_store_rate	250
+signal_title		horiz_joy
+~
+~Menu:
+signals.tstramp 7
+sig_enable		1
+ad_chan			7
+ad_mem_variable		joyv
+ad_acquire_rate		2000
+ad_calib		1
+ad_delay_100_us		23
+memory_source		-
+signal_store_rate	250
+signal_title		vert_joy
+~
+~Menu:
+signals.tstramp 8
+sig_enable		2
+ad_chan			-
+ad_mem_variable		-
+ad_acquire_rate		-
+ad_calib		-
+ad_delay_100_us		-
+memory_source		da_0
+signal_store_rate	500
+signal_title		horiz_mirror
+~
+~Menu:
+signals.tstramp 9
+sig_enable		2
+ad_chan			-
+ad_mem_variable		-
+ad_acquire_rate		-
+ad_calib		-
+ad_delay_100_us		-
+memory_source		da_1
+signal_store_rate	500
+signal_title		vert_mirror
+~
+~Menu:
+signals.tstramp 10
+sig_enable		3
+ad_chan			-
+ad_mem_variable		-
+ad_acquire_rate		-
+ad_calib		-
+ad_delay_100_us		-
+memory_source		vergh
+signal_store_rate	1000
+signal_title		horiz_verg
+~
+~Menu:
+signals.tstramp 11
+sig_enable		3
+ad_chan			-
+ad_mem_variable		-
+ad_acquire_rate		-
+ad_calib		-
+ad_delay_100_us		-
+memory_source		vergv
+signal_store_rate	1000
+signal_title		vert_verg
+~
+~Menu:
+signals.tstramp 12
+sig_enable		0
+ad_chan			-
+ad_mem_variable		-
+ad_acquire_rate		-
+ad_calib		-
+ad_delay_100_us		-
+memory_source		-
+signal_store_rate	-
+signal_title		-
+~
+~Menu:
+signals.tstramp 13
+sig_enable		0
+ad_chan			-
+ad_mem_variable		-
+ad_acquire_rate		-
+ad_calib		-
+ad_delay_100_us		-
+memory_source		-
+signal_store_rate	-
+signal_title		-
+~
+~Menu:
+signals.tstramp 14
+sig_enable		0
+ad_chan			-
+ad_mem_variable		-
+ad_acquire_rate		-
+ad_calib		-
+ad_delay_100_us		-
+memory_source		-
+signal_store_rate	-
+signal_title		-
+~
+~Menu:
+signals.tstramp 15
+sig_enable		0
+ad_chan			-
+ad_mem_variable		-
+ad_acquire_rate		-
+ad_calib		-
+ad_delay_100_us		-
+memory_source		-
+signal_store_rate	-
+signal_title		-
+~
+~Menu:
+da_conv.tstramp 0
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv.tstramp 1
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv.tstramp 2
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv.tstramp 3
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv.tstramp 4
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv.tstramp 5
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv.tstramp 6
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv.tstramp 7
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv.tstramp 8
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv.tstramp 9
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv.tstramp 10
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv.tstramp 11
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv.tstramp 12
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv.tstramp 13
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv.tstramp 14
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv.tstramp 15
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+mem_array.tstramp 0
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array.tstramp 1
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array.tstramp 2
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array.tstramp 3
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array.tstramp 4
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array.tstramp 5
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array.tstramp 6
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array.tstramp 7
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array.tstramp 8
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array.tstramp 9
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array.tstramp 10
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array.tstramp 11
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array.tstramp 12
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array.tstramp 13
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array.tstramp 14
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array.tstramp 15
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+offsets_eye.tstramp
+off_menu_enab		0
+eyeh_off_10s		-
+eyev_off_10s		-
+oeyeh_off_10s		-
+oeyev_off_10s		-
+~
+~Menu:
+rgen(ramps).tstramp 0
+menu_enab		0
+type_flag		-
+length_10s		-
+angle_deg		-
+velocity_deg/sec	-
+xoffset_10s		-
+yoffset_10s		-
+ramp_ecode		-
+phidevice		0
+phiontime		1
+phiofftime		99
+~
+~Menu:
+rgen(ramps).tstramp 1
+menu_enab		0
+type_flag		-
+length_10s		-
+angle_deg		-
+velocity_deg/sec	-
+xoffset_10s		-
+yoffset_10s		-
+ramp_ecode		-
+phidevice		0
+phiontime		1
+phiofftime		99
+~
+~Menu:
+rgen(ramps).tstramp 2
+menu_enab		0
+type_flag		-
+length_10s		-
+angle_deg		-
+velocity_deg/sec	-
+xoffset_10s		-
+yoffset_10s		-
+ramp_ecode		-
+phidevice		0
+phiontime		1
+phiofftime		99
+~
+~Menu:
+rgen(ramps).tstramp 3
+menu_enab		0
+type_flag		-
+length_10s		-
+angle_deg		-
+velocity_deg/sec	-
+xoffset_10s		-
+yoffset_10s		-
+ramp_ecode		-
+phidevice		0
+phiontime		1
+phiofftime		99
+~
+~Menu:
+rgen(ramps).tstramp 4
+menu_enab		0
+type_flag		-
+length_10s		-
+angle_deg		-
+velocity_deg/sec	-
+xoffset_10s		-
+yoffset_10s		-
+ramp_ecode		-
+phidevice		0
+phiontime		1
+phiofftime		99
+~
+~Menu:
+rgen(ramps).tstramp 5
+menu_enab		0
+type_flag		-
+length_10s		-
+angle_deg		-
+velocity_deg/sec	-
+xoffset_10s		-
+yoffset_10s		-
+ramp_ecode		-
+phidevice		0
+phiontime		1
+phiofftime		99
+~
+~Menu:
+rgen(ramps).tstramp 6
+menu_enab		0
+type_flag		-
+length_10s		-
+angle_deg		-
+velocity_deg/sec	-
+xoffset_10s		-
+yoffset_10s		-
+ramp_ecode		-
+phidevice		0
+phiontime		1
+phiofftime		99
+~
+~Menu:
+rgen(ramps).tstramp 7
+menu_enab		0
+type_flag		-
+length_10s		-
+angle_deg		-
+velocity_deg/sec	-
+xoffset_10s		-
+yoffset_10s		-
+ramp_ecode		-
+phidevice		0
+phiontime		1
+phiofftime		99
+~
+~Menu:
+rgen(ramps).tstramp 8
+menu_enab		0
+type_flag		-
+length_10s		-
+angle_deg		-
+velocity_deg/sec	-
+xoffset_10s		-
+yoffset_10s		-
+ramp_ecode		-
+phidevice		0
+phiontime		1
+phiofftime		99
+~
+~Menu:
+rgen(ramps).tstramp 9
+menu_enab		0
+type_flag		-
+length_10s		-
+angle_deg		-
+velocity_deg/sec	-
+xoffset_10s		-
+yoffset_10s		-
+ramp_ecode		-
+phidevice		0
+phiontime		1
+phiofftime		99
+~
+~Menu:
+run_line_chan.tstramp 0
+signal_num		0
+~
+~Menu:
+run_line_chan.tstramp 1
+signal_num		1
+~
+~Menu:
+run_line_chan.tstramp 2
+signal_num		2
+~
+~Menu:
+run_line_chan.tstramp 3
+signal_num		3
+~
+~Menu:
+run_line_chan.tstramp 4
+signal_num		8
+~
+~Menu:
+run_line_chan.tstramp 5
+signal_num		9
+~
+~Menu:
+run_line_chan.tstramp 6
+signal_num		10
+~
+~Menu:
+run_line_chan.tstramp 7
+signal_num		11
+~
+~Menu:
+win_disp_chan.tstramp 0
+channel_num		0
+~
+~Menu:
+win_disp_chan.tstramp 1
+channel_num		1
+~
+~Menu:
+win_disp_chan.tstramp 2
+channel_num		2
+~
+~Menu:
+win_disp_chan.tstramp 3
+channel_num		4
+~
+~Menu:
+win_disp_chan.tstramp 4
+channel_num		5
+~
+~Menu:
+win_disp_chan.tstramp 5
+channel_num		6
+~
+~Menu:
+win_disp_chan.tstramp 6
+channel_num		7
+~
+~Menu:
+win_disp_chan.tstramp 7
+channel_num		10
+~
+~Menu:
+saccade_det.tstramp
+sd_control		-
+h_range			15
+v_range			15
+peak_vel		0
+start_vel		6
+end_vel			2
+max_vel			30000
+min_vel			15
+max_dur			100
+min_dur			10
+delay_time		40
+~
+~Menu:
+bit.tstramp
+default_bit_device	0x7
+~
+~Menu:
+trials.tstramp
+correct			34
+wrong			0
+~
+~Menu:
+windows.tstramp 0
+menu_enab		0
+window_control		-
+x_position_source	-
+x_position_src_num	-
+y_position_source	-
+y_position_src_num	-
+x_check_source		-
+x_check_src_num		-
+y_check_source		-
+y_check_src_num		-
+x_dir_pos_10s		-
+y_dir_pos_10s		-
+xsiz_10s		-
+ysiz_10s		-
+~
+~Menu:
+windows.tstramp 1
+menu_enab		0
+window_control		-
+x_position_source	-
+x_position_src_num	-
+y_position_source	-
+y_position_src_num	-
+x_check_source		-
+x_check_src_num		-
+y_check_source		-
+y_check_src_num		-
+x_dir_pos_10s		-
+y_dir_pos_10s		-
+xsiz_10s		-
+ysiz_10s		-
+~
+~Menu:
+windows.tstramp 2
+menu_enab		0
+window_control		-
+x_position_source	-
+x_position_src_num	-
+y_position_source	-
+y_position_src_num	-
+x_check_source		-
+x_check_src_num		-
+y_check_source		-
+y_check_src_num		-
+x_dir_pos_10s		-
+y_dir_pos_10s		-
+xsiz_10s		-
+ysiz_10s		-
+~
+~Menu:
+windows.tstramp 3
+menu_enab		0
+window_control		-
+x_position_source	-
+x_position_src_num	-
+y_position_source	-
+y_position_src_num	-
+x_check_source		-
+x_check_src_num		-
+y_check_source		-
+y_check_src_num		-
+x_dir_pos_10s		-
+y_dir_pos_10s		-
+xsiz_10s		-
+ysiz_10s		-
+~
+~Menu:
+windows.tstramp 4
+menu_enab		0
+window_control		-
+x_position_source	-
+x_position_src_num	-
+y_position_source	-
+y_position_src_num	-
+x_check_source		-
+x_check_src_num		-
+y_check_source		-
+y_check_src_num		-
+x_dir_pos_10s		-
+y_dir_pos_10s		-
+xsiz_10s		-
+ysiz_10s		-
+~
+~Menu:
+windows.tstramp 5
+menu_enab		0
+window_control		-
+x_position_source	-
+x_position_src_num	-
+y_position_source	-
+y_position_src_num	-
+x_check_source		-
+x_check_src_num		-
+y_check_source		-
+y_check_src_num		-
+x_dir_pos_10s		-
+y_dir_pos_10s		-
+xsiz_10s		-
+ysiz_10s		-
+~
+~Menu:
+windows.tstramp 6
+menu_enab		0
+window_control		-
+x_position_source	-
+x_position_src_num	-
+y_position_source	-
+y_position_src_num	-
+x_check_source		-
+x_check_src_num		-
+y_check_source		-
+y_check_src_num		-
+x_dir_pos_10s		-
+y_dir_pos_10s		-
+xsiz_10s		-
+ysiz_10s		-
+~
+~Menu:
+windows.tstramp 7
+menu_enab		0
+window_control		-
+x_position_source	-
+x_position_src_num	-
+y_position_source	-
+y_position_src_num	-
+x_check_source		-
+x_check_src_num		-
+y_check_source		-
+y_check_src_num		-
+x_dir_pos_10s		-
+y_dir_pos_10s		-
+xsiz_10s		-
+ysiz_10s		-
+~
+~Menu:
+state_vars.tstramp
+clear_all_da		0
+do_two_ramps		1
+ramp0_xda		0
+ramp0_yda		1
+ramp1_xda		2
+ramp1_yda		3
+fix_xwind		100
+fix_ywind		100
+fix_oxwind		50
+fix_oywind		50
+test_user_msg		0
+test_single_trace	0
+~
+~Menu:
+ramp_list.tstramp 0
+length			200
+angle			315
+velocity		5
+xoff			0
+yoff			0
+type			2
+ecode			2007
+~
+~Menu:
+ramp_list.tstramp 1
+length			200
+angle			90
+velocity		10
+xoff			0
+yoff			0
+type			2
+ecode			2002
+~
+~Menu:
+ramp_list.tstramp 2
+length			200
+angle			225
+velocity		15
+xoff			0
+yoff			0
+type			2
+ecode			2005
+~
+~Menu:
+ramp_list.tstramp 3
+length			200
+angle			0
+velocity		20
+xoff			0
+yoff			0
+type			2
+ecode			2000
+~
+~Menu:
+ramp_list.tstramp 4
+length			200
+angle			180
+velocity		25
+xoff			0
+yoff			0
+type			2
+ecode			2004
+~
+~Menu:
+ramp_list.tstramp 5
+length			200
+angle			45
+velocity		30
+xoff			0
+yoff			0
+type			2
+ecode			2001
+~
+~Menu:
+ramp_list.tstramp 6
+length			200
+angle			270
+velocity		35
+xoff			0
+yoff			0
+type			2
+ecode			2006
+~
+~Menu:
+ramp_list.tstramp 7
+length			200
+angle			135
+velocity		40
+xoff			0
+yoff			0
+type			2
+ecode			2003
+~
+~Menu:
+ramp_list.tstramp 8
+length			200
+angle			0
+velocity		5
+xoff			0
+yoff			0
+type			2
+ecode			2000
+~
+~Menu:
+ramp_list.tstramp 9
+length			200
+angle			315
+velocity		10
+xoff			0
+yoff			0
+type			2
+ecode			2007
+~
+~Menu:
+ramp_list.tstramp 10
+length			200
+angle			45
+velocity		15
+xoff			0
+yoff			0
+type			2
+ecode			2001
+~
+~Menu:
+ramp_list.tstramp 11
+length			200
+angle			225
+velocity		20
+xoff			0
+yoff			0
+type			2
+ecode			2005
+~
+~Menu:
+ramp_list.tstramp 12
+length			200
+angle			90
+velocity		25
+xoff			0
+yoff			0
+type			2
+ecode			2002
+~
+~Menu:
+ramp_list.tstramp 13
+length			200
+angle			180
+velocity		30
+xoff			0
+yoff			0
+type			2
+ecode			2004
+~
+~Menu:
+ramp_list.tstramp 14
+length			200
+angle			135
+velocity		35
+xoff			0
+yoff			0
+type			2
+ecode			2003
+~
+~Menu:
+ramp_list.tstramp 15
+length			200
+angle			270
+velocity		40
+xoff			0
+yoff			0
+type			2
+ecode			2006
+~
+~Menu:
+eye_winds.tstramp 0
+xwind			50
+ywind			50
+oxwind			40
+oywind			40
+~
+~Menu:
+eye_winds.tstramp 1
+xwind			50
+ywind			50
+oxwind			40
+oywind			40
+~
+~Menu:
+eye_winds.tstramp 2
+xwind			50
+ywind			50
+oxwind			40
+oywind			40
+~
+~Menu:
+eye_winds.tstramp 3
+xwind			50
+ywind			50
+oxwind			40
+oywind			40
+~
+~Menu:
+eye_winds.tstramp 4
+xwind			50
+ywind			50
+oxwind			40
+oywind			40
+~
+~Menu:
+eye_winds.tstramp 5
+xwind			50
+ywind			50
+oxwind			40
+oywind			40
+~
+~Menu:
+eye_winds.tstramp 6
+xwind			50
+ywind			50
+oxwind			40
+oywind			40
+~
+~Menu:
+eye_winds.tstramp 7
+xwind			50
+ywind			50
+oxwind			40
+oywind			40
+~
+~Menu:
+eye_winds.tstramp 8
+xwind			50
+ywind			50
+oxwind			40
+oywind			40
+~
+~Menu:
+eye_winds.tstramp 9
+xwind			50
+ywind			50
+oxwind			40
+oywind			40
+~
+~Menu:
+eye_winds.tstramp 10
+xwind			50
+ywind			50
+oxwind			40
+oywind			40
+~
+~Menu:
+eye_winds.tstramp 11
+xwind			50
+ywind			50
+oxwind			40
+oywind			40
+~
+~Menu:
+eye_winds.tstramp 12
+xwind			50
+ywind			50
+oxwind			40
+oywind			40
+~
+~Menu:
+eye_winds.tstramp 13
+xwind			50
+ywind			50
+oxwind			40
+oywind			40
+~
+~Menu:
+eye_winds.tstramp 14
+xwind			50
+ywind			50
+oxwind			40
+oywind			40
+~
+~Menu:
+eye_winds.tstramp 15
+xwind			50
+ywind			50
+oxwind			40
+oywind			40
+~
+~Menu:
+eye_offsets.tstramp 0
+eyehoff			40
+eyevoff			40
+oeyehoff		0
+oeyevoff		0
+~
+~Menu:
+eye_offsets.tstramp 1
+eyehoff			20
+eyevoff			20
+oeyehoff		0
+oeyevoff		0
+~
+~Menu:
+eye_offsets.tstramp 2
+eyehoff			10
+eyevoff			10
+oeyehoff		0
+oeyevoff		0
+~
+~Menu:
+eye_offsets.tstramp 3
+eyehoff			30
+eyevoff			30
+oeyehoff		0
+oeyevoff		0
+~
+~Menu:
+eye_offsets.tstramp 4
+eyehoff			40
+eyevoff			40
+oeyehoff		0
+oeyevoff		0
+~
+~Menu:
+eye_offsets.tstramp 5
+eyehoff			20
+eyevoff			20
+oeyehoff		0
+oeyevoff		0
+~
+~Menu:
+eye_offsets.tstramp 6
+eyehoff			10
+eyevoff			10
+oeyehoff		0
+oeyevoff		0
+~
+~Menu:
+eye_offsets.tstramp 7
+eyehoff			30
+eyevoff			30
+oeyehoff		0
+oeyevoff		0
+~
+~Menu:
+eye_offsets.tstramp 8
+eyehoff			20
+eyevoff			40
+oeyehoff		0
+oeyevoff		0
+~
+~Menu:
+eye_offsets.tstramp 9
+eyehoff			0
+eyevoff			0
+oeyehoff		40
+oeyevoff		40
+~
+~Menu:
+eye_offsets.tstramp 10
+eyehoff			0
+eyevoff			0
+oeyehoff		20
+oeyevoff		20
+~
+~Menu:
+eye_offsets.tstramp 11
+eyehoff			0
+eyevoff			0
+oeyehoff		10
+oeyevoff		10
+~
+~Menu:
+eye_offsets.tstramp 12
+eyehoff			0
+eyevoff			0
+oeyehoff		30
+oeyevoff		30
+~
+~Menu:
+eye_offsets.tstramp 13
+eyehoff			0
+eyevoff			0
+oeyehoff		40
+oeyevoff		40
+~
+~Menu:
+eye_offsets.tstramp 14
+eyehoff			0
+eyevoff			0
+oeyehoff		20
+oeyevoff		20
+~
+~Menu:
+eye_offsets.tstramp 15
+eyehoff			0
+eyevoff			0
+oeyehoff		10
+oeyevoff		10
+~
+~State set variables:
+set statelist
+first
+preset 1500  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+pause1
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+pause2
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+go
+preset 0  random 0  type_flag_rl 1  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+selramp
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+stramp
+preset 0  random 0  type_flag_rl 1  value_rl 15
+a_arg 0x7060040  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+openw
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+fpon
+preset 250  random 0  type_flag_rl 1  value_rl 5
+a_arg 0x7060040  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+eyeon
+preset 250  random 0  type_flag_rl 1  value_rl 40
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+stimon
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x7050001  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+wdchange
+preset 0  random 0  type_flag_rl 1  value_rl 50
+a_arg 0x1  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+setpres
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0x50  c_arg 0x14
+d_arg 0  e_arg 0  f_arg 0
+~
+fpoff
+preset 0  random 0  type_flag_rl 1  value_rl 35
+a_arg 0x7060040  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+stoff
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x7050001  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+closew
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x1  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+wdback
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+rewon
+preset 35  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x7040040  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+rewoff
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x7040040  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+stopramp
+preset 0  random 0  type_flag_rl 1  value_rl 20
+a_arg 0x1  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+correct
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+error
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x2  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+reset
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0xffffffff  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+wrong
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+ramptw
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+timeramp
+preset 5922  random 1600  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+ramptd
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+mfirst
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+msecond
+preset 3000  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+mthird
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+~
+~

@@ -1,0 +1,116 @@
+analogSignals.c:		if(cbinfo->reason_subtype != Pt_LIST_SELECTION_FINAL) return(Pt_CONTINUE);
+analogSignals.c:		listData = (PtListCallback_t *)cbinfo->cbdata;
+bitControls.c:		if(cbinfo->reason == Pt_CB_ARM) {
+bitControls.c:		else if(cbinfo->reason == Pt_CB_DISARM) {
+bitControls.c:		if(cbinfo->reason == Pt_CB_ARM) {
+bitControls.c:		else if(cbinfo->reason == Pt_CB_DISARM) {
+daConverters.c:		if(cbinfo->reason_subtype != Pt_LIST_SELECTION_FINAL) return(Pt_CONTINUE);
+daConverters.c:		listData = (PtListCallback_t *)cbinfo->cbdata;
+daConverters.c:	if(cbinfo->reason == Pt_CB_ARM) {
+daConverters.c:	else if(cbinfo->reason == Pt_CB_DISARM) {
+daConverters.c:	if(cbinfo->reason == Pt_CB_ARM) {
+daConverters.c:	else if(cbinfo->reason == Pt_CB_DISARM) {
+daConverters.c:		if(cbinfo->reason == Pt_CB_ARM) {
+daConverters.c:		else if(cbinfo->reason == Pt_CB_DISARM) {
+daConverters.c:		if(cbinfo->reason == Pt_CB_ARM) {
+daConverters.c:		else if(cbinfo->reason == Pt_CB_DISARM) {
+daConverters.c:		if(cbinfo->reason == Pt_CB_ARM) {
+daConverters.c:		else if(cbinfo->reason == Pt_CB_DISARM) {
+debugStates.c:	winEvent = (PhWindowEvent_t *)cbinfo->cbdata;
+eyeOffsets.c:		if(cbinfo->reason == Pt_CB_ARM) {
+eyeOffsets.c:		else if(cbinfo->reason == Pt_CB_DISARM) {
+eyeOffsets.c:		if(cbinfo->reason == Pt_CB_ARM) {
+eyeOffsets.c:		else if(cbinfo->reason == Pt_CB_DISARM) {
+eyeOffsets.c:		if(cbinfo->reason == Pt_CB_ARM) {
+eyeOffsets.c:		else if(cbinfo->reason == Pt_CB_DISARM) {
+eyeOffsets.c:		if(cbinfo->reason == Pt_CB_ARM) {
+eyeOffsets.c:		else if(cbinfo->reason == Pt_CB_DISARM) {
+eyeWindows.c:		if(cbinfo->reason_subtype != Pt_LIST_SELECTION_FINAL) return(Pt_CONTINUE);
+eyeWindows.c:		cbdata = (PtListCallback_t *)cbinfo->cbdata;
+eyeWindows.c:	if(cbinfo->reason == Pt_CB_DISARM) {
+eyeWindows.c:		if(cbinfo->reason == Pt_CB_ARM) {
+eyeWindows.c:		else if(cbinfo->reason == Pt_CB_DISARM) {
+eyeWindows.c:		if(cbinfo->reason == Pt_CB_ARM) {
+eyeWindows.c:		else if(cbinfo->reason == Pt_CB_DISARM) {
+eyeWindows.c:		if(cbinfo->reason == Pt_CB_ARM) {
+eyeWindows.c:		else if(cbinfo->reason == Pt_CB_DISARM) {
+eyeWindows.c:		if(cbinfo->reason == Pt_CB_ARM) {
+eyeWindows.c:		else if(cbinfo->reason == Pt_CB_DISARM) {
+eyeWindows.c:		if(cbinfo->reason == Pt_CB_ARM) {
+eyeWindows.c:		else if(cbinfo->reason == Pt_CB_DISARM) {
+eyeWindows.c:		if(cbinfo->reason == Pt_CB_ARM) {
+eyeWindows.c:		else if(cbinfo->reason == Pt_CB_DISARM) {
+eyeWindows.c:	if(cbinfo->reason == Pt_CB_ARM) {
+eyeWindows.c:	else if(cbinfo->reason == Pt_CB_DISARM) {
+manageWin.c:	winEvent = (PhWindowEvent_t *)cbinfo->cbdata;
+memoryArrays.c:		if(cbinfo->reason_subtype != Pt_LIST_SELECTION_FINAL) return(Pt_CONTINUE);
+memoryArrays.c:		listData = (PtListCallback_t *)cbinfo->cbdata;
+memoryArrays.c:		if(cbinfo->reason == Pt_CB_ARM) {
+memoryArrays.c:		else if(cbinfo->reason == Pt_CB_DISARM) {
+memoryArrays.c:		if(cbinfo->reason == Pt_CB_ARM) {
+memoryArrays.c:		else if(cbinfo->reason == Pt_CB_DISARM) {
+memoryArrays.c:		if(cbinfo->reason == Pt_CB_ARM) {
+memoryArrays.c:		else if(cbinfo->reason == Pt_CB_DISARM) {
+memoryArrays.c:		if(cbinfo->reason == Pt_CB_ARM) {
+memoryArrays.c:		else if(cbinfo->reason == Pt_CB_DISARM) {
+processControls.c:		if(cbinfo->reason == Pt_CB_ARM) {
+processControls.c:		else if(cbinfo->reason == Pt_CB_DISARM) {
+processControls.c:		if(cbinfo->reason == Pt_CB_ARM) {
+processControls.c:		else if(cbinfo->reason == Pt_CB_DISARM) {
+processControls.c:		if(cbinfo->reason == Pt_CB_ARM) m_uwind = 1;
+processControls.c:		else if(cbinfo->reason == Pt_CB_DISARM) m_uwind = NULLI;
+processControls.c:		if(cbinfo->reason == Pt_CB_ARM) m_uwind = 0;
+processControls.c:		else if(cbinfo->reason == Pt_CB_DISARM) m_uwind = NULLI;
+processControls.c:		if(cbinfo->reason == Pt_CB_ARM) mexwex_units = 0;
+processControls.c:		else if(cbinfo->reason == Pt_CB_DISARM) mexwex_units = NULLI;
+processControls.c:		if(cbinfo->reason == Pt_CB_ARM) mexwex_units = 1;
+processControls.c:		else if(cbinfo->reason == Pt_CB_DISARM) mexwex_units = NULLI;
+processControls.c:		if(cbinfo->reason == Pt_CB_ARM) mexwex_units = 2;
+processControls.c:		else if(cbinfo->reason == Pt_CB_DISARM) mexwex_units = NULLI;
+processControls.c:		if(cbinfo->reason == Pt_CB_ARM) tc_units = 1;
+processControls.c:		else if(cbinfo->reason == Pt_CB_DISARM) tc_units = NULLI;
+processControls.c:		if(cbinfo->reason == Pt_CB_ARM) tc_units = 0;
+processControls.c:		else if(cbinfo->reason == Pt_CB_DISARM) tc_units = NULLI;
+processControls.c:		if(cbinfo->reason == Pt_CB_ARM) smi_on = 1;
+processControls.c:		else if(cbinfo->reason == Pt_CB_DISARM) smi_on = NULLI;
+processControls.c:		if(cbinfo->reason == Pt_CB_ARM) smi_on = 0;
+processControls.c:		else if(cbinfo->reason == Pt_CB_DISARM) smi_on = NULLI;
+processControls.c:		if(cbinfo->reason == Pt_CB_ARM) doutput_rot = 1;
+processControls.c:		else if(cbinfo->reason == Pt_CB_DISARM) doutput_rot = 0;
+processControls.c:		if(cbinfo->reason == Pt_CB_ARM) doutput_inmem = 1;
+processControls.c:		else if(cbinfo->reason == Pt_CB_DISARM) doutput_inmem = 0;
+processControls.c:		if(cbinfo->reason == Pt_CB_ARM) doutput_tofile = 1;
+processControls.c:		else if(cbinfo->reason == Pt_CB_DISARM) doutput_tofile = 0;
+ramps.c:		if(cbinfo->reason_subtype != Pt_LIST_SELECTION_FINAL) return(Pt_CONTINUE);
+ramps.c:		listData = (PtListCallback_t *)cbinfo->cbdata;
+ramps.c:		if(cbinfo->reason == Pt_CB_ARM) {
+ramps.c:		else if(cbinfo->reason == Pt_CB_DISARM) {
+ramps.c:		if(cbinfo->reason == Pt_CB_ARM) {
+ramps.c:		else if(cbinfo->reason == Pt_CB_DISARM) {
+ramps.c:		if(cbinfo->reason == Pt_CB_ARM) {
+ramps.c:		else if(cbinfo->reason == Pt_CB_DISARM) {
+ramps.c:		if(cbinfo->reason == Pt_CB_ARM) {
+ramps.c:		else if(cbinfo->reason == Pt_CB_DISARM) {
+ramps.c:		if(cbinfo->reason == Pt_CB_ARM) {
+ramps.c:		else if(cbinfo->reason == Pt_CB_DISARM) {
+ramps.c:		if(cbinfo->reason == Pt_CB_ARM) {
+ramps.c:		else if(cbinfo->reason == Pt_CB_DISARM) {
+ramps.c:		if(cbinfo->reason == Pt_CB_ARM) {
+ramps.c:		else if(cbinfo->reason == Pt_CB_DISARM) {
+ramps.c:		if(cbinfo->reason == Pt_CB_ARM) {
+ramps.c:		else if(cbinfo->reason == Pt_CB_DISARM) {
+ramps.c:		if(cbinfo->reason == Pt_CB_ARM) {
+ramps.c:		else if(cbinfo->reason == Pt_CB_DISARM) {
+ramps.c:		if(cbinfo->reason == Pt_CB_ARM) {
+ramps.c:		else if(cbinfo->reason == Pt_CB_DISARM) {
+rexMessage.c:	winEvent = (PhWindowEvent_t *)cbinfo->cbdata;
+rtVarsControls.c:	PtSetArg(&args[1], Pt_ARG_WINDOW_TITLE, cbinfo->cbdata, 0);
+saccadeControls.c:	if(cbinfo->reason == Pt_CB_DISARM) {
+stateLists.c:	if(cbinfo->reason_subtype != Pt_LIST_SELECTION_FINAL) return(Pt_CONTINUE);
+stateLists.c:	listData = (PtTreeCallback_t *)cbinfo->cbdata;
+stateLists.c:	if(cbinfo->reason == Pt_CB_DISARM) {
+stateLists.c:	else if(cbinfo->reason == Pt_CB_ARM) {
+userMenuControls.c: 	cbinfo->cbdata = client_data;
+userMenuControls.c:	winEvent = (PhWindowEvent_t *)cbinfo->cbdata;
+userMenuControls.c:		thisMenu = (MENU *)cbinfo->cbdata;
+userMenuControls.c:	PtSetArg(&args[1], Pt_ARG_WINDOW_TITLE, cbinfo->cbdata, 0);

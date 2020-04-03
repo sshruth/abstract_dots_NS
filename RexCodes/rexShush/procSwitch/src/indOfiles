@@ -1,0 +1,3 @@
+MYOBJ = rex_main.o \
+rex_alert.o \
+rex_proc.o \

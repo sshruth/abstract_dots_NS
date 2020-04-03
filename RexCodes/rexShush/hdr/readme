@@ -1,0 +1,19 @@
+Directory:	hdr (REX header files)
+
+	This directory contains various header files used by all REX
+processes.  The extension for all header files is ".h".  Some rules
+about header files should be observed:
+
+	1.)  Header files should not have includes in them for other
+	header files.
+	2.)  Data should be declared by externs only.  Each REX process
+	has an initialization file named "i.c" in which size declarations
+	and initializations are done.
+	3.)  In addition to not containing data, headers should also
+	not contain instructions- that is the compilation of a header
+	alone should not yield any generated code in either text or
+	data spaces.
+
+	These rules are not required by Unix or the C compiler.  However
+following them makes the management of a large system such as REX
+much easier.

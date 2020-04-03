@@ -1,0 +1,1 @@
+MYOBJ = rex_main.o rex_alert.o timerFunction.o

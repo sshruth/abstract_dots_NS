@@ -1,0 +1,22 @@
+BEGIN{
+	FS = ","
+}
+{
+	if (NR == 1) {
+		print
+		next
+	}
+	if ($0 == "	0,0") {
+		rn = NR
+		printf("\t0,0\n")
+		next
+	}
+	if(NR == rn + 1) {
+		i = ($2 + 20)
+		printf("\t%d,%d\n", $1, i)
+		next
+	}
+	else	print
+}
+		
+		

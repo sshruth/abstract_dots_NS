@@ -1,0 +1,10 @@
+#define FNAME 1
+#define A_NL	2
+#define FI_TR	3
+#define FI_TR_PA	4
+#define	TR_PA	 	5
+#define TR		6
+#define LINE		7
+#define EOP		8
+#define ARG		9
+#define EMPTY		10

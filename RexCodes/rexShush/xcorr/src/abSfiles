@@ -1,0 +1,1 @@
+ABSRC = ../abmain.c ../initArgs.c ../initXcorr.c ../lsrTig.c ../manageWin.c ../setData.c 

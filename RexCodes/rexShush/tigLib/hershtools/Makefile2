@@ -1,0 +1,58 @@
+.SUFFIXES: .spec .hmp .chr
+
+all: cnv h2s
+
+cnv:	cnv.c
+	cc -O -s -o cnv cnv.c
+
+h2s:	h2s.l
+	lex h2s.l
+	cc -o h2s lex.yy.c -ll
+	rm lex.yy.c
+
+greekp.spec: greekp.hmp
+	rm -f greekp.spec
+	echo "base 5" >greekp.spec
+	echo "ytop 14" >>greekp.spec
+	h2s <greekp.hmp >>greekp.spec
+
+romanp.spec: romanp.hmp
+	rm -f romanp.spec
+	echo "base 5" >romanp.spec
+	echo "ytop 14" >>romanp.spec
+	h2s <romanp.hmp >>romanp.spec
+
+greekcs.spec:	greekcs.hmp
+	rm -f greekcs.spec
+	echo "base 6" > greekcs.spec
+	echo "ytop 10" >> greekcs.spec
+	h2s < greekcs.hmp >> greekcs.spec
+
+italiccs.spec:	italiccs.hmp
+	rm -f italiccs.spec
+	echo "base 6" > italiccs.spec
+	echo "ytop 10" >> italiccs.spec
+	h2s < italiccs.hmp >> italiccs.spec
+
+romancs.spec:	romancs.hmp
+	rm -f romancs.spec
+	echo "base 6" > romancs.spec
+	echo "ytop 10" >> romancs.spec
+	h2s < romancs.hmp >> romancs.spec
+
+.hmp.chr:
+	make $*.spec
+	rm -f $*.chr
+	cnv <$*.spec >$*.chr
+
+.hmp.spec:
+	rm -f $*.spec
+	h2s <$*.hmp >$*.spec
+
+occidental:	hersh.oc1 hersh.oc2 hersh.oc3 hersh.oc4
+	rm -f occidental
+	cat hersh.oc1 hersh.oc2 hersh.oc3 hersh.oc4 >occidental
+
+oriental:	hersh.or1 hersh.or2 hersh.or3 hersh.or4
+	rm -f oriental
+	cat hersh.or1 hersh.or2 hersh.or3 hersh.or4 >oriental

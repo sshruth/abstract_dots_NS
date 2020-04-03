@@ -1,0 +1,2 @@
+# MYLIB = -L../../../lib -l rex
+MYLIB = -L../../../lib -lrex

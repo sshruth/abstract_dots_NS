@@ -1,0 +1,1 @@
+ABSRC = ../abmain.c ../atodChoice.c ../basePortChoice.c ../d2aChoice.c ../dioChoice.c ../initArgs.c ../initDialog.c ../messageChoice.c ../plexEcodeChoice.c ../pstopSwitchChoice.c ../smiChoice.c ../timerChoice.c ../unitChoice.c ../vectChoice.c ../writeCnfFile.c 

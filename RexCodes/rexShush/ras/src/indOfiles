@@ -1,0 +1,1 @@
+MYOBJ = utilDex.o viewRasters.o initRasters.o drawRasterCell.o rex_main.o rex_alert.o rex_ebuf.o

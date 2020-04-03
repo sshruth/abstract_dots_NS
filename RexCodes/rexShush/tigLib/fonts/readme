@@ -1,0 +1,24 @@
+December 5, 1989
+
+ This directory contains programs for modifying the
+ Hershey fonts as used by tig.
+ 
+  1. vectoasc creates an ascii file from a Hershey font file.
+     
+       The ascii file can then be edited to correct individual
+       characters in a font. 
+ 
+  2. asctovec converts an ascii file to a Hershey font file
+     in tig format.
+     
+       After creating an editing an ascii file using vectoasc,
+       this file would be converted back using asctovec.
+       
+  3.  vecstat and disfnt are support programs fro the above
+      programs.  vecstat lists width, vaddr, and nvecs for each
+      character in a font.  disfnt displays the fonts.
+      
+           
+ 
+ 
+

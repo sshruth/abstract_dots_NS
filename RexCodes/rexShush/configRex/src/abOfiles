@@ -1,0 +1,1 @@
+ABOBJ = abmain.o atodChoice.o basePortChoice.o d2aChoice.o dioChoice.o initArgs.o initDialog.o messageChoice.o plexEcodeChoice.o pstopSwitchChoice.o smiChoice.o timerChoice.o unitChoice.o vectChoice.o writeCnfFile.o 

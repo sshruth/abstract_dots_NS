@@ -1,0 +1,2 @@
+MYSRC = ../utilDex.c ../viewRasters.c ../initRasters.c ../drawRasterCell.c ../rex_main.c ../rex_alert.c ../rex_ebuf.c
+

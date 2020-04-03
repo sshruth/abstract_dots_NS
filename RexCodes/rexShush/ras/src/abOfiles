@@ -1,0 +1,1 @@
+ABOBJ = abmain.o fileTools.o inRex.o initArgs.o initRasterDemo.o lsrTig.o manageWin.o tigControls.o toolGraph.o toolPage.o toolPlot.o toolSelect.o 

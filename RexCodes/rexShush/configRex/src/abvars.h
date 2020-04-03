@@ -1,0 +1,42 @@
+/* Variables header for application - AppBuilder 2.01  */
+
+/* 'base' Window link */
+const int ABN_base = 0;
+const int ABN_configureButton = 1;
+const int ABN_a2dGroup = 2;
+const int ABN_NIATMIOXToggle = 3;
+const int ABN_ANDAS12Toggle = 4;
+const int ABN_NIPCIToggle = 5;
+const int ABN_vectorGroup = 6;
+const int ABN_vect3Toggle = 7;
+const int ABN_vect4Toggle = 8;
+const int ABN_vect5Toggle = 9;
+const int ABN_vect7Toggle = 10;
+const int ABN_vect10Toggle = 11;
+const int ABN_vect11Toggle = 12;
+const int ABN_vect12Toggle = 13;
+const int ABN_vect15Toggle = 14;
+const int ABN_adBasePortInteger = 15;
+const int ABN_smiYesToggle = 16;
+const int ABN_smiNoToggle = 17;
+const int ABN_pcdioBasePortInteger = 18;
+const int ABN_isaDioToggle = 19;
+const int ABN_pciDioToggle = 20;
+const int ABN_unitGroup = 21;
+const int ABN_latchToggle = 22;
+const int ABN_mexwexToggle = 23;
+const int ABN_plexonToggle = 24;
+const int ABN_fakeToggle = 25;
+const int ABN_pcmessageToggle = 26;
+const int ABN_pcs_socketToggle = 27;
+const int ABN_hardwareYesToggle = 28;
+const int ABN_hardwareNoToggle = 29;
+const int ABN_plexEcodeGroup = 30;
+const int ABN_plexEcodeNoToggle = 31;
+const int ABN_plexEcodeYesToggle = 32;
+const int ABN_isaCtToggle = 33;
+const int ABN_pciCtToggle = 34;
+const int ABN_isaD2AToggle = 35;
+const int ABN_pciD2AToggle = 36;
+const int ABN_daBasePortInteger = 37;
+

@@ -1,0 +1,1545 @@
+~
+~Menu:
+control_param
+ad_overall_gain		1
+ad_max_rate		2000
+pre_time_msec		-
+post_time_msec		-
+unit_wind_ctl		-
+state_proc_rate		1
+debug_state		0
+doutput_inmem		0
+doutput_rotate		1
+doutput_tofile		0
+~
+~Menu:
+signals 0
+sig_enable		1
+ad_chan			0
+ad_mem_variable		eyeh
+ad_acquire_rate		2000
+ad_calib		1
+ad_delay_100_us		23
+memory_source		-
+signal_store_rate	1000
+signal_title		horiz_eye
+~
+~Menu:
+signals 1
+sig_enable		1
+ad_chan			1
+ad_mem_variable		eyev
+ad_acquire_rate		2000
+ad_calib		1
+ad_delay_100_us		23
+memory_source		-
+signal_store_rate	1000
+signal_title		vert_eye
+~
+~Menu:
+signals 2
+sig_enable		1
+ad_chan			2
+ad_mem_variable		oeyeh
+ad_acquire_rate		2000
+ad_calib		1
+ad_delay_100_us		23
+memory_source		-
+signal_store_rate	1000
+signal_title		other_eyeh
+~
+~Menu:
+signals 3
+sig_enable		1
+ad_chan			3
+ad_mem_variable		oeyev
+ad_acquire_rate		2000
+ad_calib		1
+ad_delay_100_us		23
+memory_source		-
+signal_store_rate	1000
+signal_title		other_eyev
+~
+~Menu:
+signals 4
+sig_enable		1
+ad_chan			4
+ad_mem_variable		addh
+ad_acquire_rate		2000
+ad_calib		1
+ad_delay_100_us		23
+memory_source		-
+signal_store_rate	1000
+signal_title		add_h
+~
+~Menu:
+signals 5
+sig_enable		1
+ad_chan			5
+ad_mem_variable		addv
+ad_acquire_rate		2000
+ad_calib		1
+ad_delay_100_us		23
+memory_source		-
+signal_store_rate	1000
+signal_title		add_v
+~
+~Menu:
+signals 6
+sig_enable		1
+ad_chan			6
+ad_mem_variable		joyh
+ad_acquire_rate		2000
+ad_calib		1
+ad_delay_100_us		23
+memory_source		-
+signal_store_rate	250
+signal_title		horiz_joy
+~
+~Menu:
+signals 7
+sig_enable		1
+ad_chan			7
+ad_mem_variable		joyv
+ad_acquire_rate		2000
+ad_calib		1
+ad_delay_100_us		23
+memory_source		-
+signal_store_rate	250
+signal_title		vert_joy
+~
+~Menu:
+signals 8
+sig_enable		2
+ad_chan			-
+ad_mem_variable		-
+ad_acquire_rate		-
+ad_calib		-
+ad_delay_100_us		-
+memory_source		da_0
+signal_store_rate	500
+signal_title		horiz_mirror
+~
+~Menu:
+signals 9
+sig_enable		2
+ad_chan			-
+ad_mem_variable		-
+ad_acquire_rate		-
+ad_calib		-
+ad_delay_100_us		-
+memory_source		da_1
+signal_store_rate	500
+signal_title		vert_mirror
+~
+~Menu:
+signals 10
+sig_enable		0
+ad_chan			-
+ad_mem_variable		-
+ad_acquire_rate		-
+ad_calib		-
+ad_delay_100_us		-
+memory_source		-
+signal_store_rate	-
+signal_title		-
+~
+~Menu:
+signals 11
+sig_enable		0
+ad_chan			-
+ad_mem_variable		-
+ad_acquire_rate		-
+ad_calib		-
+ad_delay_100_us		-
+memory_source		-
+signal_store_rate	-
+signal_title		-
+~
+~Menu:
+signals 12
+sig_enable		0
+ad_chan			-
+ad_mem_variable		-
+ad_acquire_rate		-
+ad_calib		-
+ad_delay_100_us		-
+memory_source		-
+signal_store_rate	-
+signal_title		-
+~
+~Menu:
+signals 13
+sig_enable		0
+ad_chan			-
+ad_mem_variable		-
+ad_acquire_rate		-
+ad_calib		-
+ad_delay_100_us		-
+memory_source		-
+signal_store_rate	-
+signal_title		-
+~
+~Menu:
+signals 14
+sig_enable		0
+ad_chan			-
+ad_mem_variable		-
+ad_acquire_rate		-
+ad_calib		-
+ad_delay_100_us		-
+memory_source		-
+signal_store_rate	-
+signal_title		-
+~
+~Menu:
+signals 15
+sig_enable		0
+ad_chan			-
+ad_mem_variable		-
+ad_acquire_rate		-
+ad_calib		-
+ad_delay_100_us		-
+memory_source		-
+signal_store_rate	-
+signal_title		-
+~
+~Menu:
+da_conv 0
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv 1
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv 2
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv 3
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv 4
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv 5
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv 6
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv 7
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv 8
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv 9
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv 10
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv 11
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv 12
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv 13
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv 14
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+da_conv 15
+menu_enab		0
+source			-
+source_num		-
+mode			-
+offset			-
+output_value		-
+~
+~Menu:
+mem_array 0
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array 1
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array 2
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array 3
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array 4
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array 5
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array 6
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array 7
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array 8
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array 9
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array 10
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array 11
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array 12
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array 13
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array 14
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+mem_array 15
+menu_enab		0
+beg_add_pointer		-
+count			-
+rate			-
+repeat			-
+~
+~Menu:
+offsets_eye
+off_menu_enab		0
+eyeh_off_10s		-
+eyev_off_10s		-
+oeyeh_off_10s		-
+oeyev_off_10s		-
+~
+~Menu:
+rgen(ramps) 0
+menu_enab		0
+type_flag		-
+length_10s		-
+angle_deg		-
+velocity_deg/sec	-
+xoffset_10s		-
+yoffset_10s		-
+ramp_ecode		-
+phidevice		0
+phiontime		1
+phiofftime		99
+~
+~Menu:
+rgen(ramps) 1
+menu_enab		0
+type_flag		-
+length_10s		-
+angle_deg		-
+velocity_deg/sec	-
+xoffset_10s		-
+yoffset_10s		-
+ramp_ecode		-
+phidevice		0
+phiontime		1
+phiofftime		99
+~
+~Menu:
+rgen(ramps) 2
+menu_enab		0
+type_flag		-
+length_10s		-
+angle_deg		-
+velocity_deg/sec	-
+xoffset_10s		-
+yoffset_10s		-
+ramp_ecode		-
+phidevice		0
+phiontime		1
+phiofftime		99
+~
+~Menu:
+rgen(ramps) 3
+menu_enab		0
+type_flag		-
+length_10s		-
+angle_deg		-
+velocity_deg/sec	-
+xoffset_10s		-
+yoffset_10s		-
+ramp_ecode		-
+phidevice		0
+phiontime		1
+phiofftime		99
+~
+~Menu:
+rgen(ramps) 4
+menu_enab		0
+type_flag		-
+length_10s		-
+angle_deg		-
+velocity_deg/sec	-
+xoffset_10s		-
+yoffset_10s		-
+ramp_ecode		-
+phidevice		0
+phiontime		1
+phiofftime		99
+~
+~Menu:
+rgen(ramps) 5
+menu_enab		0
+type_flag		-
+length_10s		-
+angle_deg		-
+velocity_deg/sec	-
+xoffset_10s		-
+yoffset_10s		-
+ramp_ecode		-
+phidevice		0
+phiontime		1
+phiofftime		99
+~
+~Menu:
+rgen(ramps) 6
+menu_enab		0
+type_flag		-
+length_10s		-
+angle_deg		-
+velocity_deg/sec	-
+xoffset_10s		-
+yoffset_10s		-
+ramp_ecode		-
+phidevice		0
+phiontime		1
+phiofftime		99
+~
+~Menu:
+rgen(ramps) 7
+menu_enab		0
+type_flag		-
+length_10s		-
+angle_deg		-
+velocity_deg/sec	-
+xoffset_10s		-
+yoffset_10s		-
+ramp_ecode		-
+phidevice		0
+phiontime		1
+phiofftime		99
+~
+~Menu:
+rgen(ramps) 8
+menu_enab		0
+type_flag		-
+length_10s		-
+angle_deg		-
+velocity_deg/sec	-
+xoffset_10s		-
+yoffset_10s		-
+ramp_ecode		-
+phidevice		0
+phiontime		1
+phiofftime		99
+~
+~Menu:
+rgen(ramps) 9
+menu_enab		0
+type_flag		-
+length_10s		-
+angle_deg		-
+velocity_deg/sec	-
+xoffset_10s		-
+yoffset_10s		-
+ramp_ecode		-
+phidevice		0
+phiontime		1
+phiofftime		99
+~
+~Menu:
+run_line_chan 0
+signal_num		0
+~
+~Menu:
+run_line_chan 1
+signal_num		1
+~
+~Menu:
+run_line_chan 2
+signal_num		2
+~
+~Menu:
+run_line_chan 3
+signal_num		3
+~
+~Menu:
+run_line_chan 4
+signal_num		8
+~
+~Menu:
+run_line_chan 5
+signal_num		9
+~
+~Menu:
+run_line_chan 6
+signal_num		-1
+~
+~Menu:
+run_line_chan 7
+signal_num		-1
+~
+~Menu:
+win_disp_chan 0
+channel_num		0
+~
+~Menu:
+win_disp_chan 1
+channel_num		1
+~
+~Menu:
+win_disp_chan 2
+channel_num		2
+~
+~Menu:
+win_disp_chan 3
+channel_num		16
+~
+~Menu:
+win_disp_chan 4
+channel_num		16
+~
+~Menu:
+win_disp_chan 5
+channel_num		16
+~
+~Menu:
+win_disp_chan 6
+channel_num		16
+~
+~Menu:
+win_disp_chan 7
+channel_num		16
+~
+~Menu:
+saccade_det
+sd_control		-
+h_range			15
+v_range			15
+peak_vel		0
+start_vel		6
+end_vel			2
+max_vel			30000
+min_vel			15
+max_dur			100
+min_dur			10
+delay_time		40
+~
+~Menu:
+bit
+default_bit_device	0x7
+~
+~Menu:
+trials
+correct			0
+wrong			0
+~
+~Menu:
+windows 0
+menu_enab		0
+window_control		-
+x_position_source	-
+x_position_src_num	-
+y_position_source	-
+y_position_src_num	-
+x_check_source		-
+x_check_src_num		-
+y_check_source		-
+y_check_src_num		-
+x_dir_pos_10s		-
+y_dir_pos_10s		-
+xsiz_10s		-
+ysiz_10s		-
+~
+~Menu:
+windows 1
+menu_enab		0
+window_control		-
+x_position_source	-
+x_position_src_num	-
+y_position_source	-
+y_position_src_num	-
+x_check_source		-
+x_check_src_num		-
+y_check_source		-
+y_check_src_num		-
+x_dir_pos_10s		-
+y_dir_pos_10s		-
+xsiz_10s		-
+ysiz_10s		-
+~
+~Menu:
+windows 2
+menu_enab		0
+window_control		-
+x_position_source	-
+x_position_src_num	-
+y_position_source	-
+y_position_src_num	-
+x_check_source		-
+x_check_src_num		-
+y_check_source		-
+y_check_src_num		-
+x_dir_pos_10s		-
+y_dir_pos_10s		-
+xsiz_10s		-
+ysiz_10s		-
+~
+~Menu:
+windows 3
+menu_enab		0
+window_control		-
+x_position_source	-
+x_position_src_num	-
+y_position_source	-
+y_position_src_num	-
+x_check_source		-
+x_check_src_num		-
+y_check_source		-
+y_check_src_num		-
+x_dir_pos_10s		-
+y_dir_pos_10s		-
+xsiz_10s		-
+ysiz_10s		-
+~
+~Menu:
+windows 4
+menu_enab		0
+window_control		-
+x_position_source	-
+x_position_src_num	-
+y_position_source	-
+y_position_src_num	-
+x_check_source		-
+x_check_src_num		-
+y_check_source		-
+y_check_src_num		-
+x_dir_pos_10s		-
+y_dir_pos_10s		-
+xsiz_10s		-
+ysiz_10s		-
+~
+~Menu:
+windows 5
+menu_enab		0
+window_control		-
+x_position_source	-
+x_position_src_num	-
+y_position_source	-
+y_position_src_num	-
+x_check_source		-
+x_check_src_num		-
+y_check_source		-
+y_check_src_num		-
+x_dir_pos_10s		-
+y_dir_pos_10s		-
+xsiz_10s		-
+ysiz_10s		-
+~
+~Menu:
+windows 6
+menu_enab		0
+window_control		-
+x_position_source	-
+x_position_src_num	-
+y_position_source	-
+y_position_src_num	-
+x_check_source		-
+x_check_src_num		-
+y_check_source		-
+y_check_src_num		-
+x_dir_pos_10s		-
+y_dir_pos_10s		-
+xsiz_10s		-
+ysiz_10s		-
+~
+~Menu:
+windows 7
+menu_enab		0
+window_control		-
+x_position_source	-
+x_position_src_num	-
+y_position_source	-
+y_position_src_num	-
+x_check_source		-
+x_check_src_num		-
+y_check_source		-
+y_check_src_num		-
+x_dir_pos_10s		-
+y_dir_pos_10s		-
+xsiz_10s		-
+ysiz_10s		-
+~
+~Menu:
+State_vars.AbstractDots_VD4
+Repetitions		1000
+RF_radius		100
+RF_theta		315
+RF_n			2
+RNG_Seed		-32768
+Max_prize_count		1
+Skip_dir		180
+Skip_coh		0
+Skip_p			0
+Proportion		1
+~
+~Menu:
+Task1_info.AbstractDots_VD4
+object_1		1
+object_2		6
+series_o		0
+series_n		2
+series_delta		180
+t_flag			3
+coherence_lo		300
+coherence_hi		700
+RT_task			0
+~
+~Menu:
+Task1_objList.AbstractDots_VD4 0
+x			0
+y			0
+amplitude		0
+angle			0
+vertex			0
+wrt			0
+angle_offset		0
+diameter		2
+color.R			255
+color.G			0
+color.B			0
+~
+~Menu:
+Task1_objList.AbstractDots_VD4 1
+x			0
+y			0
+amplitude		0
+angle			0
+vertex			0
+wrt			0
+angle_offset		0
+diameter		70
+color.R			0
+color.G			0
+color.B			0
+~
+~Menu:
+Task1_objList.AbstractDots_VD4 2
+x			0
+y			0
+amplitude		0
+angle			0
+vertex			0
+wrt			0
+angle_offset		0
+diameter		0
+color.R			0
+color.G			0
+color.B			0
+~
+~Menu:
+Task1_objList.AbstractDots_VD4 3
+x			-32768
+y			-32768
+amplitude		-32768
+angle			-32768
+vertex			-32768
+wrt			-32768
+angle_offset		0
+diameter		10
+color.R			212
+color.G			255
+color.B			0
+~
+~Menu:
+Task1_objList.AbstractDots_VD4 4
+x			-32768
+y			-32768
+amplitude		-32768
+angle			-32768
+vertex			-32768
+wrt			-32768
+angle_offset		0
+diameter		10
+color.R			0
+color.G			255
+color.B			255
+~
+~Menu:
+Task1_objList.AbstractDots_VD4 5
+x			0
+y			0
+amplitude		0
+angle			0
+vertex			0
+wrt			0
+angle_offset		0
+diameter		0
+color.R			0
+color.G			0
+color.B			0
+~
+~Menu:
+Task1_objList.AbstractDots_VD4 6
+x			-32768
+y			-32768
+amplitude		-32768
+angle			-32768
+vertex			0
+wrt			0
+angle_offset		0
+diameter		-32768
+color.R			0
+color.G			0
+color.B			0
+~
+~Menu:
+Task1_dots.AbstractDots_VD4
+coherence		-32768
+direction		-32768
+speed			50
+novar_pct		0
+seed_base		0
+~
+~Menu:
+Task2_info.AbstractDots_VD4
+object_1		0
+object_2		0
+series_o		0
+series_n		0
+series_delta		-32768
+t_flag			-32768
+coherence_lo		50
+coherence_hi		0
+RT_task			0
+~
+~Menu:
+Task2_objList.AbstractDots_VD4 0
+x			0
+y			0
+amplitude		0
+angle			0
+vertex			0
+wrt			0
+angle_offset		0
+diameter		0
+color.R			0
+color.G			0
+color.B			0
+~
+~Menu:
+Task2_objList.AbstractDots_VD4 1
+x			0
+y			0
+amplitude		0
+angle			0
+vertex			0
+wrt			0
+angle_offset		0
+diameter		0
+color.R			0
+color.G			0
+color.B			0
+~
+~Menu:
+Task2_objList.AbstractDots_VD4 2
+x			0
+y			0
+amplitude		0
+angle			0
+vertex			0
+wrt			0
+angle_offset		0
+diameter		0
+color.R			0
+color.G			0
+color.B			0
+~
+~Menu:
+Task2_objList.AbstractDots_VD4 3
+x			0
+y			0
+amplitude		0
+angle			0
+vertex			0
+wrt			0
+angle_offset		0
+diameter		0
+color.R			0
+color.G			0
+color.B			0
+~
+~Menu:
+Task2_objList.AbstractDots_VD4 4
+x			0
+y			0
+amplitude		0
+angle			0
+vertex			0
+wrt			0
+angle_offset		0
+diameter		0
+color.R			0
+color.G			0
+color.B			0
+~
+~Menu:
+Task2_objList.AbstractDots_VD4 5
+x			0
+y			0
+amplitude		0
+angle			0
+vertex			0
+wrt			0
+angle_offset		0
+diameter		0
+color.R			0
+color.G			0
+color.B			0
+~
+~Menu:
+Task2_objList.AbstractDots_VD4 6
+x			0
+y			0
+amplitude		0
+angle			0
+vertex			0
+wrt			0
+angle_offset		0
+diameter		0
+color.R			0
+color.G			0
+color.B			0
+~
+~Menu:
+Task2_dots.AbstractDots_VD4
+coherence		0
+direction		0
+speed			0
+novar_pct		0
+seed_base		0
+~
+~State set variables:
+set statelist
+first
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+firstcd
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x1f40  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+setup
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x20  b_arg 0x30  c_arg 0x4
+d_arg 0x1  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+loop
+preset 2000  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+pause
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x3eb  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+go
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+donelist
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x40b  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+settrl
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0xa  c_arg 0x1
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+task
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+skiptrl
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x3  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+skipdone
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x1  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+fixeyewinpos
+preset 10  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x14  b_arg 0x14  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+fixeyewait
+preset 5000  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+nofix
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x4  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+nofixDone
+preset 2000  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x2  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+fixeyedelay
+preset 100  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+fixeyeset
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x1  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+fixeyedone
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x19  b_arg 0x19  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+teye_start
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x28  b_arg 0x3c  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+teye_fp
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x3e8  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+teye_fp_cd
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x3f2  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+teye_targ_wait
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x3e8  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+teye_targ_def
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0xffffffff  b_arg 0  c_arg 0
+d_arg 0xffffffff  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+teye_targ
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0xffffffff  b_arg 0x3e8  c_arg 0x3e8
+d_arg 0xffffffff  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+teye_waitdots
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x3e8  b_arg 0x1f4  c_arg 0x514
+d_arg 0x12c  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+teye_startdots
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+teye_wentdots
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x1325  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+teye_setdotdur
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x3e8  b_arg 0x15e  c_arg 0x320
+d_arg 0x96  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+teye_stopdots
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+teye_stopdotscd
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x44d  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+ton_tarlum
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0xffffffff  b_arg 0x3e8  c_arg 0x3e8
+d_arg 0xffffffff  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+ton_wait
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0xc8  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+ton_showtar
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x3e8  b_arg 0xffffffff  c_arg 0xffffffff
+d_arg 0xffffffff  e_arg 0x3e8  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+ton_targcd
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0xbb9  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+ton_setflag
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x1  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+go_tarlum
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0xffffffff  b_arg 0x3e8  c_arg 0x3e8
+d_arg 0xffffffff  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+go_waitfpoff
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x2bc  b_arg 0x578  c_arg 0xc8
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+go_fpoff
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0xffffffff  c_arg 0xffffffff
+d_arg 0xffffffff  e_arg 0x3e8  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+go_fpoff_cd
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x401  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+go_tonflag
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+resp_ewinoff
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+resp_grace
+preset 1500  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+resp_saccd
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x3ef  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+check_eye_response
+preset 2000  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+peyehold
+preset 200  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x1337  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+neyehold
+preset 200  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x1337  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+ncshow
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0xffffffff  b_arg 0xffffffff  c_arg 0xffffffff
+d_arg 0xffffffff  e_arg 0xffffffff  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+ncwait
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+ncerr
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x2  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+ncend
+preset 1000  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x1  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+nushow
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0xffffffff  b_arg 0x3e8  c_arg 0
+d_arg 0xffffffff  e_arg 0x1  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+nuwait
+preset 150  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+null
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+nuclose
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x1  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+nupunish
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0x157c  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+nuend
+preset 1000  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+pref
+preset 250  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x1  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+prend
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0xffffffff  b_arg 0x3e8  c_arg 0
+d_arg 0xffffffff  e_arg 0x1  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+prdelay
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+prrew
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x7050001  b_arg 0x4b  c_arg 0x1
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+prrew_off
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x7050001  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+prize_loop
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+prize_delay
+preset 10  random 0  type_flag_rl 0  value_rl 0
+a_arg 0xffffffff  b_arg 0  c_arg 0xffffffff
+d_arg 0xffffffff  e_arg 0x1  f_arg 0x1
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+prize
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x7050001  b_arg 0x64  c_arg 0x6
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+prize_off
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x7050001  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+prdone
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x1  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+abtst
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+efirst
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+etest
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+echk
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+efail
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0x3  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+ufirst
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+uchk
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+uchkAgain
+preset 0  random 0  type_flag_rl 0  value_rl 0
+a_arg 0  b_arg 0  c_arg 0
+d_arg 0  e_arg 0  f_arg 0
+g_arg 0  h_arg 0  i_arg 0 j_arg 0
+~
+~

@@ -1,0 +1,2 @@
+# MYLIB = -l tig -l neuron -l rex -l act
+MYLIB = -L../../../lib -ltig -lneuron -lrex -lact

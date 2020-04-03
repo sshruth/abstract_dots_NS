@@ -1,0 +1,4 @@
+# -include ../indLfiles
+# ABLIB = $(MYLIB) -l Ap -l ph -l m -lang-c++
+ABLIB = -lAp -lph -lm
+

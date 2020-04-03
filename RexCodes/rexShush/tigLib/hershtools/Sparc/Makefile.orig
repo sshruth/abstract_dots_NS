@@ -1,0 +1,32 @@
+#	Makefile 1.0	6/5/87
+#
+# make file for font programs
+#
+#
+
+CFLAGS=	-O -s
+OBJS=	termio.o
+SOURCES= termio.c eplot.c hplot.c
+
+all:	eplot hplot htrans
+
+htrans:	htrans.c
+	${CC} ${CFLAGS} -o htrans htrans.c
+
+eplot:	${OBJS} eplot.o
+	${CC} ${CFLAGS} -o eplot ${OBJS} eplot.o -ltermlib
+
+hplot:	${OBJS} hplot.o
+	${CC} ${CFLAGS} -o hplot ${OBJS} hplot.o -ltermlib
+
+eplot.o:	eplot.c
+	${CC} ${CFLAGS} -c eplot.c
+
+hplot.o:	hplot.c vfont.c
+	${CC} ${CFLAGS} -c hplot.c
+
+${OBJS}:	termio.h
+
+clean:
+	rm -f *.o
+

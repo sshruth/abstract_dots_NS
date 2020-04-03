@@ -1,0 +1,71 @@
+#
+# Application Makefile   
+#
+
+ifndef DEBUG
+DEBUG = -g
+endif
+
+ifndef OPTIM
+OPTIM = -O
+endif
+
+# REX libraries kept in rex/lib.
+REXLIBS = -Bstatic -l tig -l neuron -l rex -l act
+
+PLATFORM=gcc_ntox86
+PHABOPTS= 
+
+CC = qcc
+LD = qcc
+
+CFLAGS  = -V$(PLATFORM) -w5 $(OPTIM) $(DEBUG) $(PHABOPTS) -I. -I../../../hdr
+CXXFLAGS = $(CFLAGS)
+LDFLAGS = -V$(PLATFORM) -Bstatic $(DEBUG) -l Ap -l phexlib -l ph -l phrender $(PHABOPTS) -Bdynamic -l m
+SDFLAGS = -V$(PLATFORM)          $(DEBUG) -l Ap -l phexlib -l ph -l phrender $(PHABOPTS) -Bstatic -l ph -Bdynamic -l m
+
+VPATH = ..
+
+include	../abOfiles
+include ../indOfiles
+
+include	../abSfiles
+include ../indSfiles
+
+include	../abHfiles
+include ../indHfiles
+
+include	../abWfiles
+
+#
+# Application Program
+#
+
+shr:	$(ABOBJ) $(MYOBJ)
+		$(LD) $(ABOBJ) $(MYOBJ) $(SDFLAGS) -L../../../lib $(REXLIBS) -M -o ras
+		usemsg ras ../Usemsg
+		phabbind ras $(ABMOD)
+
+app:	$(ABOBJ) $(MYOBJ)
+		$(LD) $(ABOBJ) $(MYOBJ) $(LDFLAGS) -L../../../lib $(REXLIBS) -M -o ras
+		usemsg ras ../Usemsg
+		phabbind ras $(ABMOD)
+
+clean:
+		rm -f *.o *.err *.map ras
+
+install:
+		-cp -vnf ras /usr/bin/photon
+
+#
+# Headers
+#
+
+$(ABOBJ) $(MYOBJ):	$(MYHDR)
+
+#
+# Prototype Generation
+#
+
+proto:
+		approto -p $(ABSRC) $(MYSRC) > proto.h
